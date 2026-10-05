@@ -3,7 +3,7 @@
 import {useRouter} from "next/navigation";
 import type UserType from "../type/UserType";
 
-export default function useAuth() {
+export default function useAuth(){
     const router = useRouter();
 
     //demo user data
@@ -15,10 +15,10 @@ export default function useAuth() {
     };
 
     const login = (email: string, password: string) => {
-        if (email === demoUser.email && password === demoUser.password) {
+        if(email === demoUser.email && password === demoUser.password){
             router.push("/board"); // Redirect to dashboard after successful login
             return true;
-        } else {
+        }else{
             return false;
         }
     }

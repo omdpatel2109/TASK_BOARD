@@ -5,7 +5,7 @@ export default function DashboardPage(){
             <div>
                 
             </div>
-            <div className="grid grid-cols-3 gap-2 m-5 h-100">
+            <div className="grid grid-cols-3 gap-5 m-5 h-100">
                 <div className="border border-red-300 text-lg rounded-md text-center bg-red-100 p-4">
                     <span className="border rounded p-1 mt-5 w-full border-red-500 border-2 text-red-600">To do</span>
                 </div>

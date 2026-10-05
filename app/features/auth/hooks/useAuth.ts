@@ -8,7 +8,7 @@ export default function useAuth() {
 
     //demo user data
     const demoUser: UserType = {
-        id: "1",
+        id: 1,
         name: "Om Patel",
         email: "ompatel1234@gmail.com",
         password: "123456"

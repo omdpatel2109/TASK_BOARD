@@ -13,6 +13,6 @@ export interface CreateComment{
 }
 
 export interface UpdateComment{
-    text?: string,
+    text: string,
     updatedAt: string,
 }

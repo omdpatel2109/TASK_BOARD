@@ -1,46 +1,46 @@
 {
-    "tasks": [
-        {
-            "id": "1",
-            "title": "Set up project",
-            "description": "Create the Task Board project",
-            "status": "todo",
-            "order": 1
-        },
-        {
-            "id": "2",
-            "title": "Design dashboard",
-            "description": "Create the Kanban board UI",
-            "status": "in_progress",
-            "order": 1
-        },
-        {
-            "id": "3",
-            "title": "Design Login",
-            "description": "Create the Login Form",
-            "status": "in_progress",
-            "order": 1
-        }
-    ],
-    "comments": [
-        {
-            "id": "1",
-            "taskId": "1",
-            "text": "This is the first step for the project.",
-            "createdAt": "2026-08-26"
-        },
-        {
-            "id": "2",
-            "taskId": "2",
-            "text": "Make the design perfect and user-friendly.",
-            "createdAt": "2026-08-26"
-        },
-        {
-        "id": "URIsQ3BWNcg",
-        "taskId": "1",
-        "text": "This is the initial step for the project.",
-        "createdAt": "2026-10-07"
-        }
-    ],
-    "$schema": "./node_modules/json-server/schema.json"
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Design dashboard",
+      "description": "Create the Kanban board UI",
+      "status": "todo",
+      "order": 1
+    },
+    {
+      "id": "2",
+      "title": "Design dashboard",
+      "description": "Create the Kanban board UI",
+      "status": "in_progress",
+      "order": 1
+    },
+    {
+      "id": "3",
+      "title": "Design Login",
+      "description": "Create the Login Form",
+      "status": "in_progress",
+      "order": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "taskId": null,
+      "text": "This is the first step for the project.",
+      "createdAt": "2026-08-26"
+    },
+    {
+      "id": "2",
+      "taskId": "2",
+      "text": "Make the design perfect and user-friendly.",
+      "createdAt": "2026-08-26"
+    },
+    {
+      "id": "URIsQ3BWNcg",
+      "taskId": null,
+      "text": "This is the initial step for the project.",
+      "createdAt": "2026-10-07"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -1,4 +1,4 @@
-import TaskBoard from "@/app/features/tasks/components/TaskBoard";
+import TaskBoard from "@/features/tasks/components/TaskBoard";
 import Header from "@/components/Header";
 import SideBar from "@/components/SideBar";
 

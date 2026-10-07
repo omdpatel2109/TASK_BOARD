@@ -20,11 +20,11 @@ export default function LoginForm() {
             password: '',
         },
         validationSchema: validationSchema, 
-        onSubmit: (values, { setSubmitting }) => {
-           setAlertText("");  //empty old alert message
-            const isSuccess = login(values.email, values.password);
+        onSubmit: async(values, { setSubmitting }) => {
+            setAlertText("");  //empty old alert message
+            const isSuccess = await login(values.email, values.password);
             if(!isSuccess) {
-               setAlertText("Wrong email or password.Enter valid email or password.");
+                setAlertText("Wrong email or password.Enter valid email or password.");
             }
             setSubmitting(false); 
             
@@ -37,7 +37,7 @@ export default function LoginForm() {
 
     return (
         <>
-           <AlertBox message={alertText} onClose={() => setAlertText("")} />
+            <AlertBox message={alertText} onClose={() => setAlertText("")} />
             
             <form onSubmit={formik.handleSubmit} className="max-w-md mx-auto p-6 bg-white border border-gray-200 rounded-xl shadow-sm">
                 <div>
@@ -45,10 +45,9 @@ export default function LoginForm() {
                     <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
                         Email
                     </label>
-                    <input type="email" id="email" name="email" required 
+                    <input type="email" id="email" name="email" 
                     placeholder="Enter email"
-                    className="block w-full border rounded-lg border-gray-300 bg-gray-100 p-2.5 mt-1.5 mb-4 text-sm text-gray-900 
-                    placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                    className="block w-full border rounded-lg border-gray-300 bg-gray-100 p-2.5 mt-1.5 mb-4 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur} //validation trigger when user leaves the input field
@@ -64,7 +63,7 @@ export default function LoginForm() {
                     </label>
                     <div className="relative w-full">
                         <input type={showPassword ? "text" : "password"} 
-                        name="password" required 
+                        name="password" id="password"
                         placeholder="Enter password" 
                         className="block w-full border rounded-lg border-gray-300 bg-gray-100 p-2.5 pr-10 mt-1.5 mb-4 text-sm text-gray-900 placeholder-gray-400 
                         focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"

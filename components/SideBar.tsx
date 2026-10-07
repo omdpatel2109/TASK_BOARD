@@ -1,6 +1,6 @@
 export default function SideBar(){
     return(
-        <div className="w-75 flex bg-slate-900 grid cols-1 sticky top-0 h-screen">
+        <div className="w-75 bg-slate-900 grid sticky top-0 h-screen">
             <div className="p-4">
                 <a href="#" className="block px-4 py-2 text-gray-100 hover:bg-gray-800 rounded">
                     Dashboard

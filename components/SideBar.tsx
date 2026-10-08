@@ -4,7 +4,7 @@ export default function SideBar() {
             <div className="p-4">
                 {/* Dashboard */}
                 <a href="#"
-                    className="flex items-center px-4 py-2.5 text-lg text-blue-600 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    className="flex items-center px-4 py-2.5 text-lg text-blue-600 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors font-semibold"
                 >
                     <span className="mr-3 text-gray-500"></span>
                     Dashboard
@@ -12,7 +12,7 @@ export default function SideBar() {
 
                 {/* Tasks */}
                 <a href="#"
-                    className="flex items-center px-4 py-2.5 mt-1 text-lg text-blue-600 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    className="flex items-center px-4 py-2.5 mt-1 text-lg text-blue-600 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors font-semibold"
                 >
                     <span className="mr-3 text-gray-500"></span>
                     Tasks
@@ -20,7 +20,7 @@ export default function SideBar() {
 
                 {/* Settings */}
                 <a href="#"
-                    className="flex items-center px-4 py-2.5 mt-1 text-lg text-blue-600 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    className="flex items-center px-4 py-2.5 mt-1 text-lg text-blue-600 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors font-semibold"
                 >
                     <span className="mr-3 text-gray-500"></span>
                     Settings

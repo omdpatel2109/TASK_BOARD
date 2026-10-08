@@ -6,7 +6,7 @@ export default function Header() {
         <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-6">
 
             {/* Title */}
-            <h1 className="text-xl font-bold text-blue-700">
+            <h1 className="text-2xl font-bold text-blue-700">
                 Task Board
             </h1>
 

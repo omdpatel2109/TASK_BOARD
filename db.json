@@ -8,18 +8,28 @@
       "order": 1
     },
     {
-      "id": "2",
-      "title": "Design dashboard",
-      "description": "Create the Kanban board UI",
-      "status": "in_progress",
-      "order": 1
+      "title": "Implement DND functionality",
+      "description": "First search that how to do this and then apply it",
+      "status": "todo",
+      "id": "hz2dG1H3C78"
     },
     {
-      "id": "3",
-      "title": "Design Login",
-      "description": "Create the Login Form",
+      "title": "Complete the task",
+      "description": "First make a document for this then implement",
       "status": "in_progress",
-      "order": 1
+      "id": "LmF5Iy_7uiE"
+    },
+    {
+      "title": "Add task functionlity",
+      "description": "User can add task in the list",
+      "status": "done",
+      "id": "BnNgwGD0tcQ"
+    },
+    {
+      "title": "Edit task",
+      "description": "User can edit the task (title, description and status)",
+      "status": "done",
+      "id": "MtemXmH1HaI"
     }
   ],
   "comments": [
@@ -31,7 +41,7 @@
     },
     {
       "id": "2",
-      "taskId": "2",
+      "taskId": null,
       "text": "Make the design perfect and user-friendly.",
       "createdAt": "2026-08-26"
     },

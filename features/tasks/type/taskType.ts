@@ -5,19 +5,25 @@ export interface Task{
     title: string;
     description: string;
     status: TaskStatus;
-    order: number;
+    // order: number;
 }
 
 export interface CreateTask{
     title: string;
     description: string;
     status: TaskStatus;
-    order: number;
+    // order: number;
 }
 
 export interface UpdateTask{
     title?: string;
     description?: string;
     status?: TaskStatus;
-    order?: number;
+    // order?: number;
+}
+
+export interface TaskFormValues {
+    title: string;
+    description: string;
+    status: TaskStatus;
 }

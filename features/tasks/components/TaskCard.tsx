@@ -53,14 +53,14 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps) {
 
                     <div className="mt-4 flex gap-2">
                         <button type="button" onClick={() => onEdit(task)}
-                            className="rounded-md bg-orange-200 px-3 py-1.5 text-sm font-medium text-orange-700 hover:bg-orange-300">
+                            className="rounded-md bg-blue-100 px-4 py-1.5 text-sm font-medium text-blue-700 border border-blue-200 hover:bg-blue-200 hover:border-blue-300 transition-colors">
                             Edit
                         </button>
 
                         <button
                             type="button"
                             onClick={() => onDelete(task.id)}
-                            className="rounded-md bg-red-200 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-300"
+                            className="rounded-md bg-red-100 px-4 py-1.5 text-sm font-medium text-red-600 border border-red-200 hover:bg-red-200 hover:border-red-300 transition-colors"
                         >
                             Delete
                         </button>

@@ -5,7 +5,7 @@ import TaskCard from "./TaskCard";
 import TaskForm from "./TaskForm";
 import {getTasks, deleteTask} from "@/api/task";
 import type { Task } from "@/features/tasks/type/taskType";
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
+// import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import AlertBox from "@/components/AlertBox";
 
 export default function TaskBoard() {
@@ -165,63 +165,72 @@ export default function TaskBoard() {
                         </span>
 
                         <button type="button" onClick={handleAddTask}
-                            className="m-2 rounded-lg bg-green-600 px-4 py-2 font-bold text-white hover:bg-green-700"
+                            className="m-2 rounded-lg bg-emerald-600 px-4 py-2 font-bold text-white hover:bg-emerald-700"
                         >
-                            + Add Task
+                            Add Task
                         </button>
                     </div>
 
                     <div className="mb-5 ml-5 mr-5 grid grid-cols-1 gap-2 md:grid-cols-3">
                         {/* todo */}
-                        <div className="rounded-md border-2 border-blue-300 bg-blue-50">
-                            <div className="flex justify-between border-b-2 border-blue-300 bg-blue-100 pl-4 pr-5 text-lg">
-                                <span className="block w-full py-2 text-blue-700">
+                        <div className="rounded-md border-2 border-slate-200 bg-slate-50">
+                            <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
+                                <span className="block w-full py-2 text-slate-600">
                                     To Do
                                 </span>
-                                <span className="m-2 rounded-full bg-blue-200 px-4 py-1 text-xs">
+                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1 text-xs">
                                     {todoTasks.length}
                                 </span>
                             </div>
 
                             {todoTasks.map((task) => (
-                                <TaskCard key={task.id} task={task} onEdit={handleEdit}
+                                <TaskCard
+                                    key={task.id}
+                                    task={task}
+                                    onEdit={handleEdit}
                                     onDelete={handleDelete}
                                 />
                             ))}
-
                         </div>
 
                         {/* in progress */}
-                        <div className="rounded-md border-2 border-amber-300 bg-amber-50">
-                            <div className="flex justify-between border-b-2 border-amber-300 bg-amber-100 pl-4 pr-5 text-lg">
-                                <span className="block w-full py-2 text-amber-700">
+                        <div className="rounded-md border-2 border-slate-200 bg-slate-50">
+                            <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
+                                <span className="block w-full py-2 text-slate-600">
                                     In Progress
                                 </span>
-                                <span className="m-2 rounded-full bg-amber-200 px-4 py-1 text-xs">
+                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1 text-xs">
                                     {inProgressTasks.length}
                                 </span>
                             </div>
 
                             {inProgressTasks.map((task) => (
-                                <TaskCard key={task.id} task={task} onEdit={handleEdit}
+                                <TaskCard
+                                    key={task.id}
+                                    task={task}
+                                    onEdit={handleEdit}
                                     onDelete={handleDelete}
                                 />
                             ))}
                         </div>
 
                         {/* done */}
-                        <div className="rounded-md border-2 border-emerald-300 bg-emerald-50">
-                            <div className="flex justify-between border-b-2 border-emerald-300 bg-emerald-100 pl-4 pr-5 text-lg">
-                                <span className="block w-full py-2 text-emerald-700">
+                        <div className="rounded-md border-2 border-slate-200 bg-slate-50">
+                            <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
+                                <span className="block w-full py-2 text-slate-600">
                                     Done
                                 </span>
 
-                                <span className="m-2 rounded-full bg-emerald-200 px-4 py-1 text-xs">
+                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1 text-xs">
                                     {doneTasks.length}
                                 </span>
                             </div>
+
                             {doneTasks.map((task) => (
-                                <TaskCard key={task.id} task={task} onEdit={handleEdit}
+                                <TaskCard
+                                    key={task.id}
+                                    task={task}
+                                    onEdit={handleEdit}
                                     onDelete={handleDelete}
                                 />
                             ))}

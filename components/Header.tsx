@@ -1,22 +1,32 @@
 import Image from 'next/image';
-import image from '@/public/images/images.jpeg'
+import image from '@/public/images/images.jpeg';
 
-export default function Header(){
-    return(
-        <header className="flex h-16 items-center justify-between border-b border-slate-700 bg-slate-900 px-6 text-white">
-    <h1 className="text-xl font-semibold">
-        Task Board
-    </h1>
+export default function Header() {
+    return (
+        <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-6">
 
-    <div className="flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-700">
-            
-        </div>
+            {/* Title */}
+            <h1 className="text-xl font-bold text-blue-700">
+                Task Board
+            </h1>
 
-        <span className="text-sm font-medium">
-            User
-        </span>
-    </div>
-</header>
-    )
+            {/* User */}
+            <div className="flex items-center gap-3">
+
+                <Image
+                    src={image}
+                    alt="User profile"
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 rounded-full object-cover"
+                />
+
+                <span className="text-sm font-medium text-gray-700">
+                    User
+                </span>
+
+            </div>
+
+        </header>
+    );
 }

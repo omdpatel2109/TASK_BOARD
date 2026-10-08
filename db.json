@@ -30,6 +30,12 @@
       "description": "User can edit the task (title, description and status)",
       "status": "done",
       "id": "MtemXmH1HaI"
+    },
+    {
+      "title": "Change the design color",
+      "description": "Search for the button and kanban board for change the color and apply them",
+      "status": "in_progress",
+      "id": "ym95g4XNx6I"
     }
   ],
   "comments": [

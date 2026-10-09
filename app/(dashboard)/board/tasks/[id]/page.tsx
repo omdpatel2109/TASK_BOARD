@@ -1,28 +1,25 @@
-import { notFound } from "next/navigation";
-
 import { getTaskById } from "@/api/task";
 import TaskDetails from "@/features/tasks/components/TaskDetails";
+import CommentBox from "@/features/comments/components/CommentBox";
 
-interface TaskDetailsPageProps {
-    params: Promise<{
-        id: string;
-    }>;
-}
+interface TaskDetailsPageProps {params: Promise<{id: string}>;}
 
-export default async function TaskDetailsPage({
-    params
-}: TaskDetailsPageProps) {
+export default async function TaskDetailsPage({params}: TaskDetailsPageProps){
     const { id } = await params;
 
-    try {
-        const task = await getTaskById(id);
-
-        return (
-            <div className="min-h-screen bg-slate-50 p-6">
-                <TaskDetails task={task} />
+    const task = await getTaskById(id);
+    return(
+        <>
+            <div className="min-h-screen w-full bg-slate-50 p-6">
+                <div>
+                    <TaskDetails task={task} />
+                </div>
+                <div className="w-full">    
+                    <CommentBox />
+                </div>
             </div>
-        );
-    } catch {
-        notFound();
-    }
+        
+        </>
+    );
+
 }

@@ -12,23 +12,20 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps) {
 
     const theme = {
         todo: {
-            border: "border-blue-400",
+            border: "border-l-4 border-l-blue-500 border-r-gray-300 border-y-gray-300",
             title: "text-blue-600",
-            status: "bg-blue-100 text-blue-700",
             hover: "hover:bg-blue-50"
         },
 
         in_progress: {
-            border: "border-amber-400",
+            border: "border-l-4 border-l-amber-500 border-r-gray-300 border-y-gray-300",
             title: "text-amber-600",
-            status: "bg-amber-100 text-amber-700",
             hover: "hover:bg-amber-50"
         },
 
         done: {
-            border: "border-green-400",
+            border: "border-l-4 border-l-green-600 border-r-gray-300 border-y-gray-300",
             title: "text-green-600",
-            status: "bg-green-100 text-green-700",
             hover: "hover:bg-green-50"
         }
     };
@@ -39,7 +36,6 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps) {
     const router = useRouter();
 
     return (
-        // <Link href={'/board/${title}'}>
             <div className={`mx-4 my-4 rounded-md border-2 bg-gray-100 text-left shadow-lg
                     transition duration-300 hover:-translate-y-1
                     ${currentTheme.border} ${currentTheme.hover}

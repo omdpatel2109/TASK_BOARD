@@ -6,7 +6,6 @@ import TaskForm from "./TaskForm";
 import {getTasks, deleteTask} from "@/api/task";
 import type { Task } from "@/features/tasks/type/taskType";
 // import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import AlertBox from "@/components/AlertBox";
 
 export default function TaskBoard() {
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -165,7 +164,7 @@ export default function TaskBoard() {
                         </span>
 
                         <button type="button" onClick={handleAddTask}
-                            className="m-2 rounded-lg bg-emerald-600 px-4 py-2 font-bold text-white hover:bg-emerald-700"
+                            className="m-2 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700"
                         >
                             Add Task
                         </button>
@@ -178,7 +177,7 @@ export default function TaskBoard() {
                                 <span className="block w-full py-2 text-slate-600">
                                     To Do
                                 </span>
-                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1 text-xs">
+                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
                                     {todoTasks.length}
                                 </span>
                             </div>
@@ -199,7 +198,7 @@ export default function TaskBoard() {
                                 <span className="block w-full py-2 text-slate-600">
                                     In Progress
                                 </span>
-                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1 text-xs">
+                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
                                     {inProgressTasks.length}
                                 </span>
                             </div>
@@ -221,7 +220,7 @@ export default function TaskBoard() {
                                     Done
                                 </span>
 
-                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1 text-xs">
+                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
                                     {doneTasks.length}
                                 </span>
                             </div>

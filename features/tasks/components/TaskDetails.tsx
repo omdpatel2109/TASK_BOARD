@@ -48,13 +48,13 @@ export default function TaskDetails({ task }: TaskDetailsProps) {
                             Task #{task.id}
                         </p>
 
-                        <h1 className="break-words text-2xl font-semibold tracking-tight text-slate-900">
+                        <h1 className=" text-2xl font-semibold text-slate-900">
                             {task.title}
                         </h1>
                     </div>
 
                     <span
-                        className={`w-fit shrink-0 rounded-full px-3 py-1 text-xs font-medium ${
+                        className={`w-fit rounded-full px-3 py-1 text-xs font-medium ${
                             statusStyles[task.status]
                         }`}
                     >
@@ -67,14 +67,14 @@ export default function TaskDetails({ task }: TaskDetailsProps) {
                         Description
                     </h2>
 
-                    <p className="whitespace-pre-wrap break-words text-sm leading-7 text-slate-600">
+                    <p className=" text-sm leading-7 text-slate-600">
                         {task.description || "No description provided."}
                     </p>
                 </div>
 
                 <div className="border-t border-slate-100 pt-4">
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
-                        Task ID
+                    <p className="text-xs font-medium text-slate-400">
+                        TASK ID
                     </p>
                     <p className="mt-1 text-sm font-medium text-slate-700">
                         {task.id}

@@ -1,113 +1,117 @@
 "use client";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
+import { DndContext, type DragEndEvent, useDroppable} from "@dnd-kit/core";
 import TaskCard from "./TaskCard";
 import TaskForm from "./TaskForm";
-import {getTasks, deleteTask} from "@/api/task";
+import { useTasks } from "@/features/tasks/hooks/useTasks";
+import { updateTask } from "@/api/task";
 import type { Task } from "@/features/tasks/type/taskType";
-// import { DndContext, DragEndEvent } from "@dnd-kit/core";
 
-export default function TaskBoard() {
-    const [tasks, setTasks] = useState<Task[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState("");
+interface DropZoneProps {
+    id: "todo" | "in_progress" | "done";
+    children: React.ReactNode;
+}
+function DropZone({ id, children }: DropZoneProps) {
+    const { setNodeRef, isOver } = useDroppable({ id });
+    return(
+        <div
+            ref={setNodeRef}
+            className={ isOver ? "rounded-md ring-2 ring-blue-400" : ""}
+        >
+            {children}
+        </div>
+    );
+}
 
-    // Task form
+export default function TaskBoard(){
+    const { tasks, todoTasks, inProgressTasks, doneTasks, isLoading,
+        error, loadTasks, saveTask, removeTask,
+    } = useTasks();
+
+    // Task form state
     const [taskForm, setTaskForm] = useState(false);
     const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+    const [dragError, setDragError] = useState("");
 
-    // Load tasks
-    async function loadTasks(){
-        try{
-            setIsLoading(true);
-            setError("");
-            const data = await getTasks();
-            setTasks(data);
-        }catch(error){
-            console.error("Failed to load tasks:", error);
-            setError("Unable to load tasks. Please try again.");
-        }finally{
-            setIsLoading(false);
-        }
-    }
-
-    // Load tasks when component mounts
+    // Prevent background scrolling while the form is open
     useEffect(() => {
-        loadTasks();
-    }, []);
+        const previousOverflow = document.body.style.overflow;
+        if(taskForm){
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [taskForm]);
 
     // Open form for creating a new task
-    function handleAddTask(){
+    function addTask(){
         setSelectedTask(null);
         setTaskForm(true);
     }
 
     // Open form for editing an existing task
-    function handleEdit(task: Task){
+    function editTask(task: Task){
         setSelectedTask(task);
         setTaskForm(true);
     }
 
     // Close task form
-    function handleCancel(){
+    function formClose(){
         setTaskForm(false);
         setSelectedTask(null);
     }
 
-    // Called after create/update succeeds
-    function handleTaskSuccess(savedTask: Task) {
-        setTasks((currentTasks) => {
-            // Editing task
-            if (selectedTask){
-                return currentTasks.map((task) => 
-                    task.id === savedTask.id ? savedTask : task);
-            }
-
-            // Creating new task
-            return [...currentTasks, savedTask];
-        });
-        setTaskForm(false);
-        setSelectedTask(null);
-        setError("");
+    // Called after creating or updating a task
+    function handleTaskSuccess(savedTask: Task){
+        saveTask(savedTask);
+        formClose();
     }
 
-    // Delete task
-    async function handleDelete(id: string){
+    // Handle drag and drop
+    async function handleDragEnd(event: DragEndEvent){
+        const { active, over } = event;
+        if(!over){
+            return;
+        }
+        const taskId = String(active.id);
+        const newStatus = String(over.id);
+
+        if( newStatus !== "todo" && newStatus !== "in_progress" && newStatus !== "done"){
+            return;
+        }
+        const task = tasks.find(
+            (currentTask) => String(currentTask.id) === taskId
+        );
+
+        if(!task || task.status === newStatus){
+            return;
+        }
+
+        const previousTask = task;
+        const updatedTask: Task = {...task, status: newStatus,};
+        setDragError("");
+
+        // Move the task immediately in the UI
+        saveTask(updatedTask);
+
         try{
-            setError("");
-            await deleteTask(id);
-            confirm("Are you want to delte this task??");
-            setTasks((currentTasks) => 
-                currentTasks.filter((task) => task.id !== id));
+            // Save the new status through the API
+            const savedTask = await updateTask(task.id, {
+                title: task.title,
+                description: task.description,
+                status: newStatus,
+            });
+            saveTask(savedTask);
         }catch(error){
-            console.error("Failed to delete task:",error);
-            setError("Unable to delete the task. Please try again.");
+            console.error("Failed to update task status:", error);
+
+            // Restore the previous status if the request fails
+            saveTask(previousTask);
+            setDragError("Unable to update task status. Please try again.");
         }
     }
-
-    // Filter tasks by status
-    const todoTasks = tasks.filter((task) => task.status === "todo");
-    const inProgressTasks = tasks.filter((task) => task.status === "in_progress");
-    const doneTasks = tasks.filter((task) => task.status === "done");
-
-    // //dnd update status
-    // function updateStatusDrag(taskId: string, newStatus: string){
-    //     setTasks((prevTask) => 
-    //         prevTask.map((task) => 
-    //                 task.id === taskId ? {...task, status: newStatus as any} : task
-    //         )
-    //     )
-    // }
-
-    //dnd kit drop handler
-    // const handleDragEnd = (event: DragEndEvent) => {
-    //     const {active, over} = event;
-    //     //if dont drop into valid column then do nothing
-    //     if(!over) return;
-    //     const taskId = active.id as string;
-    //     const targetColumnId = over.id as string;
-    //     updateStatusDrag(taskId, targetColumnId);
-    // }
 
     // Loading state
     if(isLoading){
@@ -117,15 +121,13 @@ export default function TaskBoard() {
             </div>
         );
     }
-
     // Initial loading error
     if(error && tasks.length === 0){
         return(
             <div className="w-full p-6">
-                <p className="mb-4 text-red-600">
-                    {error}
-                </p>
-                <button type="button"onClick={loadTasks}
+                <p className="mb-4 text-red-600">{error}</p>
+
+                <button type="button" onClick={loadTasks}
                     className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
                 >
                     Try Again
@@ -136,107 +138,112 @@ export default function TaskBoard() {
 
     return(
         <>
-            {/* Task Form */}
+            {/* Task Form*/}
             {taskForm && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black-30 p-4 backdrop-blur-sm">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm">
                     <div className="relative w-full max-w-md rounded-xl border border-gray-100 bg-white p-6 shadow-2xl">
-                        {/* Close button */}
-                        <button type="button" onClick={handleCancel}
+                        <button type="button" onClick={formClose}
                             className="absolute right-7 top-7 rounded-full p-1 text-gray-800 transition hover:bg-gray-100 hover:text-gray-700"
                         >
                             <X className="h-5 w-5" />
                         </button>
 
-                        {/* Same form for Add + Edit */}
                         <TaskForm task={selectedTask ?? undefined}
-                            onSuccess={handleTaskSuccess} onCancel={handleCancel}
+                            onSuccess={handleTaskSuccess} onCancel={formClose}
                         />
                     </div>
                 </div>
             )}
 
-            {/* Main dashBoard */}
-            {/* <DndContext onDragEnd={handleDragEnd}> */}
+            {/* Main Dashboard and Drag Context */}
+            <DndContext onDragEnd={handleDragEnd}>
                 <div className="w-full">
                     <div className="mb-2 ml-5 mr-5 mt-2 flex h-14 justify-between rounded-md">
                         <span className="m-2 px-4 py-2 text-xl font-bold text-gray-900">
                             Task Status
                         </span>
 
-                        <button type="button" onClick={handleAddTask}
+                        <button type="button" onClick={addTask}
                             className="m-2 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700"
                         >
                             Add Task
                         </button>
                     </div>
 
+                    {/* Task Columns */}
                     <div className="mb-5 ml-5 mr-5 grid grid-cols-1 gap-2 md:grid-cols-3">
-                        {/* todo */}
-                        <div className="rounded-md border-2 border-slate-200 bg-slate-50">
-                            <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
-                                <span className="block w-full py-2 text-slate-600">
-                                    To Do
-                                </span>
-                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
-                                    {todoTasks.length}
-                                </span>
+                        {/* To Do */}
+                        <DropZone id="todo">
+                            <div className="rounded-md border-2 border-slate-200 bg-slate-50">
+                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
+                                    <span className="block w-full py-2 text-slate-600">
+                                        To Do
+                                    </span>
+
+                                    <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
+                                        {todoTasks.length}
+                                    </span>
+                                </div>
+
+                                {todoTasks.map((task) => (
+                                    <TaskCard key={task.id} task={task}
+                                        onEdit={editTask} onDelete={removeTask}
+                                    />
+                                ))}
                             </div>
+                        </DropZone>
 
-                            {todoTasks.map((task) => (
-                                <TaskCard
-                                    key={task.id}
-                                    task={task}
-                                    onEdit={handleEdit}
-                                    onDelete={handleDelete}
-                                />
-                            ))}
-                        </div>
+                        {/* In Progress */}
+                        <DropZone id="in_progress">
+                            <div className="rounded-md border-2 border-slate-200 bg-slate-50">
+                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
+                                    <span className="block w-full py-2 text-slate-600">
+                                        In Progress
+                                    </span>
 
-                        {/* in progress */}
-                        <div className="rounded-md border-2 border-slate-200 bg-slate-50">
-                            <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
-                                <span className="block w-full py-2 text-slate-600">
-                                    In Progress
-                                </span>
-                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
-                                    {inProgressTasks.length}
-                                </span>
+                                    <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
+                                        {inProgressTasks.length}
+                                    </span>
+                                </div>
+
+                                {inProgressTasks.map((task) => (
+                                    <TaskCard key={task.id} task={task}
+                                        onEdit={editTask} onDelete={removeTask}
+                                    />
+                                ))}
                             </div>
+                        </DropZone>
 
-                            {inProgressTasks.map((task) => (
-                                <TaskCard
-                                    key={task.id}
-                                    task={task}
-                                    onEdit={handleEdit}
-                                    onDelete={handleDelete}
-                                />
-                            ))}
-                        </div>
+                        {/* Done */}
+                        <DropZone id="done">
+                            <div className="rounded-md border-2 border-slate-200 bg-slate-50">
+                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
+                                    <span className="block w-full py-2 text-slate-600">
+                                        Done
+                                    </span>
 
-                        {/* done */}
-                        <div className="rounded-md border-2 border-slate-200 bg-slate-50">
-                            <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
-                                <span className="block w-full py-2 text-slate-600">
-                                    Done
-                                </span>
+                                    <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
+                                        {doneTasks.length}
+                                    </span>
+                                </div>
 
-                                <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
-                                    {doneTasks.length}
-                                </span>
+                                {doneTasks.map((task) => (
+                                    <TaskCard key={task.id} task={task}
+                                        onEdit={editTask} onDelete={removeTask}
+                                    />
+                                ))}
                             </div>
-
-                            {doneTasks.map((task) => (
-                                <TaskCard
-                                    key={task.id}
-                                    task={task}
-                                    onEdit={handleEdit}
-                                    onDelete={handleDelete}
-                                />
-                            ))}
-                        </div>
+                        </DropZone>
                     </div>
+
+                    {/* API and drag errors */}
+                    {(error || dragError) && (
+                        <p className="mx-5 mb-4 text-sm text-red-600">
+                            {dragError || error}
+                        </p>
+                    )}
                 </div>
-            {/* </DndContext> */}
+            </DndContext>
         </>
     );
 }

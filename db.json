@@ -4,7 +4,7 @@
       "id": "1",
       "title": "Design dashboard",
       "description": "Create the Kanban board UI",
-      "status": "todo",
+      "status": "in_progress",
       "order": 1
     },
     {
@@ -34,26 +34,26 @@
     {
       "title": "Change the design color",
       "description": "Search for the button and kanban board for change the color\n",
-      "status": "in_progress",
+      "status": "todo",
       "id": "ym95g4XNx6I"
     }
   ],
   "comments": [
     {
       "id": "1",
-      "taskId": null,
+      "taskId": 1,
       "text": "This is the first step for the project.",
       "createdAt": "2026-08-26"
     },
     {
       "id": "2",
-      "taskId": null,
+      "taskId": 1,
       "text": "Make the design perfect and user-friendly.",
       "createdAt": "2026-08-26"
     },
     {
       "id": "URIsQ3BWNcg",
-      "taskId": null,
+      "taskId": 1,
       "text": "This is the initial step for the project.",
       "createdAt": "2026-10-07"
     }

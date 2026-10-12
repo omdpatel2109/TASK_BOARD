@@ -66,10 +66,11 @@ export default function TaskDetailsPage() {
                     onClose={() => router.push("/board")}
                 />
 
+                
                 <CommentBox taskId={task.id}/>
-
                 <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:p-6">  
                     <div className="mt-1 border-b border-slate-200">
+                        
                         <CommentList taskId={task.id} />
                     </div>
                 </div>

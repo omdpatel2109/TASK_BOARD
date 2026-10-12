@@ -4,37 +4,37 @@
       "id": "1",
       "title": "Design dashboard",
       "description": "Create the Kanban board UI",
-      "status": "in_progress",
+      "status": "done",
       "order": 1
     },
     {
       "title": "Implement DND functionality",
       "description": "First search that how to do this and then apply it",
-      "status": "done",
+      "status": "in_progress",
       "id": "hz2dG1H3C78"
     },
     {
       "title": "Complete the task",
       "description": "First make a document for this then implement",
-      "status": "in_progress",
+      "status": "todo",
       "id": "LmF5Iy_7uiE"
     },
     {
       "title": "Add task functionlity",
       "description": "User can add task in the list",
-      "status": "todo",
+      "status": "in_progress",
       "id": "BnNgwGD0tcQ"
     },
     {
       "title": "Edit task",
       "description": "User can edit the task (title, description and status)",
-      "status": "done",
+      "status": "todo",
       "id": "MtemXmH1HaI"
     },
     {
       "title": "Change the design color",
       "description": "Search for the button and kanban board for change the color\n",
-      "status": "todo",
+      "status": "done",
       "id": "ym95g4XNx6I"
     }
   ],
@@ -42,8 +42,9 @@
     {
       "id": "1",
       "taskId": 1,
-      "text": "This is the first step for the project.",
-      "createdAt": "2026-08-26"
+      "text": "This is the first step for the project. yes",
+      "createdAt": "2026-08-26",
+      "updatedAt": "2026-10-12T10:54:10.093Z"
     },
     {
       "id": "2",
@@ -52,10 +53,60 @@
       "createdAt": "2026-08-26"
     },
     {
-      "id": "URIsQ3BWNcg",
-      "taskId": 1,
-      "text": "This is the initial step for the project.",
-      "createdAt": "2026-10-07"
+      "taskId": "1",
+      "text": "nice",
+      "createdAt": "2026-10-12T10:48:09.216Z",
+      "updatedAt": "2026-10-12T10:48:09.216Z",
+      "id": "aXDgsgW8RZA"
+    },
+    {
+      "taskId": "1",
+      "text": "nbjgb",
+      "createdAt": "2026-10-12T10:56:23.533Z",
+      "updatedAt": "2026-10-12T10:56:23.533Z",
+      "id": "jFD9oKLxiXU"
+    },
+    {
+      "taskId": "1",
+      "text": "rvc",
+      "createdAt": "2026-10-12T11:01:06.269Z",
+      "updatedAt": "2026-10-12T11:01:06.269Z",
+      "id": "gUMY7Rpb9jo"
+    },
+    {
+      "taskId": "1",
+      "text": "vr",
+      "createdAt": "2026-10-12T11:01:09.084Z",
+      "updatedAt": "2026-10-12T11:01:09.084Z",
+      "id": "xvHeCdSp3X0"
+    },
+    {
+      "taskId": "1",
+      "text": "vrrv",
+      "createdAt": "2026-10-12T11:01:11.388Z",
+      "updatedAt": "2026-10-12T11:01:11.388Z",
+      "id": "JKQ2Kjf5QXk"
+    },
+    {
+      "taskId": "1",
+      "text": "de",
+      "createdAt": "2026-10-12T11:04:52.955Z",
+      "updatedAt": "2026-10-12T11:04:52.955Z",
+      "id": "3ENZ4wJhvXU"
+    },
+    {
+      "taskId": "hz2dG1H3C78",
+      "text": "fe",
+      "createdAt": "2026-10-12T11:19:08.313Z",
+      "updatedAt": "2026-10-12T11:19:08.313Z",
+      "id": "De8Pv6p8b9E"
+    },
+    {
+      "taskId": "hz2dG1H3C78",
+      "text": "v",
+      "createdAt": "2026-10-12T11:20:04.721Z",
+      "updatedAt": "2026-10-12T11:20:04.721Z",
+      "id": "rvY7yE3Q5qM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

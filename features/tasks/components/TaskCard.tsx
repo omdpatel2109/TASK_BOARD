@@ -10,7 +10,7 @@ interface TaskCardProps {
     onDelete: (id: string) => void;
 }
 
-export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps){
+export default function TaskCard({task, onEdit, onDelete}: TaskCardProps){
     const router = useRouter();
 
     const {attributes, listeners, setNodeRef, transform, isDragging,} = useDraggable({
@@ -48,7 +48,7 @@ export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps){
     return (
         <div ref={setNodeRef} style={style}
             className={`mx-4 my-4 rounded-md border-2 bg-gray-100 text-left shadow-lg transition duration-200 ${currentTheme.border} ${currentTheme.hover}
-                ${isDragging ? "z-10 opacity-50" : "hover:-translate-y-1"}
+                ${isDragging ? "z-10 opacity-100" : "hover:-translate-y-1"}
             `}
         >
             <div className="p-4">
@@ -58,7 +58,6 @@ export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps){
                     </h2>
 
                     <button type="button" {...listeners} {...attributes}
-                        aria-label={`Drag ${task.title}`}
                         className="cursor-grab touch-none rounded p-1 text-gray-500 hover:bg-gray-200 active:cursor-grabbing"
                     >
                         <GripVertical className="h-5 w-5" />
@@ -73,15 +72,15 @@ export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps){
                     </p>
                 </button>
 
-                <div className="mt-4 flex gap-2">
+                <div className="mt-4 grid lg:grid-cols-2 gap-5 sm:grid-cols-1 md:grid-cols-1">
                     <button type="button" onClick={() => onEdit(task)}
-                        className="rounded-md border border-blue-200 bg-blue-100 px-4 py-1.5 text-sm font-medium text-blue-700 transition-colors hover:border-blue-300 hover:bg-blue-200"
+                        className="rounded-md border border-blue-200 bg-slate-200 px-4 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-300"
                     >
                         Edit
                     </button>
 
                     <button type="button" onClick={() => onDelete(task.id)}
-                        className="rounded-md border border-red-200 bg-red-100 px-4 py-1.5 text-sm font-medium text-red-600 transition-colors hover:border-red-300 hover:bg-red-200"
+                        className="rounded-md border border-red-200 bg-red-100 px-4 py-1.5 text-sm font-medium text-red-600 transition-colors hover:border-red-300 hover:bg-red-200 "
                     >
                         Delete
                     </button>

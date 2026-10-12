@@ -8,12 +8,12 @@ import { useTasks } from "@/features/tasks/hooks/useTasks";
 import { updateTask } from "@/api/task";
 import type { Task } from "@/features/tasks/type/taskType";
 
-interface DropZoneProps {
+interface DropZoneProps{
     id: "todo" | "in_progress" | "done";
     children: React.ReactNode;
 }
 function DropZone({ id, children }: DropZoneProps) {
-    const { setNodeRef, isOver } = useDroppable({ id });
+    const { setNodeRef, isOver } = useDroppable({id});
     return(
         <div
             ref={setNodeRef}

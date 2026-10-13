@@ -20,14 +20,19 @@ export default function LoginForm() {
             password: '',
         },
         validationSchema: validationSchema, 
-        onSubmit: async(values, { setSubmitting }) => {
-            setAlertText("");  //empty old alert message
-            const isSuccess = await login(values.email, values.password);
-            if(!isSuccess) {
-                setAlertText("Wrong email or password.Enter valid email or password.");
+        onSubmit: async (values, { setSubmitting }) => {
+            setAlertText("");
+            try{
+                const isSuccess = await login(values.email, values.password);
+
+                if(!isSuccess){
+                    setAlertText("Wrong email or password. Enter valid credentials.");
+                }
+            }catch{
+                setAlertText("Something went wrong. Please try again.");
+            }finally{
+                setSubmitting(false);
             }
-            setSubmitting(false); 
-            
         },
     });
 
@@ -87,8 +92,11 @@ export default function LoginForm() {
                     }
                 </div>
                     
-                    <button type="submit" className="w-full border rounded-lg py-2.5 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 mt-2">
-                        Login
+                    <button
+                        type="submit"
+                        disabled={formik.isSubmitting}
+                        className="mt-2 w-full rounded-lg border bg-emerald-600 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50">
+                        {formik.isSubmitting ? "Logging in..." : "Login"}
                     </button>
             </form>
         </>

@@ -6,6 +6,7 @@ import TaskDetails from "@/features/tasks/components/TaskDetails";
 import CommentList from "@/features/comments/components/CommentList";
 import CommentBox from "@/features/comments/components/CommentBox";
 import type { Task } from "@/features/tasks/type/taskType";
+import { useComments } from "@/features/comments/hooks/useComments";
 
 export default function TaskDetailsPage() {
     const params = useParams<{ id: string }>();
@@ -14,6 +15,7 @@ export default function TaskDetailsPage() {
     const [task, setTask] = useState<Task | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
+    const commentsState = useComments(task?.id ?? "");
 
     useEffect(() => {
         async function loadTask(){
@@ -66,13 +68,20 @@ export default function TaskDetailsPage() {
                     onClose={() => router.push("/board")}
                 />
 
-                
-                <CommentBox taskId={task.id}/>
-                <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:p-6">  
-                    <div className="mt-1 border-b border-slate-200">
-                        
-                        <CommentList taskId={task.id} />
-                    </div>
+                <CommentBox
+                    taskId={task.id}
+                    addComment={commentsState.addComment}
+                    error={commentsState.error}
+                />
+
+                <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:p-6">
+                    <CommentList
+                        comments={commentsState.comments}
+                        isLoading={commentsState.isLoading}
+                        error={commentsState.error}
+                        editComment={commentsState.editComment}
+                        removeComment={commentsState.removeComment}
+                    />
                 </div>
             </div>
         </div>

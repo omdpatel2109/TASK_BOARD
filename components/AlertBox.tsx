@@ -2,7 +2,7 @@
 
 import { AlertCircle, X } from "lucide-react";
 
-interface AlertProps {
+interface AlertProps{
     message: string;
     onClose: () => void;
 }

@@ -14,12 +14,6 @@
       "id": "hz2dG1H3C78"
     },
     {
-      "title": "Complete the task",
-      "description": "First make a document for this then implement",
-      "status": "todo",
-      "id": "LmF5Iy_7uiE"
-    },
-    {
       "title": "Add task functionlity",
       "description": "User can add task in the list",
       "status": "in_progress",
@@ -27,7 +21,7 @@
     },
     {
       "title": "Edit task",
-      "description": "User can edit the task (title, description and status)",
+      "description": "User can edit the task (title, description and status).",
       "status": "todo",
       "id": "MtemXmH1HaI"
     },
@@ -36,15 +30,27 @@
       "description": "Search for the button and kanban board for change the color\n",
       "status": "done",
       "id": "ym95g4XNx6I"
+    },
+    {
+      "title": "add comments",
+      "description": "adding the comment component below the task",
+      "status": "todo",
+      "id": "rS1lnadEKkc"
+    },
+    {
+      "title": "vfv",
+      "description": "vf",
+      "status": "in_progress",
+      "id": "VWxbK1OUJtc"
     }
   ],
   "comments": [
     {
       "id": "1",
       "taskId": 1,
-      "text": "This is the first step for the project. yes",
+      "text": "This is the first step for the project. yes no",
       "createdAt": "2026-08-26",
-      "updatedAt": "2026-10-12T10:54:10.093Z"
+      "updatedAt": "2026-10-13T09:04:37.694Z"
     },
     {
       "id": "2",
@@ -95,18 +101,46 @@
       "id": "3ENZ4wJhvXU"
     },
     {
-      "taskId": "hz2dG1H3C78",
-      "text": "fe",
-      "createdAt": "2026-10-12T11:19:08.313Z",
-      "updatedAt": "2026-10-12T11:19:08.313Z",
-      "id": "De8Pv6p8b9E"
+      "taskId": "1",
+      "text": "vfvfvfvfvf",
+      "createdAt": "2026-10-13T06:12:59.045Z",
+      "updatedAt": "2026-10-13T06:12:59.045Z",
+      "id": "RtHc59n3j2w"
+    },
+    {
+      "taskId": "1",
+      "text": "hh",
+      "createdAt": "2026-10-13T06:13:55.021Z",
+      "updatedAt": "2026-10-13T06:13:55.021Z",
+      "id": "XzKTnpMs29U"
+    },
+    {
+      "taskId": "1",
+      "text": "k",
+      "createdAt": "2026-10-13T09:04:44.910Z",
+      "updatedAt": "2026-10-13T09:04:44.910Z",
+      "id": "TiaZQf6VHrs"
+    },
+    {
+      "taskId": null,
+      "text": "ewcw",
+      "createdAt": "2026-10-13T09:10:45.325Z",
+      "updatedAt": "2026-10-13T09:23:13.098Z",
+      "id": "61ik2GdF-fM"
     },
     {
       "taskId": "hz2dG1H3C78",
-      "text": "v",
-      "createdAt": "2026-10-12T11:20:04.721Z",
-      "updatedAt": "2026-10-12T11:20:04.721Z",
-      "id": "rvY7yE3Q5qM"
+      "text": "wrgsvf",
+      "createdAt": "2026-10-13T10:10:11.080Z",
+      "updatedAt": "2026-10-13T10:10:11.080Z",
+      "id": "XQj2tXEQOGo"
+    },
+    {
+      "taskId": "hz2dG1H3C78",
+      "text": "brfb",
+      "createdAt": "2026-10-13T10:10:22.432Z",
+      "updatedAt": "2026-10-13T10:10:22.432Z",
+      "id": "D7mcEnnsCyg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

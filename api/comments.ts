@@ -1,60 +1,46 @@
 
 import { api } from "@/lib/api";
 
-import type {
-    Comment,
-    CreateComment,
-    UpdateComment
-} from "@/features/comments/type/commentType";
+import type {Comment, CreateComment, UpdateComment} from "@/features/comments/type/commentType";
 
-export async function getCommentsByTask(
-    taskId: string
-): Promise<Comment[]> {
-    try {
+export async function getCommentsByTask(taskId: string){
+    try{
         const response = await api.get<Comment[]>("/comments", {
             params: { taskId }
         });
 
         return response.data;
-    } catch (error) {
+    }catch(error){
         console.error("Error fetching comments:", error);
         throw error;
     }
 }
 
-export async function createComment(
-    comment: CreateComment
-): Promise<Comment> {
-    try {
+export async function createComment(comment: CreateComment){
+    try{
         const response = await api.post<Comment>("/comments", comment);
         return response.data;
-    } catch (error) {
+    }catch(error){
         console.error("Error creating comment:", error);
         throw error;
     }
 }
 
-export async function updateComment(
-    id: string,
-    comment: UpdateComment
-): Promise<Comment> {
-    try {
-        const response = await api.patch<Comment>(
-            `/comments/${id}`,
-            comment
-        );
+export async function updateComment(id: string, comment: UpdateComment){
+    try{
+        const response = await api.patch<Comment>(`/comments/${id}`, comment);
 
         return response.data;
-    } catch (error) {
+    }catch(error){
         console.error("Error updating comment:", error);
         throw error;
     }
 }
 
-export async function deleteComment(id: string): Promise<void> {
-    try {
+export async function deleteComment(id: string){
+    try{
         await api.delete(`/comments/${id}`);
-    } catch (error) {
+    }catch(error){
         console.error("Error deleting comment:", error);
         throw error;
     }

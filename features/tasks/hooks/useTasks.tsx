@@ -1,25 +1,26 @@
 "use client";
-
 import { useCallback, useEffect, useState } from "react";
 import { getTasks, deleteTask } from "@/api/task";
 import type { Task } from "@/features/tasks/type/taskType";
+import { getApiErrorMessage } from "@/lib/api";
 
 export function useTasks() {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
+    
 
     const loadTasks = useCallback(async () => {
-        try {
+        try{
             setIsLoading(true);
             setError("");
 
             const data = await getTasks();
             setTasks(data);
-        } catch (error) {
+        }catch(error){
             console.error("Failed to load tasks:", error);
-            setError("Unable to load tasks. Please try again.");
-        } finally {
+            setError(getApiErrorMessage(error));
+        }finally{
             setIsLoading(false);
         }
     }, []);
@@ -29,13 +30,13 @@ export function useTasks() {
     }, [loadTasks]);
 
     // Add a created task or replace an updated task.
-    function saveTask(savedTask: Task) {
+    function saveTask(savedTask: Task){
         setTasks((currentTasks) => {
             const exists = currentTasks.some(
                 (task) => task.id === savedTask.id
             );
 
-            if (exists) {
+            if(exists){
                 return currentTasks.map((task) =>
                     task.id === savedTask.id ? savedTask : task
                 );
@@ -48,18 +49,18 @@ export function useTasks() {
     }
 
     async function removeTask(id: string) {
-        if (!window.confirm("Are you sure you want to delete this task?")) {
+        if(!window.confirm("Are you sure you want to delete this task?")){
             return;
         }
 
-        try {
+        try{
             setError("");
             await deleteTask(id);
 
             setTasks((currentTasks) =>
                 currentTasks.filter((task) => task.id !== id)
             );
-        } catch (error) {
+        }catch(error){
             console.error("Failed to delete task:", error);
             setError("Unable to delete the task. Please try again.");
         }

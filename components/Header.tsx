@@ -22,7 +22,7 @@ export default function Header() {
                 />
 
                 <span className="text-sm font-medium text-gray-700">
-                    User
+                    Om Patel
                 </span>
 
             </div>

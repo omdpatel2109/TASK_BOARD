@@ -52,13 +52,13 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps){
             `}
         >
             <div className="p-4">
-                <div className="mb-2 flex items-start justify-between gap-2">
+                <div className="mb-2 flex justify-between">
                     <h2 className={`text-lg font-bold ${currentTheme.title}`}>
                         {task.title}
                     </h2>
 
                     <button type="button" {...listeners} {...attributes}
-                        className="cursor-grab touch-none rounded p-1 text-gray-500 hover:bg-gray-200 active:cursor-grabbing"
+                        className="cursor-grab rounded p-1 text-gray-500 hover:bg-gray-200 active:cursor-grabbing"
                     >
                         <GripVertical className="h-5 w-5" />
                     </button>

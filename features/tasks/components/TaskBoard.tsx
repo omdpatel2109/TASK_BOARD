@@ -7,11 +7,14 @@ import TaskForm from "./TaskForm";
 import { useTasks } from "@/features/tasks/hooks/useTasks";
 import { updateTask } from "@/api/task";
 import type { Task } from "@/features/tasks/type/taskType";
+import SuccessBox from "@/components/SuccessBox";
+import ConfirmBox from "@/components/ConfirmBox";
 
 interface DropZoneProps{
     id: "todo" | "in_progress" | "done";
     children: React.ReactNode;
 }
+
 function DropZone({ id, children }: DropZoneProps) {
     const { setNodeRef, isOver } = useDroppable({id});
     return(
@@ -26,13 +29,15 @@ function DropZone({ id, children }: DropZoneProps) {
 
 export default function TaskBoard(){
     const { tasks, todoTasks, inProgressTasks, doneTasks, isLoading,
-        error, loadTasks, saveTask, removeTask,
-    } = useTasks();
+        error, loadTasks, saveTask, removeTask} = useTasks();
 
     // Task form state
     const [taskForm, setTaskForm] = useState(false);
     const [selectedTask, setSelectedTask] = useState<Task | null>(null);
     const [dragError, setDragError] = useState("");
+
+    const [successMessage, setSuccessMessage] = useState(""); //sucessbox
+    const [confirmDeleteTask, setConfirmDeleteTask] = useState<Task | null>(null);//confirmbox delete
 
     // Prevent background scrolling while the form is open
     useEffect(() => {
@@ -66,6 +71,8 @@ export default function TaskBoard(){
     // Called after creating or updating a task
     function handleTaskSuccess(savedTask: Task){
         saveTask(savedTask);
+        setSuccessMessage(selectedTask ? "Task updated successfully!" 
+            : "Task added successfully!");
         formClose();
     }
 
@@ -104,6 +111,7 @@ export default function TaskBoard(){
                 status: newStatus,
             });
             saveTask(savedTask);
+            setSuccessMessage("Task Status Changed Successfully..")
         }catch(error){
             console.error("Failed to update task status:", error);
 
@@ -158,23 +166,26 @@ export default function TaskBoard(){
             {/* Main Dashboard and Drag Context */}
             <DndContext onDragEnd={handleDragEnd}>
                 <div className="w-full">
-                    <div className="mb-2 ml-5 mr-5 mt-2 flex h-14 justify-between rounded-md">
-                        <span className="m-2 px-4 py-2 text-xl font-bold text-gray-900">
+                    <div className="mb-3 flex h-10 px-2 justify-between rounded-md">
+                        <span className="text-xl font-bold text-gray-900">
                             Task Status
                         </span>
 
                         <button type="button" onClick={addTask}
-                            className="m-2 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                            className="rounded-lg px-2 bg-blue-600 font-bold text-white hover:bg-blue-700"
                         >
                             Add Task
                         </button>
                     </div>
 
+                    <SuccessBox message={successMessage} 
+                    onClose={() => setSuccessMessage("")}/>
+
                     {/* Task Columns */}
-                    <div className="mb-5 ml-5 mr-5 grid grid-cols-1 gap-2 md:grid-cols-3">
+                    <div className="mb-5 grid grid-cols-1 gap-2 md:grid-cols-3">
                         {/* To Do */}
                         <DropZone id="todo">
-                            <div className="rounded-md border-2 border-slate-200 bg-slate-50">
+                            <div className="rounded-md border-2 border-slate-300 bg-slate-50">
                                 <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
                                     <span className="block w-full py-2 text-slate-600">
                                         To Do
@@ -195,7 +206,7 @@ export default function TaskBoard(){
 
                         {/* In Progress */}
                         <DropZone id="in_progress">
-                            <div className="rounded-md border-2 border-slate-200 bg-slate-50">
+                            <div className="rounded-md border-2 border-slate-300 bg-slate-50">
                                 <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
                                     <span className="block w-full py-2 text-slate-600">
                                         In Progress
@@ -216,7 +227,7 @@ export default function TaskBoard(){
 
                         {/* Done */}
                         <DropZone id="done">
-                            <div className="rounded-md border-2 border-slate-200 bg-slate-50">
+                            <div className="rounded-md border-2 border-slate-300 bg-slate-50">
                                 <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
                                     <span className="block w-full py-2 text-slate-600">
                                         Done

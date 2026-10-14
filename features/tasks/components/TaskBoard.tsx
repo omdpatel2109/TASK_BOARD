@@ -14,8 +14,8 @@ interface DropZoneProps{
     id: "todo" | "in_progress" | "done";
     children: React.ReactNode;
 }
-
-function DropZone({ id, children }: DropZoneProps) {
+//create drop target when that detects when item hovered over it and highlight itself
+function DropZone({ id, children }: DropZoneProps){ 
     const { setNodeRef, isOver } = useDroppable({id});
     return(
         <div
@@ -76,14 +76,35 @@ export default function TaskBoard(){
         formClose();
     }
 
+    // Ask for confirmation before deleting
+    function askDeleteTask(id: string){
+        const task = tasks.find((currentTask) => currentTask.id === id);
+        if(task){
+            setConfirmDeleteTask(task);
+        }
+    }
+
+    // Delete only after confirmation
+    async function handleConfirmDelete(){
+        if (!confirmDeleteTask) return;
+
+        try{
+            await removeTask(confirmDeleteTask.id);
+            setConfirmDeleteTask(null);
+            setSuccessMessage("Task deleted successfully..");
+        }catch(error){
+            console.error("Failed to delete task:", error);
+        }
+    }
+
     // Handle drag and drop
     async function handleDragEnd(event: DragEndEvent){
-        const { active, over } = event;
+        const { active, over } = event; //active - the item being dragged //over - drop zone
         if(!over){
             return;
         }
-        const taskId = String(active.id);
-        const newStatus = String(over.id);
+        const taskId = String(active.id); // dragged task ID 
+        const newStatus = String(over.id); // drop zone ID(todo, inprogress, done)
 
         if( newStatus !== "todo" && newStatus !== "in_progress" && newStatus !== "done"){
             return;
@@ -163,11 +184,19 @@ export default function TaskBoard(){
                 </div>
             )}
 
+            {confirmDeleteTask && (
+                <ConfirmBox
+                    message={`Are you sure you want to delete "${confirmDeleteTask.title}"?`}
+                    onConfirm={handleConfirmDelete}
+                    onCancel={() => setConfirmDeleteTask(null)}
+                />
+            )}
+
             {/* Main Dashboard and Drag Context */}
             <DndContext onDragEnd={handleDragEnd}>
                 <div className="w-full">
                     <div className="mb-3 flex h-10 px-2 justify-between rounded-md">
-                        <span className="text-xl font-bold text-gray-900">
+                        <span className="text-xl font-bold text-gray-900 dark:text-slate-100">
                             Task Status
                         </span>
 
@@ -178,6 +207,7 @@ export default function TaskBoard(){
                         </button>
                     </div>
 
+                    {/* successbox message */}
                     <SuccessBox message={successMessage} 
                     onClose={() => setSuccessMessage("")}/>
 
@@ -185,9 +215,9 @@ export default function TaskBoard(){
                     <div className="mb-5 grid grid-cols-1 gap-2 md:grid-cols-3">
                         {/* To Do */}
                         <DropZone id="todo">
-                            <div className="rounded-md border-2 border-slate-300 bg-slate-50">
-                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
-                                    <span className="block w-full py-2 text-slate-600">
+                            <div className="rounded-md border-2 border-slate-300 bg-slate-50 dark:bg-slate-900 dark:border-slate-700">
+                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg dark:bg-slate-900 dark:border-slate-700">
+                                    <span className="block w-full py-2 text-slate-600 dark:text-slate-100">
                                         To Do
                                     </span>
 
@@ -198,7 +228,7 @@ export default function TaskBoard(){
 
                                 {todoTasks.map((task) => (
                                     <TaskCard key={task.id} task={task}
-                                        onEdit={editTask} onDelete={removeTask}
+                                        onEdit={editTask} onDelete={askDeleteTask}
                                     />
                                 ))}
                             </div>
@@ -206,9 +236,9 @@ export default function TaskBoard(){
 
                         {/* In Progress */}
                         <DropZone id="in_progress">
-                            <div className="rounded-md border-2 border-slate-300 bg-slate-50">
-                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
-                                    <span className="block w-full py-2 text-slate-600">
+                            <div className="rounded-md border-2 border-slate-300 bg-slate-50 dark:bg-slate-900 dark:border-slate-700">
+                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg dark:bg-slate-900 dark:border-slate-700">
+                                    <span className="block w-full py-2 text-slate-600 dark:text-slate-100">
                                         In Progress
                                     </span>
 
@@ -219,7 +249,7 @@ export default function TaskBoard(){
 
                                 {inProgressTasks.map((task) => (
                                     <TaskCard key={task.id} task={task}
-                                        onEdit={editTask} onDelete={removeTask}
+                                        onEdit={editTask} onDelete={askDeleteTask}
                                     />
                                 ))}
                             </div>
@@ -227,9 +257,9 @@ export default function TaskBoard(){
 
                         {/* Done */}
                         <DropZone id="done">
-                            <div className="rounded-md border-2 border-slate-300 bg-slate-50">
-                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg">
-                                    <span className="block w-full py-2 text-slate-600">
+                            <div className="rounded-md border-2 border-slate-300 bg-slate-50 dark:bg-slate-900 dark:border-slate-700">
+                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg dark:bg-slate-900 dark:border-slate-700">
+                                    <span className="block w-full py-2 text-slate-600 dark:text-slate-100">
                                         Done
                                     </span>
 
@@ -240,7 +270,7 @@ export default function TaskBoard(){
 
                                 {doneTasks.map((task) => (
                                     <TaskCard key={task.id} task={task}
-                                        onEdit={editTask} onDelete={removeTask}
+                                        onEdit={editTask} onDelete={askDeleteTask}
                                     />
                                 ))}
                             </div>

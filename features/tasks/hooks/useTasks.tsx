@@ -18,7 +18,6 @@ export function useTasks() {
             const data = await getTasks();
             setTasks(data);
         }catch(error){
-            console.error("Failed to load tasks:", error);
             setError(getApiErrorMessage(error));
         }finally{
             setIsLoading(false);
@@ -48,11 +47,7 @@ export function useTasks() {
         setError("");
     }
 
-    async function removeTask(id: string) {
-        if(!window.confirm("Are you sure you want to delete this task?")){
-            return;
-        }
-
+    async function removeTask(id: string){
         try{
             setError("");
             await deleteTask(id);
@@ -61,8 +56,7 @@ export function useTasks() {
                 currentTasks.filter((task) => task.id !== id)
             );
         }catch(error){
-            console.error("Failed to delete task:", error);
-            setError("Unable to delete the task. Please try again.");
+            setError(getApiErrorMessage(error));
         }
     }
 

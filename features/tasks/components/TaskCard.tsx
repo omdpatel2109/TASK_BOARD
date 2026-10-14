@@ -2,7 +2,6 @@
 import { useDraggable } from "@dnd-kit/core";
 import { GripVertical } from "lucide-react";
 import { useRouter } from "next/navigation";
-
 import type { Task } from "@/features/tasks/type/taskType";
 interface TaskCardProps {
     task: Task;
@@ -20,12 +19,12 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps){
     const theme = {
         todo:{
             border: "border-l-4 border-l-blue-500 border-r-gray-300 border-y-gray-300",
-            title: "text-blue-600",
+            title: "text-blue-600 dark:text-blue-400",
             hover: "hover:bg-blue-50",
         },
         in_progress:{
-            border: "border-l-4 border-l-amber-500 border-r-gray-300 border-y-gray-300",
-            title: "text-amber-600",
+            border: "border-l-4 border-l-amber-500 border-r-gray-300 border-y-gray-300 ",
+            title: "text-amber-600 ",
             hover: "hover:bg-amber-50",
         },
         done:{
@@ -42,12 +41,12 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps){
             ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
             : undefined,
         transition: isDragging ? "none" : undefined,
-        willChange: isDragging ? "transform" : undefined,
+        // willChange: isDragging ? "transform" : undefined,
     };
 
     return (
         <div ref={setNodeRef} style={style}
-            className={`mx-4 my-4 rounded-md border-2 bg-gray-100 text-left shadow-lg transition duration-200 ${currentTheme.border} ${currentTheme.hover}
+            className={`mx-4 my-4 rounded-md border-1 bg-gray-100 text-left shadow-lg transition duration-200 ${currentTheme.border} ${currentTheme.hover} dark:bg-slate-700
                 ${isDragging ? "z-10 opacity-100" : "hover:-translate-y-1"}
             `}
         >
@@ -58,7 +57,7 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps){
                     </h2>
 
                     <button type="button" {...listeners} {...attributes}
-                        className="cursor-grab rounded p-1 text-gray-500 hover:bg-gray-200 active:cursor-grabbing"
+                        className="cursor-grab rounded p-1 text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200"
                     >
                         <GripVertical className="h-5 w-5" />
                     </button>
@@ -67,7 +66,7 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps){
                 <button type="button" onClick={() => router.push(`/board/tasks/${task.id}`)}
                     className="block w-full text-left cursor-pointer"
                 >
-                    <p className="text-sm leading-6 text-gray-700">
+                    <p className="text-sm leading-6 text-gray-700 dark:text-slate-400">
                         Description: {task.description}
                     </p>
                 </button>

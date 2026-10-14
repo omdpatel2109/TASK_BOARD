@@ -55,8 +55,8 @@ error, editComment, removeComment}: CommentListProps) {
 
     return(
         <>
-        <div className="divide-y divide-slate-200">
-            <h2 className="py-3 text-lg font-semibold text-slate-900">
+        <div className="divide-y divide-slate-200 dark:divide-slate-700">
+            <h2 className="py-3 text-lg font-semibold text-slate-900 dark:text-slate-100">
                 Comments ({comments.length})
             </h2>
 
@@ -66,14 +66,14 @@ error, editComment, removeComment}: CommentListProps) {
             />
 
             {comments.length === 0 ? (
-                <p className="py-4 text-sm text-slate-500">
+                <p className="py-4 text-sm text-slate-500 dark:slate-400">
                     No comments yet.
                 </p>
             ) : (
                 comments.map((comment) => (
                     <div key={comment.id} className="py-4">
                         <div className="flex items-center justify-between gap-3">
-                            <time className="text-sm text-slate-500">
+                            <time className="text-sm text-slate-500 dark:text-slate-400">
                                 {new Date(comment.createdAt).toLocaleDateString()}
                             </time>
 
@@ -84,7 +84,7 @@ error, editComment, removeComment}: CommentListProps) {
                                         setEditingId(comment.id);
                                         setEditText(comment.text);
                                     }}
-                                    className="text-sm font-medium text-blue-600 hover:text-blue-800"
+                                    className="text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500"
                                 >
                                     Edit
                                 </button>
@@ -92,7 +92,7 @@ error, editComment, removeComment}: CommentListProps) {
                                 <button
                                     type="button"
                                     onClick={() => setDeleteCommentId(comment.id)}
-                                    className="text-sm font-medium text-red-600 hover:text-red-800"
+                                    className="text-sm font-medium text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-500"
                                 >
                                     Delete
                                 </button>
@@ -105,7 +105,7 @@ error, editComment, removeComment}: CommentListProps) {
                                     value={editText}
                                     onChange={(event) =>setEditText(event.target.value)}
                                     rows={3}
-                                    className="w-full rounded-md border border-slate-300 p-3 text-sm focus:border-blue-500 focus:outline-none resize-none"
+                                    className="w-full rounded-md border border-slate-300 p-3 text-sm focus:border-blue-500 focus:outline-none resize-none dark:border-slate-700 dark:text-slate-400"
                                 />
 
                                 <div className="flex gap-2">
@@ -124,14 +124,14 @@ error, editComment, removeComment}: CommentListProps) {
                                             setEditingId(null);
                                             setEditText("");
                                         }}
-                                        className="rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-100"
+                                        className="rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-100 dark:bg-slate-500 dark:text-black   "
                                     >
                                         Cancel
                                     </button>
                                 </div>
                             </div>
                         ) : (
-                            <p className="mt-2 text-slate-600">
+                            <p className="mt-2 text-slate-600 dark:text-slate-400">
                                 {comment.text}
                             </p>
                         )}

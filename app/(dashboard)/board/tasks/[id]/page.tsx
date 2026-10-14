@@ -45,7 +45,7 @@ export default function TaskDetailsPage() {
 
     if(error || !task){
         return (
-            <div className="min-h-screen bg-slate-50 px-4 py-8">
+            <div className="min-h-screen bg-slate-50 px-4 py-8 dark:bg-slate-950">
                 <p className="text-red-600">
                     {error || "Task not found."}
                 </p>
@@ -60,7 +60,7 @@ export default function TaskDetailsPage() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8 dark:bg-slate-950">
             <div className="mx-auto max-w-4xl space-y-6">
                 <TaskDetails
                     task={task}
@@ -74,7 +74,8 @@ export default function TaskDetailsPage() {
                     error={commentsState.error}
                 />
 
-                <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:p-6">
+                <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:p-6
+                dark:bg-slate-900 dark:border-slate-700">
                     <CommentList
                         comments={commentsState.comments}
                         isLoading={commentsState.isLoading}

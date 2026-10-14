@@ -5,7 +5,7 @@ import SideBar from "@/components/SideBar";
 export default function DashboardPage(){
     return (
         //kanban board design page
-        <div className="min-h-screen w-full bg-gray-100">
+        <div className="min-h-screen w-full bg-gray-100 dark:bg-slate-950">
             <Header />
         
             <div className="flex min-h-screen w-full">

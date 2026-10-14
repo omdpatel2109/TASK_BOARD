@@ -43,7 +43,7 @@ export default function TaskList({ tasks }: TaskListProps) {
     return (
         <div>
             {/* Filters */}
-            <div className="mb-6 flex flex-col gap-4 sm:flex-row">
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row ">
                 
                 <input type="search" value={search}
                     onChange={(event) => setSearch(event.target.value)}
@@ -63,7 +63,7 @@ export default function TaskList({ tasks }: TaskListProps) {
                 </select>
             </div>
 
-            <p className="mb-4 text-sm text-gray-600">
+            <p className="mb-4 text-sm text-gray-600 dark:text-slate-400">
                 Showing {filteredTasks.length} of {tasks.length} tasks
             </p>
 
@@ -82,15 +82,15 @@ export default function TaskList({ tasks }: TaskListProps) {
                     {filteredTasks.map((task) => (
                         <div
                             key={task.id}
-                            className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm"
+                            className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:bg-slate-900 dark:border-slate-700"
                         >
                             <div className="flex flex-col justify-between gap-3 sm:flex-row">
                                 <div>
-                                    <h2 className="text-lg font-semibold text-gray-800">
+                                    <h2 className="text-lg font-semibold text-gray-800 dark:text-slate-100">
                                         {task.title}
                                     </h2>
 
-                                    <p className="mt-2 text-sm text-gray-600">
+                                    <p className="mt-2 text-sm text-gray-600 dark:text-slate-400">
                                         Description: {task.description || "No description provided."}
                                     </p>
                                 </div>
@@ -105,7 +105,7 @@ export default function TaskList({ tasks }: TaskListProps) {
                                 onClick={() =>
                                     router.push(`/board/tasks/${task.id}`)
                                 }
-                                className="mt-4 text-sm font-semibold text-blue-700 hover:text-blue-800"
+                                className="mt-4 text-sm font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-600"
                             >
                                 View Details
                             </button>

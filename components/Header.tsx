@@ -11,22 +11,9 @@ export default function Header() {
             </h1>
 
             {/* User */}
-            <div className="flex items-center gap-3">
-
-                <Image
-                    src={image}
-                    alt="User profile"
-                    width={36}
-                    height={36}
-                    className="h-9 w-9 rounded-full object-cover"
-                />
-
-                <span className="text-md font-medium text-blue-700 dark:text-blue-400">
-                    Om Patel
-                </span>
-
-            </div>
-
+            <span className="text-md font-medium text-blue-700 dark:text-blue-400">
+                Welcome back, Om Patel
+            </span>
         </header>
     );
 }

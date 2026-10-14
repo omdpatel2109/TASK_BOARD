@@ -57,7 +57,7 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps){
                     </h2>
 
                     <button type="button" {...listeners} {...attributes}
-                        className="cursor-grab rounded p-1 text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200"
+                        className="cursor-grab rounded p-1 text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200 dark:hover:text-gray-500"
                     >
                         <GripVertical className="h-5 w-5" />
                     </button>
@@ -78,7 +78,7 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps){
                         Edit
                     </button>
 
-                    <button type="button" onClick={() => onDelete(task.id)}
+                    <button type="button" onClick={() => onDelete(String(task.id))}
                         className="rounded-md border border-red-200 bg-red-100 px-4 py-1.5 text-sm font-medium text-red-600 transition-colors hover:border-red-300 hover:bg-red-200 "
                     >
                         Delete

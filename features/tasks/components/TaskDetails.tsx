@@ -69,10 +69,6 @@ export default function TaskDetails({
                 <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 dark:bg-slate-900 dark:border-slate-700">
                     <div className="flex flex-col gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-start sm:justify-between dark:border-slate-700">
                         <div className="min-w-0">
-                            <p className="mb-2 text-sm text-slate-500 dark:text-slate-300">
-                                Task #{task.id}
-                            </p>
-
                             <h1 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
                                 {task.title}
                             </h1>
@@ -92,16 +88,6 @@ export default function TaskDetails({
 
                         <p className="text-md text-slate-600 dark:text-slate-400">
                             {task.description || "No description provided."}
-                        </p>
-                    </div>
-
-                    <div className="border-t border-slate-100 pt-4 dark:border-slate-700">
-                        <p className="text-xs font-medium text-slate-400">
-                            TASK ID
-                        </p>
-
-                        <p className="mt-1 text-sm font-medium text-slate-700 dark:text-slate-400">
-                            {task.id}
                         </p>
                     </div>
                 </div>

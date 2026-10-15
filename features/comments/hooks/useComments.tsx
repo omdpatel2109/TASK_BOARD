@@ -3,27 +3,30 @@
 import { useCallback, useEffect, useState } from "react";
 import {getCommentsByTask, createComment, updateComment, deleteComment} from "@/api/comments";
 import type { Comment, CreateComment,} from "@/features/comments/type/commentType";
+import { getApiErrorMessage } from "@/lib/api";
 
 export function useComments(taskId: string) {
     const [comments, setComments] = useState<Comment[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [loadError, setLoadError] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     const loadComments = useCallback(async () => {
         if(!taskId){
             setComments([]);
+            setLoadError(null);
             setIsLoading(false);
             return;
         }
 
         try{
             setIsLoading(true);
-            setError(null);
+            setLoadError(null);
             const data = await getCommentsByTask(taskId);
             setComments(data);
         }catch(error){
             console.error("Failed to load comments:", error);
-            setError("Failed to load comments.");
+            setLoadError("Failed to load comments.");
         }finally{
             setIsLoading(false);
         }
@@ -35,13 +38,11 @@ export function useComments(taskId: string) {
 
     async function addComment(comment: CreateComment){
         try{
+            setError(null);
             const newComment = await createComment(comment);
             setComments((current) => [...current, newComment]);
-            setError(null);
         }catch(error){
-            console.error("Failed to add comment:", error);
-            setError("Failed to add comment.");
-            throw error;
+            setError(getApiErrorMessage(error));
         }
     }
 
@@ -59,9 +60,7 @@ export function useComments(taskId: string) {
 
             setError(null);
         }catch(error){
-            console.error("Failed to edit comment:", error);
-            setError("Failed to edit comment.");
-            throw error;
+            setError(getApiErrorMessage(error));
         }
     }
 
@@ -75,13 +74,12 @@ export function useComments(taskId: string) {
             setError(null);
         }catch(error){
             console.error("Failed to delete comment:", error);
-            setError("Failed to delete comment.");
-            throw error;
+            setError(getApiErrorMessage(error));
         }
     }
 
     return{
         comments, isLoading, error, addComment,
-        editComment, removeComment, loadComments
+        editComment, removeComment, loadComments, setLoadError, loadError
     };
 }

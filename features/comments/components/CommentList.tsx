@@ -7,13 +7,15 @@ import ConfirmBox from "@/components/ConfirmBox";
 interface CommentListProps{
     comments: Comment[];
     isLoading: boolean;
+    loadError: string | null;
     error: string | null;
+    onRetry: () => void;
     editComment: (id: string, text: string) => Promise<void>;
     removeComment: (id: string) => Promise<void>;
 }
 
 export default function CommentList({comments, isLoading,
-error, editComment, removeComment}: CommentListProps) {
+error, editComment, removeComment, loadError, onRetry}: CommentListProps) {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editText, setEditText] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
@@ -64,6 +66,25 @@ error, editComment, removeComment}: CommentListProps) {
                 message={successMessage}
                 onClose={() => setSuccessMessage("")}
             />
+
+            {loadError && (
+            <div className="my-3 rounded-md border border-red-200 p-4">
+                <p className="text-sm text-red-600">{loadError}</p>
+                <button
+                type="button"
+                onClick={onRetry}
+                className="mt-3 rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+                >
+                Try Again
+                </button>
+            </div>
+            )}
+
+            {error && (
+                <p className="py-3 text-sm text-red-600">
+                    {error}
+                </p>
+                )}
 
             {comments.length === 0 ? (
                 <p className="py-4 text-sm text-slate-500 dark:slate-400">
@@ -135,7 +156,6 @@ error, editComment, removeComment}: CommentListProps) {
                                 {comment.text}
                             </p>
                         )}
-
 
                         {deleteCommentId !== null && (
                             <ConfirmBox

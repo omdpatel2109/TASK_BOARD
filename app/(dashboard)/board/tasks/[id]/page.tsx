@@ -82,6 +82,8 @@ export default function TaskDetailsPage() {
                         error={commentsState.error}
                         editComment={commentsState.editComment}
                         removeComment={commentsState.removeComment}
+                        loadError={commentsState.loadError}
+                        onRetry={()=>void commentsState.loadComments()}
                     />
                 </div>
             </div>

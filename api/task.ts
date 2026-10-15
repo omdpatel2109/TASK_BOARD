@@ -1,4 +1,4 @@
-import { api } from "@/lib/api";
+import { api, getApiErrorMessage } from "@/lib/api";
 
 import type {Task, CreateTask, UpdateTask} from "@/features/tasks/type/taskType";
 
@@ -8,6 +8,7 @@ export async function getTasks(){
         return response.data;
     }catch(error){
         console.error("Error fetching tasks:", error);
+        getApiErrorMessage(error);
         throw error;
     }
 }
@@ -18,6 +19,7 @@ export async function getTaskById(id: string){
         return response.data;
     }catch(error){
         console.error("Error fetching task by id:", error);
+        getApiErrorMessage(error);
         throw error;
     }
 }
@@ -28,6 +30,7 @@ export async function createTask(task: CreateTask){
         return response.data;
     }catch(error){
         console.error("Error creating task:", error);
+        getApiErrorMessage(error);
         throw error;
     }
 }
@@ -38,6 +41,7 @@ export async function updateTask(id: string, task: UpdateTask){
         return response.data;
     }catch(error){
         console.error("Error updating task:", error);
+        getApiErrorMessage(error);
         throw error;
     }
 }
@@ -47,6 +51,7 @@ export async function deleteTask(id: string): Promise<void>{
         await api.delete(`/tasks/${id}`);
     }catch(error){
         console.error("Error deleting task:",error);
+        getApiErrorMessage(error);
         throw error;
     }
 }

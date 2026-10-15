@@ -87,14 +87,13 @@ export default function TaskBoard(){
     // Delete only after confirmation
     async function handleConfirmDelete(){
         if (!confirmDeleteTask) return;
-
-        try{
-            await removeTask(confirmDeleteTask.id);
+        setSuccessMessage("");
+        const success = await removeTask(confirmDeleteTask.id);
+        if(success){
             setConfirmDeleteTask(null);
             setSuccessMessage("Task deleted successfully..");
-        }catch(error){
-            console.error("Failed to delete task:", error);
         }
+
     }
 
     // Handle drag and drop
@@ -118,7 +117,16 @@ export default function TaskBoard(){
         }
 
         const previousTask = task;
-        const updatedTask: Task = {...task, status: newStatus,};
+        const nextOrder = tasks
+            .filter((item) => item.status === newStatus)
+            .reduce((maxOrder, item) => Math.max(maxOrder, item.order), -1) + 1;
+
+        const updatedTask: Task = {
+            ...task,
+            status: newStatus,
+            order: nextOrder,
+        };
+
         setDragError("");
 
         // Move the task immediately in the UI
@@ -127,9 +135,10 @@ export default function TaskBoard(){
         try{
             // Save the new status through the API
             const savedTask = await updateTask(task.id, {
-                title: task.title,
-                description: task.description,
-                status: newStatus,
+                title: updatedTask.title,
+                description: updatedTask.description,
+                status: updatedTask.status,
+                order: updatedTask.order,
             });
             saveTask(savedTask);
             setSuccessMessage("Task Status Changed Successfully..")
@@ -211,6 +220,13 @@ export default function TaskBoard(){
                     <SuccessBox message={successMessage} 
                     onClose={() => setSuccessMessage("")}/>
 
+                    {/* API and drag errors */}
+                    {(error || dragError) && (
+                        <p className="mx-5 mb-4 text-sm text-red-600">
+                            {dragError || error}
+                        </p>
+                    )}
+
                     {/* Task Columns */}
                     <div className="mb-5 grid grid-cols-1 gap-2 md:grid-cols-3">
                         {/* To Do */}
@@ -276,13 +292,6 @@ export default function TaskBoard(){
                             </div>
                         </DropZone>
                     </div>
-
-                    {/* API and drag errors */}
-                    {(error || dragError) && (
-                        <p className="mx-5 mb-4 text-sm text-red-600">
-                            {dragError || error}
-                        </p>
-                    )}
                 </div>
             </DndContext>
         </>

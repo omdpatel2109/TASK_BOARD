@@ -20,7 +20,7 @@ export function getApiErrorMessage(error: any): string {
         );
     }
 
-    return "An unexpected error occurred. Please try again.";
+    return error;
 }
 
 export default api;

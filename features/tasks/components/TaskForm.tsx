@@ -1,7 +1,10 @@
+"use client"
 import { useFormik } from "formik";
 import { addValidationSchema } from "../utils/addValidation";
 import type {Task, TaskFormValues,} from "../type/taskType";
-import {createTask, updateTask} from "@/api/task";
+import {createTask, updateTask, getTasks} from "@/api/task";
+import { getApiErrorMessage } from "@/lib/api";
+import { useState } from "react";
 
 interface TaskFormProps {
     task?: Task;
@@ -10,29 +13,39 @@ interface TaskFormProps {
 }
 
 export default function TaskForm({task, onSuccess, onCancel}: TaskFormProps) {
+    const [apiError, setApiError] = useState("");
 
     const formik = useFormik<TaskFormValues>({
         enableReinitialize: true,
         initialValues: {
             title: task?.title ?? "",
             description: task?.description ?? "",
-            status: task?.status ?? "todo"
+            status: task?.status ?? "todo",
         },
-
         validationSchema: addValidationSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try{
+                setApiError("");
                 if(task){
                     // EDIT
-                    const updatedTask = await updateTask(task.id, values);
+                    const updatedTask = await updateTask(task.id, {...values, order:task.order});
                     onSuccess(updatedTask);
                 }else{
                     // ADD
-                    const createdTask = await createTask(values);
+                    const existingTasks = await getTasks();
+                    const nextOrder = existingTasks
+                        .filter((item) => item.status === values.status)
+                        .reduce((maxOrder, item) => Math.max(maxOrder, item.order), -1) + 1;
+                    const createdTask = await createTask({
+                        ...values,
+                        order: nextOrder,
+                    });
+
                     onSuccess(createdTask);
                 }
             }catch(error){
                 console.error("Failed to save task:", error);
+                setApiError(getApiErrorMessage(error));
             }finally{
                 setSubmitting(false);
             }
@@ -40,6 +53,14 @@ export default function TaskForm({task, onSuccess, onCancel}: TaskFormProps) {
     });
 
     return(
+        <>
+        {apiError && (
+            <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+            >
+                {apiError}
+            </div>
+        )}
+
         <form onSubmit={formik.handleSubmit}
             className="mx-auto max-w-md rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
         >
@@ -123,5 +144,6 @@ export default function TaskForm({task, onSuccess, onCancel}: TaskFormProps) {
                 </button>
             </div>
         </form>
+        </>
     );
 }

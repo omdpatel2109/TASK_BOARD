@@ -40,14 +40,12 @@ export function useTasks() {
                     task.id === savedTask.id ? savedTask : task
                 );
             }
-
             return [...currentTasks, savedTask];
         });
-
         setError("");
     }
 
-    async function removeTask(id: string){
+    async function removeTask(id: string): Promise<boolean>{
         try{
             setError("");
             await deleteTask(id);
@@ -55,22 +53,24 @@ export function useTasks() {
             setTasks((currentTasks) =>
                 currentTasks.filter((task) => task.id !== id)
             );
+            return true;
         }catch(error){
             setError(getApiErrorMessage(error));
+            return false;
         }
     }
 
-    const todoTasks = tasks.filter(
-        (task) => task.status === "todo"
-    );
+    const todoTasks = tasks
+        .filter((task) => task.status === "todo")
+        .sort((a, b) => a.order - b.order);
 
-    const inProgressTasks = tasks.filter(
-        (task) => task.status === "in_progress"
-    );
+    const inProgressTasks = tasks
+        .filter((task) => task.status === "in_progress")
+        .sort((a, b) => a.order - b.order);
 
-    const doneTasks = tasks.filter(
-        (task) => task.status === "done"
-    );
+    const doneTasks = tasks
+        .filter((task) => task.status === "done")
+        .sort((a, b) => a.order - b.order);
 
     return {
         tasks,

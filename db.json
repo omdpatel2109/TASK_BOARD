@@ -1,140 +1,132 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Design dashboard",
-      "description": "Create the Kanban board UI",
-      "status": "done",
-      "order": 1
-    },
-    {
-      "title": "Implement DND functionality",
-      "description": "First search that how to do this and then apply it",
-      "status": "todo",
-      "id": "hz2dG1H3C78"
-    },
-    {
-      "title": "Add task functionlity",
-      "description": "User can add task in the list then show the successbox messgae",
+      "title": "Create dashboard",
+      "description": "Create dashboard with 3 different columns - Todo, In Progress, Done",
       "status": "in_progress",
-      "id": "BnNgwGD0tcQ"
+      "order": 3,
+      "id": "KB3HkVfCQVM"
     },
     {
-      "title": "Edit task",
-      "description": "User can edit the task (title, description and status).",
-      "status": "done",
-      "id": "MtemXmH1HaI"
-    },
-    {
-      "title": "Change the design color",
-      "description": "Search for the button and kanban board for change the color\n",
-      "status": "in_progress",
-      "id": "ym95g4XNx6I"
-    },
-    {
-      "title": "add comments",
-      "description": "adding the comment component below the task",
+      "title": "Create Login Page",
+      "description": "Login Page with the email and password field with validation",
       "status": "todo",
-      "id": "rS1lnadEKkc"
+      "order": 4,
+      "id": "aKy_g7JMrHE"
+    },
+    {
+      "title": "Side bar and Header",
+      "description": "Create a global component for Side bar and header to import in every page",
+      "status": "in_progress",
+      "order": 4,
+      "id": "3rHh1uZEhHs"
+    },
+    {
+      "title": "Fetch api",
+      "description": "Fetch the api for display task, add task, edit task, delete task",
+      "status": "todo",
+      "order": 5,
+      "id": "qAoJwnvcWT0"
+    },
+    {
+      "title": "Add task form for edit and add task",
+      "description": "Add task will add the task and show in the column of the same status\n",
+      "status": "in_progress",
+      "order": 2,
+      "id": "wxHoljkkGZs"
+    },
+    {
+      "title": "Apply dnd functionality",
+      "description": "apply dnd functionality with using dnd-kit library ",
+      "status": "done",
+      "order": 0,
+      "id": "60Dfk6ouHoE"
+    },
+    {
+      "title": "Task details page",
+      "description": "Page with the all information of the task, after click on the each task,open the task detail page",
+      "status": "todo",
+      "order": 6,
+      "id": "MZqA1sH3r1k"
+    },
+    {
+      "title": "Add comments feature",
+      "description": "It contain comment list, comment box with add, edit, delete",
+      "status": "done",
+      "order": 1,
+      "id": "hwySdpJnJrU"
+    },
+    {
+      "title": "Fetch comments api",
+      "description": "add, edit, delete comments fetch the api",
+      "status": "done",
+      "order": 2,
+      "id": "XxjqN75hBac"
     }
   ],
   "comments": [
     {
-      "id": "1",
-      "taskId": 1,
-      "text": "This is the first step for the project. yes no",
-      "createdAt": "2026-08-26",
-      "updatedAt": "2026-10-13T09:04:37.694Z"
+      "taskId": "aKy_g7JMrHE",
+      "text": "User cannot access without the login",
+      "createdAt": "2026-10-15T05:32:54.426Z",
+      "updatedAt": "2026-10-15T05:32:54.426Z",
+      "id": "p721tnYKLzg"
     },
     {
-      "id": "2",
-      "taskId": 1,
-      "text": "Make the design perfect and user-friendly.",
-      "createdAt": "2026-08-26"
+      "taskId": "aKy_g7JMrHE",
+      "text": "add validation using the any of the library",
+      "createdAt": "2026-10-15T05:33:10.642Z",
+      "updatedAt": "2026-10-15T05:33:10.642Z",
+      "id": "_MYmeqXyoI8"
     },
     {
-      "taskId": "1",
-      "text": "nice",
-      "createdAt": "2026-10-12T10:48:09.216Z",
-      "updatedAt": "2026-10-12T10:48:09.216Z",
-      "id": "aXDgsgW8RZA"
+      "taskId": "KB3HkVfCQVM",
+      "text": "dashboard must contain the three columns",
+      "createdAt": "2026-10-15T05:33:39.050Z",
+      "updatedAt": "2026-10-15T05:33:39.050Z",
+      "id": "EJrh5K1Izg4"
     },
     {
-      "taskId": "1",
-      "text": "nbjgb",
-      "createdAt": "2026-10-12T10:56:23.533Z",
-      "updatedAt": "2026-10-12T10:56:23.533Z",
-      "id": "jFD9oKLxiXU"
+      "taskId": "KB3HkVfCQVM",
+      "text": "task card must be validate the task status and according to that it display in the specific columns",
+      "createdAt": "2026-10-15T05:34:22.898Z",
+      "updatedAt": "2026-10-15T05:34:22.898Z",
+      "id": "L0ZYckNGo3k"
     },
     {
-      "taskId": "1",
-      "text": "rvc",
-      "createdAt": "2026-10-12T11:01:06.269Z",
-      "updatedAt": "2026-10-12T11:01:06.269Z",
-      "id": "gUMY7Rpb9jo"
+      "taskId": "MZqA1sH3r1k",
+      "text": "task detail page must contain all the details with the comments",
+      "createdAt": "2026-10-15T05:34:59.570Z",
+      "updatedAt": "2026-10-15T05:34:59.570Z",
+      "id": "GQFDnCTPnvg"
     },
     {
-      "taskId": "1",
-      "text": "vr",
-      "createdAt": "2026-10-12T11:01:09.084Z",
-      "updatedAt": "2026-10-12T11:01:09.084Z",
-      "id": "xvHeCdSp3X0"
+      "taskId": "MZqA1sH3r1k",
+      "text": "add comments list also",
+      "createdAt": "2026-10-15T05:35:21.442Z",
+      "updatedAt": "2026-10-15T05:35:21.442Z",
+      "id": "IOBnwXB-O9g"
     },
     {
-      "taskId": "1",
-      "text": "vrrv",
-      "createdAt": "2026-10-12T11:01:11.388Z",
-      "updatedAt": "2026-10-12T11:01:11.388Z",
-      "id": "JKQ2Kjf5QXk"
+      "taskId": "3rHh1uZEhHs",
+      "text": "Sidebar and header must be remain in all the pages",
+      "createdAt": "2026-10-15T05:35:53.969Z",
+      "updatedAt": "2026-10-15T05:35:53.969Z",
+      "id": "RvRgh-QiNXI"
     },
     {
-      "taskId": "1",
-      "text": "de",
-      "createdAt": "2026-10-12T11:04:52.955Z",
-      "updatedAt": "2026-10-12T11:04:52.955Z",
-      "id": "3ENZ4wJhvXU"
+      "taskId": "qAoJwnvcWT0",
+      "text": "all the api must fetched and catch the error proper",
+      "createdAt": "2026-10-15T05:36:13.450Z",
+      "updatedAt": "2026-10-15T05:36:21.560Z",
+      "id": "ouk7a2AqaS8"
     },
     {
-      "taskId": "1",
-      "text": "vfvfvfvfvf",
-      "createdAt": "2026-10-13T06:12:59.045Z",
-      "updatedAt": "2026-10-13T06:12:59.045Z",
-      "id": "RtHc59n3j2w"
-    },
-    {
-      "taskId": "1",
-      "text": "hh",
-      "createdAt": "2026-10-13T06:13:55.021Z",
-      "updatedAt": "2026-10-13T06:13:55.021Z",
-      "id": "XzKTnpMs29U"
-    },
-    {
-      "taskId": "1",
-      "text": "k",
-      "createdAt": "2026-10-13T09:04:44.910Z",
-      "updatedAt": "2026-10-13T09:04:44.910Z",
-      "id": "TiaZQf6VHrs"
-    },
-    {
-      "taskId": null,
-      "text": "ewcw",
-      "createdAt": "2026-10-13T09:10:45.325Z",
-      "updatedAt": "2026-10-13T09:23:13.098Z",
-      "id": "61ik2GdF-fM"
-    },
-    {
-      "taskId": "hz2dG1H3C78",
-      "text": "wrgsvfuy",
-      "createdAt": "2026-10-13T10:10:11.080Z",
-      "updatedAt": "2026-10-14T04:57:43.444Z",
-      "id": "XQj2tXEQOGo"
-    },
-    {
-      "taskId": "1",
-      "text": "rv",
-      "createdAt": "2026-10-14T11:34:36.435Z",
-      "updatedAt": "2026-10-14T11:34:36.435Z",
-      "id": "BKhBVejH9-k"
+      "taskId": "wxHoljkkGZs",
+      "text": "Add task form must be remain blank and edit form must be remain with the existing valuesssss",
+      "createdAt": "2026-10-15T05:37:36.321Z",
+      "updatedAt": "2026-10-15T05:37:36.321Z",
+      "id": "u3n-fkVSSF0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

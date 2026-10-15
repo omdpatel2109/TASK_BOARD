@@ -105,7 +105,7 @@ export default function TaskList({ tasks }: TaskListProps) {
                                 onClick={() =>
                                     router.push(`/board/tasks/${task.id}`)
                                 }
-                                className="mt-4 text-sm font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-600"
+                                className="mt-4 text-sm font-semibold text-blue-700 cursor-pointer hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-600"
                             >
                                 View Details
                             </button>

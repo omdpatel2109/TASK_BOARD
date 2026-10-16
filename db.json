@@ -3,22 +3,22 @@
     {
       "title": "Create dashboard",
       "description": "Create dashboard with 3 different columns - Todo, In Progress, Done",
-      "status": "in_progress",
+      "status": "todo",
       "order": 3,
       "id": "KB3HkVfCQVM"
     },
     {
       "title": "Create Login Page",
       "description": "Login Page with the email and password field with validation",
-      "status": "todo",
-      "order": 4,
+      "status": "in_progress",
+      "order": 5,
       "id": "aKy_g7JMrHE"
     },
     {
       "title": "Side bar and Header",
       "description": "Create a global component for Side bar and header to import in every page",
       "status": "in_progress",
-      "order": 4,
+      "order": 6,
       "id": "3rHh1uZEhHs"
     },
     {
@@ -31,7 +31,7 @@
     {
       "title": "Add task form for edit and add task",
       "description": "Add task will add the task and show in the column of the same status\n",
-      "status": "in_progress",
+      "status": "todo",
       "order": 2,
       "id": "wxHoljkkGZs"
     },
@@ -62,6 +62,13 @@
       "status": "done",
       "order": 2,
       "id": "XxjqN75hBac"
+    },
+    {
+      "title": "apply authentication",
+      "description": "apply authentication",
+      "status": "in_progress",
+      "order": 7,
+      "id": "BvJrpxancyc"
     }
   ],
   "comments": [
@@ -127,6 +134,24 @@
       "createdAt": "2026-10-15T05:37:36.321Z",
       "updatedAt": "2026-10-15T05:37:36.321Z",
       "id": "u3n-fkVSSF0"
+    },
+    {
+      "taskId": "aKy_g7JMrHE",
+      "text": "complete it by today",
+      "createdAt": "2026-10-16T11:54:23.794Z",
+      "updatedAt": "2026-10-16T11:54:23.794Z",
+      "authorId": 1,
+      "authorName": "Emily Johnson",
+      "id": "I7goF-bcBLY"
+    },
+    {
+      "taskId": "BvJrpxancyc",
+      "text": "add login page in this",
+      "createdAt": "2026-10-16T12:12:01.829Z",
+      "updatedAt": "2026-10-16T12:12:01.829Z",
+      "authorId": 2,
+      "authorName": "Michael Williams",
+      "id": "O1ZdBO2zIxk"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

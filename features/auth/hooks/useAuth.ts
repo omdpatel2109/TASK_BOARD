@@ -1,24 +1,27 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { loginAction, logoutAction } from "../action";
 
 export default function useAuth() {
-    const router = useRouter();
+  const router = useRouter();
 
-    const login = async (email: string, password: string) => {
-        const result = await loginAction(email, password);
+  const login = async (username: string, password: string) => {
+    const result = await loginAction(username, password);
 
-        if(result.success){
-            router.push("/board");
-            return true;
-        }
-        return false;
-    };
+    if (result.success) {
+      router.replace("/board");
+      router.refresh();
+    }
 
-    const logout = async () => {
-        await logoutAction();
-        router.push("/login");
-    };
+    return result;
+  };
 
-    return { login, logout };
+  const logout = async () => {
+    await logoutAction();
+    router.replace("/login");
+    router.refresh();
+  };
+
+  return { login, logout };
 }

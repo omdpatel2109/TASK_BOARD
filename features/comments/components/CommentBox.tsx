@@ -3,14 +3,16 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import type { CreateComment } from "@/features/comments/type/commentType";
 import SuccessBox from "@/components/SuccessBox";
+import type { SafeUser } from "@/features/auth/type/userType";
 
 interface CommentBoxProps {
-    taskId: string;
-    addComment: (comment: CreateComment) => Promise<void>;
-    error: string | null;
+  taskId: string;
+  currentUser: SafeUser;
+  addComment: (comment: CreateComment) => Promise<void>;
+  error: string | null;
 }
 
-export default function CommentBox({taskId, addComment, error}: CommentBoxProps) {
+export default function CommentBox({taskId,currentUser ,addComment, error}: CommentBoxProps) {
     const [text, setText] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
@@ -29,6 +31,8 @@ export default function CommentBox({taskId, addComment, error}: CommentBoxProps)
                 text: trimmedText,
                 createdAt: commentDate,
                 updatedAt: commentDate,
+                authorId: currentUser.id,
+                authorName: currentUser.name,
             });
             setSuccessMessage("Comment Added Successfully..")
             setText("");

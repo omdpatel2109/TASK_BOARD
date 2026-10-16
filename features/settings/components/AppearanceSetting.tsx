@@ -21,7 +21,7 @@ export default function AppearanceSettings() {
                 </h2>
 
                 <p className="text-sm text-slate-500 dark:text-slate-400">
-                    Customize your workspace.
+                    Customize your dashboard.
                 </p>
             </div>
 

@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const api = axios.create({
     baseURL: "http://localhost:3000",
     headers: {
@@ -22,5 +21,3 @@ export function getApiErrorMessage(error: any): string {
 
     return error;
 }
-
-export default api;

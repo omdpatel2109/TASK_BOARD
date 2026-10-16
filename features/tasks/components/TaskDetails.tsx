@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeftIcon } from "lucide-react";
 import TaskForm from "./TaskForm";
 import type { Task } from "../type/taskType";
 import SuccessBox from "@/components/SuccessBox";
+import { getCurrentUser } from "@/features/auth/action";
+import type { SafeUser } from "@/features/auth/type/userType";
 
 interface TaskDetailsProps {
     task: Task;
@@ -20,6 +22,30 @@ export default function TaskDetails({
     const router = useRouter();
     const [isEditing, setIsEditing] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
+    const [currentUser, setCurrentUser] = useState<SafeUser | null>(null);
+    const [isUserLoading, setIsUserLoading] = useState(true);
+
+    useEffect(() => {
+        let active = true;
+
+        async function loadCurrentUser() {
+            try{
+                const user = await getCurrentUser();
+                if(active){
+                    setCurrentUser(user);
+                    if(!user){
+                        router.replace("/login");
+                    }
+                }
+            }finally{
+                if(active)setIsUserLoading(false);
+            }
+        }
+        void loadCurrentUser();
+        return () => {
+            active = false;
+        };
+    }, [router]);
 
     function handleEditSuccess(updatedTask: Task) {
         onUpdate(updatedTask);
@@ -38,6 +64,14 @@ export default function TaskDetails({
         in_progress: "In Progress",
         done: "Completed"
     };
+
+    if(isUserLoading){
+        return <p className="p-6">Please wait for a while...</p>;
+    }
+
+    if(!currentUser){ 
+        return <p className="p-6">Redirecting to login...</p>;
+    }
 
     return (
         <>

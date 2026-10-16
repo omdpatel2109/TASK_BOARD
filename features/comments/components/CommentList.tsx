@@ -4,8 +4,9 @@ import type { Comment } from "@/features/comments/type/commentType";
 import SuccessBox from "@/components/SuccessBox";
 import ConfirmBox from "@/components/ConfirmBox";
 
-interface CommentListProps{
+interface CommentListProps {
     comments: Comment[];
+    currentUserId: number;
     isLoading: boolean;
     loadError: string | null;
     error: string | null;
@@ -15,7 +16,8 @@ interface CommentListProps{
 }
 
 export default function CommentList({comments, isLoading,
-error, editComment, removeComment, loadError, onRetry}: CommentListProps) {
+error, editComment, removeComment, loadError, onRetry,
+currentUserId}: CommentListProps) {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editText, setEditText] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
@@ -93,78 +95,79 @@ error, editComment, removeComment, loadError, onRetry}: CommentListProps) {
             ) : (
                 comments.map((comment) => (
                     <div key={comment.id} className="py-4">
-                        <div className="flex items-center justify-between gap-3">
-                            <time className="text-sm text-slate-500 dark:text-slate-400">
-                                {new Date(comment.createdAt).toLocaleDateString()}
-                            </time>
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                            <div>
+                            <p className="font-semibold text-slate-800 dark:text-slate-200">
+                                {comment.authorName || "Unknown user"}
+                            </p>
 
+                            <time
+                                dateTime={comment.createdAt}
+                                className="text-sm text-slate-500 dark:text-slate-400"
+                            >
+                                {new Date(comment.createdAt).toLocaleString()}
+                            </time>
+                            </div>
+
+                            {comment.authorId === currentUserId && (
                             <div className="flex gap-3">
                                 <button
-                                    type="button"
-                                    onClick={() => {
-                                        setEditingId(comment.id);
-                                        setEditText(comment.text);
-                                    }}
-                                    className="text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500"
+                                type="button"
+                                onClick={() => {
+                                    setEditingId(comment.id);
+                                    setEditText(comment.text);
+                                }}
+                                className="text-sm font-medium text-blue-600 hover:text-blue-800"
                                 >
-                                    Edit
+                                Edit
                                 </button>
-
                                 <button
-                                    type="button"
-                                    onClick={() => setDeleteCommentId(comment.id)}
-                                    className="text-sm font-medium text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-500"
+                                type="button" onClick={() => setDeleteCommentId(comment.id)}
+                                className="text-sm font-medium text-red-600 hover:text-red-800"
                                 >
-                                    Delete
+                                Delete
                                 </button>
                             </div>
+                            )}
                         </div>
 
                         {editingId === comment.id ? (
                             <div className="mt-3 space-y-2">
-                                <textarea
-                                    value={editText}
-                                    onChange={(event) =>setEditText(event.target.value)}
-                                    rows={3}
-                                    className="w-full rounded-md border border-slate-300 p-3 text-sm focus:border-blue-500 focus:outline-none resize-none dark:border-slate-700 dark:text-slate-400"
-                                />
+                            <textarea value={editText}
+                                onChange={(event) => setEditText(event.target.value)} rows={3}
+                                className="w-full resize-none rounded-md border border-slate-300 p-3 text-sm dark:bg-slate-800 dark:text-slate-200"
+                            />
+                            <div className="flex gap-2">
+                                <button type="button" onClick={() => void handleEdit(comment.id)}
+                                disabled={!editText.trim()}
+                                className="rounded-md bg-blue-600 px-3 py-1.5 text-sm text-white disabled:opacity-50"
+                                >
+                                Save
+                                </button>
 
-                                <div className="flex gap-2">
-                                    <button
-                                        type="button"
-                                        onClick={() => handleEdit(comment.id)}
-                                        disabled={!editText.trim()}
-                                        className="rounded-md bg-blue-600 px-3 py-1.5 text-sm text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
-                                    >
-                                        Save
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            setEditingId(null);
-                                            setEditText("");
-                                        }}
-                                        className="rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-100 dark:bg-slate-500 dark:text-black   "
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
+                                <button type="button" onClick={() => {
+                                    setEditingId(null);
+                                    setEditText("");
+                                }}
+                                className="rounded-md border px-3 py-1.5 text-sm"
+                                >
+                                Cancel
+                                </button>
+                            </div>
                             </div>
                         ) : (
-                            <p className="mt-2 text-slate-600 dark:text-slate-400">
-                                {comment.text}
+                            <p className="mt-2 text-slate-600 dark:text-slate-300">
+                            {comment.text}
                             </p>
                         )}
 
-                        {deleteCommentId !== null && (
+                        {deleteCommentId === comment.id && (
                             <ConfirmBox
-                                message="Are you sure you want to delete this comment?"
-                                onConfirm={handleDelete}
-                                onCancel={() => setDeleteCommentId(null)}
+                            message="Are you sure you want to delete this comment?"
+                            onConfirm={handleDelete}
+                            onCancel={() => setDeleteCommentId(null)}
                             />
                         )}
-
                     </div>
                 ))
             )}

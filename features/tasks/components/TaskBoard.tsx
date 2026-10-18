@@ -18,10 +18,7 @@ interface DropZoneProps{
 function DropZone({ id, children }: DropZoneProps){ 
     const { setNodeRef, isOver } = useDroppable({id});
     return(
-        <div
-            ref={setNodeRef}
-            className={ isOver ? "rounded-md ring-2 ring-blue-400" : ""}
-        >
+        <div ref={setNodeRef} className={isOver ? "rounded-md ring-2 ring-blue-400" : ""}>
             {children}
         </div>
     );
@@ -105,7 +102,7 @@ export default function TaskBoard(){
         const taskId = String(active.id); // dragged task ID 
         const newStatus = String(over.id); // drop zone ID(todo, inprogress, done)
 
-        if( newStatus !== "todo" && newStatus !== "in_progress" && newStatus !== "done"){
+        if(newStatus !== "todo" && newStatus !== "in_progress" && newStatus !== "done"){
             return;
         }
         const task = tasks.find(
@@ -126,12 +123,9 @@ export default function TaskBoard(){
             status: newStatus,
             order: nextOrder,
         };
-
         setDragError("");
-
         // Move the task immediately in the UI
         saveTask(updatedTask);
-
         try{
             // Save the new status through the API
             const savedTask = await updateTask(task.id, {

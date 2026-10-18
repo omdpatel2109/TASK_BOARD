@@ -14,11 +14,7 @@ interface TaskDetailsProps {
     onClose: () => void;
 }
 
-export default function TaskDetails({
-    task,
-    onUpdate,
-    onClose
-}: TaskDetailsProps) {
+export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps) {
     const router = useRouter();
     const [isEditing, setIsEditing] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
@@ -27,18 +23,17 @@ export default function TaskDetails({
 
     useEffect(() => {
         let active = true;
-
         async function loadCurrentUser() {
             try{
                 const user = await getCurrentUser();
                 if(active){
                     setCurrentUser(user);
                     if(!user){
-                        router.replace("/login");
+                        router.push("/login");
                     }
                 }
             }finally{
-                if(active)setIsUserLoading(false);
+                if(active) setIsUserLoading(false);
             }
         }
         void loadCurrentUser();

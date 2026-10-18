@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Task } from "@/features/tasks/type/taskType";
@@ -23,10 +22,8 @@ const statusStyles: Record<Task["status"], string> = {
 
 export default function TaskList({ tasks }: TaskListProps) {
     const router = useRouter();
-
     const [search, setSearch] = useState("");
     const [status, setStatus] = useState<StatusFilter>("all");
-
     const filteredTasks = tasks.filter((task) => {
         const searchedTask = search.trim().toLowerCase();
 
@@ -34,9 +31,7 @@ export default function TaskList({ tasks }: TaskListProps) {
             task.title.toLowerCase().includes(searchedTask) ||
             (task.description ?? "").toLowerCase().includes(searchedTask);
 
-        const matchesStatus =
-            status === "all" || task.status === status;
-
+        const matchesStatus = status === "all" || task.status === status;
         return matchesSearch && matchesStatus;
     });
 
@@ -50,7 +45,6 @@ export default function TaskList({ tasks }: TaskListProps) {
                     placeholder="Search tasks..."
                     className="w-[500px] rounded-lg border border-gray-300 bg-white px-4 py-3 outline-none focus:border-emerald-500"
                 />
-
                 <select value={status}  onChange={(event) =>
                         setStatus(event.target.value as StatusFilter)
                     }

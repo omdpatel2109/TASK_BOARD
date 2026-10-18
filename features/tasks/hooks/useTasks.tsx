@@ -8,13 +8,11 @@ export function useTasks() {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
-    
 
     const loadTasks = useCallback(async () => {
         try{
             setIsLoading(true);
             setError("");
-
             const data = await getTasks();
             setTasks(data);
         }catch(error){
@@ -25,7 +23,7 @@ export function useTasks() {
     }, []);
 
     useEffect(() => {
-        void loadTasks();
+        loadTasks();
     }, [loadTasks]);
 
     // Add a created task or replace an updated task.
@@ -37,10 +35,10 @@ export function useTasks() {
 
             if(exists){
                 return currentTasks.map((task) =>
-                    task.id === savedTask.id ? savedTask : task
+                    task.id === savedTask.id ? savedTask : task // edited task
                 );
             }
-            return [...currentTasks, savedTask];
+            return [...currentTasks, savedTask]; //add new task
         });
         setError("");
     }
@@ -49,7 +47,6 @@ export function useTasks() {
         try{
             setError("");
             await deleteTask(id);
-
             setTasks((currentTasks) =>
                 currentTasks.filter((task) => task.id !== id)
             );
@@ -72,15 +69,6 @@ export function useTasks() {
         .filter((task) => task.status === "done")
         .sort((a, b) => a.order - b.order);
 
-    return {
-        tasks,
-        todoTasks,
-        inProgressTasks,
-        doneTasks,
-        isLoading,
-        error,
-        loadTasks,
-        saveTask,
-        removeTask,
-    };
+    return {tasks, todoTasks, inProgressTasks, doneTasks,
+        isLoading, error, loadTasks, saveTask, removeTask};
 }

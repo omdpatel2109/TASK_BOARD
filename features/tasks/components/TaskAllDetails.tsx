@@ -1,28 +1,21 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
 import TaskDetails from "@/features/tasks/components/TaskDetails";
 import CommentList from "@/features/comments/components/CommentList";
 import CommentBox from "@/features/comments/components/CommentBox";
 import { useComments } from "@/features/comments/hooks/useComments";
-
 import type { Task } from "@/features/tasks/type/taskType";
 import type { SafeUser } from "@/features/auth/type/userType";
 
-interface TaskDetailsClientProps {
+interface TaskAllDetailsProps {
     initialTask: Task;
     currentUser: SafeUser;
 }
 
-export default function TaskAllDetails({
-    initialTask,
-    currentUser,
-}: TaskDetailsClientProps) {
+export default function TaskAllDetails({initialTask, currentUser}: TaskAllDetailsProps) {
     const router = useRouter();
     const [task, setTask] = useState<Task>(initialTask);
-
     const commentsState = useComments(String(task.id));
 
     return (
@@ -50,9 +43,7 @@ export default function TaskAllDetails({
                         editComment={commentsState.editComment}
                         removeComment={commentsState.removeComment}
                         loadError={commentsState.loadError}
-                        onRetry={() =>
-                            void commentsState.loadComments()
-                        }
+                        onRetry={() => commentsState.loadComments()}
                     />
                 </div>
             </div>

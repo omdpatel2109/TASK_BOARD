@@ -36,11 +36,7 @@ export default function TaskForm({task, onSuccess, onCancel}: TaskFormProps) {
                     const nextOrder = existingTasks
                         .filter((item) => item.status === values.status)
                         .reduce((maxOrder, item) => Math.max(maxOrder, item.order), -1) + 1;
-                    const createdTask = await createTask({
-                        ...values,
-                        order: nextOrder,
-                    });
-
+                    const createdTask = await createTask({...values, order: nextOrder});
                     onSuccess(createdTask);
                 }
             }catch(error){

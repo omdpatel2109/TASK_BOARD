@@ -42,7 +42,7 @@ export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps) {
 
     return (
         <div ref={setNodeRef} style={style}
-            className={`mx-2 my-3 min-w-0 rounded-md border border-gray-200 bg-gray-100 text-left shadow-sm transition duration-200 dark:border-slate-600 dark:bg-slate-700 sm:mx-3 ${currentTheme.border} ${currentTheme.hover} ${
+            className={`mx-2 my-3 min-w-0 rounded-md border border-gray-200 bg-gray-100 text-left shadow-sm transition duration-200 dark:bg-slate-700 sm:mx-3 ${currentTheme.border} ${currentTheme.hover} ${
                 isDragging ? "z-10 opacity-80" : "hover:-translate-y-0.5"
             }`}
         >
@@ -71,13 +71,13 @@ export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps) {
 
                 <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-3">
                     <button type="button" onClick={() => onEdit(task)}
-                        className="flex min-h-11 min-w-0 items-center justify-center rounded-md border border-blue-200 bg-slate-200 px-2 py-2 text-sm font-medium text-slate-700 hover:bg-slate-300 dark:border-slate-500 dark:bg-slate-600 dark:text-white dark:hover:bg-slate-500"
+                        className="flex min-h-11 min-w-0 items-center justify-center rounded-md border border-blue-200 bg-slate-200 px-2 py-2 text-sm font-medium text-slate-700 hover:bg-slate-300 dark:border-slate-500 dark:bg-slate-500 dark:text-white dark:hover:bg-slate-400"
                     >
                         Edit
                     </button>
 
                     <button type="button" onClick={() => onDelete(String(task.id))}
-                        className="flex min-h-11 min-w-0 items-center justify-center rounded-md border border-red-200 bg-red-100 px-2 py-2 text-sm font-medium text-red-600 hover:bg-red-200 dark:border-red-900 dark:bg-red-950 dark:text-red-300 dark:hover:bg-red-900"
+                        className="flex min-h-11 min-w-0 items-center justify-center rounded-md border border-red-200 bg-red-100 px-2 py-2 text-sm font-medium text-red-600 hover:bg-red-200 dark:bg-red-200"
                     >
                         Delete
                     </button>

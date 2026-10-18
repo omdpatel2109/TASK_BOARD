@@ -7,13 +7,12 @@ interface SuccessBoxProps {
     onClose?: () => void;
 }
 
-export default function SuccessBox({message, onClose,}: SuccessBoxProps) {
+export default function SuccessBox({message, onClose}: SuccessBoxProps) {
     useEffect(() => {
         if (!message || !onClose) return;
         const timer = setTimeout(() => {
             onClose();
         }, 1500);
-
         return () => clearTimeout(timer);
     }, [message, onClose]);
 

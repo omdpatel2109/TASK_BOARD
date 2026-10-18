@@ -6,7 +6,6 @@ export async function getCommentsByTask(taskId: string){
         const response = await api.get<Comment[]>("/comments", {
             params: { taskId }
         });
-
         return response.data;
     }catch(error){
         console.error("Error fetching comments:", error);
@@ -27,7 +26,6 @@ export async function createComment(comment: CreateComment){
 export async function updateComment(id: string, comment: UpdateComment){
     try{
         const response = await api.patch<Comment>(`/comments/${id}`, comment);
-
         return response.data;
     }catch(error){
         console.error("Error updating comment:", error);

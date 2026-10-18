@@ -1,17 +1,11 @@
-
 "use client";
-
 interface ConfirmBoxProps {
     message: string;
     onConfirm: () => void;
     onCancel: () => void;
 }
 
-export default function ConfirmBox({
-    message,
-    onConfirm,
-    onCancel,
-}: ConfirmBoxProps) {
+export default function ConfirmBox({message,onConfirm,onCancel,}: ConfirmBoxProps) {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
             <div className="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">

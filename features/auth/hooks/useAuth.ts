@@ -5,12 +5,11 @@ import { loginAction, logoutAction } from "../action";
 
 export default function useAuth() {
   const router = useRouter();
-
   const login = async (username: string, password: string) => {
     const result = await loginAction(username, password);
 
     if (result.success) {
-      router.replace("/board");
+      router.push("/board");
       router.refresh();
     }
 
@@ -19,7 +18,7 @@ export default function useAuth() {
 
   const logout = async () => {
     await logoutAction();
-    router.replace("/login");
+    router.push("/login");
     router.refresh();
   };
 

@@ -1,5 +1,4 @@
 "use server";
-
 import { cookies } from "next/headers";
 import axios from "axios";
 
@@ -7,15 +6,9 @@ import { loginUser, getAuthenticatedUser } from "@/api/auth";
 import type { SafeUser } from "./type/userType";
 
 const COOKIE_NAME = "access_token";
-const COOKIE_MAX_AGE = 60 * 60; // 1 hour
-
-export async function loginAction(
-  username: string,
-  password: string
-) {
-  try {
+export async function loginAction(username: string,password: string) {
+  try{
     const result = await loginUser({ username, password });
-
     const cookieStore = await cookies();
 
     cookieStore.set(COOKIE_NAME, result.accessToken, {
@@ -23,22 +16,22 @@ export async function loginAction(
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
       path: "/",
-      maxAge: COOKIE_MAX_AGE,
+      maxAge: 60 * 60 * 24 * 7,
     });
 
-    return {
-      success: true as const,
+    return{
+      success: true,
       message: "Login successful.",
     };
-  } catch (error) {
+  }catch(error){
     const message = axios.isAxiosError(error)
       ? error.response?.status === 400
         ? "Invalid username or password."
         : "Unable to log in. Please try again."
       : "Something went wrong. Please try again.";
 
-    return {
-      success: false as const,
+    return{
+      success: false,
       message,
     };
   }
@@ -52,7 +45,7 @@ export async function getCurrentUser(): Promise<SafeUser | null> {
     if (!token) return null;
 
     return await getAuthenticatedUser(token);
-  } catch {
+  }catch{
     return null;
   }
 }

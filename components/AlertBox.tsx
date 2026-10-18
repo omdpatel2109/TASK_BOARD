@@ -1,5 +1,4 @@
 "use client";
-
 import { AlertCircle, X } from "lucide-react";
 
 interface AlertProps{
@@ -9,7 +8,7 @@ interface AlertProps{
 
 export default function AlertBox({message, onClose}: AlertProps){
     if(!message){
-      return null;
+        return null;
     }
 
     return(
@@ -17,7 +16,7 @@ export default function AlertBox({message, onClose}: AlertProps){
             <div className="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
 
                 <button type="button" onClick={onClose}
-                    className="absolute right-4 top-4 rounded-full p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
+                    className="right-4 top-4 rounded-full p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
                 >
                     <X className="h-5 w-5" />
                 </button>

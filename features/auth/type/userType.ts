@@ -11,15 +11,14 @@ export interface LoginCredentials {
   password: string;
 }
 
+//after user login, the require information for ui
 export interface SafeUser {
   id: number;
   username: string;
   email: string;
   name: string;
-  image?: string;
 }
 
 export interface LoginResponse extends UserType {
   accessToken: string;
-  refreshToken: string;
 }

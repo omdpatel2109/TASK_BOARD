@@ -22,7 +22,6 @@ export default function LoginForm() {
             setAlertText("");
             try{
                 const result = await login(values.username, values.password);
-
                 if(!result.success){
                     setAlertText(result.message);        
                 }
@@ -75,9 +74,7 @@ export default function LoginForm() {
                         onBlur={formik.handleBlur}
                         />
 
-                        <button 
-                        type="button" 
-                        onClick={togglePassword}
+                        <button type="button" onClick={togglePassword}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
                         > 
                         {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />} 
@@ -89,13 +86,10 @@ export default function LoginForm() {
                     }
                 </div>
                     
-                    <button
-                        type="submit"
-                        disabled={formik.isSubmitting}
+                    <button type="submit" disabled={formik.isSubmitting}
                         className="mt-2 w-full rounded-lg border bg-emerald-600 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50">
                         {formik.isSubmitting ? "Logging in..." : "Login"}
                     </button>
-                    
             </form>
         </>
     )

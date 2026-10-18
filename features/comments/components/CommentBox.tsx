@@ -6,13 +6,13 @@ import SuccessBox from "@/components/SuccessBox";
 import type { SafeUser } from "@/features/auth/type/userType";
 
 interface CommentBoxProps {
-  taskId: string;
-  currentUser: SafeUser;
-  addComment: (comment: CreateComment) => Promise<void>;
-  error: string | null;
+    taskId: string;
+    currentUser: SafeUser;
+    addComment: (comment: CreateComment) => Promise<void>;
+    error: string | null;
 }
 
-export default function CommentBox({taskId,currentUser ,addComment, error}: CommentBoxProps) {
+export default function CommentBox({taskId, currentUser, addComment, error}: CommentBoxProps) {
     const [text, setText] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");

@@ -1,5 +1,4 @@
 "use client";
-
 import { useCallback, useEffect, useState } from "react";
 import {getCommentsByTask, createComment, updateComment, deleteComment} from "@/api/comments";
 import type { Comment, CreateComment,} from "@/features/comments/type/commentType";
@@ -70,7 +69,6 @@ export function useComments(taskId: string) {
             setComments((current) =>
                 current.filter((comment) => comment.id !== id)
             );
-
             setError(null);
         }catch(error){
             console.error("Failed to delete comment:", error);

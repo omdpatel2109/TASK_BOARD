@@ -72,9 +72,7 @@ currentUserId}: CommentListProps) {
             {loadError && (
             <div className="my-3 rounded-md border border-red-200 p-4">
                 <p className="text-sm text-red-600">{loadError}</p>
-                <button
-                type="button"
-                onClick={onRetry}
+                <button type="button" onClick={onRetry}
                 className="mt-3 rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
                 >
                 Try Again
@@ -95,14 +93,13 @@ currentUserId}: CommentListProps) {
             ) : (
                 comments.map((comment) => (
                     <div key={comment.id} className="py-4">
-                        <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div className="flex items-center justify-between gap-3">
                             <div>
                             <p className="font-semibold text-slate-800 dark:text-slate-200">
                                 {comment.authorName || "Unknown user"}
                             </p>
 
-                            <time
-                                dateTime={comment.createdAt}
+                            <time dateTime={comment.createdAt}
                                 className="text-sm text-slate-500 dark:text-slate-400"
                             >
                                 {new Date(comment.createdAt).toLocaleString()}

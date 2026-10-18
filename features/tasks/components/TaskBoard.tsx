@@ -228,10 +228,10 @@ export default function TaskBoard(){
                     )}
 
                     {/* Task Columns */}
-                    <div className="mb-5 grid grid-cols-1 gap-2 md:grid-cols-3">
+                    <div className="mb-5 grid grid-cols-1 gap-4 md:grid-cols-3">
                         {/* To Do */}
                         <DropZone id="todo">
-                            <div className="rounded-md border-2 border-slate-300 bg-slate-50 dark:bg-slate-900 dark:border-slate-700">
+                            <div className="w-full min-w-0 overflow-hidden rounded-md border-2 border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
                                 <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg dark:bg-slate-900 dark:border-slate-700">
                                     <span className="block w-full py-2 text-slate-600 dark:text-slate-100">
                                         To Do
@@ -252,7 +252,7 @@ export default function TaskBoard(){
 
                         {/* In Progress */}
                         <DropZone id="in_progress">
-                            <div className="rounded-md border-2 border-slate-300 bg-slate-50 dark:bg-slate-900 dark:border-slate-700">
+                            <div className="w-full min-w-0 overflow-hidden rounded-md border-2 border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
                                 <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg dark:bg-slate-900 dark:border-slate-700">
                                     <span className="block w-full py-2 text-slate-600 dark:text-slate-100">
                                         In Progress
@@ -273,7 +273,7 @@ export default function TaskBoard(){
 
                         {/* Done */}
                         <DropZone id="done">
-                            <div className="rounded-md border-2 border-slate-300 bg-slate-50 dark:bg-slate-900 dark:border-slate-700">
+                            <div className="w-full min-w-0 overflow-hidden rounded-md border-2 border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
                                 <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg dark:bg-slate-900 dark:border-slate-700">
                                     <span className="block w-full py-2 text-slate-600 dark:text-slate-100">
                                         Done

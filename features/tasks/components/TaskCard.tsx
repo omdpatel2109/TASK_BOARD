@@ -3,13 +3,13 @@ import { useDraggable } from "@dnd-kit/core";
 import { GripVertical } from "lucide-react";
 import { useRouter } from "next/navigation";
 import type { Task } from "@/features/tasks/type/taskType";
+
 interface TaskCardProps {
     task: Task;
     onEdit: (task: Task) => void;
     onDelete: (id: string) => void;
 }
-
-export default function TaskCard({task, onEdit, onDelete}: TaskCardProps){
+export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps) {
     const router = useRouter();
 
     const {attributes, listeners, setNodeRef, transform, isDragging,} = useDraggable({
@@ -18,68 +18,66 @@ export default function TaskCard({task, onEdit, onDelete}: TaskCardProps){
 
     const theme = {
         todo:{
-            border: "border-l-4 border-l-blue-500 border-r-gray-300 border-y-gray-300",
+            border: "border-l-4 border-l-blue-500",
             title: "text-blue-600 dark:text-blue-400",
-            hover: "hover:bg-blue-50",
+            hover: "hover:bg-blue-50 dark:hover:bg-slate-600",
         },
         in_progress:{
-            border: "border-l-4 border-l-amber-500 border-r-gray-300 border-y-gray-300 ",
-            title: "text-amber-600 ",
-            hover: "hover:bg-amber-50",
+            border: "border-l-4 border-l-amber-500",
+            title: "text-amber-600 dark:text-amber-400",
+            hover: "hover:bg-amber-50 dark:hover:bg-slate-600",
         },
         done:{
-            border: "border-l-4 border-l-green-600 border-r-gray-300 border-y-gray-300",
-            title: "text-green-600",
-            hover: "hover:bg-green-50",
+            border: "border-l-4 border-l-green-600",
+            title: "text-green-600 dark:text-green-400",
+            hover: "hover:bg-green-50 dark:hover:bg-slate-600",
         },
     };
 
     const currentTheme = theme[task.status];
 
-    const style = {
-        transform: transform
-            ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
-            : undefined,
+    const style = {transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)`: undefined,
         transition: isDragging ? "none" : undefined,
-        // willChange: isDragging ? "transform" : undefined,
     };
 
     return (
         <div ref={setNodeRef} style={style}
-            className={`mx-4 my-4 rounded-md border-1 bg-gray-100 text-left shadow-lg transition duration-200 ${currentTheme.border} ${currentTheme.hover} dark:bg-slate-700
-                ${isDragging ? "z-10 opacity-100" : "hover:-translate-y-1"}
-            `}
+            className={`mx-2 my-3 min-w-0 rounded-md border border-gray-200 bg-gray-100 text-left shadow-sm transition duration-200 dark:border-slate-600 dark:bg-slate-700 sm:mx-3 ${currentTheme.border} ${currentTheme.hover} ${
+                isDragging ? "z-10 opacity-80" : "hover:-translate-y-0.5"
+            }`}
         >
-            <div className="p-4">
-                <div className="mb-2 flex justify-between">
-                    <h2 className={`text-lg font-bold ${currentTheme.title}`}>
+            <div className="min-w-0 p-3 sm:p-4">
+                <div className="mb-2 flex min-w-0 items-start justify-between gap-2">
+                    <h2
+                        className={`min-w-0 font-bold sm:text-lg ${currentTheme.title}`}
+                    >
                         {task.title}
                     </h2>
 
                     <button type="button" {...listeners} {...attributes}
-                        className="cursor-grab rounded p-1 text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200 dark:hover:text-gray-500"
+                        className="flex h-10 w-10 shrink-0 touch-none items-center justify-center rounded-md text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200 dark:hover:bg-slate-600"
                     >
                         <GripVertical className="h-5 w-5" />
                     </button>
                 </div>
 
                 <button type="button" onClick={() => router.push(`/board/tasks/${task.id}`)}
-                    className="block w-full text-left cursor-pointer"
+                    className="block w-full min-w-0 cursor-pointer text-left"
                 >
-                    <p className="text-sm leading-6 text-gray-700 dark:text-slate-400">
-                        Description: {task.description}
+                    <p className="text-sm text-gray-700 dark:text-slate-300">
+                        Description: {task.description || "No description"}
                     </p>
                 </button>
 
-                <div className="mt-4 grid lg:grid-cols-2 gap-5 sm:grid-cols-1 md:grid-cols-1">
+                <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-3">
                     <button type="button" onClick={() => onEdit(task)}
-                        className="rounded-md border border-blue-200 bg-slate-200 px-4 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-300"
+                        className="flex min-h-11 min-w-0 items-center justify-center rounded-md border border-blue-200 bg-slate-200 px-2 py-2 text-sm font-medium text-slate-700 hover:bg-slate-300 dark:border-slate-500 dark:bg-slate-600 dark:text-white dark:hover:bg-slate-500"
                     >
                         Edit
                     </button>
 
                     <button type="button" onClick={() => onDelete(String(task.id))}
-                        className="rounded-md border border-red-200 bg-red-100 px-4 py-1.5 text-sm font-medium text-red-600 transition-colors hover:border-red-300 hover:bg-red-200 "
+                        className="flex min-h-11 min-w-0 items-center justify-center rounded-md border border-red-200 bg-red-100 px-2 py-2 text-sm font-medium text-red-600 hover:bg-red-200 dark:border-red-900 dark:bg-red-950 dark:text-red-300 dark:hover:bg-red-900"
                     >
                         Delete
                     </button>

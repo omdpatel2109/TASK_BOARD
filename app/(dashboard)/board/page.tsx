@@ -2,20 +2,18 @@ import TaskBoard from "@/features/tasks/components/TaskBoard";
 import Header from "@/components/Header";
 import SideBar from "@/components/SideBar";
 
-export default function DashboardPage(){
+export default function DashboardPage() {
     return (
-        //kanban board design page
-        <div className="min-h-screen w-full bg-gray-100 dark:bg-slate-950">
+        <div className="flex w-full flex-col overflow-hidden bg-gray-100 dark:bg-slate-950">
             <Header />
-        
-            <div className="flex min-h-screen w-full">
+
+            <div className="flex min-h-0 flex-1">
                 <SideBar />
-        
-                <div className="flex-1 p-6">
-                    {/* Task board */}
+
+                <main className="min-w-0 flex-1 overflow-y-auto p-6">
                     <TaskBoard />
-                </div>
+                </main>
             </div>
         </div>
-    )
+    );
 }

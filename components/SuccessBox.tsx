@@ -20,7 +20,7 @@ export default function SuccessBox({message, onClose}: SuccessBoxProps) {
 
     return(
         <div
-            className="mb-4 flex items-center justify-between gap-3 rounded-lg border border-green-200 bg-green-100 px-4 py-3 text-md text-green-800 shadow-sm"
+            className="fixed top-4 left-1/2 z-50 flex -translate-x-1/2 items-center justify-between gap-3 rounded-lg border border-green-200 bg-green-300 px-4 py-3 text-md text-green-800"
         >
             <div className="flex items-center gap-2">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-100 font-bold text-green-700">

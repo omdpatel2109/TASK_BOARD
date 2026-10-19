@@ -1,7 +1,8 @@
 "use client";
+import { useState, useEffect, useRef } from "react";
 import { useDraggable } from "@dnd-kit/core";
-import { GripVertical } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { GripVertical, MoreVertical, Edit2, Trash2, Eye } from "lucide-react";
+import Link from "next/link";
 import type { Task } from "@/features/tasks/type/taskType";
 
 interface TaskCardProps {
@@ -9,37 +10,48 @@ interface TaskCardProps {
     onEdit: (task: Task) => void;
     onDelete: (id: string) => void;
 }
-export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps) {
-    const router = useRouter();
 
-    const {attributes, listeners, setNodeRef, transform, isDragging} = useDraggable({
+export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
         id: String(task.id),
     });
 
+    // Native layout tracking to close dropdown safely
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setIsMenuOpen(false);
+            }
+        }
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
+    }, []);
+
     const theme = {
-        todo:{
+        todo: {
             border: "border-l-4 border-l-blue-500",
             title: "text-blue-600 dark:text-blue-400",
             hover: "hover:bg-blue-50 dark:hover:bg-slate-600",
         },
-        in_progress:{
+        in_progress: {
             border: "border-l-4 border-l-amber-500",
             title: "text-amber-600 dark:text-amber-400",
             hover: "hover:bg-amber-50 dark:hover:bg-slate-600",
         },
-        done:{
+        done: {
             border: "border-l-4 border-l-green-600",
             title: "text-green-600 dark:text-green-400",
             hover: "hover:bg-green-50 dark:hover:bg-slate-600",
         },
     };
 
-    const currentTheme = theme[task.status];
+    const currentTheme = theme[task.status as keyof typeof theme] || theme.todo;
 
     const style = {
-        //where to move the task (on x and y axis)
-        transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)`: undefined,
-        //it use for the dragged task card from lagging behind cursor due to a CSS transition.it disables transition animations on the card while dragging.
+        transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
         transition: isDragging ? "none" : undefined,
     };
 
@@ -51,40 +63,87 @@ export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps) {
         >
             <div className="min-w-0 p-3 sm:p-4">
                 <div className="mb-2 flex min-w-0 items-start justify-between gap-2">
-                    <h2
-                        className={`min-w-0 font-bold sm:text-lg ${currentTheme.title}`}
-                    >
+                    <h2 className={`min-w-0 font-bold sm:text-lg ${currentTheme.title}`}>
                         {task.title}
                     </h2>
 
-                    <button type="button" {...listeners} {...attributes}
-                        className="flex h-10 w-10 items-center justify-center rounded-md text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200 dark:hover:bg-slate-600"
-                    >
-                        <GripVertical className="h-5 w-5" />
-                    </button>
+                   <div className="flex items-center gap-1" ref={menuRef}>
+                        <div className="relative">
+                            <button type="button" onClick={(e) => {
+                                    e.stopPropagation(); 
+                                    setIsMenuOpen(!isMenuOpen);
+                                }}
+                                className="flex h-10 w-10 items-center justify-center rounded-md text-gray-500 hover:bg-gray-200 dark:text-gray-200 dark:hover:bg-slate-600"
+                            >
+                                <MoreVertical className="h-5 w-5" />
+                            </button>
+
+                            {/* Dropdown Action Overlay Menu */}
+                            {isMenuOpen && (
+                                <div className="absolute right-0 top-full z-50 mt-1 flex w-fit items-center gap-1 rounded-md border border-gray-200 bg-white p-1 shadow-lg dark:border-slate-600 dark:bg-slate-800">
+
+                                    {/* View Details */}
+                                    <Link href={`/board/tasks/${task.id}`}
+                                        onClick={() => setIsMenuOpen(false)} title="View Details"
+                                        className="flex h-10 w-10 items-center justify-center rounded-md text-gray-600 hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-slate-700"
+                                    >
+                                        <Eye className="h-5 w-5" />
+                                    </Link>
+
+                                    {/* Edit */}
+                                    <button
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setIsMenuOpen(false);
+                                            onEdit(task);
+                                        }}
+                                        aria-label="Edit task"
+                                        title="Edit"
+                                        className="flex h-10 w-10 items-center justify-center rounded-md text-gray-600 hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-slate-700"
+                                    >
+                                        <Edit2 className="h-5 w-5" />
+                                    </button>
+
+                                    {/* Delete */}
+                                    <button
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setIsMenuOpen(false);
+                                            onDelete(String(task.id));
+                                        }}
+                                        aria-label="Delete task"
+                                        className="flex h-10 w-10 items-center justify-center rounded-md text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-slate-700"
+                                    >
+                                        <Trash2 className="h-5 w-5" />
+                                    </button>
+
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Drag Handle Button */}
+                        <button 
+                            type="button" 
+                            {...listeners} 
+                            {...attributes}
+                            className="flex h-10 w-10 items-center justify-center rounded-md text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200 dark:hover:bg-slate-600 hover:cursor-grab"
+                        >
+                            <GripVertical className="h-5 w-5" />
+                        </button>
+                    </div>
                 </div>
 
-                <button type="button" onClick={() => router.push(`/board/tasks/${task.id}`)}
-                    className="block w-full min-w-0 cursor-pointer text-left"
+                {/* Card Main Body Description Link */}
+                <Link 
+                    href={`/board/tasks/${task.id}`}
+                    className="block w-full min-w-0 cursor-pointer text-left focus:outline-none"
                 >
-                    <p className="text-sm text-gray-700 dark:text-slate-300">
+                    <p className="text-sm text-gray-700 dark:text-slate-300 line-clamp-3">
                         Description: {task.description || "No description"}
                     </p>
-                </button>
-
-                <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-3">
-                    <button type="button" onClick={() => onEdit(task)}
-                        className="flex min-h-11 min-w-0 items-center justify-center rounded-md border border-blue-200 bg-slate-200 px-2 py-2 text-sm font-medium text-slate-700 hover:bg-slate-300 dark:border-slate-500 dark:bg-slate-500 dark:text-white dark:hover:bg-slate-400"
-                    >
-                        Edit
-                    </button>
-
-                    <button type="button" onClick={() => onDelete(String(task.id))}
-                        className="flex min-h-11 min-w-0 items-center justify-center rounded-md border border-red-200 bg-red-100 px-2 py-2 text-sm font-medium text-red-600 hover:bg-red-200 dark:bg-red-200"
-                    >
-                        Delete
-                    </button>
-                </div>
+                </Link>
             </div>
         </div>
     );

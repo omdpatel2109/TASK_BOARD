@@ -25,14 +25,14 @@
       "title": "Fetch api",
       "description": "Fetch the api for display task, add task, edit task, delete task",
       "status": "in_progress",
-      "order": 8,
+      "order": 9,
       "id": "qAoJwnvcWT0"
     },
     {
       "title": "Add task form for edit and add task",
-      "description": "Add task will add the task and show in the column of the same status\n",
+      "description": "Add task will add the task and show in the column of the same status.\n",
       "status": "todo",
-      "order": 7,
+      "order": 10,
       "id": "wxHoljkkGZs"
     },
     {
@@ -45,8 +45,8 @@
     {
       "title": "Task details page",
       "description": "Page with the all information of the task, after click on the each task,open the task detail page",
-      "status": "todo",
-      "order": 10,
+      "status": "in_progress",
+      "order": 8,
       "id": "MZqA1sH3r1k"
     },
     {

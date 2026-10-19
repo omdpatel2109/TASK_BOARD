@@ -28,8 +28,7 @@ export default function TaskList({ tasks }: TaskListProps) {
         const searchedTask = search.trim().toLowerCase();
 
         const matchesSearch =
-            task.title.toLowerCase().includes(searchedTask) ||
-            (task.description ?? "").toLowerCase().includes(searchedTask);
+            task.title.toLowerCase().includes(searchedTask);
 
         const matchesStatus = status === "all" || task.status === status;
         return matchesSearch && matchesStatus;

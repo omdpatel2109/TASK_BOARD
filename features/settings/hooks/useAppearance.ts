@@ -4,8 +4,6 @@ export type Theme = "light" | "dark" | "system";
 
 export function useAppearance() {
     const [theme, setTheme] = useState<Theme>("system");
-    const [mounted, setMounted] = useState(false);
-
     // Load the saved theme when the component mounts
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
@@ -13,12 +11,10 @@ export function useAppearance() {
         if(savedTheme === "light" || savedTheme === "dark" || savedTheme === "system"){
             setTheme(savedTheme);
         }
-        setMounted(true);
     }, []);
 
     // Apply the selected theme
     useEffect(() => {
-        if(!mounted) return;
         const root = document.documentElement;
         const media = window.matchMedia("(prefers-color-scheme: dark)");
         const applyTheme = () => {
@@ -41,6 +37,6 @@ export function useAppearance() {
                 media.removeEventListener("change", applyTheme);
             };
         }
-    }, [theme, mounted]);
-    return { theme, setTheme, mounted };
+    }, [theme]);
+    return { theme, setTheme };
 }

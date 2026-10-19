@@ -15,8 +15,10 @@ interface DropZoneProps{
     children: React.ReactNode;
 }
 //create drop target when that detects when item hovered over it and highlight itself
-function DropZone({ id, children }: DropZoneProps){ 
-    const { setNodeRef, isOver } = useDroppable({id});
+function DropZone({ id, children }: DropZoneProps){  // id = todo, in progress, done zone
+    const { setNodeRef, isOver } = useDroppable({id}); // create the drop target
+    //setRefNode = connect the actual HTML div element to dnd systen
+    //isOver = true if card is over the dropzone, otherwise false
     return(
         <div ref={setNodeRef} className={isOver ? "rounded-md ring-2 ring-blue-400" : ""}>
             {children}

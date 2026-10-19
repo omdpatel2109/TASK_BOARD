@@ -4,7 +4,7 @@
       "title": "Create dashboard",
       "description": "Create dashboard with 3 different columns - Todo, In Progress, Done",
       "status": "todo",
-      "order": 3,
+      "order": 8,
       "id": "KB3HkVfCQVM"
     },
     {
@@ -24,15 +24,15 @@
     {
       "title": "Fetch api",
       "description": "Fetch the api for display task, add task, edit task, delete task",
-      "status": "todo",
-      "order": 5,
+      "status": "in_progress",
+      "order": 8,
       "id": "qAoJwnvcWT0"
     },
     {
       "title": "Add task form for edit and add task",
       "description": "Add task will add the task and show in the column of the same status\n",
       "status": "todo",
-      "order": 2,
+      "order": 7,
       "id": "wxHoljkkGZs"
     },
     {
@@ -46,7 +46,7 @@
       "title": "Task details page",
       "description": "Page with the all information of the task, after click on the each task,open the task detail page",
       "status": "todo",
-      "order": 6,
+      "order": 10,
       "id": "MZqA1sH3r1k"
     },
     {

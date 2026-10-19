@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-
 const protectedRoutes = ["/board"];
 const publicRoutes = ["/login"];
 
@@ -21,7 +20,7 @@ export function middleware(request: NextRequest) {
         );
     }
 
-    // Redirect authenticated users away from login
+    // Redirect authenticated users to login
     if (isPublic && token) {
         return NextResponse.redirect(
             new URL("/board", request.url)
@@ -31,6 +30,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
 }
 
+//on which URl the middleware function will be run
 export const config = {
     matcher: ["/board/:path*", "/login"],
 };

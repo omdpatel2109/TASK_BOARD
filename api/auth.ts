@@ -16,9 +16,7 @@ export async function getAuthenticatedUser(accessToken: string): Promise<SafeUse
       Authorization: `Bearer ${accessToken}`,
     },
   });
-
   const user = response.data;
-
   return {
     id: user.id,
     username: user.username,

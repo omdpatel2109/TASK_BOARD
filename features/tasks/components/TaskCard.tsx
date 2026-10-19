@@ -12,7 +12,7 @@ interface TaskCardProps {
 export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps) {
     const router = useRouter();
 
-    const {attributes, listeners, setNodeRef, transform, isDragging,} = useDraggable({
+    const {attributes, listeners, setNodeRef, transform, isDragging} = useDraggable({
         id: String(task.id),
     });
 
@@ -36,14 +36,17 @@ export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps) {
 
     const currentTheme = theme[task.status];
 
-    const style = {transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)`: undefined,
+    const style = {
+        //where to move the task (on x and y axis)
+        transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)`: undefined,
+        //it use for the dragged task card from lagging behind cursor due to a CSS transition.it disables transition animations on the card while dragging.
         transition: isDragging ? "none" : undefined,
     };
 
     return (
         <div ref={setNodeRef} style={style}
             className={`mx-2 my-3 min-w-0 rounded-md border border-gray-200 bg-gray-100 text-left shadow-sm transition duration-200 dark:bg-slate-700 sm:mx-3 ${currentTheme.border} ${currentTheme.hover} ${
-                isDragging ? "z-10 opacity-80" : "hover:-translate-y-0.5"
+                isDragging ? "opacity-80" : "hover:-translate-y-0.5"
             }`}
         >
             <div className="min-w-0 p-3 sm:p-4">
@@ -55,7 +58,7 @@ export default function TaskCard({task, onEdit, onDelete,}: TaskCardProps) {
                     </h2>
 
                     <button type="button" {...listeners} {...attributes}
-                        className="flex h-10 w-10 shrink-0 touch-none items-center justify-center rounded-md text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200 dark:hover:bg-slate-600"
+                        className="flex h-10 w-10 items-center justify-center rounded-md text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200 dark:hover:bg-slate-600"
                     >
                         <GripVertical className="h-5 w-5" />
                     </button>

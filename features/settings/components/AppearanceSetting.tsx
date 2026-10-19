@@ -1,6 +1,4 @@
-
 "use client";
-
 import { Sun, Moon, Monitor } from "lucide-react";
 import { useAppearance, type Theme } from "../hooks/useAppearance";
 
@@ -8,10 +6,10 @@ const themes = [
     { value: "light", label: "Light", Icon: Sun },
     { value: "dark", label: "Dark", Icon: Moon },
     { value: "system", label: "System", Icon: Monitor },
-] as const;
+];
 
 export default function AppearanceSettings() {
-    const { theme, setTheme, mounted } = useAppearance();
+    const { theme, setTheme } = useAppearance();
 
     return (
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">

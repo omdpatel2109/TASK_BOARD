@@ -184,8 +184,8 @@ export default function TaskBoard() {
             )}
 
             {taskForm && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm">
-                    <div className="relative w-full max-w-md rounded-xl border border-gray-100 bg-white p-6 shadow-2xl">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm" onClick={(e)=>e.stopPropagation()}>
+                    <div className="relative w-full max-w-md rounded-xl border border-gray-100 bg-white p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
                         <button type="button" onClick={formClose}
                             className="absolute right-7 top-7 rounded-full p-1 text-gray-800 transition hover:bg-gray-100"
                         >
@@ -193,6 +193,7 @@ export default function TaskBoard() {
                         </button>
                         <TaskForm
                             task={selectedTask ?? undefined}
+                            columns={columns}
                             onSuccess={handleTaskSuccess}
                             onCancel={formClose}
                         />
@@ -209,11 +210,11 @@ export default function TaskBoard() {
             )}
 
             {columnForm && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm" onClick={() => setColumnForm(false)}
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm" onClick={(e) => e.stopPropagation()}
                 >
                     <div className="relative w-full max-w-sm rounded-xl border border-gray-100 bg-white p-6 shadow-2xl"
                     >
-                        <button type="button" onClick={() => setColumnForm(false)}
+                        <button type="button" onClick={() => setColumnForm(false) }
                             className="absolute right-6 top-6 rounded-full p-1 text-gray-500 transition hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             <X className="h-5 w-5" />
@@ -229,7 +230,7 @@ export default function TaskBoard() {
             <DndContext onDragEnd={handleDragEnd}>
                 <div className="w-full p-4 overflow-x-auto">                    
                     <div className="mb-6 flex items-center justify-between min-w-max">
-                        <h1 className="text-2xl font-bold text-gray-900">Task Board</h1>
+                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Task Status</h1>
                         <div className="flex gap-2">
                             <button 
                                 onClick={openColumnForm} 
@@ -253,15 +254,15 @@ export default function TaskBoard() {
                                 .sort((a, b) => a.order - b.order);
 
                             return (
-                                <div key={column.id} className="w-80 shrink-0 bg-gray-50 rounded-xl p-4 border border-gray-200">
-                                    <div className="mb-4 flex items-center justify-between">
-                                        <h3 className="font-semibold text-gray-700 truncate">{column.title}</h3>
+                                <div key={column.id} className="w-80 shrink-0 bg-gray-50 rounded-xl p-4 border border-gray-200 dark:bg-slate-800 ">
+                                    <div className="mb-4 flex items-center dark:bg-slate-800 justify-between">
+                                        <h3 className="font-semibold text-gray-700 truncate dark:text-white">{column.title}</h3>
                                         <span className="bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full text-xs font-medium">
                                             {columnTasks.length}
                                         </span>
                                     </div>
                                     <DropZone id={String(column.id)}>
-                                        <div className="flex flex-col gap-3 min-h-[500px]">
+                                        <div className="flex flex-col gap-3 min-h-[500px] dark:bg-slate-800">
                                             {columnTasks.map((task) => (
                                                 <TaskCard key={task.id} task={task} onEdit={() => editTask(task)} 
                                                     onDelete={() => askDeleteTask(String(task.id))}

@@ -11,11 +11,15 @@ export function ColumnForm({ onAddColumn }: AddColumnFormProps) {
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-
+        const trimmedTitle = title.trim();
+        if(!trimmedTitle){
+            setFormError("Column title cannot be empty.");
+            return;
+        }
         try{
             setIsSubmitting(true);
             setFormError("");
-            const success = await onAddColumn(title.trim());
+            const success = await onAddColumn(trimmedTitle);
             if(success){
                 setTitle("");
             }else{

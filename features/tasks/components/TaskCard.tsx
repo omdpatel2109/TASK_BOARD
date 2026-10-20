@@ -65,7 +65,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                         {task.title}
                     </h2>
 
-                   <div className="flex items-center " ref={menuRef}>
+                    <div className="flex items-center " ref={menuRef}>
                         <div className="relative">
                             <button type="button" onClick={(e) => {
                                     e.stopPropagation(); 

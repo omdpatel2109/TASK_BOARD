@@ -9,15 +9,9 @@ export default function TaskListPage() {
 
     return (
         <div className="min-h-screen w-full bg-gray-100 dark:bg-slate-950">
-            <Header />
-
-            <div className="flex min-h-screen w-full">
-                <SideBar />
-
-                <div className="flex-1 p-6">
+                <div className="flex-1">
                     <TaskList tasks={tasks} />
                 </div>
-            </div>
         </div>
     );
 }

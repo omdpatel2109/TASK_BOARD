@@ -5,6 +5,7 @@ import type {Task, TaskFormValues,} from "../type/taskType";
 import {createTask, updateTask, getTasks} from "@/api/task";
 import { getApiErrorMessage } from "@/lib/api";
 import { useState } from "react";
+import { useTasks } from "@/features/tasks/hooks/useTasks";
 
 interface TaskFormProps {
     task?: Task;
@@ -14,7 +15,7 @@ interface TaskFormProps {
 
 export default function TaskForm({task, onSuccess, onCancel}: TaskFormProps) {
     const [apiError, setApiError] = useState("");
-
+    const { columns } = useTasks(); 
     const formik = useFormik<TaskFormValues>({
         enableReinitialize: true,
         initialValues: {
@@ -113,9 +114,11 @@ export default function TaskForm({task, onSuccess, onCancel}: TaskFormProps) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 >
-                    <option value="todo"> To Do </option>
-                    <option value="in_progress"> In Progress </option>
-                    <option value="done">  Done </option>
+                    {columns.map((column) => (
+                        <option key={column.id} value={column.id}>
+                            {column.title}
+                        </option>
+                    ))}
                 </select>
 
                 {formik.errors.status && formik.touched.status ? (

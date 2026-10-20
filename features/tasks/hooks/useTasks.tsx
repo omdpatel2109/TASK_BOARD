@@ -1,13 +1,14 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { getTasks, deleteTask } from "@/api/task";
-import type { Task } from "@/features/tasks/type/taskType";
+import { getTasks, deleteTask, } from "@/api/task";
+import type { Task, TaskColumn } from "@/features/tasks/type/taskType";
 import { getApiErrorMessage } from "@/lib/api";
-
+import { getColumns, newColumn } from "@/api/column";
 export function useTasks() {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
+    const [columns, setColumns] = useState<TaskColumn[]>([]);
 
     const loadTasks = useCallback(async () => {
         try{
@@ -22,9 +23,19 @@ export function useTasks() {
         }
     }, []);
 
+    const loadColumns = useCallback(async () => {
+        try{
+            const data = await getColumns();
+            setColumns(data);
+        }catch(error){
+            setError(getApiErrorMessage(error));
+        }
+    }, []);
+
     useEffect(() => {
         loadTasks();
-    }, [loadTasks]);
+        loadColumns();
+    }, [loadTasks, loadColumns]);
 
     // Add a created task or replace an updated task.
     function saveTask(savedTask: Task){
@@ -69,6 +80,36 @@ export function useTasks() {
         .filter((task) => task.status === "done")
         .sort((a, b) => a.order - b.order);
 
+    async function addColumn(title: string): Promise<boolean> {
+        try{
+            setError("");
+            const trimmedTitle = title.trim();
+            if(columns.some((column) =>
+                    column.title.trim().toLowerCase() === trimmedTitle.toLowerCase())
+            ){
+                setError("A column with this title already exists.");
+                return false;
+            }
+            const createdColumn = await newColumn({
+                title: trimmedTitle,
+                order: columns.reduce(
+                    (maxOrder, column) => Math.max(maxOrder, column.order),-1)+1,
+            });
+
+            setColumns((currentColumns) =>
+                [...currentColumns, createdColumn].sort(
+                    (a, b) => a.order - b.order
+                )
+            );
+            return true;
+        }catch(error){
+            setError(getApiErrorMessage(error));
+            return false;
+        }
+    }
+
     return {tasks, todoTasks, inProgressTasks, doneTasks,
-        isLoading, error, loadTasks, saveTask, removeTask};
+        isLoading, error, loadTasks, saveTask, removeTask,
+        columns, setColumns, addColumn, 
+    };
 }

@@ -14,7 +14,6 @@ interface TaskCardProps {
 export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
-
     const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
         id: String(task.id),
     });
@@ -49,7 +48,6 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
     };
 
     const currentTheme = theme[task.status as keyof typeof theme] || theme.todo;
-
     const style = {
         transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
         transition: isDragging ? "none" : undefined,
@@ -57,7 +55,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
 
     return (
         <div ref={setNodeRef} style={style}
-            className={`mx-2 my-3 min-w-0 rounded-md border border-gray-200 bg-gray-100 text-left shadow-sm transition duration-200 dark:bg-slate-700 sm:mx-3 ${currentTheme.border} ${currentTheme.hover} ${
+            className={`mx-2 min-w-0 rounded-md border border-gray-200 bg-gray-100 text-left shadow-sm transition duration-200 dark:bg-slate-700 sm:mx-3 ${currentTheme.border} ${currentTheme.hover} ${
                 isDragging ? "opacity-80" : "hover:-translate-y-0.5"
             }`}
         >
@@ -67,7 +65,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                         {task.title}
                     </h2>
 
-                   <div className="flex items-center gap-1" ref={menuRef}>
+                   <div className="flex items-center " ref={menuRef}>
                         <div className="relative">
                             <button type="button" onClick={(e) => {
                                     e.stopPropagation(); 
@@ -91,14 +89,11 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                                     </Link>
 
                                     {/* Edit */}
-                                    <button
-                                        type="button"
-                                        onClick={(e) => {
+                                    <button type="button" onClick={(e) => {
                                             e.stopPropagation();
                                             setIsMenuOpen(false);
                                             onEdit(task);
                                         }}
-                                        aria-label="Edit task"
                                         title="Edit"
                                         className="flex h-10 w-10 items-center justify-center rounded-md text-gray-600 hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-slate-700"
                                     >
@@ -108,26 +103,21 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                                     {/* Delete */}
                                     <button
                                         type="button"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
+                                        onClick={(e) => { e.stopPropagation();
                                             setIsMenuOpen(false);
                                             onDelete(String(task.id));
                                         }}
-                                        aria-label="Delete task"
                                         className="flex h-10 w-10 items-center justify-center rounded-md text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-slate-700"
                                     >
                                         <Trash2 className="h-5 w-5" />
                                     </button>
-
                                 </div>
                             )}
                         </div>
 
                         {/* Drag Handle Button */}
                         <button 
-                            type="button" 
-                            {...listeners} 
-                            {...attributes}
+                            type="button" {...listeners} {...attributes}
                             className="flex h-10 w-10 items-center justify-center rounded-md text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200 dark:hover:bg-slate-600 hover:cursor-grab"
                         >
                             <GripVertical className="h-5 w-5" />

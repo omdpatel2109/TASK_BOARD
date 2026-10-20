@@ -1,135 +1,137 @@
 "use client";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { DndContext, type DragEndEvent, useDroppable} from "@dnd-kit/core";
+import { DndContext, type DragEndEvent, useDroppable } from "@dnd-kit/core";
 import TaskCard from "./TaskCard";
 import TaskForm from "./TaskForm";
+import TaskFilter from "./TaskFilter";
+import { ColumnForm } from "./ColumnForm";
 import { useTasks } from "@/features/tasks/hooks/useTasks";
 import { updateTask } from "@/api/task";
 import type { Task } from "@/features/tasks/type/taskType";
 import SuccessBox from "@/components/SuccessBox";
 import ConfirmBox from "@/components/ConfirmBox";
 
-interface DropZoneProps{
-    id: "todo" | "in_progress" | "done";
+interface DropZoneProps {
+    id: string;
     children: React.ReactNode;
 }
-//create drop target when that detects when item hovered over it and highlight itself
-function DropZone({ id, children }: DropZoneProps){  // id = todo, in progress, done zone
-    const { setNodeRef, isOver } = useDroppable({id}); // create the drop target
-    //setRefNode = connect the actual HTML div element to dnd systen
-    //isOver = true if card is over the dropzone, otherwise false
-    return(
-        <div ref={setNodeRef} className={isOver ? "rounded-md ring-2 ring-blue-400" : ""}>
+
+function DropZone({ id, children }: DropZoneProps) {
+    const { setNodeRef, isOver } = useDroppable({ id });
+    return (
+        <div ref={setNodeRef} className={ isOver ? "rounded-md ring-2 ring-blue-400": ""}>
             {children}
         </div>
     );
 }
 
-export default function TaskBoard(){
-    const { tasks, todoTasks, inProgressTasks, doneTasks, isLoading,
-        error, loadTasks, saveTask, removeTask} = useTasks();
-
-    // Task form state
+export default function TaskBoard() {
+    const {tasks, isLoading, error, loadTasks, saveTask,
+        removeTask, columns, addColumn,} = useTasks();
     const [taskForm, setTaskForm] = useState(false);
     const [selectedTask, setSelectedTask] = useState<Task | null>(null);
     const [dragError, setDragError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
+    const [confirmDeleteTask, setConfirmDeleteTask] = useState<Task | null>(null);
+    const [columnForm, setColumnForm] = useState(false);
+    const [displayedTasks, setDisplayedTasks] = useState<Task[]>(tasks);
 
-    const [successMessage, setSuccessMessage] = useState(""); //sucessbox
-    const [confirmDeleteTask, setConfirmDeleteTask] = useState<Task | null>(null);//confirmbox delete
-
-    // Prevent background scrolling while the form is open
+    // copy the task in display task to use display task for filter
+    useEffect(() => {
+        setDisplayedTasks(tasks);
+    }, [tasks]);
+    // Prevent background scrolling while the task form is open.
     useEffect(() => {
         const previousOverflow = document.body.style.overflow;
-        if(taskForm){
+
+        if (taskForm) {
             document.body.style.overflow = "hidden";
         }
+
         return () => {
             document.body.style.overflow = previousOverflow;
         };
     }, [taskForm]);
 
-    // Open form for creating a new task
     function addTask(){
         setSelectedTask(null);
         setTaskForm(true);
     }
 
-    // Open form for editing an existing task
     function editTask(task: Task){
         setSelectedTask(task);
         setTaskForm(true);
     }
 
-    // Close task form
     function formClose(){
         setTaskForm(false);
         setSelectedTask(null);
     }
 
-    // Called after creating or updating a task
     function handleTaskSuccess(savedTask: Task){
         saveTask(savedTask);
-        setSuccessMessage(selectedTask ? "Task updated successfully!" 
-            : "Task added successfully!");
+        setSuccessMessage(selectedTask ? "Task updated successfully!" : "Task added successfully!");
         formClose();
     }
 
-    // Ask for confirmation before deleting
     function askDeleteTask(id: string){
-        const task = tasks.find((currentTask) => currentTask.id === id);
+        const task = tasks.find(
+            (currentTask) => String(currentTask.id) === String(id)
+        );
+
         if(task){
             setConfirmDeleteTask(task);
         }
     }
 
-    // Delete only after confirmation
     async function handleConfirmDelete(){
         if (!confirmDeleteTask) return;
         setSuccessMessage("");
         const success = await removeTask(confirmDeleteTask.id);
-        if(success){
+        if (success) {
             setConfirmDeleteTask(null);
-            setSuccessMessage("Task deleted successfully..");
+            setSuccessMessage("Task deleted successfully!");
         }
-
     }
 
-    // Handle drag and drop
-    async function handleDragEnd(event: DragEndEvent){
-        const { active, over } = event; //active - the item being dragged //over - drop zone
-        if(!over){
-            return;
+    async function handleAddColumn(title: string): Promise<boolean> {
+        const success = await addColumn(title);
+        if(success){
+            setColumnForm(false);
+            setSuccessMessage("Column added successfully!");
         }
-        const taskId = String(active.id); // dragged task ID 
-        const newStatus = String(over.id); // drop zone ID(todo, inprogress, done)
+        return success;
+    }
 
-        if(newStatus !== "todo" && newStatus !== "in_progress" && newStatus !== "done"){
+    async function handleDragEnd(event: DragEndEvent) {
+        const { active, over } = event;
+        if (!over) return;
+        const taskId = String(active.id);
+        const newStatus = String(over.id);
+        // Only allow dropping onto an existing column.
+        if (!columns.some((column) => String(column.id) === newStatus)) {
             return;
         }
         const task = tasks.find(
             (currentTask) => String(currentTask.id) === taskId
         );
-
-        if(!task || task.status === newStatus){
-            return;
-        }
-
+        if (!task || task.status === newStatus) return;
         const previousTask = task;
         const nextOrder = tasks
-            .filter((item) => item.status === newStatus)
-            .reduce((maxOrder, item) => Math.max(maxOrder, item.order), -1) + 1;
+                .filter((item) => item.status === newStatus)
+                .reduce((maxOrder, item) => Math.max(maxOrder, item.order),-1) + 1;
 
-        const updatedTask: Task = {
-            ...task,
+        const updatedTask: Task = {...task,
             status: newStatus,
             order: nextOrder,
         };
+
         setDragError("");
-        // Move the task immediately in the UI
+        setSuccessMessage("");
         saveTask(updatedTask);
+
         try{
-            // Save the new status through the API
             const savedTask = await updateTask(task.id, {
                 title: updatedTask.title,
                 description: updatedTask.description,
@@ -137,17 +139,18 @@ export default function TaskBoard(){
                 order: updatedTask.order,
             });
             saveTask(savedTask);
-            setSuccessMessage("Task Status Changed Successfully..")
+            setSuccessMessage("Task status changed successfully!");
         }catch(error){
             console.error("Failed to update task status:", error);
-
-            // Restore the previous status if the request fails
             saveTask(previousTask);
             setDragError("Unable to update task status. Please try again.");
         }
     }
 
-    // Loading state
+    function openColumnForm(){
+        setColumnForm(true);
+    }
+
     if(isLoading){
         return (
             <div className="w-full p-6">
@@ -155,12 +158,10 @@ export default function TaskBoard(){
             </div>
         );
     }
-    // Initial loading error
-    if(error && tasks.length === 0){
-        return(
+    if (error && tasks.length === 0) {
+        return (
             <div className="w-full p-6">
                 <p className="mb-4 text-red-600">{error}</p>
-
                 <button type="button" onClick={loadTasks}
                     className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
                 >
@@ -170,20 +171,30 @@ export default function TaskBoard(){
         );
     }
 
-    return(
+    return (
         <>
-            {/* Task Form*/}
+            {successMessage && (
+                <SuccessBox message={successMessage} onClose={() => setSuccessMessage("")}/>
+            )}
+
+            {dragError && (
+                <p className="mb-2 px-2 text-red-500">
+                    {dragError}
+                </p>
+            )}
+
             {taskForm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm">
                     <div className="relative w-full max-w-md rounded-xl border border-gray-100 bg-white p-6 shadow-2xl">
                         <button type="button" onClick={formClose}
-                            className="absolute right-7 top-7 rounded-full p-1 text-gray-800 transition hover:bg-gray-100 hover:text-gray-700"
+                            className="absolute right-7 top-7 rounded-full p-1 text-gray-800 transition hover:bg-gray-100"
                         >
                             <X className="h-5 w-5" />
                         </button>
-
-                        <TaskForm task={selectedTask ?? undefined}
-                            onSuccess={handleTaskSuccess} onCancel={formClose}
+                        <TaskForm
+                            task={selectedTask ?? undefined}
+                            onSuccess={handleTaskSuccess}
+                            onCancel={formClose}
                         />
                     </div>
                 </div>
@@ -197,99 +208,75 @@ export default function TaskBoard(){
                 />
             )}
 
-            {/* Main Dashboard and Drag Context */}
-            <DndContext onDragEnd={handleDragEnd}>
-                <div className="w-full">
-                    <div className="mb-3 flex h-10 px-2 justify-between rounded-md">
-                        <span className="text-xl font-bold text-gray-900 dark:text-slate-100">
-                            Task Status
-                        </span>
-
-                        <button type="button" onClick={addTask}
-                            className="rounded-lg px-2 bg-blue-600 font-bold text-white hover:bg-blue-700"
+            {columnForm && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm" onClick={() => setColumnForm(false)}
+                >
+                    <div className="relative w-full max-w-sm rounded-xl border border-gray-100 bg-white p-6 shadow-2xl"
+                    >
+                        <button type="button" onClick={() => setColumnForm(false)}
+                            className="absolute right-6 top-6 rounded-full p-1 text-gray-500 transition hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
-                            Add Task
+                            <X className="h-5 w-5" />
                         </button>
-                    </div>
-
-                    {/* successbox message */}
-                    <SuccessBox message={successMessage} 
-                    onClose={() => setSuccessMessage("")}/>
-
-                    {/* API and drag errors */}
-                    {(error || dragError) && (
-                        <p className="mx-5 mb-4 text-sm text-red-600">
-                            {dragError || error}
-                        </p>
-                    )}
-
-                    {/* Task Columns */}
-                    <div className="mb-5 grid grid-cols-1 gap-4 md:grid-cols-3">
-                        {/* To Do */}
-                        <DropZone id="todo">
-                            <div className="w-full min-w-0 overflow-hidden rounded-md border-2 border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
-                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg dark:bg-slate-900 dark:border-slate-700">
-                                    <span className="block w-full py-2 text-slate-600 dark:text-slate-100">
-                                        To Do
-                                    </span>
-
-                                    <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
-                                        {todoTasks.length}
-                                    </span>
-                                </div>
-
-                                {todoTasks.map((task) => (
-                                    <TaskCard key={task.id} task={task}
-                                        onEdit={editTask} onDelete={askDeleteTask}
-                                    />
-                                ))}
-                            </div>
-                        </DropZone>
-
-                        {/* In Progress */}
-                        <DropZone id="in_progress">
-                            <div className="w-full min-w-0 overflow-hidden rounded-md border-2 border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
-                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg dark:bg-slate-900 dark:border-slate-700">
-                                    <span className="block w-full py-2 text-slate-600 dark:text-slate-100">
-                                        In Progress
-                                    </span>
-
-                                    <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
-                                        {inProgressTasks.length}
-                                    </span>
-                                </div>
-
-                                {inProgressTasks.map((task) => (
-                                    <TaskCard key={task.id} task={task}
-                                        onEdit={editTask} onDelete={askDeleteTask}
-                                    />
-                                ))}
-                            </div>
-                        </DropZone>
-
-                        {/* Done */}
-                        <DropZone id="done">
-                            <div className="w-full min-w-0 overflow-hidden rounded-md border-2 border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
-                                <div className="flex justify-between border-b-2 border-slate-200 bg-white pl-4 pr-5 text-lg dark:bg-slate-900 dark:border-slate-700">
-                                    <span className="block w-full py-2 text-slate-600 dark:text-slate-100">
-                                        Done
-                                    </span>
-
-                                    <span className="m-2 rounded-full bg-slate-200 px-4 py-1.5 text-xs">
-                                        {doneTasks.length}
-                                    </span>
-                                </div>
-
-                                {doneTasks.map((task) => (
-                                    <TaskCard key={task.id} task={task}
-                                        onEdit={editTask} onDelete={askDeleteTask}
-                                    />
-                                ))}
-                            </div>
-                        </DropZone>
+                        <h2 className="text-xl font-bold text-gray-900 mb-4">
+                            Add New Column
+                        </h2>
+                        <ColumnForm onAddColumn={handleAddColumn}/>
                     </div>
                 </div>
+            )}
+
+            <DndContext onDragEnd={handleDragEnd}>
+                <div className="w-full p-4 overflow-x-auto">                    
+                    <div className="mb-6 flex items-center justify-between min-w-max">
+                        <h1 className="text-2xl font-bold text-gray-900">Task Board</h1>
+                        <div className="flex gap-2">
+                            <button 
+                                onClick={openColumnForm} 
+                                className="rounded-lg bg-gray-100 px-4 py-2 font-medium text-gray-700 hover:bg-gray-200 transition"
+                            >
+                                + Add Column
+                            </button>
+                            <button 
+                                onClick={addTask} 
+                                className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 transition "
+                            >
+                                + Add Task
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="flex gap-3 items-start pb-4">
+                        {columns.map((column) => {
+                            const columnTasks = displayedTasks
+                                .filter((t) => String(t.status) === String(column.id))
+                                .sort((a, b) => a.order - b.order);
+
+                            return (
+                                <div key={column.id} className="w-80 shrink-0 bg-gray-50 rounded-xl p-4 border border-gray-200">
+                                    <div className="mb-4 flex items-center justify-between">
+                                        <h3 className="font-semibold text-gray-700 truncate">{column.title}</h3>
+                                        <span className="bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full text-xs font-medium">
+                                            {columnTasks.length}
+                                        </span>
+                                    </div>
+                                    <DropZone id={String(column.id)}>
+                                        <div className="flex flex-col gap-3 min-h-[500px]">
+                                            {columnTasks.map((task) => (
+                                                <TaskCard key={task.id} task={task} onEdit={() => editTask(task)} 
+                                                    onDelete={() => askDeleteTask(String(task.id))}
+                                                />
+                                            ))}
+                                        </div>
+                                    </DropZone>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                </div>
             </DndContext>
+
         </>
     );
 }

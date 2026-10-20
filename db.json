@@ -1,17 +1,39 @@
 {
+  "columns": [
+    {
+      "id": "todo",
+      "title": "Todo",
+      "order": 0
+    },
+    {
+      "id": "in_progress",
+      "title": "In Progress",
+      "order": 1
+    },
+    {
+      "id": "done",
+      "title": "Done",
+      "order": 2
+    },
+    {
+      "id": "in_review",
+      "title": "In Review",
+      "order": 3
+    }
+  ],
   "tasks": [
     {
       "title": "Create dashboard",
-      "description": "Create dashboard with 3 different columns - Todo, In Progress, Done",
+      "description": "Create dashboard with 3 different columns - Todo, In Progress, Done.",
       "status": "todo",
-      "order": 8,
+      "order": 12,
       "id": "KB3HkVfCQVM"
     },
     {
       "title": "Create Login Page",
       "description": "Login Page with the email and password field with validation",
       "status": "in_progress",
-      "order": 5,
+      "order": 9,
       "id": "aKy_g7JMrHE"
     },
     {
@@ -24,8 +46,8 @@
     {
       "title": "Fetch api",
       "description": "Fetch the api for display task, add task, edit task, delete task",
-      "status": "in_progress",
-      "order": 9,
+      "status": "todo",
+      "order": 11,
       "id": "qAoJwnvcWT0"
     },
     {
@@ -39,7 +61,7 @@
       "title": "Apply dnd functionality",
       "description": "apply dnd functionality with using dnd-kit library ",
       "status": "done",
-      "order": 0,
+      "order": 3,
       "id": "60Dfk6ouHoE"
     },
     {

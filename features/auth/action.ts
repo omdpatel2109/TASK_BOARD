@@ -24,11 +24,7 @@ export async function loginAction(username: string,password: string) {
       message: "Login successful.",
     };
   }catch(error){
-    const message = axios.isAxiosError(error)
-      ? error.response?.status === 400
-        ? "Invalid username or password."
-        : "Unable to log in. Please try again."
-      : "Something went wrong. Please try again.";
+    const message = axios.isAxiosError(error) || "Something went wrong. Please try again.";
 
     return{
       success: false,

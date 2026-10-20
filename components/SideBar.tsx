@@ -23,17 +23,13 @@ export default function SideBar() {
   return (
     <div className="sticky fixed top-0 flex h-[calc(100dvh-4rem)] w-60 shrink-0 flex-col border-r border-gray-200 bg-white dark:border-slate-800 dark:bg-slate-950 md:w-64">
       
-      {/* 2. Single container mapping over all navigation items */}
       <div className="p-4 flex-1 space-y-1">
         {SIDEBAR_ITEMS.map((item) => {
           const isActive = pathName === item.href;
           const Icon = item.icon;
 
           return (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={isActive ? "page" : undefined}
+            <Link key={item.href} href={item.href}
               className={`${linkBaseClass} ${
                 isActive ? linkActiveSubClass : linkInactiveSubClass
               }`}

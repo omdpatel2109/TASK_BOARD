@@ -25,36 +25,36 @@
     {
       "title": "Create dashboard",
       "description": "Create dashboard with 3 different columns - Todo, In Progress, Done.",
-      "status": "todo",
-      "order": 12,
+      "status": "in_review",
+      "order": 0,
       "id": "KB3HkVfCQVM"
     },
     {
       "title": "Create Login Page",
       "description": "Login Page with the email and password field with validation",
-      "status": "in_progress",
-      "order": 9,
+      "status": "todo",
+      "order": 15,
       "id": "aKy_g7JMrHE"
     },
     {
       "title": "Side bar and Header",
       "description": "Create a global component for Side bar and header to import in every page",
-      "status": "in_progress",
-      "order": 6,
+      "status": "in_review",
+      "order": 1,
       "id": "3rHh1uZEhHs"
     },
     {
       "title": "Fetch api",
       "description": "Fetch the api for display task, add task, edit task, delete task",
       "status": "todo",
-      "order": 11,
+      "order": 14,
       "id": "qAoJwnvcWT0"
     },
     {
       "title": "Add task form for edit and add task",
       "description": "Add task will add the task and show in the column of the same status.\n",
       "status": "todo",
-      "order": 10,
+      "order": 13,
       "id": "wxHoljkkGZs"
     },
     {
@@ -68,7 +68,7 @@
       "title": "Task details page",
       "description": "Page with the all information of the task, after click on the each task,open the task detail page",
       "status": "in_progress",
-      "order": 8,
+      "order": 0,
       "id": "MZqA1sH3r1k"
     },
     {
@@ -89,7 +89,7 @@
       "title": "apply authentication",
       "description": "apply authentication",
       "status": "in_progress",
-      "order": 7,
+      "order": 1,
       "id": "BvJrpxancyc"
     }
   ],

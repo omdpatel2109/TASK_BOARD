@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 interface AddColumnFormProps {
-  onAddColumn: (title: string) => Promise<boolean>;
+    onAddColumn: (title: string) => Promise<boolean>;
 }
 
 export function ColumnForm({ onAddColumn }: AddColumnFormProps) {

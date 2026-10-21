@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 export type Theme = "light" | "dark" | "system";
 
-export function useAppearance() {
+export function useSettingHook() {
     const [theme, setTheme] = useState<Theme>("system");
     // Load the saved theme when the component mounts
     useEffect(() => {

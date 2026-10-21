@@ -1,5 +1,5 @@
 import { authApi } from "@/lib/authUser";
-import type {LoginCredentials, LoginResponse, SafeUser, UserType} from "@/features/auth/type/userType";
+import type {LoginCredentials, LoginResponse, SafeUser, UserType, UpdateUserData} from "@/features/auth/type/userType";
 
 export async function loginUser(credentials: LoginCredentials): Promise<LoginResponse> {
   const response = await authApi.post<LoginResponse>("/auth/login",{
@@ -20,7 +20,20 @@ export async function getAuthenticatedUser(accessToken: string): Promise<SafeUse
   return {
     id: user.id,
     username: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
     email: user.email,
     name: `${user.firstName} ${user.lastName}`.trim(),
+    image: user.image,
   };
+}
+
+export async function editUser(id: string | number, user: UpdateUserData, accessToken: string): Promise<UserType> {
+  const response = await authApi.patch<UserType>(`/users/${id}`, user,{
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+  return response.data;
 }

@@ -7,6 +7,7 @@ import type { Task } from "../type/taskType";
 import SuccessBox from "@/components/SuccessBox";
 import { getCurrentUser } from "@/features/auth/action";
 import type { SafeUser } from "@/features/auth/type/userType";
+import { useTasks } from "../hooks/useTasks";
 
 interface TaskDetailsProps {
     task: Task;
@@ -16,6 +17,7 @@ interface TaskDetailsProps {
 
 export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps) {
     const router = useRouter();
+    const {columns} = useTasks();
     const [isEditing, setIsEditing] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
     const [currentUser, setCurrentUser] = useState<SafeUser | null>(null);
@@ -128,10 +130,8 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                                 Edit Task
                             </h2>
 
-                            <TaskForm
-                                task={task}
-                                onSuccess={handleEditSuccess}
-                                onCancel={() => setIsEditing(false)}
+                            <TaskForm task={task} columns={columns}
+                                onSuccess={handleEditSuccess} onCancel={() => setIsEditing(false)}
                             />
                         </div>
                     </div>

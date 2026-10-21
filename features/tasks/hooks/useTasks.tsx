@@ -1,14 +1,18 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { getTasks, deleteTask, } from "@/api/task";
+import { getTasks, deleteTask, updateTask} from "@/api/task";
 import type { Task, TaskColumn } from "@/features/tasks/type/taskType";
 import { getApiErrorMessage } from "@/lib/api";
 import { getColumns, newColumn } from "@/api/column";
+import { type DragEndEvent} from "@dnd-kit/core";
+
 export function useTasks() {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
     const [columns, setColumns] = useState<TaskColumn[]>([]);
+    const [dragError, setDragError] = useState("");
+    const [successMessages, setSuccessMessages] = useState("");
 
     const loadTasks = useCallback(async () => {
         try{
@@ -108,8 +112,52 @@ export function useTasks() {
         }
     }
 
+    async function handleDragEnd(event: DragEndEvent){
+            const { active, over } = event;
+            if (!over) return;
+            const taskId = String(active.id);
+            const newStatus = String(over.id);
+            // Only allow dropping onto an existing column.
+            if (!columns.some((column) => String(column.id) === newStatus)) {
+                return;
+            }
+            const task = tasks.find(
+                (currentTask) => String(currentTask.id) === taskId
+            );
+            if (!task || task.status === newStatus) return;
+            const previousTask = task;
+            const nextOrder = tasks
+                    .filter((item) => item.status === newStatus)
+                    .reduce((maxOrder, item) => Math.max(maxOrder, item.order),-1) + 1;
+    
+            const updatedTask: Task = {...task,
+                status: newStatus,
+                order: nextOrder,
+            };
+    
+            setDragError("");
+            saveTask(updatedTask);
+    
+            try{
+                const savedTask = await updateTask(task.id, {
+                    title: updatedTask.title,
+                    description: updatedTask.description,
+                    status: updatedTask.status,
+                    order: updatedTask.order,
+                });
+                saveTask(savedTask);
+                setSuccessMessages("Task status updated successfully!");
+                return true;
+            }catch(error){
+                console.error("Failed to update task status:", error);
+                saveTask(previousTask);
+                setDragError("Unable to update task status. Please try again.");
+                return false;
+            }
+        }
+
     return {tasks, todoTasks, inProgressTasks, doneTasks,
         isLoading, error, loadTasks, saveTask, removeTask,
-        columns, setColumns, addColumn, 
+        columns, setColumns, addColumn, handleDragEnd, successMessages
     };
 }

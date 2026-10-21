@@ -8,8 +8,8 @@ export default function DashboardPage() {
             <Header/>
             <div className="flex min-h-0 flex-1">
                 <SideBar/>
-                <main className="min-w-0 flex-1 overflow-y-auto dark:bg-slate-950">
-                    <TaskBoard />
+                <main className=" flex-1 overflow-y-auto bg-gray-100 dark:bg-slate-950">
+                    {/* <TaskBoard /> */}
                 </main>
             </div>
         </div>

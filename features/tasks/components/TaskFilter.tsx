@@ -26,15 +26,15 @@ export default function TaskFilter({tasks, onFilterChange}: TaskFilterProps){
     }, [search, status, tasks])
 
     return(
-        <div className="mb-6 flex flex-col gap-4 sm:flex-row ">
+        <div className="py-2 flex items-center justify-between gap-4 sm:flex-row ">
             <input type="search" value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder="Search tasks..."
-                className="w-[500px] rounded-lg border border-gray-300 bg-white px-4 py-3 outline-none focus:border-emerald-500"
+                className="w-[500px] rounded-lg border border-gray-300 bg-white px-4 py-3 outline-none focus:border-emerald-500 dark:bg-slate-800 dark:border-slate-700"
                 />
             <select value={status}  onChange={(event) =>
                     setStatus(event.target.value as StatusFilter)}
-                className="rounded-lg border border-gray-300 bg-white px-4 py-3"
+                className="rounded-lg border border-gray-300 bg-white px-4 py-3 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700"
                 >
                 <option value="all">All Statuses</option>
                 {columns.map((column) => (

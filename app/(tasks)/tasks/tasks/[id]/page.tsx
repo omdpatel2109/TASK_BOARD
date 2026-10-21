@@ -33,9 +33,7 @@ export default async function TaskDetailsPage({ params }: PageProps) {
     }
 
     return (
-        <TaskAllDetails
-            initialTask={task}
-            currentUser={currentUser}
+        <TaskAllDetails initialTask={task} currentUser={currentUser}
         />
     );
 }

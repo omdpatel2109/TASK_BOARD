@@ -8,9 +8,9 @@ export default function TaskPage() {
             <Header/>
             <div className="flex min-h-0 flex-1">
                 <SideBar/>
-                <main className="flex-1 overflow-y-auto bg-gray-100 dark:bg-slate-950">
+                <div className="flex-1 overflow-y-auto bg-gray-100 dark:bg-slate-950">
                     <TaskBoard />
-                </main>
+                </div>
             </div>
         </div>
     );

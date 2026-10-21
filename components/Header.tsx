@@ -94,14 +94,18 @@ export default function Header() {
                         </div>
                     )}
                 </div>
+
+    
+
                 {/* Profile Trigger Container */}
-                <div className="relative">
-                    <button 
-                        type="button" 
-                        onClick={() => {
+                <div className="flex items-center justify-between gap-3 cursor-pointer " 
+                    onClick={() => {
                             setIsDropdownOpen((prev) => !prev);
                             setThemeDropDown(false); // Close other dropdown
                         }}
+                >
+                    <button 
+                        type="button"
                         className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-gray-100 transition hover:ring-2 hover:ring-blue-500 dark:border-gray-700 dark:bg-slate-800 cursor-pointer"
                     >
                         {currentUser?.image ? (
@@ -123,7 +127,7 @@ export default function Header() {
                     {isDropdownOpen && (
                         <div className="absolute right-0 top-10 z-50 w-48 overflow-hidden rounded-lg border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-slate-900">
                             <div className="border-b border-gray-200 px-4 py-3 dark:border-gray-700">
-                                <p className="text-md font-semibold text-gray-900 dark:text-white">
+                                <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
                                     {userName || "User"}
                                 </p>
                             </div>
@@ -138,6 +142,9 @@ export default function Header() {
                             </div>
                         </div>
                     )}
+                    <span className="hidden text-sm font-medium text-blue-700 sm:inline dark:text-blue-400 cursor-pointer" >
+                        {userName || "Welcome back"}
+                    </span>
                 </div>
 
             </div>

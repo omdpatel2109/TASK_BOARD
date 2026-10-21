@@ -38,10 +38,9 @@ export default function TaskColumns({ tasks, columns, onDragEnd, onEdit, onDelet
                         <div key={column.id} className="w-80 shrink-0 rounded-xl border border-gray-200 bg-gray-50 p-2 dark:border-slate-700 dark:bg-slate-800"
                         >
                             <div className="mb-3 mt-1 mx-3 flex items-center justify-between">
-                                <h3 className="truncate font-semibold text-gray-700 dark:text-white ">
+                                <h3 className="font-semibold text-gray-700 dark:text-white ">
                                     {column.title}
                                 </h3>
-
                                 <span className="rounded-full bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-600">
                                     {columnTasks.length}
                                 </span>

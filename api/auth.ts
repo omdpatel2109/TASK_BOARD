@@ -28,6 +28,7 @@ export async function getAuthenticatedUser(accessToken: string): Promise<SafeUse
   };
 }
 
+//see if available this endpoint
 export async function editUser(id: string | number, user: UpdateUserData, accessToken: string): Promise<UserType> {
   const response = await authApi.patch<UserType>(`/users/${id}`, user,{
       headers: {

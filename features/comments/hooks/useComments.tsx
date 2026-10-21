@@ -40,6 +40,7 @@ export function useComments(taskId: string) {
             setError(null);
             const newComment = await createComment(comment);
             setComments((current) => [...current, newComment]);
+            
         }catch(error){
             setError(getApiErrorMessage(error));
         }

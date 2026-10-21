@@ -19,6 +19,11 @@
       "id": "in_review",
       "title": "In Review",
       "order": 3
+    },
+    {
+      "title": "To be discussed",
+      "order": 4,
+      "id": "S7kZSBep1wo"
     }
   ],
   "tasks": [
@@ -74,8 +79,8 @@
     {
       "title": "Add comments feature",
       "description": "It contain comment list, comment box with add, edit, delete",
-      "status": "done",
-      "order": 4,
+      "status": "in_progress",
+      "order": 2,
       "id": "hwySdpJnJrU"
     },
     {
@@ -88,8 +93,8 @@
     {
       "title": "apply authentication",
       "description": "apply authentication",
-      "status": "in_progress",
-      "order": 1,
+      "status": "done",
+      "order": 4,
       "id": "BvJrpxancyc"
     }
   ],

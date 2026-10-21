@@ -1,36 +1,50 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, CheckSquare, Settings } from "lucide-react";
+import {LayoutDashboard, CheckSquare, Settings, PanelLeftClose, PanelLeftOpen,} from "lucide-react";
+import { useState } from "react";
 
 const SIDEBAR_ITEMS = [
   { label: "Dashboard", href: "/board", icon: LayoutDashboard },
-  { label: "Task Board", href: "/tasks", icon: CheckSquare }, 
+  { label: "Task Board", href: "/tasks", icon: CheckSquare },
   { label: "Settings", href: "/setting", icon: Settings },
 ];
 
 export default function SideBar() {
   const pathName = usePathname();
-  const linkBaseClass = "flex items-center px-4 py-2.5 text-lg rounded-md font-semibold cursor-pointer w-full";
-  const linkActiveSubClass = "bg-blue-100 text-blue-600 dark:bg-slate-800 dark:text-blue-400";
-  const linkInactiveSubClass = "text-blue-600 dark:text-blue-400 hover:bg-gray-50 dark:hover:bg-slate-900 hover:text-blue-600 dark:hover:text-blue-400";
-
+  const [isExpanded, setIsExpanded] = useState(true);
   return (
-    <div className="sticky fixed top-0 flex min-h-screen w-60 flex-col border-r border-gray-200 bg-white dark:border-slate-800 dark:bg-slate-950 md:w-64">
-      <div className="p-4 flex-1 space-y-1">
+    <div className={`sticky top-0 flex h-screen flex-col border-r border-blue-200 bg-white duration-200 dark:border-slate-800 dark:bg-slate-950 ${isExpanded ? "w-60" : "w-16"}`}
+    >
+      {/* Sidebar Header */}
+      <div className={`flex h-14 items-center ${ isExpanded ? "justify-end" : "justify-center"
+        }`}
+      >
+        <button type="button" onClick={() => setIsExpanded((prev) => !prev)}
+          title={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
+          className="rounded-md p-2 text-blue-500 hover:bg-blue-100
+            hover:text-blue-600 dark:hover:bg-slate-800"
+        >
+          {isExpanded ? ( <PanelLeftClose size={20} />) : (<PanelLeftOpen size={20} />)}
+        </button>
+      </div>
+
+      {/* Navigation */}
+      <div className="flex-1 space-y-2 px-3">
         {SIDEBAR_ITEMS.map((item) => {
-          const isActive = pathName === item.href;
           const Icon = item.icon;
-          return(
+          const isActive = pathName === item.href;
+
+          return (
             <Link key={item.href} href={item.href}
-              className={`${linkBaseClass} ${
-                isActive ? linkActiveSubClass : linkInactiveSubClass
-              }`}
+              title={!isExpanded ? item.label : undefined}
+              className={`flex w-full items-center rounded-lg py-3 text-md font-medium ${isExpanded ? "gap-3 px-3" : "justify-center px-0"}
+                ${isActive ? "bg-blue-200 text-blue-600 dark:bg-slate-800 dark:text-blue-400"
+                    : "text-blue-600 hover:bg-blue-100 hover:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-900"
+                }`}
             >
-              <div className="flex items-center gap-3">
-                <Icon className="h-5 w-5 shrink-0" />
-                <span>{item.label}</span>
-              </div>
+              <Icon className="h-5 w-5 shrink-0" />
+              {isExpanded && <span>{item.label}</span>}
             </Link>
           );
         })}

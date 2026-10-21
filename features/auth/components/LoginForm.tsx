@@ -21,7 +21,7 @@ export default function LoginForm() {
             try{
                 const result = await login(values.username, values.password);
                 if(!result.success){
-                    setAlertText(result.message);
+                    setAlertText("Invalid credentials.Please enter the valid credentials.");
                 }
             }catch{
                 setAlertText("Something went wrong. Please try again.");

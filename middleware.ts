@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-const protectedRoutes = ["/board"];
+const protectedRoutes = ["/board", "/tasks"];
 const publicRoutes = ["/login"];
 
 export function middleware(request: NextRequest) {
@@ -32,5 +32,5 @@ export function middleware(request: NextRequest) {
 
 //on which URl the middleware function will be run
 export const config = {
-    matcher: ["/board/:path*", "/login"],
+    matcher: ["/board/:path*", "/tasks/:path*", "/login"],
 };

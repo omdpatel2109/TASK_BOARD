@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import SideBar from "@/components/SideBar";
-import EditProfile from "@/features/settings/components/EditProfile";
+// import EditProfile from "@/features/settings/components/EditProfile";
 
 export default function TaskPage() {
     return (

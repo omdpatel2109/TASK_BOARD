@@ -171,7 +171,7 @@ export default function TaskBoard() {
                 </div>
             )}
 
-            <div className="w-full p-4 overflow-x-auto">                    
+            <div className="w-full p-6 overflow-x-auto">                    
                 <div className="mb-2 flex items-center justify-between min-w-max">
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Task Board</h1>
                     <div className="flex items-center gap-3">

@@ -39,10 +39,10 @@ export default function Header() {
     };
 
     return (
-        <header className="flex min-h-16 w-full items-center justify-between gap-3 border-b border-gray-200 bg-white px-3 py-3 sm:px-6 dark:border-gray-700 dark:bg-slate-950">
-            <h1 className="text-lg font-bold text-blue-700 sm:text-2xl dark:text-blue-400">
+        <header className="flex min-h-16 w-full items-center justify-end gap-3 border-b border-gray-200 bg-white px-3 py-3 sm:px-6 dark:border-gray-700 dark:bg-slate-950">
+            {/* <h1 className="text-lg font-bold text-blue-700 sm:text-2xl dark:text-blue-400">
                 Task Board
-            </h1>
+            </h1> */}
 
             <div className="relative flex items-center gap-3">
                 
@@ -62,7 +62,7 @@ export default function Header() {
                     {themeDropDown && (
                         <div className="absolute right-0 top-10 z-50 w-40 overflow-hidden rounded-lg border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-slate-900">
                             <div className="border-b border-gray-100 px-3 py-2 dark:border-gray-800">
-                                <span className="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-slate-500">
+                                <span className="text-xs font-semibold uppercase text-gray-400 dark:text-slate-500">
                                     Theme
                                 </span>
                             </div>

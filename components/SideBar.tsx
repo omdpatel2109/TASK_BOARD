@@ -17,9 +17,12 @@ export default function SideBar() {
     <div className={`sticky top-0 flex h-screen flex-col border-r border-blue-200 bg-white duration-200 dark:border-slate-800 dark:bg-slate-950 ${isExpanded ? "w-60" : "w-16"}`}
     >
       {/* Sidebar Header */}
-      <div className={`flex h-14 items-center ${ isExpanded ? "justify-end" : "justify-center"
+      <div className={`flex h-14 items-center p-2 mb-3 mt-3 ${ isExpanded ? "justify-between" : "justify-center"
         }`}
       >
+        {isExpanded && <h1 className="text-lg font-bold text-blue-700 sm:text-2xl dark:text-blue-400 p-4 truncate">
+                Task Board
+        </h1>}
         <button type="button" onClick={() => setIsExpanded((prev) => !prev)}
           title={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
           className="rounded-md p-2 text-blue-500 hover:bg-blue-100

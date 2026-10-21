@@ -73,7 +73,7 @@
       "title": "Task details page",
       "description": "Page with the all information of the task, after click on the each task,open the task detail page",
       "status": "in_progress",
-      "order": 0,
+      "order": 3,
       "id": "MZqA1sH3r1k"
     },
     {

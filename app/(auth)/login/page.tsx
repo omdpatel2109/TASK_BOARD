@@ -1,14 +1,30 @@
 import LoginForm from "@/features/auth/components/LoginForm";
-import Link from "next/link";
-
 export default function LoginPage() {
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-400 via-blue-200 to-blue-400 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
-            <div className="bg-white dark:bg-slate-950 p-8 w-full max-w-md rounded-md shadow-md">
-                <h1 className="text-2xl font-bold mb-4 text-center text-blue-700 dark:text-blue-400">Welcome Back!!!</h1>
-                <h1 className="mb-4 text-center text-sm text-slate-600 dark:text-slate-300">Please Login first to access board..</h1>
-                <LoginForm />
-            </div>
-        </div>
+        <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-4 py-10 dark:bg-slate-950 sm:px-6">
+            <section className="w-full max-w-md">
+                {/* Brand */}
+                <div className="mb-8 flex flex-col items-center">
+                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+                        TaskBoard
+                    </h1>
+                </div>
+
+                {/* Login card */}
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/50 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/20 sm:p-8">
+                    <div className="mb-7">
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                            Welcome back
+                        </h2>
+
+                        <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
+                            Sign in to access your workspace and manage your tasks.
+                        </p>
+                    </div>
+
+                    <LoginForm />
+                </div>
+            </section>
+        </main>
     );
 }

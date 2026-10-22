@@ -12,6 +12,7 @@ export default function TaskPage() {
                 
                 <div className="min-w-0 flex-1 overflow-y-auto bg-gray-100 dark:bg-slate-950">
                     {/* < /> */}
+                    {/* <EditProfile /> */}
                 </div>
             </div>
         </div>

@@ -1,9 +1,10 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { useDraggable } from "@dnd-kit/core";
-import { GripVertical, MoreVertical, Edit2, Trash2, Eye } from "lucide-react";
+import { MoreVertical, Edit2, Trash2, Eye } from "lucide-react";
 import Link from "next/link";
 import type { Task } from "@/features/tasks/type/taskType";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface TaskCardProps {
     task: Task;
@@ -14,9 +15,13 @@ interface TaskCardProps {
 export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
-    const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
-        id: String(task.id),
+    const {attributes, listeners, setNodeRef, transform, transition, isDragging} = useSortable({    id: String(task.id),
     });
+
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+    };
 
     // Native layout tracking to close dropdown safely
     useEffect(() => {
@@ -29,37 +34,37 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
         return () => document.removeEventListener("click", handleClickOutside);
     }, []);
 
-    const theme = {
-        todo: {
-            border: "border-l-4 border-l-blue-500",
-            title: "text-blue-600 dark:text-blue-400",
-            hover: "hover:bg-blue-50 dark:hover:bg-slate-600",
-        },
-        in_progress: {
-            border: "border-l-4 border-l-amber-500",
-            title: "text-amber-600 dark:text-amber-400",
-            hover: "hover:bg-amber-50 dark:hover:bg-slate-600",
-        },
-        done: {
-            border: "border-l-4 border-l-green-600",
-            title: "text-green-600 dark:text-green-400",
-            hover: "hover:bg-green-50 dark:hover:bg-slate-600",
-        },
-    };
+    // const theme = {
+    //     todo: {
+    //         border: "border-l-4 border-l-blue-500",
+    //         title: "text-blue-600 dark:text-blue-400",
+    //         hover: "hover:bg-blue-50 dark:hover:bg-slate-600",
+    //     },
+    //     in_progress: {
+    //         border: "border-l-4 border-l-amber-500",
+    //         title: "text-amber-600 dark:text-amber-400",
+    //         hover: "hover:bg-amber-50 dark:hover:bg-slate-600",
+    //     },
+    //     done: {
+    //         border: "border-l-4 border-l-green-600",
+    //         title: "text-green-600 dark:text-green-400",
+    //         hover: "hover:bg-green-50 dark:hover:bg-slate-600",
+    //     },
+    // };
 
-    const currentTheme = theme[task.status as keyof typeof theme] || theme.todo;
-    const style = {
-        transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
-        transition: isDragging ? "none" : undefined,
-    };
+    // const currentTheme = theme[task.status as keyof typeof theme] || theme.todo;
+    // const style = {
+    //     transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
+    //     transition: isDragging ? "none" : undefined,
+    // };
 
     return (
-        <div ref={setNodeRef} style={style}
-            className={`mx-2 min-w-0 rounded-md border border-gray-200 bg-gray-100 text-left shadow-sm transition duration-200 dark:bg-slate-700 dark:border-r-slate-600 dark:border-b-slate-600 dark:border-t-slate-600 ${currentTheme.border} ${currentTheme.hover} ${isDragging ? "opacity-80" : "hover:-translate-y-0.5"}`}
+        <div ref={setNodeRef} style={style} {...listeners} {...attributes}
+            className={`mx-2 min-w-0 rounded-md border border-gray-200 bg-white text-left shadow-sm transition dark:border-slate-600 dark:bg-slate-700 active:cursor-grabbing ${isDragging ? "z-10 opacity-60 shadow-lg" : "hover:shadow-md"} hover:-translate-y-0.5`}
         >
             <div className="min-w-0 p-3 sm:p-4">
                 <div className="mb-2 flex min-w-0 items-start justify-between gap-2">
-                    <h2 className={`min-w-0 font-bold sm:text-lg ${currentTheme.title}`}>
+                    <h2 className="min-w-0 font-bold text-gray-800 dark:text-white sm:text-lg">
                         {task.title}
                     </h2>
 
@@ -112,14 +117,6 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                                 </div>
                             )}
                         </div>
-
-                        {/* Drag Handle Button */}
-                        <button 
-                            type="button" {...listeners} {...attributes}
-                            className="flex h-7 w-7 items-center justify-center rounded-md text-gray-500 hover:bg-gray-200 active:cursor-grabbing dark:text-gray-200 dark:hover:bg-slate-600 hover:cursor-grab"
-                        >
-                            <GripVertical className="h-5 w-5" />
-                        </button>
                     </div>
                 </div>
 

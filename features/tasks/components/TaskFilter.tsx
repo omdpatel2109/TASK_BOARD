@@ -30,12 +30,10 @@ export default function TaskFilter({tasks, onFilterChange}: TaskFilterProps){
             <input type="search" value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder="Search tasks..."
-                className="w-[500px] rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-emerald-500 placeholder-gray-500 dark:bg-slate-800 dark:border-slate-700 dark:text-white"
-                />
+                className="w-[500px] rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none focus:border-primary placeholder-gray-500 dark:bg-slate-800 dark:border-slate-700 dark:text-white"/>
             <select value={status}  onChange={(event) =>
                 setStatus(event.target.value as StatusFilter)}
-                className="rounded-lg border h-[50] border-gray-300 bg-white px-4  text-gray-500 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700 placeholder:text-gray-500 "
-                >
+                className="rounded-lg border h-[50] border-gray-300 bg-white px-4 outline-none text-gray-500 dark:bg-slate-800 dark:text-slate-400 focus:border-primary dark:border-slate-700 placeholder:text-gray-500 ">
                 <option value="all">All Statuses</option>
                 {columns.map((column) => (
                     <option key={column.id} value={column.id} >

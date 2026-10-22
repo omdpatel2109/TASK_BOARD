@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const SIDEBAR_ITEMS = [
   { label: "Dashboard", href: "/board", icon: LayoutDashboard },
-  { label: "Task Board", href: "/tasks", icon: CheckSquare },
+  { label: "Board", href: "/tasks", icon: CheckSquare },
   { label: "Settings", href: "/setting", icon: Settings },
 ];
 
@@ -14,7 +14,7 @@ export default function SideBar() {
   const pathName = usePathname();
   const [isExpanded, setIsExpanded] = useState(true);
   return (
-    <div className={`sticky top-0 flex h-screen flex-col border-r border-blue-200 bg-white duration-200 dark:border-slate-800 dark:bg-slate-950 ${isExpanded ? "w-60" : "w-16"}`}
+    <div className={`sticky top-0 flex h-screen flex-col border-r border-slate-200 bg-white duration-200 dark:border-slate-800 dark:bg-slate-950 ${isExpanded ? "w-60" : "w-16"}`}
     >
       {/* Sidebar Header */}
       <div className={`flex h-14 items-center p-2 mb-3 mt-3 ${ isExpanded ? "justify-between" : "justify-center"

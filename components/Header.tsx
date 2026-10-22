@@ -44,7 +44,7 @@ export default function Header() {
                 Task Board
             </h1> */}
 
-            <div className="relative flex items-center gap-3">
+            <div className="relative flex items-center gap-2">
                 
                 {/* Theme Selector Trigger Container */}
                 <div className="relative">
@@ -95,10 +95,8 @@ export default function Header() {
                     )}
                 </div>
 
-    
-
                 {/* Profile Trigger Container */}
-                <div className="flex items-center justify-between gap-3 cursor-pointer " 
+                <div className="flex items-center justify-between gap-1 border-l border-gray-200 pl-2 cursor-pointer " 
                     onClick={() => {
                             setIsDropdownOpen((prev) => !prev);
                             setThemeDropDown(false); // Close other dropdown

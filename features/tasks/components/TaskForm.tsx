@@ -132,7 +132,7 @@ export default function TaskForm({task, columns, onSuccess, onCancel}: TaskFormP
                     Cancel
                 </button>
                 <button type="submit" disabled={formik.isSubmitting || sortedColumns.length === 0}
-                className="w-1/2 rounded-lg bg-emerald-600 py-2 text-sm font-semibold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-1/2 rounded-lg bg-blue-600 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
                 > 
                 {formik.isSubmitting ? (task ? "Updating..." : "Adding...") : (task ? "Update Task" : "Add Task")}
                 </button>

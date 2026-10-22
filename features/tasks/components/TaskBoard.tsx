@@ -31,11 +31,9 @@ export default function TaskBoard() {
     // Prevent background scrolling while the task form is open.
     useEffect(() => {
         const previousOverflow = document.body.style.overflow;
-
         if (taskForm) {
             document.body.style.overflow = "hidden";
         }
-
         return () => {
             document.body.style.overflow = previousOverflow;
         };
@@ -95,6 +93,12 @@ export default function TaskBoard() {
         setColumnForm(true);
     }
 
+    useEffect(() => {
+        if(successMessages){
+            setSuccessMessage(successMessages);
+        }
+    }, [successMessages]);
+
     if(isLoading){
         return (
             <div className="w-full p-6">
@@ -105,9 +109,9 @@ export default function TaskBoard() {
     if (error && tasks.length === 0) {
         return (
             <div className="w-full p-6">
-                <p className="mb-4 text-red-600">{error}</p>
+                <p className="mb-4 text-error">{error}</p>
                 <button type="button" onClick={loadTasks}
-                    className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                    className="rounded bg-error px-4 py-2 text-white hover:bg-hover-error"
                 >
                     Try Again
                 </button>
@@ -118,14 +122,10 @@ export default function TaskBoard() {
     return (
         <>
             {successMessage && (
-                <SuccessBox message={successMessage || successMessages} onClose={() => setSuccessMessage("")}/>
+                <SuccessBox message={successMessage} onClose={() => setSuccessMessage("")}/>
             )}
 
-            {dragError && (
-                <p className="mb-2 px-2 text-red-500">
-                    {dragError}
-                </p>
-            )}
+            {dragError && ( <p className="mb-2 px-2 text-error"> {dragError} </p>)}
 
             {taskForm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm" onClick={(e)=>e.stopPropagation()}>
@@ -154,13 +154,10 @@ export default function TaskBoard() {
             )}
 
             {columnForm && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm" onClick={(e) => e.stopPropagation()}
-                >
-                    <div className="relative w-full max-w-sm rounded-xl border border-gray-100 bg-white p-6 shadow-2xl"
-                    >
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm" onClick={(e) => e.stopPropagation()}>
+                    <div className="relative w-full max-w-sm rounded-xl border border-gray-100 bg-white p-6 shadow-2xl">
                         <button type="button" onClick={() => setColumnForm(false) }
-                            className="absolute right-6 top-6 rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        >
+                            className="absolute right-6 top-6 rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
                             <X className="h-5 w-5" />
                         </button>
                         <h2 className="text-xl font-bold text-gray-900 mb-4">
@@ -172,41 +169,41 @@ export default function TaskBoard() {
             )}
 
             <div className="w-full p-6 overflow-x-auto">                    
-                <div className="mb-2 flex items-center justify-between min-w-max">
-                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Task Board</h1>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-2">
+                    <div>    
+                        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Task Board</h1>
+                        <h2 className="mb-1 mt-1 text-sm text-gray-500">Manage your all task here.</h2>
+                    </div>
                     <div className="flex items-center gap-3">
-                        <button onClick={openColumnForm} className="rounded-lg border border-blue-600 px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-slate-900"
+                        <button onClick={openColumnForm} className="rounded-lg border border-primary px-4 py-2 text-sm font-medium text-primary hover:bg-blue-50 dark:border-primary dark:text-white dark:bg-primary dark:hover:bg-slate-900"
                         >
                             + Add Column
                         </button>
-                        <button onClick={addTask} className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 shadow-sm"
+                        <button onClick={addTask} className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-hover-primary shadow-sm"
                         >
                             + Add Task
                         </button>
                     </div>
                 </div>
-
                 <div className="flex items-center justify-between mb-2">
                     <div className="">
                         <TaskFilter tasks={tasks} onFilterChange={(filtered) => setDisplayedTasks(filtered)}/>
                     </div>
                     <div className="flex items-center gap-1 rounded-lg p-1">
                         <button type="button" onClick={() => setView("columns")}
-                            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium ${ view === "columns" ? "bg-blue-600 text-white" : "text-gray-600 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}
-                        >
+                            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium ${ view === "columns" ? "bg-primary text-white" : "text-gray-600 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
                             <LayoutGrid className="h-4 w-4" />
                                 Columns
                         </button>
 
                         <button type="button" onClick={() => setView("list")}
-                            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium ${view === "list" ? "bg-blue-600 text-white" : "text-gray-600 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}
-                        >
+                            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium ${view === "list" ? "bg-primary text-white" : "text-gray-600 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
                             <List className="h-4 w-4" />
                                 List
                         </button>
                     </div>
                 </div>
-                <p className="mb-2 text-sm text-gray-600 dark:text-slate-400">
+                <p className="mb-2 text-sm flex items-start justify-end text-gray-600 dark:text-slate-400">
                     Showing {displayedTasks.length} of {tasks.length} tasks
                 </p>
                 {view === "columns" ? (

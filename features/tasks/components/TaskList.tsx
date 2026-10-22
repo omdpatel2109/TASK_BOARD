@@ -1,26 +1,14 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type { Task } from "@/features/tasks/type/taskType";
+import { useTasks } from "../hooks/useTasks";
 
 interface TaskListProps {
     tasks: Task[];
 }
 
 const TASKS_PER_PAGE = 5;
-
-const statusLabels: Record<Task["status"], string> = {
-    todo: "To Do",
-    in_progress: "In Progress",
-    done: "Done",
-};
-
-const statusStyles: Record<Task["status"], string> = {
-    todo: "bg-slate-100 text-slate-700",
-    in_progress: "bg-amber-100 text-amber-800",
-    done: "bg-green-100 text-green-800",
-};
 
 export default function TaskList({ tasks }: TaskListProps) {
     const router = useRouter();
@@ -61,9 +49,9 @@ export default function TaskList({ tasks }: TaskListProps) {
                                         </p>
                                     </div>
                                     <span
-                                        className={`h-fit w-fit rounded-full px-3 py-1 text-xs font-semibold ${statusStyles[task.status]}`}
+                                        className="h-fit w-fit rounded-full px-3 py-1 text-xs font-semibold bg-slate-100 text-slate-700" 
                                     >
-                                        {statusLabels[task.status]}
+                                        {task.status}
                                     </span>
                                 </div>
 

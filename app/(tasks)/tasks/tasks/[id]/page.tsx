@@ -26,7 +26,7 @@ export default async function TaskDetailsPage({ params }: PageProps) {
         console.error("Failed to load task:", error);
 
         return (
-            <div className="p-6 text-red-600">
+            <div className="p-6 text-error">
                 Unable to load this task. Please try again.
             </div>
         );

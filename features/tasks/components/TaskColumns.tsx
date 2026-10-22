@@ -1,105 +1,230 @@
 "use client";
-import {DndContext, DragOverlay, PointerSensor, KeyboardSensor, useSensor, useSensors, closestCorners,type DragEndEvent, type DragStartEvent, useDroppable,} from "@dnd-kit/core";
-import { SortableContext, verticalListSortingStrategy, sortableKeyboardCoordinates} from "@dnd-kit/sortable";
+import {DndContext, DragOverlay,closestCorners, type DragEndEvent, type DragStartEvent, type CollisionDetection, useDroppable,} from "@dnd-kit/core";
+import { SortableContext, verticalListSortingStrategy, horizontalListSortingStrategy, useSortable,} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
-import TaskCard from "./TaskCard";
-import type { Task } from "@/features/tasks/type/taskType";
 import { GripVertical } from "lucide-react";
+import TaskCard from "./TaskCard";
+import type { Task, TaskColumn } from "@/features/tasks/type/taskType";
+import { Eye, EyeOff } from "lucide-react";
 
-interface TaskColumn { id: string | number; title: string}
 interface TaskColumnsProps {
     tasks: Task[];
     columns: TaskColumn[];
     onDragEnd: (event: DragEndEvent) => void;
+    onColumnDragEnd: ( activeId: string,
+        overId: string) => void | Promise<boolean>;
     onEdit: (task: Task) => void;
     onDelete: (id: string) => void;
 }
-function DropZone({id, children}: {id: string; children: React.ReactNode;}){
+
+// Separate IDs for sortable columns and task drop zones.
+const getColumnDragId = (id: string | number) => `column-${id}`;
+
+function DropZone({id, children}: {id: string; children: React.ReactNode}){
     const { setNodeRef, isOver } = useDroppable({ id });
-    return(
-        <div ref={setNodeRef} className={`min-h-[500px] rounded-md ${isOver ? "bg-blue-50 ring-2 ring-blue-400 dark:bg-slate-700" : "" }`}>
+    return (
+        <div ref={setNodeRef} className={`min-h-[500px] rounded-md ${ isOver ? "bg-blue-50 ring-2 ring-blue-400 dark:bg-slate-700" : "" }`}>
             {children}
         </div>
     );
 }
 
-export default function TaskColumns({ tasks, columns, onDragEnd, onEdit, onDelete}: TaskColumnsProps) {
-    const [activeTask, setActiveTask] = useState<Task | null>(null);
-    const sensors = useSensors(useSensor(PointerSensor, {
-            activationConstraint: { distance: 5 },
-        }),
-        useSensor(KeyboardSensor, {
-            coordinateGetter: sortableKeyboardCoordinates,
-        })
+interface SortableTaskColumnProps {
+    column: TaskColumn;
+    tasks: Task[];
+    onEdit: (task: Task) => void;
+    onDelete: (id: string) => void;
+    // onToggleVisibility: (columnId: string) => void;
+}
+
+function SortableTaskColumn({ column, tasks, onEdit, onDelete}: SortableTaskColumnProps) {
+    const { attributes, listeners, setNodeRef, transform, transition, isDragging,
+    } = useSortable({
+        id: getColumnDragId(column.id),
+        data: {
+            type: "column",
+            columnId: String(column.id),
+        },
+    });
+
+    const columnTasks = tasks.filter(
+            (task) => String(task.status) === String(column.id)
+        ).sort((a, b) => a.order - b.order);
+
+    return (
+        <div ref={setNodeRef}
+            style={{
+                transform: CSS.Transform.toString(transform),
+                transition,
+                opacity: isDragging ? 0.5 : 1,
+                position: "relative",
+                zIndex: isDragging ? 10 : undefined,
+            }}
+            className="w-80 shrink-0 rounded-xl border border-gray-200 bg-gray-50 p-2 dark:border-slate-700 dark:bg-slate-800"
+        >
+            <div className="mb-3 mt-1 mx-3 flex items-center justify-between">
+                <div className="flex min-w-0 items-center gap-2">    
+                    <h3 className="truncate font-semibold text-gray-700 dark:text-white">
+                        {column.title}
+                    </h3>
+                    <span className="rounded-full bg-gray-200 px-2 py-1 text-xs font-medium text-gray-700 dark:bg-slate-700 dark:text-slate-200">
+                        {columnTasks.length}
+                    </span>
+                </div> 
+                {/* {columnTasks.length === 0 && (
+                    <button
+                        type="button" onPointerDown={(e) => e.stopPropagation()}
+                        onClick={() => onToggleVisibility(String(column.id))}
+                        className="rounded p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-slate-700 dark:hover:text-white"
+                    >
+                        <EyeOff className="h-4 w-4" />
+                    </button>
+                )}  */}
+            
+                <button type="button" {...attributes} {...listeners} 
+                className="touch-none cursor-grab rounded p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-700 active:cursor-grabbing dark:hover:bg-slate-700 dark:hover:text-white">
+                    <GripVertical className="h-5 w-5" />
+                </button>              
+            </div>
+
+            <DropZone id={String(column.id)}>
+                <SortableContext items={columnTasks.map((task) => String(task.id))}
+                    strategy={verticalListSortingStrategy}
+                >
+                    <div className="flex min-h-[500px] flex-col gap-3 py-1">
+                        {columnTasks.length === 0 && (
+                            <p className="px-3 py-2 text-sm text-gray-400">
+                                No tasks yet
+                            </p>
+                        )}
+
+                        {columnTasks.map((task) => (
+                            <TaskCard key={task.id} task={task}
+                                onEdit={onEdit} onDelete={onDelete}
+                            />
+                        ))}
+                    </div>
+                </SortableContext>
+            </DropZone>
+        </div>
     );
+}
+
+
+export default function TaskColumns({tasks, columns, onDragEnd, onColumnDragEnd, onEdit, onDelete}: TaskColumnsProps) {
+    const [activeTask, setActiveTask] = useState<Task | null>(null);
+    const sortedColumns = [...columns].sort((a, b) => a.order - b.order);
+    // const [hiddenColumns, setHiddenColumns] = useState<string[]>([]);
+
+    // function toggleColumnVisibility(columnId: string) {
+    //     setHiddenColumns((current) =>
+    //         current.includes(columnId)
+    //             ? current.filter((id) => id !== columnId)
+    //             : [...current, columnId]
+    //     );
+    // }
+    // const visibleColumns = sortedColumns.filter(
+    //     (column) => !hiddenColumns.includes(String(column.id))
+    // );
 
     function handleDragStart(event: DragStartEvent) {
-        const task = tasks.find((item) => String(item.id) === String(event.active.id));
+        if (event.active.data.current?.type === "column") {
+            setActiveTask(null);
+            return;
+        }
+
+        const task = tasks.find(
+            (item) => String(item.id) === String(event.active.id)
+        );
+
         setActiveTask(task ?? null);
     }
 
     function handleDragEnd(event: DragEndEvent) {
         setActiveTask(null);
+        const { active, over } = event;
+        if (!over) return;
+        // Handle whole-column reordering separately.
+        if (active.data.current?.type === "column"){
+            const activeColumnId = String(
+                active.data.current.columnId
+            );
+
+            const overColumnId = over.data.current?.columnId;
+
+            if (overColumnId !== undefined) {
+                void onColumnDragEnd(activeColumnId, String(overColumnId));
+            }
+            return;
+        }
+
+        // Keep existing task dragging working.
+        // If the task lands on a column's sortable wrapper,
+        // convert its ID to the actual column/status ID.
+        const overColumnId = over.data.current?.columnId;
+
+        if (overColumnId !== undefined) {
+            onDragEnd({...event, over: {
+                    ...over,
+                    id: String(overColumnId),
+                },
+            });
+            return;
+        }
         onDragEnd(event);
     }
     function handleDragCancel() {
         setActiveTask(null);
     }
-
     return (
-        <DndContext sensors={sensors} collisionDetection={closestCorners} onDragStart={handleDragStart}onDragEnd={handleDragEnd} onDragCancel={handleDragCancel}>
-            <div className="flex items-start gap-3 overflow-x-auto pb-4">
-                {columns.slice().sort((a, b) => {
-                        const originalA = columns.find(
-                            (item) => String(item.id) === String(a.id)
-                        );
-                        const originalB = columns.find(
-                            (item) => String(item.id) === String(b.id)
-                        );
-                        return(
-                            (originalA as TaskColumn & { order?: number })?.order ?? 0) - (
-                            (originalB as TaskColumn & { order?: number })?.order ?? 0);
-                    }).map((column) => {
-                        const columnTasks = tasks.filter((task) =>
-                                String(task.status) === String(column.id)
-                            )
-                            .sort((a, b) => a.order - b.order);
-
-                        return (
-                            <div key={column.id} className="w-80 shrink-0 rounded-xl border border-gray-200 bg-gray-50 p-2 dark:border-slate-700 dark:bg-slate-800"
-                            >
-                                <div className="mb-3 mt-1 mx-3 flex items-center justify-between">
-                                    <h3 className="font-semibold text-gray-700 dark:text-white">
-                                        {column.title}
-                                    </h3>
-                                    <span className="rounded-full bg-gray-200 px-2 py-1 text-xs font-medium text-gray-700 dark:bg-slate-700 dark:text-slate-200">
-                                        {columnTasks.length}
-                                    </span>
-                                </div>
-
-                                {columnTasks.length === 0 && <p>No</p>}
-
-                                <DropZone id={String(column.id)}>
-                                    <SortableContext items={columnTasks.map((task) => String(task.id))}
-                                        strategy={verticalListSortingStrategy}>
-                                        <div className="flex min-h-[500px] flex-col gap-3 py-1">
-                                            {columnTasks.map((task) => (
-                                                <TaskCard key={task.id} task={task}
-                                                    onEdit={onEdit} onDelete={onDelete}/>
-                                            ))}
-                                        </div>
-                                    </SortableContext>
-                                </DropZone>
-                            </div>
-                        );
-                    })}
+        <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}
+            onDragCancel={handleDragCancel}
+        >
+        {/* {hiddenColumns.length > 0 && (
+            <div className="mb-3 flex flex-wrap gap-2">
+                {sortedColumns
+                    .filter((column) =>
+                        hiddenColumns.includes(String(column.id))
+                    )
+                    .map((column) => (
+                        <button
+                            key={column.id}
+                            type="button"
+                            onClick={() =>
+                                toggleColumnVisibility(String(column.id))
+                            }
+                            className="flex items-center gap-1 rounded-md border px-3 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-slate-800"
+                        >
+                            <Eye className="h-4 w-4" />
+                            Show {column.title}
+                        </button>
+                    ))}
             </div>
+        )} */}
+            <SortableContext items={sortedColumns.map((column) =>
+                    getColumnDragId(column.id)
+                )}
+                strategy={horizontalListSortingStrategy}
+            >
+                <div className="flex items-start gap-3 overflow-x-auto pb-4">
+                    {sortedColumns.map((column) => (
+                        <SortableTaskColumn key={column.id}
+                            column={column} tasks={tasks}
+                            onEdit={onEdit} onDelete={onDelete}
+                            // onToggleVisibility={toggleColumnVisibility}
+                        />
+                    ))}
+                </div>
+            </SortableContext>
+
             <DragOverlay>
                 {activeTask ? (
                     <div className="rounded-md border border-blue-300 bg-white p-4 opacity-90 shadow-xl dark:border-slate-500 dark:bg-slate-700">
                         <p className="font-semibold text-gray-800 dark:text-white">
                             {activeTask.title}
                         </p>
+
                         <p className="mt-1 line-clamp-2 text-sm text-gray-600 dark:text-slate-300">
                             {activeTask.description || "No description"}
                         </p>

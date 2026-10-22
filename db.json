@@ -8,7 +8,7 @@
     {
       "id": "in_progress",
       "title": "In Progress",
-      "order": 1
+      "order": 2
     },
     {
       "id": "done",
@@ -22,7 +22,7 @@
     },
     {
       "title": "To be discussed",
-      "order": 2,
+      "order": 1,
       "id": "S7kZSBep1wo"
     }
   ],
@@ -30,36 +30,36 @@
     {
       "title": "Create dashboard",
       "description": "Create dashboard with 3 different columns - Todo, In Progress, Done.",
-      "status": "in_review",
-      "order": 0,
+      "status": "done",
+      "order": 2,
       "id": "KB3HkVfCQVM"
     },
     {
       "title": "Create Login Page",
       "description": "Login Page with the email and password field with validation",
-      "status": "todo",
+      "status": "in_progress",
       "order": 0,
       "id": "aKy_g7JMrHE"
     },
     {
       "title": "Side bar and Header",
       "description": "Create a global component for Side bar and header to import in every page",
-      "status": "in_review",
+      "status": "S7kZSBep1wo",
       "order": 1,
       "id": "3rHh1uZEhHs"
     },
     {
       "title": "Fetch api",
       "description": "Fetch the api for display task, add task, edit task, delete task",
-      "status": "in_progress",
+      "status": "todo",
       "order": 1,
       "id": "qAoJwnvcWT0"
     },
     {
       "title": "Add task form for edit and add task",
       "description": "Add task will add the task and show in the column of the same status.\n",
-      "status": "todo",
-      "order": 1,
+      "status": "S7kZSBep1wo",
+      "order": 0,
       "id": "wxHoljkkGZs"
     },
     {
@@ -72,14 +72,14 @@
     {
       "title": "Task details page",
       "description": "Page with the all information of the task, after click on the each task,open the task detail page",
-      "status": "S7kZSBep1wo",
-      "order": 0,
+      "status": "in_progress",
+      "order": 1,
       "id": "MZqA1sH3r1k"
     },
     {
       "title": "Add comments feature",
       "description": "It contain comment list, comment box with add, edit, delete",
-      "status": "in_progress",
+      "status": "in_review",
       "order": 0,
       "id": "hwySdpJnJrU"
     },
@@ -93,8 +93,8 @@
     {
       "title": "apply authentication",
       "description": "apply authentication",
-      "status": "done",
-      "order": 2,
+      "status": "todo",
+      "order": 0,
       "id": "BvJrpxancyc"
     }
   ],

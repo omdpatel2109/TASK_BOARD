@@ -34,30 +34,6 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
         return () => document.removeEventListener("click", handleClickOutside);
     }, []);
 
-    // const theme = {
-    //     todo: {
-    //         border: "border-l-4 border-l-blue-500",
-    //         title: "text-blue-600 dark:text-blue-400",
-    //         hover: "hover:bg-blue-50 dark:hover:bg-slate-600",
-    //     },
-    //     in_progress: {
-    //         border: "border-l-4 border-l-amber-500",
-    //         title: "text-amber-600 dark:text-amber-400",
-    //         hover: "hover:bg-amber-50 dark:hover:bg-slate-600",
-    //     },
-    //     done: {
-    //         border: "border-l-4 border-l-green-600",
-    //         title: "text-green-600 dark:text-green-400",
-    //         hover: "hover:bg-green-50 dark:hover:bg-slate-600",
-    //     },
-    // };
-
-    // const currentTheme = theme[task.status as keyof typeof theme] || theme.todo;
-    // const style = {
-    //     transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
-    //     transition: isDragging ? "none" : undefined,
-    // };
-
     return (
         <div ref={setNodeRef} style={style} {...listeners} {...attributes}
             className={`mx-2 min-w-0 rounded-md border border-gray-200 bg-white text-left shadow-sm transition dark:border-slate-600 dark:bg-slate-700 active:cursor-grabbing ${isDragging ? "z-10 opacity-60 shadow-lg" : "hover:shadow-md"} hover:-translate-y-0.5`}
@@ -70,7 +46,8 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
 
                     <div className="flex items-center " ref={menuRef}>
                         <div className="relative">
-                            <button type="button" onClick={(e) => {
+                            <button type="button" onPointerDown={(e) => e.stopPropagation()}
+                            onClick={(e) => {
                                     e.stopPropagation(); 
                                     setIsMenuOpen(!isMenuOpen);
                                 }}

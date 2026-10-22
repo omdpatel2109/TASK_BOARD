@@ -1,7 +1,7 @@
 export interface TaskColumn {
-  id: string;
-  title: string;
-  order: number;
+    id: string;
+    title: string;
+    order: number;
 }
 
 export type TaskStatus = string;

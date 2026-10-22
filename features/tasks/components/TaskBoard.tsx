@@ -13,8 +13,8 @@ import TaskColumns from "./TaskColumns";
 import TaskList from "./TaskList";
 
 export default function TaskBoard() {
-    const {tasks, isLoading, error, loadTasks, saveTask,
-        removeTask, columns, addColumn, handleDragEnd, successMessages} = useTasks();
+    const {tasks, isLoading, error, loadTasks, saveTask, removeTask,
+    columns, addColumn, handleDragEnd, handleColumnDragEnd, successMessages} = useTasks();
     const [taskForm, setTaskForm] = useState(false);
     const [selectedTask, setSelectedTask] = useState<Task | null>(null);
     const [dragError, setDragError] = useState("");
@@ -207,9 +207,14 @@ export default function TaskBoard() {
                     Showing {displayedTasks.length} of {tasks.length} tasks
                 </p>
                 {view === "columns" ? (
-                    <TaskColumns tasks={displayedTasks} columns={columns}
-                    onDragEnd={handleDragEnd} onEdit={editTask} onDelete={askDeleteTask}
-                    />       
+                    <TaskColumns
+                        tasks={displayedTasks}
+                        columns={columns}
+                        onDragEnd={handleDragEnd}
+                        onColumnDragEnd={handleColumnDragEnd}
+                        onEdit={editTask}
+                        onDelete={askDeleteTask}
+                    />
                 ) : (
                     <TaskList tasks={displayedTasks} />
                 )}

@@ -23,19 +23,19 @@ export default function AlertBox({message, onClose}: AlertProps){
 
                 <div className="flex flex-col items-center text-center">
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
-                        <AlertCircle className="h-6 w-6 text-red-600" />
+                        <AlertCircle className="h-6 w-6 text-error" />
                     </div>
 
-                    <h2 className="mb-2 text-lg font-semibold text-gray-900">
+                    <h2 className="mb-2 text-lg font-semibold text-primary-text">
                         Login Failed
                     </h2>
 
-                    <p className="mb-6 text-sm leading-6 text-gray-500">
+                    <p className="mb-6 text-sm leading-6 text-secondary-text">
                         {message}
                     </p>
 
                     <button type="button" onClick={onClose}
-                        className="w-full rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-gray-800"
+                        className="w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-hover-primary"
                     >
                         Try Again
                     </button>

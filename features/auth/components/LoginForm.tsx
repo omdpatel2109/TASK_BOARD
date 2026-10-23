@@ -46,7 +46,7 @@ export default function LoginForm() {
             <form onSubmit={formik.handleSubmit} className="space-y-5">
                 {/* Username */}
                 <div>
-                    <label htmlFor="username" className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    <label htmlFor="username" className="mb-2 block text-sm font-semibold text-secondary-text dark:text-slate-200">
                         Username
                     </label>
 
@@ -58,7 +58,7 @@ export default function LoginForm() {
                             value={formik.values.username}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            className="block w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-900 outline-none   placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:border-blue-400 dark:focus:bg-slate-800"
+                            className="block w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm text-primary-text outline-none   placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:border-blue-400 dark:focus:bg-slate-800"
                         />
                     </div>
 
@@ -71,7 +71,7 @@ export default function LoginForm() {
 
                 {/* Password */}
                 <div>
-                    <label htmlFor="password" className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    <label htmlFor="password" className="mb-2 block text-sm font-semibold text-secondary-text dark:text-slate-200">
                         Password
                     </label>
 
@@ -82,10 +82,10 @@ export default function LoginForm() {
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            className="block w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-12 text-sm text-slate-900 outline-none      placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:border-blue-400 dark:focus:bg-slate-800"/>
+                            className="block w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-12 text-sm text-primary-text outline-none      placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:border-blue-400 dark:focus:bg-slate-800"/>
 
                         <button type="button" onClick={togglePassword}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-slate-400 hover:text-primary focus:outline-none focus:ring-2 focus:ring-blue-500/30 dark:hover:text-blue-400">
+                            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-slate-400 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30 dark:hover:text-blue-400">
                             {showPassword ? ( <EyeOff size={19} /> ) : (<Eye size={19} />)}
                         </button>
                     </div>
@@ -99,7 +99,7 @@ export default function LoginForm() {
 
                 {/* Submit */}
                 <button type="submit" disabled={formik.isSubmitting}
-                    className="group mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white shadow-md shadow-primary/20 hover:bg-hover-primary hover:shadow-lg hover:shadow-primary/25 focus:outline-none focus:ring-4 focus:ring-blue-500/25 disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none">
+                    className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white shadow-md shadow-primary/20 hover:bg-hover-primary hover:shadow-lg hover:shadow-primary/25 focus:outline-none focus:ring-4 focus:ring-primary/25 disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none">
                     {formik.isSubmitting ? (
                         <>
                             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />

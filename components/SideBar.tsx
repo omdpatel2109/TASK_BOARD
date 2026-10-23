@@ -20,13 +20,13 @@ export default function SideBar() {
       <div className={`flex h-14 items-center p-2 mb-3 mt-3 ${ isExpanded ? "justify-between" : "justify-center"
         }`}
       >
-        {isExpanded && <h1 className="text-lg font-bold text-blue-700 sm:text-2xl dark:text-blue-400 p-4 truncate">
+        {isExpanded && <h1 className="text-lg font-bold text-primary sm:text-2xl dark:text-blue-400 p-4 truncate">
                 Task Board
         </h1>}
         <button type="button" onClick={() => setIsExpanded((prev) => !prev)}
           title={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
-          className="rounded-md p-2 text-blue-500 hover:bg-blue-100
-            hover:text-blue-600 dark:hover:bg-slate-800"
+          className="rounded-md p-2 text-secondary-text/50 
+            hover:text-primary-text dark:hover:bg-slate-800"
         >
           {isExpanded ? ( <PanelLeftClose size={20} />) : (<PanelLeftOpen size={20} />)}
         </button>
@@ -42,8 +42,8 @@ export default function SideBar() {
             <Link key={item.href} href={item.href}
               title={!isExpanded ? item.label : undefined}
               className={`flex w-full items-center rounded-lg py-3 text-md font-medium ${isExpanded ? "gap-3 px-3" : "justify-center px-0"}
-                ${isActive ? "bg-blue-200 text-blue-600 dark:bg-slate-800 dark:text-blue-400"
-                    : "text-blue-600 hover:bg-blue-100 hover:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-900"
+                ${isActive ? "bg-blue-200 text-primary dark:bg-slate-800 dark:text-blue-400"
+                    : "text-primary-text hover:bg-blue-100 dark:text-slate-300 dark:hover:bg-slate-900"
                 }`}
             >
               <Icon className="h-5 w-5 shrink-0" />

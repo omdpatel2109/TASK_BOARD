@@ -5,7 +5,7 @@ export default function LoginPage() {
             <section className="w-full max-w-md">
                 {/* Brand */}
                 <div className="mb-8 flex flex-col items-center">
-                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+                    <h1 className="text-3xl font-bold text-primary-text dark:text-white">
                         TaskBoard
                     </h1>
                 </div>
@@ -13,7 +13,7 @@ export default function LoginPage() {
                 {/* Login card */}
                 <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/50 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/20 sm:p-8">
                     <div className="mb-7">
-                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                        <h2 className="text-2xl font-bold text-primary-text dark:text-white">
                             Welcome back
                         </h2>
 

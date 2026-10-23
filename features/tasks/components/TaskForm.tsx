@@ -53,7 +53,7 @@ export default function TaskForm({task, columns, onSuccess, onCancel}: TaskFormP
     return (
     <>
         {apiError && (
-        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-error">
             {apiError}
         </div>
         )}
@@ -62,17 +62,17 @@ export default function TaskForm({task, columns, onSuccess, onCancel}: TaskFormP
         className="mx-auto max-w-md rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
         >
             <div>
-                <label htmlFor="title" className="block text-sm font-semibold text-gray-700">
+                <label htmlFor="title" className="block text-sm font-semibold text-secondary-text">
                     Title
                 </label>
                 <input type="text" placeholder="Enter title of task" id="title" name="title"
-                className="mt-1 mb-4 block w-full rounded-lg border border-gray-300 bg-gray-100 p-2 text-sm text-gray-900 placeholder-gray-400 transition-all focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="mt-1 mb-4 block w-full rounded-lg border border-gray-300 bg-gray-100 p-2 text-sm text-primary-text placeholder-gray-400 transition-all focus:border-hover-primary focus:outline-none focus:ring-2 focus:ring-hover-primary"
                 value={formik.values.title} onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 />
 
                 {formik.errors.title && formik.touched.title && (
-                <p className="mt-0 mb-2 text-xs font-medium text-red-500">
+                <p className="mt-0 mb-2 text-xs font-medium text-error">
                 *{formik.errors.title}
                 </p>
                 )}
@@ -83,13 +83,13 @@ export default function TaskForm({task, columns, onSuccess, onCancel}: TaskFormP
                     Description
                 </label>
                 <textarea placeholder="Enter description" rows={4} id="description" name="description"
-                className="mt-1 mb-4 block w-full resize-none rounded-lg border border-gray-300 bg-gray-100 p-2 text-sm text-gray-900 placeholder-gray-400 transition-all focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="mt-1 mb-4 block w-full resize-none rounded-lg border border-gray-300 bg-gray-100 p-2 text-sm text-primary-text placeholder-gray-400 transition-all focus:border-hover-primary focus:outline-none focus:ring-2 focus:ring-hover-primary"
                 value={formik.values.description} onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 />
 
                 {formik.errors.description && formik.touched.description && (
-                <p className="mt-0 mb-2 text-xs font-medium text-red-500">
+                <p className="mt-0 mb-2 text-xs font-medium text-error">
                 *{formik.errors.description}
                 </p>
                 )}
@@ -100,7 +100,7 @@ export default function TaskForm({task, columns, onSuccess, onCancel}: TaskFormP
                     Status
                 </label>
                 <select id="status" name="status"
-                className="mt-1 mb-4 block w-full rounded-lg border border-gray-300 bg-gray-100 p-2 text-sm text-gray-900 transition-all focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="mt-1 mb-4 block w-full rounded-lg border border-gray-300 bg-gray-100 p-2 text-sm text-primary-text transition-all focus:border-hover-primary focus:outline-none focus:ring-2 focus:ring-hover-primary"
                 value={formik.values.status} onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 disabled={sortedColumns.length === 0}
@@ -113,13 +113,13 @@ export default function TaskForm({task, columns, onSuccess, onCancel}: TaskFormP
                 </select>
 
                 {sortedColumns.length === 0 && (
-                <p className="mb-2 text-xs text-red-500">
+                <p className="mb-2 text-xs text-error">
                     Please create a column before adding a task.
                 </p>
                 )}
 
                 {formik.errors.status && formik.touched.status && (
-                <p className="mt-0 mb-2 text-xs font-medium text-red-500">
+                <p className="mt-0 mb-2 text-xs font-medium text-error">
                 *{formik.errors.status}
                 </p>
                 )} 
@@ -132,7 +132,7 @@ export default function TaskForm({task, columns, onSuccess, onCancel}: TaskFormP
                     Cancel
                 </button>
                 <button type="submit" disabled={formik.isSubmitting || sortedColumns.length === 0}
-                className="w-1/2 rounded-lg bg-blue-600 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-1/2 rounded-lg bg-primary py-2 text-sm font-semibold text-white hover:bg-hover-primary disabled:cursor-not-allowed disabled:opacity-50"
                 > 
                 {formik.isSubmitting ? (task ? "Updating..." : "Adding...") : (task ? "Update Task" : "Add Task")}
                 </button>

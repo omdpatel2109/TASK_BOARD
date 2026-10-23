@@ -9,7 +9,7 @@ export default function ConfirmBox({message,onConfirm,onCancel,}: ConfirmBoxProp
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
             <div className="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
-                <h2 className="text-lg font-semibold text-slate-900">
+                <h2 className="text-lg font-semibold text-primary-text">
                     Confirm deletion
                 </h2>
 
@@ -19,13 +19,13 @@ export default function ConfirmBox({message,onConfirm,onCancel,}: ConfirmBoxProp
 
                 <div className="mt-6 flex justify-end gap-3">
                     <button type="button" onClick={onCancel}
-                        className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
+                        className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-secondary-text hover:bg-slate-100"
                     >
                         Cancel
                     </button>
 
                     <button type="button" onClick={onConfirm}
-                        className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+                        className="rounded-lg bg-error px-4 py-2 text-sm font-medium text-white hover:bg-error"
                     >
                         Delete
                     </button>

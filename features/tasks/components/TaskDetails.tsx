@@ -74,9 +74,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
         <>
             <div className="space-y-5">
                 <div className="flex items-center justify-between">
-                    <button
-                        type="button"
-                        onClick={() => {
+                    <button type="button" onClick={() => {
                             onClose();
                             router.back();
                         }}
@@ -89,7 +87,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                     <button
                         type="button"
                         onClick={() => setIsEditing(true)}
-                        className="rounded-md bg-blue-600 px-4 py-2 text-md font-medium text-white transition-colors hover:bg-blue-700"
+                        className="rounded-md bg-primary px-4 py-2 text-md font-medium text-white transition-colors hover:bg-hover-primary"
                     >
                         Edit Task
                     </button>
@@ -100,7 +98,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                 <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 dark:bg-slate-900 dark:border-slate-700">
                     <div className="flex flex-col gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-start sm:justify-between dark:border-slate-700">
                         <div className="min-w-0">
-                            <h1 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
+                            <h1 className="text-2xl font-semibold text-primary-text dark:text-slate-100">
                                 {task.title}
                             </h1>
                         </div>
@@ -113,7 +111,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                     </div>
 
                     <div className="py-5">
-                        <h2 className="mb-2 text-lg font-semibold text-slate-800 dark:text-slate-400">
+                        <h2 className="mb-2 text-lg font-semibold text-secondary-text dark:text-slate-400">
                             Description
                         </h2>
 
@@ -126,7 +124,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                 {isEditing && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
                         <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-xl bg-white p-6 shadow-xl">
-                            <h2 className="mb-5 text-xl font-semibold text-slate-900">
+                            <h2 className="mb-5 text-xl font-semibold text-primary-text">
                                 Edit Task
                             </h2>
 

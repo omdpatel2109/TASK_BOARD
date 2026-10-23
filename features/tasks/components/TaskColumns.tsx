@@ -6,7 +6,7 @@ import { useState } from "react";
 import { GripVertical } from "lucide-react";
 import TaskCard from "./TaskCard";
 import type { Task, TaskColumn } from "@/features/tasks/type/taskType";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ChevronDown } from "lucide-react";
 
 interface TaskColumnsProps {
     tasks: Task[];
@@ -35,10 +35,10 @@ interface SortableTaskColumnProps {
     tasks: Task[];
     onEdit: (task: Task) => void;
     onDelete: (id: string) => void;
-    // onToggleVisibility: (columnId: string) => void;
+    onToggleVisibility: (columnId: string) => void;
 }
 
-function SortableTaskColumn({ column, tasks, onEdit, onDelete}: SortableTaskColumnProps) {
+function SortableTaskColumn({ column, tasks, onEdit, onDelete, onToggleVisibility}: SortableTaskColumnProps) {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging,
     } = useSortable({
         id: getColumnDragId(column.id),
@@ -72,20 +72,23 @@ function SortableTaskColumn({ column, tasks, onEdit, onDelete}: SortableTaskColu
                         {columnTasks.length}
                     </span>
                 </div> 
-                {/* {columnTasks.length === 0 && (
-                    <button
-                        type="button" onPointerDown={(e) => e.stopPropagation()}
-                        onClick={() => onToggleVisibility(String(column.id))}
-                        className="rounded p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-slate-700 dark:hover:text-white"
-                    >
-                        <EyeOff className="h-4 w-4" />
-                    </button>
-                )}  */}
-            
-                <button type="button" {...attributes} {...listeners} 
-                className="touch-none cursor-grab rounded p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-700 active:cursor-grabbing dark:hover:bg-slate-700 dark:hover:text-white">
-                    <GripVertical className="h-5 w-5" />
-                </button>              
+
+                {/* button to hide the column in column */}
+                <div className="flex item-center justify-between gap-2">
+                    {columnTasks.length === 0 && (
+                        <button type="button" onPointerDown={(e) => e.stopPropagation()}
+                            onClick={() => onToggleVisibility(String(column.id))}
+                            className="rounded p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-slate-700 dark:hover:text-white"
+                        >
+                            <EyeOff className="h-4 w-4" />
+                        </button>
+                    )} 
+                
+                    <button type="button" {...attributes} {...listeners} 
+                    className="touch-none cursor-grab rounded p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-700 active:cursor-grabbing dark:hover:bg-slate-700 dark:hover:text-white">
+                        <GripVertical className="h-5 w-5" />
+                    </button>  
+                </div>            
             </div>
 
             <DropZone id={String(column.id)}>
@@ -115,18 +118,19 @@ function SortableTaskColumn({ column, tasks, onEdit, onDelete}: SortableTaskColu
 export default function TaskColumns({tasks, columns, onDragEnd, onColumnDragEnd, onEdit, onDelete}: TaskColumnsProps) {
     const [activeTask, setActiveTask] = useState<Task | null>(null);
     const sortedColumns = [...columns].sort((a, b) => a.order - b.order);
-    // const [hiddenColumns, setHiddenColumns] = useState<string[]>([]);
-
-    // function toggleColumnVisibility(columnId: string) {
-    //     setHiddenColumns((current) =>
-    //         current.includes(columnId)
-    //             ? current.filter((id) => id !== columnId)
-    //             : [...current, columnId]
-    //     );
-    // }
-    // const visibleColumns = sortedColumns.filter(
-    //     (column) => !hiddenColumns.includes(String(column.id))
-    // );
+    const [hiddenColumns, setHiddenColumns] = useState<string[]>([]);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+ 
+    function toggleColumnVisibility(columnId: string) {
+        setHiddenColumns((current) =>
+            current.includes(columnId)
+                ? current.filter((id) => id !== columnId)
+                : [...current, columnId]
+        );
+    }
+    const visibleColumns = sortedColumns.filter(
+        (column) => !hiddenColumns.includes(String(column.id))
+    );
 
     function handleDragStart(event: DragStartEvent) {
         if (event.active.data.current?.type === "column") {
@@ -158,7 +162,6 @@ export default function TaskColumns({tasks, columns, onDragEnd, onColumnDragEnd,
             }
             return;
         }
-
         // Keep existing task dragging working.
         // If the task lands on a column's sortable wrapper,
         // convert its ID to the actual column/status ID.
@@ -179,40 +182,65 @@ export default function TaskColumns({tasks, columns, onDragEnd, onColumnDragEnd,
     }
     return (
         <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}
-            onDragCancel={handleDragCancel}
-        >
-        {/* {hiddenColumns.length > 0 && (
-            <div className="mb-3 flex flex-wrap gap-2">
-                {sortedColumns
-                    .filter((column) =>
-                        hiddenColumns.includes(String(column.id))
-                    )
-                    .map((column) => (
-                        <button
-                            key={column.id}
-                            type="button"
-                            onClick={() =>
-                                toggleColumnVisibility(String(column.id))
-                            }
-                            className="flex items-center gap-1 rounded-md border px-3 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-slate-800"
-                        >
-                            <Eye className="h-4 w-4" />
-                            Show {column.title}
-                        </button>
-                    ))}
-            </div>
-        )} */}
+            onDragCancel={handleDragCancel}>
+            {/* button for showing the hidden columns and selected column reappear in the task columns */}
+            {hiddenColumns.length > 0 && (
+                <div className="relative mb-3 inline-block text-left">
+                    {/* Dropdown Trigger Button */}
+                    <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className="flex items-center gap-1.5 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                    >
+                        <Eye className="h-4 w-4" />
+                        <span>Hidden Columns</span>
+                        <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-600 dark:bg-slate-800 dark:text-slate-400">
+                            {hiddenColumns.length}
+                        </span>
+                        <ChevronDown className={`h-4 w-4 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {/* Dropdown Menu / Popup */}
+                    {isDropdownOpen && (
+                        <>
+                            {/* Backdrop overlay to close dropdown when clicking outside */}
+                            <div className="fixed inset-0 z-10" onClick={() => setIsDropdownOpen(false)} />
+                            <div className="absolute left-0 mt-2 z-20 w-56  rounded-md border border-gray-200 bg-white shadow-lg ring-opacity-5 focus:outline-none dark:border-slate-700 dark:bg-slate-900">
+                                <div className="py-1">
+                                    <div className="px-3 py-1.5 text-xs font-semibold text-gray-400 dark:text-slate-500">
+                                        Select column to restore
+                                    </div>
+                                    {sortedColumns.filter((column) => hiddenColumns.includes(String(column.id)))
+                                        .map((column) => (
+                                            <button key={column.id} type="button"
+                                                onClick={() => {
+                                                    toggleColumnVisibility(String(column.id));
+                                                    // Optional: close dropdown if it was the last hidden column
+                                                    if(hiddenColumns.length === 1){
+                                                        setIsDropdownOpen(false);
+                                                    }
+                                                }}
+                                                className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"
+                                            >
+                                                {column.title}
+                                            </button>
+                                        ))}
+                                </div>
+                            </div>
+                        </>
+                    )}
+                </div>
+            )}
+
             <SortableContext items={sortedColumns.map((column) =>
                     getColumnDragId(column.id)
                 )}
                 strategy={horizontalListSortingStrategy}
             >
                 <div className="flex items-start gap-3 overflow-x-auto pb-4">
-                    {sortedColumns.map((column) => (
+                    {visibleColumns.map((column) => (
                         <SortableTaskColumn key={column.id}
                             column={column} tasks={tasks}
                             onEdit={onEdit} onDelete={onDelete}
-                            // onToggleVisibility={toggleColumnVisibility}
+                            onToggleVisibility={toggleColumnVisibility}
                         />
                     ))}
                 </div>
@@ -221,7 +249,7 @@ export default function TaskColumns({tasks, columns, onDragEnd, onColumnDragEnd,
             <DragOverlay>
                 {activeTask ? (
                     <div className="rounded-md border border-blue-300 bg-white p-4 opacity-90 shadow-xl dark:border-slate-500 dark:bg-slate-700">
-                        <p className="font-semibold text-gray-800 dark:text-white">
+                        <p className="font-semibold text-secondary-text dark:text-white">
                             {activeTask.title}
                         </p>
 

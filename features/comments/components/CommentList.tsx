@@ -39,7 +39,6 @@ currentUserId}: CommentListProps) {
     
     async function handleDelete() {
         if (!deleteCommentId) return;
-
         try{
             await removeComment(deleteCommentId);
             setSuccessMessage("Comment deleted successfully!");
@@ -54,121 +53,113 @@ currentUserId}: CommentListProps) {
     }
 
     if(error){
-        return <p className="py-4 text-sm text-red-600">{error}</p>;
+        return <p className="py-4 text-sm text-error">{error}</p>;
     }
 
     return(
         <>
-        <div className="divide-y divide-slate-200 dark:divide-slate-700">
-            <h2 className="py-3 text-lg font-semibold text-slate-900 dark:text-slate-100">
-                Comments ({comments.length})
-            </h2>
+            <div className="divide-y divide-slate-200 dark:divide-slate-700">
+                <h2 className="py-3 text-lg font-semibold text-primary-text dark:text-slate-100">
+                    Comments ({comments.length})
+                </h2>
 
-            <SuccessBox
-                message={successMessage}
-                onClose={() => setSuccessMessage("")}
-            />
+                <SuccessBox message={successMessage} onClose={() => setSuccessMessage("")}
+                />
 
-            {loadError && (
-            <div className="my-3 rounded-md border border-red-200 p-4">
-                <p className="text-sm text-red-600">{loadError}</p>
-                <button type="button" onClick={onRetry}
-                className="mt-3 rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
-                >
-                Try Again
-                </button>
-            </div>
-            )}
-
-            {error && (
-                <p className="py-3 text-sm text-red-600">
-                    {error}
-                </p>
+                {loadError && (
+                <div className="my-3 rounded-md border border-red-200 p-4">
+                    <p className="text-sm text-error">{loadError}</p>
+                    <button type="button" onClick={onRetry}
+                    className="mt-3 rounded-md bg-primary px-4 py-2 text-sm text-white hover:bg-hover-primary"
+                    >
+                        Try Again
+                    </button>
+                </div>
                 )}
 
-            {comments.length === 0 ? (
-                <p className="py-4 text-sm text-slate-500 dark:slate-400">
-                    No comments yet.
-                </p>
-            ) : (
-                comments.map((comment) => (
-                    <div key={comment.id} className="py-4">
-                        <div className="flex items-center justify-between gap-3">
-                            <div>
-                            <p className="font-semibold text-slate-800 dark:text-slate-200">
-                                {comment.authorName || "Unknown user"}
-                            </p>
+                {error && (
+                    <p className="py-3 text-sm text-error">
+                        {error}
+                    </p>
+                    )}
 
-                            <time dateTime={comment.createdAt}
-                                className="text-sm text-slate-500 dark:text-slate-400"
-                            >
-                                {new Date(comment.createdAt).toLocaleString()}
-                            </time>
+                {comments.length === 0 ? (
+                    <p className="py-4 text-sm text-secondary-text dark:slate-400">
+                        No comments yet.
+                    </p>
+                ) : (
+                    comments.map((comment) => (
+                        <div key={comment.id} className="py-4">
+                            <div className="flex items-center justify-between gap-3">
+                                <div>
+                                    <p className="font-semibold text-primary-text dark:text-slate-200">
+                                        {comment.authorName || "Unknown user"}
+                                    </p>
+
+                                    <time dateTime={comment.createdAt}
+                                        className="text-sm text-secondary-text dark:text-slate-400">
+                                        {new Date(comment.createdAt).toLocaleString()}
+                                    </time>
+                                </div>
+
+                                {comment.authorId === currentUserId && (
+                                <div className="flex gap-3">
+                                    <button type="button" onClick={() => {
+                                        setEditingId(comment.id);
+                                        setEditText(comment.text);
+                                    }}
+                                    className="text-md font-medium text-hover-primary hover:text-hover-primary">
+                                        Edit
+                                    </button>
+                                    <button
+                                    type="button" onClick={() => setDeleteCommentId(comment.id)}
+                                    className="text-md font-medium text-error hover:text-hover-error"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                                )}
                             </div>
 
-                            {comment.authorId === currentUserId && (
-                            <div className="flex gap-3">
-                                <button
-                                type="button"
-                                onClick={() => {
-                                    setEditingId(comment.id);
-                                    setEditText(comment.text);
-                                }}
-                                className="text-sm font-medium text-blue-600 hover:text-blue-800"
-                                >
-                                Edit
-                                </button>
-                                <button
-                                type="button" onClick={() => setDeleteCommentId(comment.id)}
-                                className="text-sm font-medium text-red-600 hover:text-red-800"
-                                >
-                                Delete
-                                </button>
-                            </div>
+                            {editingId === comment.id ? (
+                                <div className="mt-3 space-y-2">
+                                    <textarea value={editText}
+                                        onChange={(event) => setEditText(event.target.value)} rows={3}
+                                        className="w-full resize-none rounded-md border border-slate-300 p-3 text-sm dark:bg-slate-800 dark:text-slate-200"
+                                    />
+                                    <div className="flex gap-2">
+                                        <button type="button" onClick={() => void handleEdit(comment.id)}
+                                        disabled={!editText.trim()}
+                                        className="rounded-md bg-primary px-3 py-1.5 text-sm text-white disabled:opacity-50"
+                                        >
+                                            Save
+                                        </button>
+
+                                        <button type="button" onClick={() => {
+                                            setEditingId(null);
+                                            setEditText("");
+                                        }}
+                                        className="rounded-md border px-3 py-1.5 text-sm"
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <p className="mt-2 text-secondary-text dark:text-slate-300">
+                                    {comment.text}
+                                </p>
+                            )}
+
+                            {deleteCommentId === comment.id && (
+                                <ConfirmBox message="Are you sure you want to delete this comment?"
+                                onConfirm={handleDelete} onCancel={() => setDeleteCommentId(null)}
+                                />
                             )}
                         </div>
-
-                        {editingId === comment.id ? (
-                            <div className="mt-3 space-y-2">
-                            <textarea value={editText}
-                                onChange={(event) => setEditText(event.target.value)} rows={3}
-                                className="w-full resize-none rounded-md border border-slate-300 p-3 text-sm dark:bg-slate-800 dark:text-slate-200"
-                            />
-                            <div className="flex gap-2">
-                                <button type="button" onClick={() => void handleEdit(comment.id)}
-                                disabled={!editText.trim()}
-                                className="rounded-md bg-blue-600 px-3 py-1.5 text-sm text-white disabled:opacity-50"
-                                >
-                                Save
-                                </button>
-
-                                <button type="button" onClick={() => {
-                                    setEditingId(null);
-                                    setEditText("");
-                                }}
-                                className="rounded-md border px-3 py-1.5 text-sm"
-                                >
-                                Cancel
-                                </button>
-                            </div>
-                            </div>
-                        ) : (
-                            <p className="mt-2 text-slate-600 dark:text-slate-300">
-                            {comment.text}
-                            </p>
-                        )}
-
-                        {deleteCommentId === comment.id && (
-                            <ConfirmBox
-                            message="Are you sure you want to delete this comment?"
-                            onConfirm={handleDelete}
-                            onCancel={() => setDeleteCommentId(null)}
-                            />
-                        )}
-                    </div>
-                ))
-            )}
-        </div>
+                    ))
+                )}
+            </div>
         </>
     );
 }

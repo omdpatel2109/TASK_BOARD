@@ -13,7 +13,7 @@
     {
       "id": "done",
       "title": "Done",
-      "order": 4
+      "order": 5
     },
     {
       "id": "in_review",
@@ -27,7 +27,7 @@
     },
     {
       "title": "To be",
-      "order": 5,
+      "order": 4,
       "id": "CA6sH-CJ-uY"
     }
   ],
@@ -37,70 +37,80 @@
       "description": "Create dashboard with 3 different columns - Todo, In Progress, Done.",
       "status": "done",
       "order": 2,
-      "id": "KB3HkVfCQVM"
+      "id": "KB3HkVfCQVM",
+      "priority": "medium"
     },
     {
       "title": "Create Login Page",
       "description": "Login Page with the email and password field with validation",
       "status": "S7kZSBep1wo",
       "order": 2,
-      "id": "aKy_g7JMrHE"
+      "id": "aKy_g7JMrHE",
+      "priority": "low"
     },
     {
       "title": "Side bar and Header",
       "description": "Create a global component for Side bar and header to import in every page",
       "status": "in_progress",
       "order": 1,
-      "id": "3rHh1uZEhHs"
+      "id": "3rHh1uZEhHs",
+      "priority": "low"
     },
     {
-      "title": "Fetch api",
+      "title": "Fetch api and endpoints",
       "description": "Fetch the api for display task, add task, edit task, delete task",
       "status": "todo",
       "order": 1,
-      "id": "qAoJwnvcWT0"
+      "id": "qAoJwnvcWT0",
+      "priority": "high"
     },
     {
       "title": "Add task form for edit and add task",
       "description": "Add task will add the task and show in the column of the same status.\n",
       "status": "S7kZSBep1wo",
       "order": 1,
-      "id": "wxHoljkkGZs"
+      "id": "wxHoljkkGZs",
+      "priority": "low"
     },
     {
       "title": "Apply dnd functionality",
       "description": "apply dnd functionality with using dnd-kit library ",
       "status": "done",
       "order": 1,
-      "id": "60Dfk6ouHoE"
+      "id": "60Dfk6ouHoE",
+      "priority": "high"
     },
     {
       "title": "Task details page",
       "description": "Page with the all information of the task, after click on the each task,open the task detail page",
       "status": "in_progress",
       "order": 0,
-      "id": "MZqA1sH3r1k"
+      "id": "MZqA1sH3r1k",
+      "priority": "medium"
     },
     {
       "title": "Add comments feature",
       "description": "It contain comment list, comment box with add, edit, delete",
       "status": "S7kZSBep1wo",
       "order": 0,
-      "id": "hwySdpJnJrU"
+      "id": "hwySdpJnJrU",
+      "priority": "medium"
     },
     {
       "title": "Fetch comments api",
       "description": "add, edit, delete comments fetch the api",
       "status": "done",
       "order": 0,
-      "id": "XxjqN75hBac"
+      "id": "XxjqN75hBac",
+      "priority": "high"
     },
     {
       "title": "apply authentication",
       "description": "apply authentication",
       "status": "todo",
       "order": 0,
-      "id": "BvJrpxancyc"
+      "id": "BvJrpxancyc",
+      "priority": "medium"
     }
   ],
   "comments": [

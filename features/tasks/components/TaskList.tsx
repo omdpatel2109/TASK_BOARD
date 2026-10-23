@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type { Task } from "@/features/tasks/type/taskType";
 import { useTasks } from "../hooks/useTasks";
+import { getPriorityStyle } from "./TaskCard";
 
 interface TaskListProps {
     tasks: Task[];
@@ -20,6 +21,15 @@ export default function TaskList({ tasks }: TaskListProps) {
     }, [totalPages]);
     const startIndex = (currentPage - 1) * TASKS_PER_PAGE;
     const paginatedTasks = tasks.slice(startIndex,startIndex + TASKS_PER_PAGE);
+    const { columns } = useTasks();
+
+const getStatusLabel = (status: string) => {
+    const column = columns.find((column) => String(column.id) === String(status));
+    return column?.title ?? "Unknown Status";
+};
+
+const getStatusStyle = () =>
+    "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300";
 
     return (
         <div>
@@ -38,22 +48,34 @@ export default function TaskList({ tasks }: TaskListProps) {
                     <div className="space-y-4 mt-2">
                         {paginatedTasks.map((task) => (
                             <div key={task.id} className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:bg-slate-900 dark:border-slate-700"
-                            >
-                                <div className="flex flex-col justify-between gap-3 sm:flex-row">
-                                    <div>
-                                        <h2 className="text-lg font-semibold text-primary-text dark:text-slate-100">
-                                            {task.title}
-                                        </h2>
-                                        <p className="mt-2 text-sm text-secondary-text dark:text-slate-400">
-                                            Description:{" "}{task.description || "No description provided."}
-                                        </p>
-                                    </div>
+                            >                                
+                            <div className="flex flex-col justify-between gap-3 sm:flex-row">
+                                <div>
+                                    <h2 className="text-lg font-semibold text-primary-text dark:text-slate-100">
+                                        {task.title}
+                                    </h2>
+
+                                    <p className="mt-2 text-sm text-secondary-text dark:text-slate-400">
+                                        Description:{" "}
+                                        {task.description || "No description provided."}
+                                    </p>
+                                </div>
+
+                                <div className="flex flex-wrap items-start gap-2">
                                     <span
-                                        className="h-fit w-fit rounded-full px-3 py-1 text-xs font-semibold bg-slate-100 text-slate-700" 
+                                        className={`h-fit w-fit rounded-full px-3 py-1 text-xs font-semibold capitalize ${getPriorityStyle(task.priority)}`}
                                     >
-                                        {task.status}
+                                        {task.priority ?? ""}
+                                    </span>
+
+                                    <span
+                                        className="h-fit w-fit rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-700 dark:text-slate-200"
+                                    >
+                                        {getStatusLabel(task.status)}
                                     </span>
                                 </div>
+                            </div>
+
 
                                 <button type="button" onClick={() =>
                                         router.push(`/board/tasks/${task.id}`)

@@ -12,6 +12,19 @@ interface TaskCardProps {
     onDelete: (id: string) => void;
 }
 
+export function getPriorityStyle(priority?: string) {
+    switch (priority) {
+        case "high":
+            return "priority-high";
+        case "medium":
+            return "priority-medium";
+        case "low":
+            return "priority-low";
+        default:
+            return "priority-default";
+    }
+}
+
 export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
@@ -43,56 +56,66 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                     <h2 className="min-w-0 font-bold text-primary-text dark:text-white sm:text-lg">
                         {task.title}
                     </h2>
-
-                    <div className="flex items-center " ref={menuRef}>
-                        <div className="relative">
-                            <button type="button" onPointerDown={(e) => e.stopPropagation()}
-                            onClick={(e) => {
-                                    e.stopPropagation(); 
-                                    setIsMenuOpen(!isMenuOpen);
-                                }}
-                                className="flex h-7 w-6 items-center justify-center rounded-md text-slate-500 hover:bg-slate-200 dark:text-slate-200 dark:hover:bg-slate-600"
+                    
+                    <div className="flex items-center justify-between gap-2">
+                        <div className="mb-2">
+                            <span
+                                className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold capitalize ${getPriorityStyle(task.priority)}`}
                             >
-                                <MoreVertical className="h-5 w-5" />
-                            </button>
+                                {task.priority ?? ""}
+                            </span>
+                        </div>
 
-                            {/* Dropdown Action Overlay Menu */}
-                            {isMenuOpen && (
-                                <div className="absolute right-0 top-full z-50 mt-1 flex w-fit items-center gap-1 rounded-md border border-slate-200 bg-white p-1 shadow-lg dark:border-slate-600 dark:bg-slate-800">
+                        <div className="" ref={menuRef}>
+                            <div className="relative">
+                                <button type="button" onPointerDown={(e) => e.stopPropagation()}
+                                onClick={(e) => {
+                                        e.stopPropagation(); 
+                                        setIsMenuOpen(!isMenuOpen);
+                                    }}
+                                    className="flex h-7 w-6 items-center justify-center rounded-md text-slate-500 hover:bg-slate-200 dark:text-slate-200 dark:hover:bg-slate-600"
+                                >
+                                    <MoreVertical className="h-5 w-5" />
+                                </button>
 
-                                    {/* View Details */}
-                                    <Link href={`/tasks/tasks/${task.id}`}
-                                        onClick={(e) => {
-                                            setIsMenuOpen(false);
-                                            // e.stopPropagation();
-                                        }} onPointerDown={(e) => e.stopPropagation()}
-                                        className="flex h-10 w-10 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700"
-                                    >
-                                        <Eye className="h-5 w-5" />
-                                    </Link>
+                                {/* Dropdown Action Overlay Menu */}
+                                {isMenuOpen && (
+                                    <div className="absolute right-0 top-full z-50 mt-1 flex w-fit items-center gap-1 rounded-md border border-slate-200 bg-white p-1 shadow-lg dark:border-slate-600 dark:bg-slate-800">
 
-                                    {/* Edit */}
-                                    <button type="button" onClick={(e) => {
-                                            setIsMenuOpen(false);
-                                            onEdit(task);
-                                        }} onPointerDown={(e) => e.stopPropagation()}
-                                        className="flex h-10 w-10 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700"
-                                    >
-                                        <Edit2 className="h-5 w-5" />
-                                    </button>
+                                        {/* View Details */}
+                                        <Link href={`/tasks/tasks/${task.id}`}
+                                            onClick={(e) => {
+                                                setIsMenuOpen(false);
+                                                // e.stopPropagation();
+                                            }} onPointerDown={(e) => e.stopPropagation()}
+                                            className="flex h-10 w-10 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700"
+                                        >
+                                            <Eye className="h-5 w-5" />
+                                        </Link>
 
-                                    {/* Delete */}
-                                    <button type="button"
-                                        onClick={(e) => { e.stopPropagation();
-                                            setIsMenuOpen(false);
-                                            onDelete(String(task.id));
-                                        }} onPointerDown={(e) => e.stopPropagation()}
-                                        className="flex h-10 w-10 items-center justify-center rounded-md text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-slate-700"
-                                    >
-                                        <Trash2 className="h-5 w-5" />
-                                    </button>
-                                </div>
-                            )}
+                                        {/* Edit */}
+                                        <button type="button" onClick={(e) => {
+                                                setIsMenuOpen(false);
+                                                onEdit(task);
+                                            }} onPointerDown={(e) => e.stopPropagation()}
+                                            className="flex h-10 w-10 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700"
+                                        >
+                                            <Edit2 className="h-5 w-5" />
+                                        </button>
+
+                                        {/* Delete */}
+                                        <button type="button"
+                                            onClick={(e) => { e.stopPropagation();
+                                                setIsMenuOpen(false);
+                                                onDelete(String(task.id));
+                                            }} onPointerDown={(e) => e.stopPropagation()}
+                                            className="flex h-10 w-10 items-center justify-center rounded-md text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-slate-700"
+                                        >
+                                            <Trash2 className="h-5 w-5" />
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,104 @@
+{
+  "common": {
+    "save": "સાચવો",
+    "cancel": "રદ કરો",
+    "delete": "કાઢી નાખો",
+    "edit": "ફેરફાર કરો",
+    "loading": "લોડ થઈ રહ્યું છે...",
+    "search": "શોધો"
+  },
+  "navigation": {
+    "dashboard": "ડેશબોર્ડ",
+    "taskBoard": "કાર્ય બોર્ડ",
+    "tasks": "કાર્યો",
+    "settings": "સેટિંગ્સ",
+    "logout": "લૉગ આઉટ"
+  },
+  "tasks": {
+    "title": "કાર્યો",
+    "create": "કાર્ય બનાવો",
+    "edit": "કાર્યમાં ફેરફાર કરો",
+    "description": "વર્ણન",
+    "priority": "પ્રાથમિકતા",
+    "status": "સ્થિતિ",
+    "todo": "કરવાનું બાકી",
+    "inProgress": "પ્રગતિમાં",
+    "done": "પૂર્ણ"
+  },
+  "taskStatus": {
+    "todo": "કરવાનું બાકી",
+    "in_progress": "પ્રગતિમાં",
+    "done": "પૂર્ણ"
+  },
+  "sidebar": {
+    "dashboard": "ડેશબોર્ડ",
+    "board": "કાર્ય બોર્ડ",
+    "settings": "સેટિંગ્સ",
+    "title": "કાર્ય બોર્ડ",
+    "collapse": "સાઇડબાર સંકોચો",
+    "expand": "સાઇડબાર વિસ્તૃત કરો"
+  },
+
+  "header": {
+    "theme": "થીમ",
+    "light": "લાઇટ",
+    "dark": "ડાર્ક",
+    "system": "સિસ્ટમ",
+    "logout": "લૉગ આઉટ",
+    "welcomeBack": "ફરી સ્વાગત છે",
+    "user": "વપરાશકર્તા",
+    "profilePhoto": "વપરાશકર્તાનો પ્રોફાઇલ ફોટો"
+  },
+  "alert": {
+    "loginFailed": "લૉગિન નિષ્ફળ",
+    "tryAgain": "ફરી પ્રયાસ કરો",
+    "close": "બંધ કરો"
+},
+"confirm": {
+  "title": "ડિલીટ કરવાની પુષ્ટિ કરો",
+  "cancel": "રદ કરો",
+  "delete": "ડિલીટ કરો"
+},
+  "dashboard": {
+    "title": "ડેશબોર્ડ",
+    "subtitle": "તમારા કાર્યોને ટ્રૅક કરો અને તમારી પ્રગતિ જુઓ.",
+    "viewAllTasks": "બધા કાર્યો જુઓ",
+    "loading": "તમારું ડેશબોર્ડ લોડ થઈ રહ્યું છે...",
+    "tryAgain": "ફરી પ્રયાસ કરો",
+    "stats": {
+      "totalTasks": {
+        "label": "કુલ કાર્યો",
+        "description": "તમારા કાર્યસ્થળનાં બધા કાર્યો"
+      },
+      "todo": {
+        "label": "કરવાના બાકી",
+        "description": "શરૂ થવાની રાહમાં"
+      },
+      "inProgress": {
+        "label": "પ્રગતિમાં",
+        "description": "હાલમાં ચાલી રહેલા કાર્યો"
+      },
+      "completed": {
+        "label": "પૂર્ણ થયેલા",
+        "description": "સફળતાપૂર્વક પૂર્ણ થયેલા કાર્યો"
+      }
+    },
+    "progress": {
+      "title": "એકંદર પ્રગતિ",
+      "description": "પૂર્ણ થયેલા કાર્યોની ટકાવારી",
+      "completed": "{count} પૂર્ણ",
+      "remaining": "{count} બાકી"
+    },
+    "columns": {
+      "title": "કાર્ય કૉલમ",
+      "description": "સ્થિતિ પ્રમાણે ગોઠવેલા કાર્યો"
+    },
+    "status": {
+      "todo": "કરવાના બાકી",
+      "in_progress": "પ્રગતિમાં",
+      "done": "પૂર્ણ થયેલા"
+    }
+  }
+
+
+}

@@ -1,0 +1,104 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "search": "Search"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "taskBoard": "Task Board",
+    "tasks": "Tasks",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "tasks": {
+    "title": "Tasks",
+    "create": "Create Task",
+    "edit": "Edit Task",
+    "description": "Description",
+    "priority": "Priority",
+    "status": "Status",
+    "todo": "To Do",
+    "inProgress": "In Progress",
+    "done": "Done"
+  },
+  "taskStatus": {
+    "todo": "To Do",
+    "in_progress": "In Progress",
+    "done": "Done"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "board": "Board",
+    "settings": "Settings",
+    "title": "Task Board",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar"
+  },
+
+  "header": {
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "logout": "Logout",
+    "welcomeBack": "Welcome back",
+    "user": "User",
+    "profilePhoto": "User profile photo"
+  },
+  "alert": {
+    "loginFailed": "Login Failed",
+    "tryAgain": "Try Again",
+    "close": "Close"
+},
+"confirm": {
+  "title": "Confirm deletion",
+  "cancel": "Cancel",
+  "delete": "Delete"
+},
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Track your tasks and monitor your progress.",
+    "viewAllTasks": "View all tasks",
+    "loading": "Loading your dashboard...",
+    "tryAgain": "Try again",
+    "stats": {
+      "totalTasks": {
+        "label": "Total Tasks",
+        "description": "All tasks in your workspace"
+      },
+      "todo": {
+        "label": "To Do",
+        "description": "Waiting to be started"
+      },
+      "inProgress": {
+        "label": "In Progress",
+        "description": "Currently being worked on"
+      },
+      "completed": {
+        "label": "Completed",
+        "description": "Successfully finished"
+      }
+    },
+    "progress": {
+      "title": "Overall progress",
+      "description": "Percentage of tasks completed",
+      "completed": "{count} completed",
+      "remaining": "{count} remaining"
+    },
+    "columns": {
+      "title": "Task columns",
+      "description": "Tasks grouped by status"
+    },
+    "status": {
+      "todo": "To Do",
+      "in_progress": "In Progress",
+      "done": "Completed"
+    }
+  }
+
+
+}

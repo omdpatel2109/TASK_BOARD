@@ -8,6 +8,7 @@ import SuccessBox from "@/components/SuccessBox";
 import { getCurrentUser } from "@/features/auth/action";
 import type { SafeUser } from "@/features/auth/type/userType";
 import { useTasks } from "../hooks/useTasks";
+import { getPriorityStyle } from "./TaskCard";
 
 interface TaskDetailsProps {
     task: Task;
@@ -98,9 +99,12 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                 <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 dark:bg-slate-900 dark:border-slate-700">
                     <div className="flex flex-col gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-start sm:justify-between dark:border-slate-700">
                         <div className="min-w-0">
-                            <h1 className="text-2xl font-semibold text-primary-text dark:text-slate-100">
+                            <h1 className="text-2xl font-semibold text-primary-text dark:text-slate-100 mb-2">
                                 {task.title}
                             </h1>
+                            <span className={` h-fit w-fit rounded-full px-3 py-1 text-xs font-semibold capitalize ${getPriorityStyle(task.priority)}`}>
+                                {task.priority ?? ""}
+                            </span>
                         </div>
 
                         <span

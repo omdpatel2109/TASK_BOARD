@@ -1,0 +1,104 @@
+{
+  "common": {
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "loading": "लोड हो रहा है...",
+    "search": "खोजें"
+  },
+  "navigation": {
+    "dashboard": "डैशबोर्ड",
+    "taskBoard": "कार्य बोर्ड",
+    "tasks": "कार्य",
+    "settings": "सेटिंग्स",
+    "logout": "लॉग आउट"
+  },
+  "tasks": {
+    "title": "कार्य",
+    "create": "कार्य बनाएं",
+    "edit": "कार्य संपादित करें",
+    "description": "विवरण",
+    "priority": "प्राथमिकता",
+    "status": "स्थिति",
+    "todo": "करना है",
+    "inProgress": "प्रगति में",
+    "done": "पूर्ण"
+  },
+  "taskStatus": {
+    "todo": "करना है",
+    "in_progress": "प्रगति में",
+    "done": "पूर्ण"
+  },
+  "sidebar": {
+    "dashboard": "डैशबोर्ड",
+    "board": "कार्य बोर्ड",
+    "settings": "सेटिंग्स",
+    "title": "कार्य बोर्ड",
+    "collapse": "साइडबार छोटा करें",
+    "expand": "साइडबार बड़ा करें"
+  },
+  "header": {
+    "theme": "थीम",
+    "light": "लाइट",
+    "dark": "डार्क",
+    "system": "सिस्टम",
+    "logout": "लॉग आउट",
+    "welcomeBack": "वापसी पर स्वागत है",
+    "user": "उपयोगकर्ता",
+    "profilePhoto": "उपयोगकर्ता की प्रोफ़ाइल फ़ोटो"
+  },
+  "alert": {
+    "loginFailed": "लॉगिन विफल",
+    "tryAgain": "पुनः प्रयास करें",
+    "close": "बंद करें"
+},
+"confirm": {
+  "title": "हटाने की पुष्टि करें",
+  "cancel": "रद्द करें",
+  "delete": "हटाएँ"
+},
+  "dashboard": {
+    "title": "डैशबोर्ड",
+    "subtitle": "अपने कार्यों को ट्रैक करें और अपनी प्रगति देखें।",
+    "viewAllTasks": "सभी कार्य देखें",
+    "loading": "आपका डैशबोर्ड लोड हो रहा है...",
+    "tryAgain": "पुनः प्रयास करें",
+    "stats": {
+      "totalTasks": {
+        "label": "कुल कार्य",
+        "description": "आपके कार्यक्षेत्र के सभी कार्य"
+      },
+      "todo": {
+        "label": "करना बाकी",
+        "description": "शुरू होने की प्रतीक्षा में"
+      },
+      "inProgress": {
+        "label": "प्रगति में",
+        "description": "वर्तमान में किए जा रहे कार्य"
+      },
+      "completed": {
+        "label": "पूर्ण",
+        "description": "सफलतापूर्वक पूरे किए गए कार्य"
+      }
+    },
+    "progress": {
+      "title": "कुल प्रगति",
+      "description": "पूरे किए गए कार्यों का प्रतिशत",
+      "completed": "{count} पूरे हुए",
+      "remaining": "{count} बाकी"
+    },
+    "columns": {
+      "title": "कार्य कॉलम",
+      "description": "स्थिति के अनुसार व्यवस्थित कार्य"
+    },
+    "status": {
+      "todo": "करना बाकी",
+      "in_progress": "प्रगति में",
+      "done": "पूर्ण"
+    }
+  }
+
+
+
+}

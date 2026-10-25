@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -7,32 +6,26 @@ import { getCurrentUser } from "@/features/auth/action";
 import type { SafeUser } from "@/features/auth/type/userType";
 import useAuth from "@/features/auth/hooks/useAuth";
 import { LogOut, Sun, Moon, Monitor } from "lucide-react";
-import {
-    useSettingHook,
-    type Theme,
-} from "@/features/settings/hooks/useSettingHook";
+import { useSettingHook, type Theme} from "@/features/settings/hooks/useSettingHook";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Header() {
     const t = useTranslations("header");
-
     const [currentUser, setCurrentUser] = useState<SafeUser | null>(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [themeDropDown, setThemeDropDown] = useState(false);
-
     const { logout } = useAuth();
     const { theme, setTheme } = useSettingHook();
 
     useEffect(() => {
         async function loadUser() {
-            try {
+            try{
                 const user = await getCurrentUser();
                 setCurrentUser(user);
-            } catch (error) {
+            }catch(error){
                 console.error("Failed to load user:", error);
             }
         }
-
         loadUser();
     }, []);
 
@@ -40,7 +33,7 @@ export default function Header() {
 
     // Helper to get active theme icon
     const getThemeIcon = (currentTheme: Theme) => {
-        switch (currentTheme) {
+        switch(currentTheme){
             case "light":
                 return <Sun className="h-5 w-5 text-amber-500" />;
             case "dark":
@@ -58,14 +51,11 @@ export default function Header() {
             <div className="relative flex items-center gap-2">
                 {/* Theme Selector */}
                 <div className="relative">
-                    <button
-                        type="button"
-                        onClick={() => {
+                    <button type="button" onClick={() => {
                             setThemeDropDown((prev) => !prev);
                             setIsDropdownOpen(false);
                         }}
                         aria-label={t("theme")}
-                        title={t("theme")}
                         className="flex items-center gap-1 rounded-md p-1.5 transition hover:bg-slate-100 dark:hover:bg-slate-800"
                     >
                         {getThemeIcon(theme)}
@@ -73,7 +63,7 @@ export default function Header() {
 
                     {/* Theme Dropdown */}
                     {themeDropDown && (
-                        <div className="absolute right-0 top-10 z-50 w-40 overflow-hidden rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-900">
+                        <div className="absolute right-0 top-10 z-50 w-40 rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-900">
                             <div className="border-b border-slate-100 px-3 py-2 dark:border-slate-800">
                                 <span className="text-xs font-semibold text-slate-400 dark:text-slate-500">
                                     {t("theme")}
@@ -98,9 +88,7 @@ export default function Header() {
                                         key: "system",
                                     },
                                 ] as const).map(({ mode, icon, key }) => (
-                                    <button
-                                        key={mode}
-                                        type="button"
+                                    <button key={mode} type="button"
                                         onClick={() => {
                                             setTheme(mode);
                                             setThemeDropDown(false);
@@ -121,25 +109,17 @@ export default function Header() {
                 </div>
 
                 {/* User Profile */}
-                <div
-                    className="relative flex cursor-pointer items-center justify-between gap-1 border-l border-slate-200 pl-2"
-                    onClick={() => {
+                <div className="relative flex cursor-pointer items-center justify-between gap-1 border-l border-slate-200 pl-2" onClick={() => {
                         setIsDropdownOpen((prev) => !prev);
                         setThemeDropDown(false);
                     }}
                 >
-                    <button
-                        type="button"
-                        aria-label={userName || t("user")}
+                    <button type="button" aria-label={userName || t("user")}
                         className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-slate-100 transition hover:ring-2 hover:ring-blue-500 dark:border-slate-700 dark:bg-slate-800"
                     >
                         {currentUser?.image ? (
-                            <Image
-                                src={currentUser.image}
-                                alt={userName || t("profilePhoto")}
-                                width={36}
-                                height={36}
-                                className="rounded-full object-cover"
+                            <Image src={currentUser.image} alt={userName || t("profilePhoto")}
+                                width={36} height={36} className="rounded-full "
                             />
                         ) : (
                             <span className="font-semibold text-primary dark:text-blue-300">
@@ -158,9 +138,7 @@ export default function Header() {
                             </div>
 
                             <div className="py-1.5">
-                                <button
-                                    type="button"
-                                    onClick={logout}
+                                <button type="button" onClick={logout}
                                     className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-error hover:bg-red-50 disabled:opacity-50 dark:text-red-400 dark:hover:bg-red-950"
                                 >
                                     <LogOut className="h-4 w-4" />

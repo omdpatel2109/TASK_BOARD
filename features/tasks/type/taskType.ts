@@ -3,6 +3,9 @@ export interface TaskColumn {
     title: string;
     order: number;
 }
+export type CreateColumn = Omit<TaskColumn, "id">;
+
+
 export type TaskStatus = string;
 export type TaskPriority = "low" | "medium" | "high";
 

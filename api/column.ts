@@ -1,6 +1,5 @@
 import { api } from "@/lib/api";
-import type { TaskColumn } from "@/features/tasks/type/taskType";
-export type CreateColumn = Omit<TaskColumn, "id">;
+import type { TaskColumn, CreateColumn } from "@/features/tasks/type/taskType";
 
 export async function getColumns(): Promise<TaskColumn[]> {
     const response = await api.get<TaskColumn[]>("/columns");

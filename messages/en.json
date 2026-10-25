@@ -38,7 +38,6 @@
     "collapse": "Collapse sidebar",
     "expand": "Expand sidebar"
   },
-
   "header": {
     "theme": "Theme",
     "light": "Light",
@@ -96,9 +95,7 @@
     "status": {
       "todo": "To Do",
       "in_progress": "In Progress",
-      "done": "Completed"
+      "done": "Done"
     }
   }
-
-
 }

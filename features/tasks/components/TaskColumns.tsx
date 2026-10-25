@@ -1,5 +1,5 @@
 "use client";
-import {DndContext, DragOverlay,closestCorners, type DragEndEvent, type DragStartEvent, type CollisionDetection, useDroppable,} from "@dnd-kit/core";
+import {DndContext, DragOverlay, type DragEndEvent, type DragStartEvent, useDroppable} from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy, horizontalListSortingStrategy, useSortable,} from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
@@ -13,7 +13,7 @@ interface TaskColumnsProps {
     columns: TaskColumn[];
     onDragEnd: (event: DragEndEvent) => void;
     onColumnDragEnd: ( activeId: string,
-        overId: string) => void | Promise<boolean>;
+    overId: string) => void | Promise<boolean>;
     onEdit: (task: Task) => void;
     onDelete: (id: string) => void;
 }

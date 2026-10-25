@@ -51,8 +51,7 @@ export default function CommentBox({taskId, currentUser, addComment, error}: Com
                 </h2>
 
                 <form onSubmit={handleAddComment} className="relative flex w-full items-center">
-                    <input type="text" value={text}
-                        onChange={(event) => setText(event.target.value)}
+                    <input type="text" value={text} onChange={(event) => setText(event.target.value)}
                         placeholder="Add comments here..."
                         className="w-full border-b border-slate-200 py-3 pr-16 text-primary-text placeholder-slate-400 focus:border-primary-text focus:outline-none dark:border-slate-700 dark:text-slate-400"
                     />

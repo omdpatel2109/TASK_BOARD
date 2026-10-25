@@ -1,7 +1,6 @@
 "use server";
 import { cookies } from "next/headers";
 import axios from "axios";
-
 import { loginUser, getAuthenticatedUser } from "@/api/auth";
 import type { SafeUser } from "./type/userType";
 
@@ -34,10 +33,9 @@ export async function loginAction(username: string,password: string) {
 }
 
 export async function getCurrentUser(): Promise<SafeUser | null> {
-  try {
+  try{
     const cookieStore = await cookies();
     const token = cookieStore.get(COOKIE_NAME)?.value;
-
     if (!token) return null;
 
     return await getAuthenticatedUser(token);
@@ -49,6 +47,5 @@ export async function getCurrentUser(): Promise<SafeUser | null> {
 export async function logoutAction() {
   const cookieStore = await cookies();
   cookieStore.delete(COOKIE_NAME);
-
   return { success: true };
 }

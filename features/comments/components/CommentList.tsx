@@ -15,8 +15,7 @@ interface CommentListProps {
     removeComment: (id: string) => Promise<void>;
 }
 
-export default function CommentList({comments, isLoading,
-error, editComment, removeComment, loadError, onRetry,
+export default function CommentList({comments, isLoading, error, editComment, removeComment, loadError, onRetry,
 currentUserId}: CommentListProps) {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editText, setEditText] = useState("");
@@ -35,8 +34,6 @@ currentUserId}: CommentListProps) {
             console.error("Failed to edit comment:", error);
         }
     }
-
-    
     async function handleDelete() {
         if (!deleteCommentId) return;
         try{
@@ -63,8 +60,7 @@ currentUserId}: CommentListProps) {
                     Comments ({comments.length})
                 </h2>
 
-                <SuccessBox message={successMessage} onClose={() => setSuccessMessage("")}
-                />
+                <SuccessBox message={successMessage} onClose={() => setSuccessMessage("")}/>
 
                 {loadError && (
                 <div className="my-3 rounded-md border border-red-200 p-4">
@@ -81,7 +77,7 @@ currentUserId}: CommentListProps) {
                     <p className="py-3 text-sm text-error">
                         {error}
                     </p>
-                    )}
+                )}
 
                 {comments.length === 0 ? (
                     <p className="py-4 text-sm text-secondary-text dark:slate-400">
@@ -130,8 +126,7 @@ currentUserId}: CommentListProps) {
                                     <div className="flex gap-2">
                                         <button type="button" onClick={() => void handleEdit(comment.id)}
                                         disabled={!editText.trim()}
-                                        className="rounded-md bg-primary px-3 py-1.5 text-sm text-white disabled:opacity-50"
-                                        >
+                                        className="rounded-md bg-primary px-3 py-1.5 text-sm text-white disabled:opacity-50">
                                             Save
                                         </button>
 

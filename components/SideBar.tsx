@@ -19,17 +19,14 @@ export default function SideBar() {
   return (
     <div className={`sticky top-0 flex h-screen flex-col border-r border-slate-200 bg-white duration-200 dark:border-slate-800 dark:bg-slate-950 ${isExpanded ? "w-60" : "w-16"}`}
     >
-      {/* Sidebar Header */}
-      <div className={`mb-3 mt-3 flex h-14 items-center p-2 ${ isExpanded ? "justify-between" : "justify-center"}`}
-      >
+      <div className={`mb-3 mt-3 flex h-14 items-center p-2 ${ isExpanded ? "justify-between" : "justify-center"}`}>
         {isExpanded && (
-          <h1 className="truncate p-4 text-lg font-bold text-primary sm:text-2xl dark:text-blue-400">
+          <h1 className="p-4 text-lg font-bold text-primary sm:text-2xl dark:text-blue-400">
             {t("title")}
           </h1>
         )}
 
         <button type="button" onClick={() => setIsExpanded((prev) => !prev)}
-          title={isExpanded ? t("collapse") : t("expand")}
           className="rounded-md p-2 text-secondary-text/50 hover:text-primary-text dark:hover:bg-slate-800"
         >
           {isExpanded ? (<PanelLeftClose size={20} />) : (<PanelLeftOpen size={20} />)}
@@ -45,7 +42,6 @@ export default function SideBar() {
           return (
             <Link key={item.href} href={item.href}
               title={!isExpanded ? t(item.key) : undefined}
-              aria-current={isActive ? "page" : undefined}
               className={`flex w-full items-center rounded-lg py-3 text-md font-medium ${
                 isExpanded ? "gap-3 px-3" : "justify-center px-0"} ${
                 isActive ? "bg-blue-200 text-primary dark:bg-slate-800 dark:text-blue-400"

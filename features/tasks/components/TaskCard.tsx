@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { MoreVertical, Edit2, Trash2, Eye } from "lucide-react";
 import Link from "next/link";
 import type { Task } from "@/features/tasks/type/taskType";
@@ -13,7 +13,7 @@ interface TaskCardProps {
 }
 
 export function getPriorityStyle(priority?: string) {
-    switch (priority) {
+    switch(priority){
         case "high":
             return "priority-high";
         case "medium":
@@ -27,25 +27,12 @@ export function getPriorityStyle(priority?: string) {
 
 export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const menuRef = useRef<HTMLDivElement>(null);
-    const {attributes, listeners, setNodeRef, transform, transition, isDragging} = useSortable({    id: String(task.id),
-    });
+    const {attributes, listeners, setNodeRef, transform, transition, isDragging} = useSortable({id: String(task.id)}); //useSortable - inable the item to sortable and provide the properties to drag card, calculate the position
 
     const style = {
-        transform: CSS.Transform.toString(transform),
-        transition,
+        transform: CSS.Transform.toString(transform), //Moves the task card to the position calculated by dnd-kit
+        transition, // card move smoothly when its position changes, such as when another task moves into its place
     };
-
-    // Native layout tracking to close dropdown safely
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-                setIsMenuOpen(false);
-            }
-        }
-        document.addEventListener("click", handleClickOutside);
-        return () => document.removeEventListener("click", handleClickOutside);
-    }, []);
 
     return (
         <div ref={setNodeRef} style={style} {...listeners} {...attributes}
@@ -56,7 +43,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                     <h2 className="min-w-0 font-bold text-primary-text dark:text-white sm:text-lg">
                         {task.title}
                     </h2>
-                    
+
                     <div className="flex items-center justify-between gap-2">
                         <div className="mb-2">
                             <span
@@ -66,7 +53,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                             </span>
                         </div>
 
-                        <div className="" ref={menuRef}>
+                        <div className="" >
                             <div className="relative">
                                 <button type="button" onPointerDown={(e) => e.stopPropagation()}
                                 onClick={(e) => {

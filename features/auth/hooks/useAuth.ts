@@ -9,7 +9,6 @@ export default function useAuth() {
 
     if (result.success) {
       router.push("/board");
-      router.refresh();
     }
 
     return result;
@@ -18,7 +17,6 @@ export default function useAuth() {
   const logout = async () => {
     await logoutAction();
     router.push("/login");
-    router.refresh();
   };
 
   return { login, logout };

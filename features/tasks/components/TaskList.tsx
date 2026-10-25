@@ -23,13 +23,10 @@ export default function TaskList({ tasks }: TaskListProps) {
     const paginatedTasks = tasks.slice(startIndex,startIndex + TASKS_PER_PAGE);
     const { columns } = useTasks();
 
-const getStatusLabel = (status: string) => {
-    const column = columns.find((column) => String(column.id) === String(status));
-    return column?.title ?? "Unknown Status";
-};
-
-const getStatusStyle = () =>
-    "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300";
+    const getStatusLabel = (status: string) => {
+        const column = columns.find((column) => String(column.id) === String(status));
+        return column?.title ?? "Unknown Status";
+    };
 
     return (
         <div>
@@ -78,7 +75,7 @@ const getStatusStyle = () =>
 
 
                                 <button type="button" onClick={() =>
-                                        router.push(`/board/tasks/${task.id}`)
+                                        router.push(`/tasks/tasks/${task.id}`)
                                     }
                                     className="mt-4 cursor-pointer text-sm font-semibold text-primary hover:text-hover-primary dark:text-blue-500 dark:hover:text-blue-400"
                                 >
@@ -101,19 +98,7 @@ const getStatusStyle = () =>
                             >
                                 Previous
                             </button>
-
-                            {Array.from({ length: totalPages },(_, index) => index + 1).map((page) => (
-                                <button key={page} type="button"
-                                    onClick={() => setCurrentPage(page)}
-                                    className={`rounded-lg px-3 py-2 text-sm font-medium ${
-                                        currentPage === page ? "bg-blue-600 text-white"
-                                            : "border border-gray-300 text-gray-700 hover:bg-gray-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
-                                    }`}
-                                >
-                                    {page}
-                                </button>
-                            ))}
-
+                            <span className="text-secondary-text">{currentPage}</span>
                             <button type="button" disabled={currentPage === totalPages}
                                 onClick={() => setCurrentPage((page) => page + 1)}
                                 className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-secondary-text hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"

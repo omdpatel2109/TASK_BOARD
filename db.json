@@ -13,7 +13,7 @@
     {
       "id": "done",
       "title": "Done",
-      "order": 5
+      "order": 4
     },
     {
       "id": "in_review",
@@ -198,6 +198,15 @@
       "authorId": 1,
       "authorName": "Emily Johnson",
       "id": "a7V3SLdl4iY"
+    },
+    {
+      "taskId": "MZqA1sH3r1k",
+      "text": "add this page",
+      "createdAt": "2026-10-25T06:33:29.452Z",
+      "updatedAt": "2026-10-25T06:33:29.452Z",
+      "authorId": 1,
+      "authorName": "Emily Johnson",
+      "id": "o8qRZso7BOU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -51,12 +51,6 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
         setIsEditing(false);
     }
 
-    const statusStyles: Record<Task["status"], string> = {
-        todo: "bg-slate-100 text-slate-700",
-        in_progress: "bg-amber-100 text-amber-800",
-        done: "bg-green-100 text-green-800"
-    };
-
     const statusLabels: Record<Task["status"], string> = {
         todo: "To Do",
         in_progress: "In Progress",
@@ -108,7 +102,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                         </div>
 
                         <span
-                            className={`w-fit rounded-full px-3 py-1 text-xs font-medium ${statusStyles[task.status]}`}
+                            className="w-fit rounded-full px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-200" 
                         >
                             {statusLabels[task.status]}
                         </span>

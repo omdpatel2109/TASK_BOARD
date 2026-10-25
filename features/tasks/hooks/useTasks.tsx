@@ -45,13 +45,11 @@ export function useTasks() {
     // Add a created task or replace an updated task.
     function saveTask(savedTask: Task){
         setTasks((currentTasks) => {
-            const exists = currentTasks.some(
-                (task) => task.id === savedTask.id
-            );
+            const exists = currentTasks.some((task) => task.id === savedTask.id);
 
             if(exists){
                 return currentTasks.map((task) =>
-                    task.id === savedTask.id ? savedTask : task // edited task
+                    task.id === savedTask.id ? savedTask : task
                 );
             }
             return [...currentTasks, savedTask]; //add new task
@@ -73,25 +71,24 @@ export function useTasks() {
         }
     }
 
-    const todoTasks = tasks
-        .filter((task) => task.status === "todo")
-        .sort((a, b) => a.order - b.order);
+    // const todoTasks = tasks
+    //     .filter((task) => task.status === "todo")
+    //     .sort((a, b) => a.order - b.order);
 
-    const inProgressTasks = tasks
-        .filter((task) => task.status === "in_progress")
-        .sort((a, b) => a.order - b.order);
+    // const inProgressTasks = tasks
+    //     .filter((task) => task.status === "in_progress")
+    //     .sort((a, b) => a.order - b.order);
 
-    const doneTasks = tasks
-        .filter((task) => task.status === "done")
-        .sort((a, b) => a.order - b.order);
+    // const doneTasks = tasks
+    //     .filter((task) => task.status === "done")
+    //     .sort((a, b) => a.order - b.order);
 
     async function addColumn(title: string): Promise<boolean> {
         try{
             setError("");
             const trimmedTitle = title.trim();
             if(columns.some((column) =>
-                    column.title.trim().toLowerCase() === trimmedTitle.toLowerCase())
-            ){
+            column.title.trim().toLowerCase() === trimmedTitle.toLowerCase())){
                 setError("A column with this title already exists.");
                 return false;
             }
@@ -114,39 +111,28 @@ export function useTasks() {
     }
 
     async function handleColumnDragEnd(
-        activeId: string,
-        overId: string
+        activeId: string, // the id of the column which is dragged
+        overId: string // the id of the column where it is dropped
     ): Promise<boolean> {
         if (activeId === overId) return true;
 
-        const previousColumns = [...columns].sort(
-            (a, b) => a.order - b.order
-        );
-
-        const oldIndex = previousColumns.findIndex(
-            (column) => String(column.id) === activeId
-        );
-
-        const newIndex = previousColumns.findIndex(
-            (column) => String(column.id) === overId
-        );
+        const previousColumns = [...columns].sort((a, b) => a.order - b.order);
+        const oldIndex = previousColumns.findIndex((column) => String(column.id) === activeId);
+        const newIndex = previousColumns.findIndex((column) => String(column.id) === overId);
 
         if (oldIndex === -1 || newIndex === -1) return false;
 
-        // Move the column locally first for a smooth UI.
-        const reorderedColumns = arrayMove(
-            previousColumns,
-            oldIndex,
-            newIndex
+        // Move the column locally first for a smooth UI. 
+        // arrayMove -> It creates a reordered array by moving an element from one index to another(dnd kit)
+        const reorderedColumns = arrayMove(previousColumns,oldIndex,newIndex
         ).map((column, index) => ({
             ...column,
-            order: index,
+            order: index, //update the order after arrayMove reorder the columns
         }));
-
         setColumns(reorderedColumns);
         setError("");
 
-        try {
+        try{
             // Persist every column's new position.
             await Promise.all(
                 reorderedColumns.map((column) =>
@@ -156,12 +142,11 @@ export function useTasks() {
 
             setSuccessMessages("Column order updated successfully!");
             return true;
-        } catch (error) {
+        }catch(error){
             // Restore the original order if saving fails.
             setColumns(previousColumns);
             setError(getApiErrorMessage(error));
             console.error("Failed to update column order:", error);
-
             return false;
         }
     }
@@ -169,30 +154,22 @@ export function useTasks() {
     async function handleDragEnd(event: DragEndEvent) {
         const { active, over } = event;
         if (!over || active.id === over.id) return;
-        const taskId = String(active.id);
-        const overId = String(over.id);
-        const task = tasks.find((item) => String(item.id) === taskId);
+        const taskId = String(active.id); //task card id
+        const overId = String(over.id); //column id
+        const task = tasks.find((item) => String(item.id) === taskId); //find the dragged task
         if (!task) return;
         // Check whether the drop target is a task or a column
         const targetTask = tasks.find((item) => String(item.id) === overId);
-        const newStatus = targetTask ? targetTask.status : overId;
+        const newStatus = targetTask ? targetTask.status : overId;  
         
-        if (!columns.some((column) => String(column.id) === String(newStatus))){
-            return;
-        }
-
-        // Get tasks in the destination column, in their current order
+        // sort the columns task in which the task is moved from old to new
         const destinationTasks = tasks.filter((item) => item.status === newStatus).sort((a, b) => a.order - b.order);
 
         let reorderedTasks: Task[];
-        if (task.status === newStatus){
-            // Reorder within the same column
-            const oldIndex = destinationTasks.findIndex(
-                (item) => String(item.id) === taskId
-            );
-            const newIndex = destinationTasks.findIndex(
-                (item) => String(item.id) === overId
-            );
+        if (task.status === newStatus){// drag and drop in the same column
+            //changes within the same column
+            const oldIndex = destinationTasks.findIndex((item) => String(item.id) === taskId);
+            const newIndex = destinationTasks.findIndex((item) => String(item.id) === overId);
             if (newIndex === -1) return;
             reorderedTasks = arrayMove(destinationTasks, oldIndex, newIndex);
         }else{
@@ -211,7 +188,7 @@ export function useTasks() {
             updatedDestination.splice(targetIndex < 0 ? updatedDestination.length : targetIndex, 0,movedTask);
 
             reorderedTasks = updatedDestination;
-            // Optimistically update both source and destination columns
+            // update both source and destination columns
             const updatedTasks = [...sourceTasks.map((item, index) => ({...item,order: index,})),
                 ...reorderedTasks.map((item, index) => ({...item, order: index,})),];
             setTasks((current) => current.map( (item) =>
@@ -241,7 +218,7 @@ export function useTasks() {
         const updatedTasks = reorderedTasks.map((item, index) => ({...item,order: index}));
 
         setTasks((current) =>current.map((item) =>
-            updatedTasks.find((updated) => updated.id === item.id) ?? item
+                updatedTasks.find((updated) => updated.id === item.id) ?? item
             )
         );
 
@@ -258,14 +235,15 @@ export function useTasks() {
             );
 
             setSuccessMessages("Task order updated successfully!");
-        } catch (error) {
+        }catch(error){
             console.error(error);
             setDragError("Unable to update task order. Please try again.");
             await loadTasks();
         }
     }
 
-    return {tasks, todoTasks, inProgressTasks, doneTasks, isLoading,
+    return {tasks, isLoading,
+    // todoTasks, inProgressTasks, doneTasks, 
     error, loadTasks, saveTask, removeTask, columns, setColumns, addColumn,
     handleDragEnd, handleColumnDragEnd, successMessages,};
 }

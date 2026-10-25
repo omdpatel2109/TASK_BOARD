@@ -129,14 +129,13 @@ export default function TaskBoard() {
             {dragError && ( <p className="mb-2 px-2 text-error"> {dragError} </p>)}
 
             {taskForm && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm" onClick={(e)=>e.stopPropagation()}>
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm" onClick={(e) => e.stopPropagation()}>
                     <div className="relative w-full max-w-md rounded-xl border border-gray-100 bg-white p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
                         <button type="button" onClick={formClose} className="absolute right-7 top-7 rounded-full p-1 text-primary-text hover:bg-gray-100"
                         >
                             <X className="h-5 w-5" />
                         </button>
-                        <TaskForm
-                            task={selectedTask ?? undefined}
+                        <TaskForm task={selectedTask ?? undefined}
                             columns={columns}
                             onSuccess={handleTaskSuccess}
                             onCancel={formClose}

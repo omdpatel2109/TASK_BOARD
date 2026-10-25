@@ -32,7 +32,7 @@ export default async function TaskDetailsPage({ params }: PageProps) {
     }
 
     return (
-  
+
         <div className="flex h-screen w-full bg-gray-100 dark:bg-slate-950">
             <SideBar />
                 <div className="flex flex-1 flex-col overflow-hidden">

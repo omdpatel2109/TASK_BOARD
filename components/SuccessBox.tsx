@@ -1,8 +1,6 @@
-
 "use client";
 import { X, Check } from "lucide-react";
 import { useEffect } from "react";
-
 interface SuccessBoxProps {
     message: string;
     onClose?: () => void;

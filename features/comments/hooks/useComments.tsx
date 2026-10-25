@@ -5,7 +5,7 @@ import type { Comment, CreateComment,} from "@/features/comments/type/commentTyp
 import { getApiErrorMessage } from "@/lib/api";
 
 export function useComments(taskId: string) {
-    const [comments, setComments] = useState<Comment[]>([]);
+    const [comments, setComments] = useState<Comment[]>([]);                
     const [isLoading, setIsLoading] = useState(true);
     const [loadError, setLoadError] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);

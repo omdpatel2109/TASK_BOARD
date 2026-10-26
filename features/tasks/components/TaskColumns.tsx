@@ -59,7 +59,6 @@ function SortableTaskColumn({ column, tasks, onEdit, onDelete, onToggleVisibilit
                 transition,
                 opacity: isDragging ? 0.5 : 1,
                 position: "relative",
-                zIndex: isDragging ? 10 : undefined,
             }}
             className="w-80 shrink-0 rounded-xl border border-gray-200 bg-gray-50 p-2 dark:border-slate-700 dark:bg-slate-800"
         >
@@ -93,8 +92,7 @@ function SortableTaskColumn({ column, tasks, onEdit, onDelete, onToggleVisibilit
 
             <DropZone id={String(column.id)}>
                 <SortableContext items={columnTasks.map((task) => String(task.id))}
-                    strategy={verticalListSortingStrategy}
-                >
+                    strategy={verticalListSortingStrategy}>
                     <div className="flex min-h-[500px] flex-col gap-3 py-1">
                         {columnTasks.length === 0 && (
                             <p className="px-3 py-2 text-sm text-gray-400">
@@ -133,10 +131,10 @@ export default function TaskColumns({tasks, columns, onDragEnd, onColumnDragEnd,
     );
 
     function handleDragStart(event: DragStartEvent) {
-        if (event.active.data.current?.type === "column") {
-            setActiveTask(null);
-            return;
-        }
+        // if(event.active.data.current?.type === "column"){
+        //     setActiveTask(null);
+        //     return;
+        // }
 
         const task = tasks.find(
             (item) => String(item.id) === String(event.active.id)
@@ -148,26 +146,23 @@ export default function TaskColumns({tasks, columns, onDragEnd, onColumnDragEnd,
     function handleDragEnd(event: DragEndEvent) {
         setActiveTask(null);
         const { active, over } = event;
-        if (!over) return;
+        if(!over) return;
         // Handle whole-column reordering separately.
-        if (active.data.current?.type === "column"){
+        if(active.data.current?.type === "column"){
             const activeColumnId = String(
                 active.data.current.columnId
             );
 
             const overColumnId = over.data.current?.columnId;
 
-            if (overColumnId !== undefined) {
-                void onColumnDragEnd(activeColumnId, String(overColumnId));
+            if(overColumnId !== undefined){
+                onColumnDragEnd(activeColumnId, String(overColumnId));
             }
             return;
         }
-        // Keep existing task dragging working.
-        // If the task lands on a column's sortable wrapper,
-        // convert its ID to the actual column/status ID.
         const overColumnId = over.data.current?.columnId;
 
-        if (overColumnId !== undefined) {
+        if(overColumnId !== undefined){
             onDragEnd({...event, over: {
                     ...over,
                     id: String(overColumnId),
@@ -233,8 +228,7 @@ export default function TaskColumns({tasks, columns, onDragEnd, onColumnDragEnd,
             <SortableContext items={sortedColumns.map((column) =>
                     getColumnDragId(column.id)
                 )}
-                strategy={horizontalListSortingStrategy}
-            >
+                strategy={horizontalListSortingStrategy}>
                 <div className="flex items-start gap-3 overflow-x-auto pb-4">
                     {visibleColumns.map((column) => (
                         <SortableTaskColumn key={column.id}

@@ -31,20 +31,20 @@ export default function TaskList({ tasks }: TaskListProps) {
     return (
         <div>
             {tasks.length === 0 ? (
-                <div className="rounded-lg border bg-white p-8 text-center dark:bg-slate-900 dark:border-slate-700">
-                    <p className="font-medium text-secondary-text dark:text-slate-200">
+                <div className="rounded-lg mt-3 border bg-white border-slate-300 p-8 text-center dark:bg-slate-900 dark:border-slate-700">
+                    <p className="font-medium text-primary-text dark:text-slate-200">
                         No tasks found.
                     </p>
-                    <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">
+                    <p className="mt-1 text-sm text-secondary-text dark:text-slate-400">
                         Try changing your search or status filter.
                     </p>
                 </div>
             ) : (
                 <>
                     {/* Task cards */}
-                    <div className="space-y-4 mt-2">
+                    <div className="space-y-4 mt-3">
                         {paginatedTasks.map((task) => (
-                            <div key={task.id} className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:bg-slate-900 dark:border-slate-700"
+                            <div key={task.id} className="rounded-lg border border-gray-200 bg-white pl-4 pt-3 pb-3 pr-3 shadow-sm dark:bg-slate-900 dark:border-slate-700"
                             >                                
                             <div className="flex flex-col justify-between gap-3 sm:flex-row">
                                 <div>
@@ -77,7 +77,7 @@ export default function TaskList({ tasks }: TaskListProps) {
                                 <button type="button" onClick={() =>
                                         router.push(`/tasks/tasks/${task.id}`)
                                     }
-                                    className="mt-4 cursor-pointer text-sm font-semibold text-primary hover:text-hover-primary dark:text-blue-500 dark:hover:text-blue-400"
+                                    className="mt-2 cursor-pointer text-sm font-semibold text-primary hover:text-hover-primary dark:text-blue-500 dark:hover:text-blue-400"
                                 >
                                     View Details
                                 </button>
@@ -86,22 +86,22 @@ export default function TaskList({ tasks }: TaskListProps) {
                     </div>
 
                     {/* Pagination */}
-                    <div className="mt-6 flex flex-col items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900 sm:flex-row">
-                        <p className="text-sm text-gray-600 dark:text-slate-400">
+                    <div className="mt-2 flex flex-col items-center justify-between gap-4 p-4  sm:flex-row">
+                        <p className="text-sm text-primary-text dark:text-slate-400">
                             Showing {Math.min(startIndex + TASKS_PER_PAGE,tasks.length)}{" "} of {tasks.length} tasks
                         </p>
 
                         <div className="flex flex-wrap items-center justify-center gap-2">
                             <button type="button" disabled={currentPage === 1}
                                 onClick={() => setCurrentPage((page) => page - 1)}
-                                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-secondary-text hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
+                                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-primary-text hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:text-slate-400 dark:hover:bg-slate-800"
                             >
                                 Previous
                             </button>
-                            <span className="text-secondary-text">{currentPage}</span>
+                            <span className="text-primary-text dark:text-slate-400">{currentPage}</span>
                             <button type="button" disabled={currentPage === totalPages}
                                 onClick={() => setCurrentPage((page) => page + 1)}
-                                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-secondary-text hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
+                                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-primary-text hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:text-slate-400 dark:hover:bg-slate-800"
                             >
                                 Next
                             </button>

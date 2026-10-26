@@ -8,7 +8,7 @@ import { useState } from "react";
 const SIDEBAR_ITEMS = [
   { key: "dashboard", href: "/board", icon: LayoutDashboard },
   { key: "board", href: "/tasks", icon: CheckSquare },
-  { key: "settings", href: "/setting", icon: Settings },
+  // { key: "settings", href: "/setting", icon: Settings },
 ] as const;
 
 export default function SideBar() {

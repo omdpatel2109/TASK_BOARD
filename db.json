@@ -38,8 +38,8 @@
     {
       "title": "Create Login Page",
       "description": "Login Page with the email and password field with validation",
-      "status": "S7kZSBep1wo",
-      "order": 2,
+      "status": "in_review",
+      "order": 0,
       "id": "aKy_g7JMrHE",
       "priority": "low"
     },
@@ -63,7 +63,7 @@
       "title": "Add task form for edit and add task",
       "description": "Add task will add the task and show in the column of the same status.\n",
       "status": "S7kZSBep1wo",
-      "order": 1,
+      "order": 0,
       "id": "wxHoljkkGZs",
       "priority": "low"
     },
@@ -87,7 +87,7 @@
       "title": "Add comments feature",
       "description": "It contain comment list, comment box with add, edit, delete",
       "status": "S7kZSBep1wo",
-      "order": 0,
+      "order": 1,
       "id": "hwySdpJnJrU",
       "priority": "medium"
     },
@@ -201,12 +201,21 @@
     },
     {
       "taskId": "MZqA1sH3r1k",
-      "text": "add this page",
+      "text": "add this page now",
       "createdAt": "2026-10-25T06:33:29.452Z",
-      "updatedAt": "2026-10-25T06:33:29.452Z",
+      "updatedAt": "2026-10-26T05:17:20.982Z",
       "authorId": 1,
       "authorName": "Emily Johnson",
       "id": "o8qRZso7BOU"
+    },
+    {
+      "taskId": "qAoJwnvcWT0",
+      "text": "complete it",
+      "createdAt": "2026-10-26T11:52:19.193Z",
+      "updatedAt": "2026-10-26T11:52:19.193Z",
+      "authorId": 1,
+      "authorName": "Emily Johnson",
+      "id": "0_a6t0bUoxU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

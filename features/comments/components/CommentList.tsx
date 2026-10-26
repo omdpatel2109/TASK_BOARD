@@ -97,7 +97,6 @@ currentUserId}: CommentListProps) {
                                         {new Date(comment.createdAt).toLocaleString()}
                                     </time>
                                 </div>
-
                                 {comment.authorId === currentUserId && (
                                 <div className="flex gap-3">
                                     <button type="button" onClick={() => {

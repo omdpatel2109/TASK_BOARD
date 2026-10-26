@@ -171,7 +171,7 @@ export default function TaskBoard() {
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-2">
                     <div>    
                         <h1 className="text-3xl font-bold tracking-tight text-primary-text dark:text-white">Task Board</h1>
-                        <h2 className="mb-1 mt-1 text-sm text-secondary-text">Manage your all task here.</h2>
+                        <h2 className="mb-1 mt-1 text-sm text-secondary-text dark:text-slate-400">Manage your all task here.</h2>
                     </div>
                     <div className="relative inline-flex items-center rounded-md shadow-sm">
                         <button className="inline-flex items-center gap-2 rounded-l-md bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-hover-primary focus:outline-none"
@@ -210,12 +210,12 @@ export default function TaskBoard() {
                     </div>
                     <div className="flex items-center rounded border border-slate-400 dark:border-slate-700">
                         <button type="button" onClick={() => setView("columns")}
-                            className={`flex items-center py-1 px-2 text-sm font-medium ${ view === "columns" ? "bg-secondary-text text-white" : "text-secondary-text hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
+                            className={`flex items-center py-1 px-2 text-sm font-medium ${ view === "columns" ? "bg-slate-300 text-primary-text" : "text-secondary-text hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
                             <LayoutGrid className="h-4 w-4" />
                         </button>
 
                         <button type="button" onClick={() => setView("list")}
-                            className={`flex items-center py-1 px-2 text-sm font-medium ${view === "list" ? "bg-secondary-text text-white" : "text-secondary-text hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
+                            className={`flex items-center py-1 px-2 text-sm font-medium ${view === "list" ? "bg-slate-300 text-primary-text" : "text-secondary-text hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
                             <List className="h-4 w-4" />
                         </button>
                     </div>

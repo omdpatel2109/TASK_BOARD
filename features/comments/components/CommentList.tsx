@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { Comment } from "@/features/comments/type/commentType";
 import SuccessBox from "@/components/SuccessBox";
 import ConfirmBox from "@/components/ConfirmBox";
+import {  Edit2, Trash2 } from "lucide-react";
 
 interface CommentListProps {
     comments: Comment[];
@@ -98,19 +99,22 @@ currentUserId}: CommentListProps) {
                                     </time>
                                 </div>
                                 {comment.authorId === currentUserId && (
-                                <div className="flex gap-3">
+                                <div className="flex items-center gap-1">
+                                    {/* Edit */}
                                     <button type="button" onClick={() => {
-                                        setEditingId(comment.id);
-                                        setEditText(comment.text);
-                                    }}
-                                    className="text-md font-medium text-hover-primary hover:text-hover-primary">
-                                        Edit
-                                    </button>
-                                    <button
-                                    type="button" onClick={() => setDeleteCommentId(comment.id)}
-                                    className="text-md font-medium text-error hover:text-hover-error"
+                                            setEditingId(comment.id);
+                                            setEditText(comment.text);
+                                        }}
+                                        className="rounded-md px-2 py-2 text-sm font-medium text-primary cursor-pointer transition-colors hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:text-blue-400 dark:hover:bg-blue-400/10"
                                     >
-                                        Delete
+                                        <Edit2 className="h-4 w-4"/>
+                                    </button>
+
+                                    {/* Delete */}
+                                    <button type="button" onClick={() => setDeleteCommentId(comment.id)}
+                                        className="rounded-md px-2 py-2 text-sm font-medium text-red-600 cursor-pointer transition-colors hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500/30 dark:text-red-400 dark:hover:bg-red-950/50"
+                                    >
+                                        <Trash2 className="h-4 w-4" />
                                     </button>
                                 </div>
                                 )}

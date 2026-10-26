@@ -73,16 +73,14 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                             onClose();
                             router.back();
                         }}
-                        className="flex items-center gap-1 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700"
+                        className="flex items-center gap-1 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 cursor-pointer dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700"
                     >
                         <ArrowLeftIcon className="h-3 w-3" />
                         Back
                     </button>
 
-                    <button
-                        type="button"
-                        onClick={() => setIsEditing(true)}
-                        className="rounded-md bg-primary px-4 py-2 text-md font-medium text-white transition-colors hover:bg-hover-primary"
+                    <button type="button" onClick={() => setIsEditing(true)}
+                        className="rounded-md bg-primary px-4 py-2 text-md font-medium text-white transition-colors hover:bg-hover-primary cursor-pointer"
                     >
                         Edit Task
                     </button>

@@ -3,8 +3,8 @@ export interface TaskColumn {
     title: string;
     order: number;
 }
-export type CreateColumn = Omit<TaskColumn, "id">;
 
+export type CreateColumn = Omit<TaskColumn, "id">;
 
 export type TaskStatus = string;
 export type TaskPriority = "low" | "medium" | "high";
@@ -15,6 +15,7 @@ export interface Task {
     description: string;
     status: TaskStatus;
     priority?: TaskPriority;
+    dueDate?: string | null;
     order: number;
 }
 
@@ -23,6 +24,7 @@ export interface CreateTask {
     description: string;
     status: TaskStatus;
     priority: TaskPriority;
+    dueDate?: string | null;
     order: number;
 }
 
@@ -31,6 +33,7 @@ export interface UpdateTask {
     description?: string;
     status?: TaskStatus;
     priority?: TaskPriority;
+    dueDate?: string | null;
     order: number;
 }
 
@@ -39,4 +42,5 @@ export interface TaskFormValues {
     description: string;
     status: TaskStatus;
     priority: TaskPriority;
+    dueDate: string;
 }

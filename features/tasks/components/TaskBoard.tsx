@@ -174,13 +174,13 @@ export default function TaskBoard() {
                         <h2 className="mb-1 mt-1 text-sm text-secondary-text dark:text-slate-400">Manage your all task here.</h2>
                     </div>
                     <div className="relative inline-flex items-center rounded-md shadow-sm">
-                        <button className="inline-flex items-center gap-2 rounded-l-md bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-hover-primary focus:outline-none"
+                        <button className="inline-flex items-center gap-2 rounded-l-md bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-hover-primary focus:outline-none cursor-pointer"
                         >
                             <Plus className="h-4 w-4" /> 
                         </button>
 
                         <button onClick={() => setOpenAddDropDown(!openAddDropDown)} 
-                            className=" items-center justify-center rounded-r-md border-l border-white/20 bg-primary p-2 text-sm font-medium text-white hover:bg-hover-primary transition-colors focus:outline-none"
+                            className=" items-center justify-center rounded-r-md border-l border-white/20 bg-primary p-2 text-sm font-medium text-white hover:bg-hover-primary transition-colors focus:outline-none cursor-pointer"
                         >
                             <ChevronDown className="h-4 w-4" />
                         </button>
@@ -190,11 +190,11 @@ export default function TaskBoard() {
                             >
                                 <div className="flex flex-col ">
                                     <button onClick={() => { addTask(); setOpenAddDropDown(false); }} 
-                                    className="w-full text-left px-3 py-2 border-b border-slate-200 text-sm font-medium text-primary-text hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 transition-colors"
+                                    className="w-full text-left px-3 py-2 border-b border-slate-200 text-sm font-medium text-primary-text hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer"
                                     >
                                         New Task
                                     </button>
-                                    <button onClick={() => { openColumnForm(); setOpenAddDropDown(false); }} className="w-full text-left rounded-md px-3 py-2 text-sm font-medium text-primary-text hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+                                    <button onClick={() => { openColumnForm(); setOpenAddDropDown(false); }} className="w-full text-left rounded-md px-3 py-2 text-sm font-medium text-primary-text hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 cursor-pointer"
                                     >
                                         New Column
                                     </button>
@@ -210,12 +210,12 @@ export default function TaskBoard() {
                     </div>
                     <div className="flex items-center rounded border border-slate-400 dark:border-slate-700">
                         <button type="button" onClick={() => setView("columns")}
-                            className={`flex items-center py-1 px-2 text-sm font-medium ${ view === "columns" ? "bg-slate-300 text-primary-text" : "text-secondary-text hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
+                            className={`flex items-center py-1 px-2 text-sm font-medium cursor-pointer ${ view === "columns" ? "bg-slate-300 text-primary-text" : "text-secondary-text hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
                             <LayoutGrid className="h-4 w-4" />
                         </button>
 
                         <button type="button" onClick={() => setView("list")}
-                            className={`flex items-center py-1 px-2 text-sm font-medium ${view === "list" ? "bg-slate-300 text-primary-text" : "text-secondary-text hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
+                            className={`flex items-center py-1 px-2 text-sm font-medium cursor-pointer ${view === "list" ? "bg-slate-300 text-primary-text" : "text-secondary-text hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
                             <List className="h-4 w-4" />
                         </button>
                     </div>

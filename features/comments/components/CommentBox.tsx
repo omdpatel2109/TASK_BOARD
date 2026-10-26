@@ -58,7 +58,7 @@ export default function CommentBox({taskId, currentUser, addComment, error}: Com
 
                     {text.trim().length > 0 && (
                         <button type="submit" disabled={isSubmitting}
-                            className="absolute right-0 rounded bg-primary px-3 py-1 text-sm font-medium text-white hover:bg-hover-primary disabled:opacity-50 dark:bg-slate-500"
+                            className="absolute right-0 rounded bg-primary px-3 py-1 text-sm font-medium text-white hover:bg-hover-primary disabled:opacity-50 dark:bg-slate-500 cursor-pointer"
                         >
                             {isSubmitting ? "Adding..." : "Add"}
                         </button>

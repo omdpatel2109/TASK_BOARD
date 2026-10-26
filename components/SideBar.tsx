@@ -27,7 +27,7 @@ export default function SideBar() {
         )}
 
         <button type="button" onClick={() => setIsExpanded((prev) => !prev)}
-          className="rounded-md p-2 text-secondary-text/50 hover:text-primary-text dark:hover:bg-slate-800"
+          className="rounded-md p-2 text-secondary-text/50 hover:text-primary-text dark:hover:bg-slate-800 cursor-pointer"
         >
           {isExpanded ? (<PanelLeftClose size={20} />) : (<PanelLeftOpen size={20} />)}
         </button>

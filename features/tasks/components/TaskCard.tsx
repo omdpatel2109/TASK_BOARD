@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { MoreVertical, Edit2, Trash2, Eye } from "lucide-react";
+import { MoreVertical, Edit2, Trash2, Eye, CalendarDays } from "lucide-react";
 import Link from "next/link";
 import type { Task } from "@/features/tasks/type/taskType";
 import { useSortable } from "@dnd-kit/sortable";
@@ -23,6 +23,40 @@ export function getPriorityStyle(priority?: string) {
         default:
             return "priority-default";
     }
+}
+
+function getDueDateStyle(dueDate: string) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const due = new Date(`${dueDate}T00:00:00`);
+    const differenceInDays = Math.round(
+        (due.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
+    );
+
+    if(differenceInDays < 0){
+        return {
+            label: "Overdue",
+            style: "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300",
+        };
+    }
+
+    if(differenceInDays === 0){
+        return {
+            label: "Due today",
+            style: "bg-orange-100 text-orange-700 dark:bg-orange-950 dark:text-orange-300",
+        };
+    }
+    if(differenceInDays <= 3){
+        return {
+            label: "Due soon",
+            style: "bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300",
+        };
+    }
+
+    return {
+        label: "",
+        style: "",
+    };
 }
 
 export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
@@ -60,7 +94,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                                         e.stopPropagation(); 
                                         setIsMenuOpen(!isMenuOpen);
                                     }}
-                                    className="flex h-7 w-6 items-center justify-center rounded-md text-slate-500 hover:bg-slate-200 dark:text-slate-200 dark:hover:bg-slate-600"
+                                    className="flex h-7 w-6 items-center justify-center rounded-md text-slate-500 hover:bg-slate-200 dark:text-slate-200 dark:hover:bg-slate-600 cursor-pointer"
                                 >
                                     <MoreVertical className="h-5 w-5" />
                                 </button>
@@ -85,7 +119,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                                                 setIsMenuOpen(false);
                                                 onEdit(task);
                                             }} onPointerDown={(e) => e.stopPropagation()}
-                                            className="flex h-10 w-10 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700"
+                                            className="flex h-10 w-10 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 cursor-pointer"
                                         >
                                             <Edit2 className="h-5 w-5" />
                                         </button>
@@ -96,7 +130,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                                                 setIsMenuOpen(false);
                                                 onDelete(String(task.id));
                                             }} onPointerDown={(e) => e.stopPropagation()}
-                                            className="flex h-10 w-10 items-center justify-center rounded-md text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-slate-700"
+                                            className="flex h-10 w-10 items-center justify-center rounded-md text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-slate-700 cursor-pointer"
                                         >
                                             <Trash2 className="h-5 w-5" />
                                         </button>
@@ -111,6 +145,32 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                 <p className="text-sm text-secondary-text dark:text-slate-300 line-clamp-3">
                     Description: {task.description || "No description"}
                 </p>
+
+                {task.dueDate && ((() => {
+                    const dueDateInfo = getDueDateStyle(task.dueDate);
+                        return (
+                            <div className="mt-3 flex flex-wrap items-center gap-2">
+                                <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
+                                    <CalendarDays className="h-4 w-4" />
+                                    <span>
+                                        {new Date(`${task.dueDate}T00:00:00`).toLocaleDateString(
+                                            undefined,
+                                            {
+                                                day: "numeric",
+                                                month: "short",
+                                                year: "numeric",
+                                            }
+                                        )}
+                                    </span>
+                                </div>
+
+                                <span className={`rounded-full px-2 py-1 text-xs font-medium ${dueDateInfo.style}`}>
+                                    {dueDateInfo.label}
+                                </span>
+                            </div>
+                        );
+                    })()
+                )}
             </div>
         </div>
     );

@@ -49,7 +49,8 @@
       "status": "in_progress",
       "order": 1,
       "id": "3rHh1uZEhHs",
-      "priority": "low"
+      "priority": "low",
+      "dueDate": "2026-10-31"
     },
     {
       "title": "Fetch api and endpoints",
@@ -57,7 +58,8 @@
       "status": "todo",
       "order": 1,
       "id": "qAoJwnvcWT0",
-      "priority": "high"
+      "priority": "high",
+      "dueDate": "2026-10-31"
     },
     {
       "title": "Add task form for edit and add task",
@@ -65,7 +67,8 @@
       "status": "S7kZSBep1wo",
       "order": 0,
       "id": "wxHoljkkGZs",
-      "priority": "low"
+      "priority": "low",
+      "dueDate": null
     },
     {
       "title": "Apply dnd functionality",
@@ -81,7 +84,8 @@
       "status": "in_progress",
       "order": 0,
       "id": "MZqA1sH3r1k",
-      "priority": "medium"
+      "priority": "medium",
+      "dueDate": "2026-10-31"
     },
     {
       "title": "Add comments feature",
@@ -105,7 +109,8 @@
       "status": "todo",
       "order": 0,
       "id": "BvJrpxancyc",
-      "priority": "medium"
+      "priority": "medium",
+      "dueDate": "2026-10-28"
     }
   ],
   "comments": [
@@ -216,6 +221,15 @@
       "authorId": 1,
       "authorName": "Emily Johnson",
       "id": "0_a6t0bUoxU"
+    },
+    {
+      "taskId": "BvJrpxancyc",
+      "text": "dd",
+      "createdAt": "2026-10-26T17:49:59.502Z",
+      "updatedAt": "2026-10-26T17:49:59.502Z",
+      "authorId": 1,
+      "authorName": "Emily Johnson",
+      "id": "MUM1g6REFRM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

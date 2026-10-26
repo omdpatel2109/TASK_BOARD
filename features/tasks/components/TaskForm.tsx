@@ -5,6 +5,8 @@ import { addValidationSchema } from "../utils/addValidation";
 import type {Task, TaskFormValues, TaskColumn, TaskPriority,} from "../type/taskType";
 import { createTask, updateTask, getTasks } from "@/api/task";
 import { getApiErrorMessage } from "@/lib/api";
+import { getTodayLocalDate } from "../utils/addValidation";
+
 interface TaskFormProps {
     task?: Task;
     columns: TaskColumn[];
@@ -26,14 +28,16 @@ export default function TaskForm({ task, columns, onSuccess, onCancel}: TaskForm
             description: task?.description ?? "",
             status: task?.status ?? "todo",
             priority: task?.priority ?? "medium",
+            dueDate: task?.dueDate ?? "",
         },
         validationSchema: addValidationSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try{
                 setApiError("");
+                const taskValues = {...values, dueDate: values.dueDate || null };
                 if(task){
                     // Edit: preserve status unless the user changes it.
-                    const updatedTask = await updateTask(task.id, {...values,order: task.order});
+                    const updatedTask = await updateTask(task.id, {...taskValues, order: task.order});
                     onSuccess(updatedTask);
                 }else{
                     // Create: always start in the To Do column.
@@ -42,7 +46,7 @@ export default function TaskForm({ task, columns, onSuccess, onCancel}: TaskForm
                     const nextOrder = existingTasks.filter((item) => item.status === status)
                         .reduce((maxOrder, item) => Math.max(maxOrder, item.order),-1) + 1;
 
-                    const createdTask = await createTask({...values, status, order: nextOrder});
+                    const createdTask = await createTask({...taskValues, status, order: nextOrder});
                     onSuccess(createdTask);
                 }
             }catch(error){
@@ -142,13 +146,11 @@ export default function TaskForm({ task, columns, onSuccess, onCancel}: TaskForm
                     <label htmlFor="priority" className="block text-sm font-semibold text-gray-700">
                         Priority
                     </label>
-
                     <select id="priority" name="priority"
                         className="mt-1 mb-4 block w-full rounded-lg border border-gray-300 bg-gray-100 p-2 text-sm text-primary-text transition-all focus:border-hover-primary focus:outline-none focus:ring-2 focus:ring-hover-primary"
                         value={formik.values.priority}
                         onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                    >
+                        onBlur={formik.handleBlur}>
                         {PRIORITY_OPTIONS.map((option) => (
                             <option key={option.value} value={option.value}>
                                 {option.label}
@@ -159,6 +161,26 @@ export default function TaskForm({ task, columns, onSuccess, onCancel}: TaskForm
                     {formik.errors.priority && formik.touched.priority && (
                         <p className="mt-0 mb-2 text-xs font-medium text-error">
                             *{formik.errors.priority}
+                        </p>
+                    )}
+                </div>
+
+                <div>
+                    <label htmlFor="dueDate" className="block text-sm font-semibold text-gray-700">
+                        Due Date
+                    </label>
+
+                    <input type="date" id="dueDate" name="dueDate"
+                        min={getTodayLocalDate()}
+                        value={formik.values.dueDate}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        className="mt-1 mb-4 block w-full rounded-lg border border-gray-300 bg-gray-100 p-2 text-sm text-primary-text transition-all focus:border-hover-primary focus:outline-none focus:ring-2 focus:ring-hover-primary"
+                    />
+
+                    {formik.errors.dueDate && formik.touched.dueDate && (
+                        <p className="mt-0 mb-2 text-xs font-medium text-error">
+                            *{formik.errors.dueDate}
                         </p>
                     )}
                 </div>

@@ -8,6 +8,7 @@ import useAuth from "@/features/auth/hooks/useAuth";
 import { LogOut, Sun, Moon, Monitor } from "lucide-react";
 import { useSettingHook, type Theme} from "@/features/settings/hooks/useSettingHook";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import DueDateNotifications from "@/features/tasks/components/DueDateNotifications";
 
 export default function Header() {
     const t = useTranslations("header");
@@ -56,7 +57,7 @@ export default function Header() {
                             setIsDropdownOpen(false);
                         }}
                         aria-label={t("theme")}
-                        className="flex items-center gap-1 rounded-md p-1.5 transition hover:bg-slate-100 dark:hover:bg-slate-800"
+                        className="flex items-center gap-1 rounded-md p-1.5 transition hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
                     >
                         {getThemeIcon(theme)}
                     </button>
@@ -108,6 +109,8 @@ export default function Header() {
                     )}
                 </div>
 
+                <DueDateNotifications />
+
                 {/* User Profile */}
                 <div className="relative flex cursor-pointer items-center justify-between gap-1 border-l border-slate-200 pl-2" onClick={() => {
                         setIsDropdownOpen((prev) => !prev);
@@ -139,7 +142,7 @@ export default function Header() {
 
                             <div className="py-1.5">
                                 <button type="button" onClick={logout}
-                                    className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-error hover:bg-red-50 disabled:opacity-50 dark:text-red-400 dark:hover:bg-red-950"
+                                    className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-error hover:bg-red-50 disabled:opacity-50 dark:text-red-400 dark:hover:bg-red-950 cursor-pointer"
                                 >
                                     <LogOut className="h-4 w-4" />
                                     <span>{t("logout")}</span>

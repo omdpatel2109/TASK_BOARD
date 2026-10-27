@@ -101,9 +101,7 @@ function SortableTaskColumn({ column, tasks, onEdit, onDelete, onToggleVisibilit
                         )}
 
                         {columnTasks.map((task) => (
-                            <TaskCard key={task.id} task={task}
-                                onEdit={onEdit} onDelete={onDelete}
-                            />
+                            <TaskCard key={task.id} task={task} onEdit={onEdit} onDelete={onDelete}/>
                         ))}
                     </div>
                 </SortableContext>
@@ -248,7 +246,7 @@ export default function TaskColumns({tasks, columns, onDragEnd, onColumnDragEnd,
                         </p>
 
                         <p className="mt-1 line-clamp-2 text-sm text-gray-600 dark:text-slate-300">
-                            {activeTask.description || "No description"}
+                            Description: {activeTask.description || "No description"}
                         </p>
                     </div>
                 ) : null}

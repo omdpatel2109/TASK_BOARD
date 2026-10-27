@@ -40,15 +40,14 @@ export default function SideBar() {
           const isActive = pathName === item.href;
 
           return (
-            <Link key={item.href} href={item.href}
-              title={!isExpanded ? t(item.key) : undefined}
+            <Link key={item.href} href={item.href} title={!isExpanded ? t(item.key) : undefined}
               className={`flex w-full items-center rounded-lg py-3 text-md font-medium ${
                 isExpanded ? "gap-3 px-3" : "justify-center px-0"} ${
                 isActive ? "bg-blue-200 text-primary dark:bg-slate-800 dark:text-blue-400"
                   : "text-primary-text hover:bg-blue-100 dark:text-slate-300 dark:hover:bg-slate-900"
               }`}
             >
-              <Icon className="h-5 w-5 shrink-0" />
+              <Icon className="h-5 w-5 " />
 
               {isExpanded && <span>{t(item.key)}</span>}
             </Link>

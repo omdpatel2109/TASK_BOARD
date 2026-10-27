@@ -4,29 +4,29 @@ import Link from "next/link";
 import { Bell, CalendarDays, X } from "lucide-react";
 import { useTasks } from "@/features/tasks/hooks/useTasks";
 
-function getDueDateInfo(dueDate: string) {
+export function getDueDateInfo(dueDate: string){
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const due = new Date(`${dueDate}T00:00:00`);
     const differenceInDays = Math.round(
         (due.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
     );
-    if (differenceInDays < 0) {
+    if(differenceInDays < 0){
         return {
             label: "Overdue",
-            style: "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300",
+            style: "date-overdue",
         };
     }
-    if (differenceInDays === 0) {
+    if(differenceInDays === 0){
         return {
             label: "Due today",
-            style: "bg-orange-100 text-orange-700 dark:bg-orange-950 dark:text-orange-300",
+            style: "date-duetoday",
         };
     }
     if (differenceInDays <= 3) {
         return {
             label: "Due soon",
-            style: "bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300",
+            style: "date-duesoon",
         };
     }
     return null;
@@ -37,10 +37,10 @@ export default function DueDateNotifications() {
     const [isOpen, setIsOpen] = useState(false);
 
     const notifications = tasks.filter((task) => {
-        if (!task.dueDate || task.status === "done") {
+        if(!task.dueDate || task.status === "done"){
             return false;
         }
-            return getDueDateInfo(task.dueDate) !== null;
+        return getDueDateInfo(task.dueDate) !== null;
     }).sort((a, b) => a.dueDate!.localeCompare(b.dueDate!));
 
     return (

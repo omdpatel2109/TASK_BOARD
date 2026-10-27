@@ -73,21 +73,9 @@ export default function Header() {
 
                             <div className="py-1">
                                 {([
-                                    {
-                                        mode: "light",
-                                        icon: <Sun className="h-4 w-4" />,
-                                        key: "light",
-                                    },
-                                    {
-                                        mode: "dark",
-                                        icon: <Moon className="h-4 w-4" />,
-                                        key: "dark",
-                                    },
-                                    {
-                                        mode: "system",
-                                        icon: <Monitor className="h-4 w-4" />,
-                                        key: "system",
-                                    },
+                                    {mode: "light", icon: <Sun className="h-4 w-4"/>, key: "light"},
+                                    {mode: "dark", icon: <Moon className="h-4 w-4" />, key: "dark"},
+                                    {mode: "system", icon: <Monitor className="h-4 w-4" />, key: "system"}
                                 ] as const).map(({ mode, icon, key }) => (
                                     <button key={mode} type="button"
                                         onClick={() => {

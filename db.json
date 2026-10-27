@@ -24,7 +24,7 @@
       "title": "To be discussed",
       "order": 2,
       "id": "S7kZSBep1wo"
-    } 
+    }
   ],
   "tasks": [
     {
@@ -47,7 +47,7 @@
       "title": "Side bar and Header",
       "description": "Create a global component for Side bar and header to import in every page",
       "status": "in_progress",
-      "order": 1,
+      "order": 0,
       "id": "3rHh1uZEhHs",
       "priority": "low",
       "dueDate": "2026-10-31"
@@ -81,7 +81,7 @@
     {
       "title": "Task details page",
       "description": "Page with the all information of the task, after click on the each task,open the task detail page",
-      "status": "in_progress",
+      "status": "S7kZSBep1wo",
       "order": 0,
       "id": "MZqA1sH3r1k",
       "priority": "medium",
@@ -111,6 +111,15 @@
       "id": "BvJrpxancyc",
       "priority": "medium",
       "dueDate": "2026-10-28"
+    },
+    {
+      "title": "m",
+      "description": "m",
+      "status": "in_progress",
+      "priority": "high",
+      "dueDate": "2026-11-08",
+      "order": 1,
+      "id": "0LI05tpJKds"
     }
   ],
   "comments": [

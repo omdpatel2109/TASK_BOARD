@@ -160,7 +160,10 @@ export function useTasks() {
         if (!task) return;
         // Check whether the drop target is a task or a column
         const targetTask = tasks.find((item) => String(item.id) === overId);
-        const newStatus = targetTask ? targetTask.status : overId;  
+        const dropData = over.data.current;
+
+        const newStatus = dropData?.type === "priority-group" ? String(dropData.columnId)
+        : targetTask ? targetTask.status : overId;
         
         // sort the columns task in which the task is moved from old to new
         const destinationTasks = tasks.filter((item) => item.status === newStatus).sort((a, b) => a.order - b.order);
@@ -169,8 +172,9 @@ export function useTasks() {
         if (task.status === newStatus){// drag and drop in the same column
             //changes within the same column
             const oldIndex = destinationTasks.findIndex((item) => String(item.id) === taskId);
-            const newIndex = destinationTasks.findIndex((item) => String(item.id) === overId);
-            if (newIndex === -1) return;
+            const newIndex = targetTask ? destinationTasks.findIndex(
+                (item) => String(item.id) === overId) : destinationTasks.length - 1;
+            if (oldIndex === -1) return;
             reorderedTasks = arrayMove(destinationTasks, oldIndex, newIndex);
         }else{
             // Move to another column
@@ -201,6 +205,7 @@ export function useTasks() {
                             title: item.title,
                             description: item.description,
                             status: item.status,
+                            priority: item.priority,
                             order: item.order,
                         })
                     )

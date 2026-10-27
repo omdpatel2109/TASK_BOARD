@@ -3,12 +3,12 @@
     {
       "id": "todo",
       "title": "Todo",
-      "order": 0
+      "order": 1
     },
     {
       "id": "in_progress",
       "title": "In Progress",
-      "order": 1
+      "order": 0
     },
     {
       "id": "done",
@@ -38,8 +38,8 @@
     {
       "title": "Create Login Page",
       "description": "Login Page with the email and password field with validation",
-      "status": "in_review",
-      "order": 0,
+      "status": "S7kZSBep1wo",
+      "order": 2,
       "id": "aKy_g7JMrHE",
       "priority": "low"
     },
@@ -47,7 +47,7 @@
       "title": "Side bar and Header",
       "description": "Create a global component for Side bar and header to import in every page",
       "status": "in_progress",
-      "order": 0,
+      "order": 1,
       "id": "3rHh1uZEhHs",
       "priority": "low",
       "dueDate": "2026-10-31"
@@ -55,7 +55,7 @@
     {
       "title": "Fetch api and endpoints",
       "description": "Fetch the api for display task, add task, edit task, delete task",
-      "status": "todo",
+      "status": "in_progress",
       "order": 0,
       "id": "qAoJwnvcWT0",
       "priority": "high",
@@ -64,7 +64,7 @@
     {
       "title": "Add task form for edit and add task",
       "description": "Add task will add the task and show in the column of the same status.\n",
-      "status": "S7kZSBep1wo",
+      "status": "in_review",
       "order": 0,
       "id": "wxHoljkkGZs",
       "priority": "low",
@@ -107,7 +107,7 @@
       "title": "apply authentication",
       "description": "apply authentication",
       "status": "todo",
-      "order": 1,
+      "order": 0,
       "id": "BvJrpxancyc",
       "priority": "medium",
       "dueDate": "2026-10-28"
@@ -115,7 +115,7 @@
     {
       "title": "m",
       "description": "m",
-      "status": "in_progress",
+      "status": "todo",
       "priority": "high",
       "dueDate": "2026-11-08",
       "order": 1,

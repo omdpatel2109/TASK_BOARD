@@ -99,9 +99,7 @@ export function useTasks() {
             });
 
             setColumns((currentColumns) =>
-                [...currentColumns, createdColumn].sort(
-                    (a, b) => a.order - b.order
-                )
+                [...currentColumns, createdColumn].sort((a, b) => a.order - b.order)
             );
             return true;
         }catch(error){
@@ -122,10 +120,10 @@ export function useTasks() {
 
         if (oldIndex === -1 || newIndex === -1) return false;
 
-        // Move the column locally first for a smooth UI. 
+        // Move the column locally first for a smooth UI.
         // arrayMove -> It creates a reordered array by moving an element from one index to another(dnd kit)
-        const reorderedColumns = arrayMove(previousColumns,oldIndex,newIndex
-        ).map((column, index) => ({
+        const reorderedColumns = arrayMove(previousColumns, oldIndex, newIndex).map
+        ((column, index) => ({
             ...column,
             order: index, //update the order after arrayMove reorder the columns
         }));
@@ -151,19 +149,20 @@ export function useTasks() {
         }
     }
 
+    //Reordering tasks within the same column & Moving tasks between columns
     async function handleDragEnd(event: DragEndEvent) {
         const { active, over } = event;
         if (!over || active.id === over.id) return;
         const taskId = String(active.id); //task card id
-        const overId = String(over.id); //column id
+        const overId = String(over.id); //column id or if you dop over any other task card then its id
         const task = tasks.find((item) => String(item.id) === taskId); //find the dragged task
         if (!task) return;
         // Check whether the drop target is a task or a column
         const targetTask = tasks.find((item) => String(item.id) === overId);
-        const dropData = over.data.current;
+        const dropData = over.data.current; //mets data of dopped target
 
         const newStatus = dropData?.type === "priority-group" ? String(dropData.columnId)
-        : targetTask ? targetTask.status : overId;
+            : targetTask ? targetTask.status : overId;
         
         // sort the columns task in which the task is moved from old to new
         const destinationTasks = tasks.filter((item) => item.status === newStatus).sort((a, b) => a.order - b.order);
@@ -175,26 +174,33 @@ export function useTasks() {
             const newIndex = targetTask ? destinationTasks.findIndex(
                 (item) => String(item.id) === overId) : destinationTasks.length - 1;
             if (oldIndex === -1) return;
+            //It returns a new array with reorder the original index to the destination index by dnd
             reorderedTasks = arrayMove(destinationTasks, oldIndex, newIndex);
         }else{
-            // Move to another column
+            // Move to another column so sort the source column
             const sourceTasks = tasks.filter((item) =>
                     item.status === task.status &&
                     String(item.id) !== taskId
                 ).sort((a, b) => a.order - b.order);
 
             const movedTask = { ...task, status: newStatus };
-            const targetIndex = targetTask ? destinationTasks.findIndex(
+            const targetIndex = targetTask ? destinationTasks.findIndex( //new index of the task
                     (item) => String(item.id) === overId
                 ) : destinationTasks.length;
 
             const updatedDestination = [...destinationTasks];
-            updatedDestination.splice(targetIndex < 0 ? updatedDestination.length : targetIndex, 0,movedTask);
+            updatedDestination.splice(targetIndex < 0 ? updatedDestination.length : targetIndex,0,movedTask);
 
             reorderedTasks = updatedDestination;
             // update both source and destination columns
-            const updatedTasks = [...sourceTasks.map((item, index) => ({...item,order: index,})),
-                ...reorderedTasks.map((item, index) => ({...item, order: index,})),];
+            const updatedTasks = [...sourceTasks.map((item, index) => ({
+                    ...item,
+                    order: index
+                })),
+                ...reorderedTasks.map((item, index) => ({
+                    ...item, 
+                    order: index}))];
+            
             setTasks((current) => current.map( (item) =>
                 updatedTasks.find( (updated) => updated.id === item.id
                 ) ?? item));
@@ -221,7 +227,6 @@ export function useTasks() {
 
         // Save the new order for same-column reordering
         const updatedTasks = reorderedTasks.map((item, index) => ({...item,order: index}));
-
         setTasks((current) =>current.map((item) =>
                 updatedTasks.find((updated) => updated.id === item.id) ?? item
             )

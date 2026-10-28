@@ -8,21 +8,6 @@ export const api = axios.create({
     timeout: 1000,
 });
 
-// Request Interceptor
-api.interceptors.request.use(
-    (config) => {
-        // Runs before every API request.
-        console.log(
-            `[API Request] ${config.method?.toUpperCase()} ${config.url}`
-        );
-
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
-
 // Reusable error-message helper
 export function getApiErrorMessage(error: unknown): string {
     if (axios.isAxiosError(error)) {

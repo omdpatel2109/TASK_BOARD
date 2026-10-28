@@ -16,16 +16,14 @@ export default function CommentBox({taskId, currentUser, addComment, error}: Com
     const [text, setText] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
-
     async function handleAddComment(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const trimmedText = text.trim();
-        if (!trimmedText || isSubmitting) return;
+        if(!trimmedText || isSubmitting) return;
 
         try{
             setIsSubmitting(true);
             const commentDate = new Date().toISOString();
-
             await addComment({
                 taskId,
                 text: trimmedText,

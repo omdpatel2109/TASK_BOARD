@@ -10,6 +10,7 @@ import type { SafeUser } from "@/features/auth/type/userType";
 import { useTasks } from "../hooks/useTasks";
 import { getPriorityStyle } from "./TaskCard";
 import { getDueDateStyle } from "./TaskCard";
+import { getSalt } from "bcryptjs";
 
 interface TaskDetailsProps {
     task: Task;
@@ -52,10 +53,11 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
         setIsEditing(false);
     }
 
-    const statusLabels: Record<Task["status"], string> = {
-        todo: "To Do",
-        in_progress: "In Progress",
-        done: "Completed"
+    const getStatusLabel = (status: string) => {
+        const column = columns.find(
+            (column) => String(column.id) === String(status)
+        );
+        return column?.title ?? "Unknown Status";
     };
 
     if(isUserLoading){
@@ -104,7 +106,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                             <span
                                 className="w-fit rounded-full px-3 py-1 text-xs font-medium mb-5 bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-200 " 
                             >
-                                {statusLabels[task.status]}
+                                {getStatusLabel(task.status)}
                             </span>
                             {task.dueDate && ((() => {
                                 const dueDateInfo = getDueDateStyle(task.dueDate);

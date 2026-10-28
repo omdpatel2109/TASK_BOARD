@@ -33,7 +33,8 @@
       "status": "done",
       "order": 2,
       "id": "KB3HkVfCQVM",
-      "priority": "medium"
+      "priority": "medium",
+      "dueDate": "2026-11-03"
     },
     {
       "title": "Create Login Page",
@@ -59,7 +60,7 @@
       "order": 0,
       "id": "qAoJwnvcWT0",
       "priority": "high",
-      "dueDate": "2026-10-27"
+      "dueDate": "2026-10-30"
     },
     {
       "title": "Add task form for edit and add task",
@@ -76,7 +77,8 @@
       "status": "done",
       "order": 1,
       "id": "60Dfk6ouHoE",
-      "priority": "high"
+      "priority": "high",
+      "dueDate": "2026-11-04"
     },
     {
       "title": "Task details page",
@@ -93,7 +95,8 @@
       "status": "S7kZSBep1wo",
       "order": 1,
       "id": "hwySdpJnJrU",
-      "priority": "medium"
+      "priority": "medium",
+      "dueDate": "2026-11-04"
     },
     {
       "title": "Fetch comments api",
@@ -101,7 +104,8 @@
       "status": "done",
       "order": 0,
       "id": "XxjqN75hBac",
-      "priority": "high"
+      "priority": "high",
+      "dueDate": "2026-11-05"
     },
     {
       "title": "apply authentication",
@@ -110,16 +114,7 @@
       "order": 0,
       "id": "BvJrpxancyc",
       "priority": "medium",
-      "dueDate": "2026-10-28"
-    },
-    {
-      "title": "m",
-      "description": "m",
-      "status": "todo",
-      "priority": "high",
-      "dueDate": "2026-11-08",
-      "order": 1,
-      "id": "0LI05tpJKds"
+      "dueDate": "2026-11-01"
     }
   ],
   "comments": [

@@ -11,11 +11,7 @@ export async function loginUser(credentials: LoginCredentials): Promise<LoginRes
 }
 
 export async function getAuthenticatedUser(accessToken: string): Promise<SafeUser> {
-  const response = await authApi.get<UserType>("/auth/me", {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+  const response = await authApi.get<UserType>("/auth/me");
   const user = response.data;
   return {
     id: user.id,

@@ -1,13 +1,5 @@
 import "./globals.css";
 
-// export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
-//     return (
-//         <html lang="en">
-//             <body>{children}</body>
-//         </html>
-//     );
-// }
-
 import type { ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl"; //purpose is to make translation messages available to Client Components, The provider supplies the translation messages that client-side translation hooks need.
 import { getLocale, getMessages } from "next-intl/server";

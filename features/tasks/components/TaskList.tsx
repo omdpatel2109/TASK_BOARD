@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import type { Task } from "@/features/tasks/type/taskType";
 import { useTasks } from "../hooks/useTasks";
 import { getPriorityStyle } from "./TaskCard";
+import { ArrowUpRight } from "lucide-react";
 
 interface TaskListProps {
     tasks: Task[];
@@ -20,89 +21,120 @@ export default function TaskList({ tasks }: TaskListProps) {
         setCurrentPage((page) => Math.max(1, Math.min(page, totalPages || 1)));
     }, [totalPages]);
     const startIndex = (currentPage - 1) * TASKS_PER_PAGE;
-    const paginatedTasks = tasks.slice(startIndex,startIndex + TASKS_PER_PAGE);
+    const paginatedTasks = tasks.slice(startIndex, startIndex + TASKS_PER_PAGE);
     const { columns } = useTasks();
-
     const getStatusLabel = (status: string) => {
-        const column = columns.find((column) => String(column.id) === String(status));
+        const column = columns.find(
+            (column) => String(column.id) === String(status)
+        );
         return column?.title ?? "Unknown Status";
     };
 
     return (
-        <div>
-            {tasks.length === 0 ? (
-                <div className="rounded-lg mt-3 border bg-white border-slate-300 p-8 text-center dark:bg-slate-900 dark:border-slate-700">
-                    <p className="font-medium text-primary-text dark:text-slate-200">
-                        No tasks found.
-                    </p>
+        <div className="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4 dark:border-slate-700">
+                <div>
+                    <h2 className="font-semibold text-primary-text dark:text-slate-100">
+                        All Tasks
+                    </h2>
                     <p className="mt-1 text-sm text-secondary-text dark:text-slate-400">
+                        View and manage your tasks.
+                    </p>
+                </div>
+            </div>
+
+            {tasks.length === 0 ? (
+                /* Empty state */
+                <div className="px-5 py-12 text-center">
+                    <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                        No tasks found
+                    </p>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                         Try changing your search or status filter.
                     </p>
                 </div>
             ) : (
                 <>
-                    {/* Task cards */}
-                    <div className="space-y-4 mt-3">
-                        {paginatedTasks.map((task) => (
-                            <div key={task.id} className="rounded-lg border border-gray-200 bg-white pl-4 pt-3 pb-3 pr-3 shadow-sm dark:bg-slate-900 dark:border-slate-700"
-                            >                                
-                            <div className="flex flex-col justify-between gap-3 sm:flex-row">
-                                <div>
-                                    <h2 className="text-lg font-semibold text-primary-text dark:text-slate-100">
-                                        {task.title}
-                                    </h2>
+                    {/* Column headings */}
+                    <div className="grid-cols-12 gap-4 border-b border-slate-200 bg-slate-50/70 px-5 py-3 text-md font-medium text-slate-500 md:grid dark:border-slate-700 dark:bg-slate-800/40 dark:text-slate-400">
+                        <div className="col-span-6">Task</div>
+                        <div className="col-span-2">Priority</div>
+                        <div className="col-span-2">Status</div>
+                        <div className="col-span-2 text-center ">Action</div>
+                    </div>
 
-                                    <p className="mt-2 text-sm text-secondary-text dark:text-slate-400">
-                                        Description:{" "}
+                    {/* Task rows */}
+                    <div className="divide-y divide-slate-100 dark:divide-slate-800">
+                        {paginatedTasks.map((task) => (
+                            <div key={task.id} className="grid grid-cols-1 gap-3 px-5 py-4  hover:bg-slate-50/70 sm:grid-cols-2 md:grid-cols-12 md:items-center md:gap-4 dark:hover:bg-slate-800/30">
+                                {/* Task details */}
+                                <div className="min-w-0 sm:col-span-2 md:col-span-6">
+                                    <h3 className="text-md font-semibold text-primary-text dark:text-slate-100">
+                                        {task.title}
+                                    </h3>
+                                    <p className="mt-1 text-sm text-secondary-text dark:text-slate-400">
                                         {task.description || "No description provided."}
                                     </p>
                                 </div>
 
-                                <div className="flex flex-wrap items-start gap-2">
-                                    <span
-                                        className={`h-fit w-fit rounded-full px-3 py-1 text-xs font-semibold capitalize ${getPriorityStyle(task.priority)}`}
-                                    >
-                                        {task.priority ?? ""}
+                                {/* Priority */}
+                                <div className="flex items-center gap-2 md:col-span-2">
+                                    <span className="text-xs text-slate-500 md:hidden dark:text-slate-400">
+                                        Priority:
                                     </span>
-
-                                    <span
-                                        className="h-fit w-fit rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-700 dark:text-slate-200"
+                                    <span className={`rounded-md px-2 py-1 text-xs font-medium capitalize ${getPriorityStyle(task.priority)}`}
                                     >
+                                        {task.priority || "Not set"}
+                                    </span>
+                                </div>
+
+                                {/* Neutral status */}
+                                <div className="flex items-center gap-2 md:col-span-2">
+                                    <span className="text-xs text-slate-500 md:hidden dark:text-slate-400">
+                                        Status:
+                                    </span>
+                                    <span className="text-sm bg-slate-100 rounded-full px-3 py-1 text-slate-700 dark:bg-slate-700 dark:text-slate-200">
                                         {getStatusLabel(task.status)}
                                     </span>
                                 </div>
-                            </div>
 
-
-                                <button type="button" onClick={() =>
-                                        router.push(`/tasks/tasks/${task.id}`)
-                                    }
-                                    className="mt-2 cursor-pointer text-sm font-semibold text-primary hover:text-hover-primary dark:text-blue-500 dark:hover:text-blue-400"
-                                >
-                                    View Details
-                                </button>
+                                {/* View details */}
+                                <div className="flex items-center md:col-span-2 md:justify-end">
+                                    <button type="button" onClick={() => router.push(`/tasks/tasks/${task.id}`)}
+                                    className="inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-sm font-medium text-primary hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white">
+                                        View details
+                                        <ArrowUpRight size={15} />
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>
 
                     {/* Pagination */}
-                    <div className="mt-2 flex flex-col items-center justify-between gap-4 p-4  sm:flex-row">
-                        <p className="text-sm text-primary-text dark:text-slate-400">
-                            Showing {Math.min(startIndex + TASKS_PER_PAGE,tasks.length)}{" "} of {tasks.length} tasks
+                    <div className="flex flex-col gap-3 border-t border-slate-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between dark:border-slate-700">
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                            Showing{" "}
+                            <span className="font-medium text-slate-700 dark:text-slate-200">
+                                 {Math.min(startIndex + TASKS_PER_PAGE,tasks.length)}{" "} of {tasks.length} tasks
+                            </span>{" "}
+                            
                         </p>
 
-                        <div className="flex flex-wrap items-center justify-center gap-2">
-                            <button type="button" disabled={currentPage === 1}
-                                onClick={() => setCurrentPage((page) => page - 1)}
-                                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-primary-text hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:text-slate-400 dark:hover:bg-slate-800"
-                            >
+                        <div className="flex items-center gap-3">
+                            <button type="button" disabled={currentPage <= 1}
+                                onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+                                className="rounded-md border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600  hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">
                                 Previous
                             </button>
-                            <span className="text-primary-text dark:text-slate-400">{currentPage}</span>
-                            <button type="button" disabled={currentPage === totalPages}
-                                onClick={() => setCurrentPage((page) => page + 1)}
-                                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-primary-text hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-600 dark:text-slate-400 dark:hover:bg-slate-800"
-                            >
+
+                            <span className="whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">
+                                {currentPage} / {Math.max(totalPages, 1)}
+                            </span>
+
+                            <button type="button" disabled={currentPage >= totalPages}
+                                onClick={()=>setCurrentPage((page) => Math.min(totalPages, page+1))}
+                                className="rounded-md border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600  hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">
                                 Next
                             </button>
                         </div>

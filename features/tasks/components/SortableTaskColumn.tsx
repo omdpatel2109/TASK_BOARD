@@ -58,7 +58,7 @@ export default function SortableTaskColumn({ column, tasks, onEdit, onDelete, on
 
     return (
         <div ref={setNodeRef} style={{
-                transform: CSS.Transform.toString(transform),
+                transform: CSS.Transform.toString(transform),//converts dnd-kit's calculated movement into CSS that the browser can apply
                 transition,
                 opacity: isDragging ? 0.5 : 1,
                 position: "relative",

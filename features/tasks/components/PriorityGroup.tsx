@@ -37,10 +37,10 @@ export default function PriorityGroup({columnId, priority, label, dot, tasks, on
                 className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-3 text-left hover:bg-gray-50 dark:hover:bg-slate-800">
                 <div className="flex min-w-0 items-center gap-2">
                     <span className={`h-2.5 w-2.5 rounded-full ${dot}`} />
-                    <span className="truncate text-sm font-semibold text-gray-700 dark:text-slate-200">
+                    <span className="truncate text-sm font-semibold text-gray-700 dark:text-third-dark-text">
                         {label}
                     </span>
-                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-slate-800 dark:text-slate-300">
+                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-slate-800 dark:text-third-dark-text">
                         {tasks.length}
                     </span>
                 </div>
@@ -63,7 +63,7 @@ export default function PriorityGroup({columnId, priority, label, dot, tasks, on
                     </SortableContext>
 
                     {tasks.length === 0 && (
-                        <p className="px-3 py-2 text-xs text-gray-400 dark:text-slate-500">
+                        <p className="px-3 py-2 text-xs text-gray-400 dark:text-secondary-dark-text">
                             No tasks in this group
                         </p>
                     )}

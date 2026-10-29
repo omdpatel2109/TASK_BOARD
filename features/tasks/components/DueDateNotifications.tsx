@@ -47,7 +47,7 @@ export default function DueDateNotifications() {
         <div className="relative">
             {/* Notification Bell */}
             <button type="button" onClick={() => setIsOpen((previous) => !previous)}
-                className="relative flex h-10 w-10 items-center justify-center rounded-full text-primary-text transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 cursor-pointer"
+                className="relative flex h-10 w-10 items-center justify-center rounded-full text-primary-text transition hover:bg-slate-100 dark:text-third-dark-text dark:hover:bg-slate-700 cursor-pointer"
             >
                 <Bell className="h-5 w-5" />
                 {notifications.length > 0 && (
@@ -62,7 +62,7 @@ export default function DueDateNotifications() {
                 <div className="absolute right-0 top-full z-50 mt-2 w-80 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800 sm:w-96">
                     <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 dark:border-slate-700">
                         <div>
-                            <h3 className="font-semibold text-slate-900 dark:text-white">
+                            <h3 className="font-semibold text-slate-900 dark:text-primary-dark-text">
                                 Due Date Notifications
                             </h3>
                         </div>
@@ -76,11 +76,11 @@ export default function DueDateNotifications() {
                     <div className="max-h-96 overflow-y-auto">
                         {notifications.length === 0 ? (
                             <div className="px-4 py-8 text-center">
-                                <Bell className="mx-auto mb-2 h-8 w-8 text-slate-300 dark:text-slate-600" />
-                                <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                                <Bell className="mx-auto mb-2 h-8 w-8 text-slate-300 dark:text-primary-dark-text" />
+                                <p className="text-sm font-medium text-slate-700 dark:text-third-dark-text">
                                     You're all caught up!
                                 </p>
-                                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                                <p className="mt-1 text-xs text-slate-500 dark:text-secondary-dark-text">
                                     No tasks are due within the next 3 days.
                                 </p>
                             </div>
@@ -91,16 +91,16 @@ export default function DueDateNotifications() {
                                 return (
                                     <Link key={task.id} href={`/tasks/tasks/${task.id}`}
                                         onClick={() => setIsOpen(false)}
-                                        className="block border-b border-slate-100 px-4 py-3 transition last:border-b-0 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-700/50">
+                                        className="block border-b border-slate-100 px-4 py-3 transition hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-700/50">
                                         <div className="flex items-start gap-3">
-                                            <CalendarDays className="mt-0.5 h-5 w-5 shrink-0 text-slate-500 dark:text-slate-400" />
+                                            <CalendarDays className="mt-0.5 h-5 w-5 shrink-0 text-slate-500 dark:text-secondary-dark-text"/>
 
                                             <div className="min-w-0 flex-1">
-                                                <p className="text-sm font-medium text-slate-800 dark:text-white">
+                                                <p className="text-sm font-medium text-slate-800 dark:text-primary-dark-text">
                                                     {task.title}
                                                 </p>
 
-                                                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                                                <p className="mt-1 text-xs text-slate-500 dark:text-secondary-dark-text">
                                                     Due:{" "}{new Date(`${task.dueDate}T00:00:00`).toLocaleDateString(
                                                         undefined,
                                                         {

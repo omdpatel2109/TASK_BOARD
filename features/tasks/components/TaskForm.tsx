@@ -66,9 +66,9 @@ export default function TaskForm({ task, columns, onSuccess, onCancel}: TaskForm
                 </div>
             )}
 
-            <form onSubmit={formik.handleSubmit} className="mx-auto max-w-md rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <form onSubmit={formik.handleSubmit} className="mx-auto max-w-md rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:bg-background dark:border-slate-700">
                 <div>
-                    <label htmlFor="title" className="block text-sm font-semibold text-secondary-text">
+                    <label htmlFor="title" className="block text-sm font-semibold text-secondary-text dark:text-secondary-dark-text">
                         Title
                     </label>
 
@@ -87,7 +87,7 @@ export default function TaskForm({ task, columns, onSuccess, onCancel}: TaskForm
                 </div>
 
                 <div>
-                    <label htmlFor="description" className="block text-sm font-semibold text-gray-700">
+                    <label htmlFor="description" className="block text-sm font-semibold text-gray-700 dark:text-secondary-dark-text">
                         Description
                     </label>
 
@@ -109,7 +109,7 @@ export default function TaskForm({ task, columns, onSuccess, onCancel}: TaskForm
                 {/* Status is editable only for existing tasks. */}
                 {task && (
                     <div>
-                        <label htmlFor="status" className="block text-sm font-semibold text-gray-700">
+                        <label htmlFor="status" className="block text-sm font-semibold text-gray-700 dark:text-secondary-dark-text">
                             Status
                         </label>
 
@@ -143,7 +143,7 @@ export default function TaskForm({ task, columns, onSuccess, onCancel}: TaskForm
 
                 {/* Priority is available when creating and editing. */}
                 <div>
-                    <label htmlFor="priority" className="block text-sm font-semibold text-gray-700">
+                    <label htmlFor="priority" className="block text-sm font-semibold text-gray-700 dark:text-secondary-dark-text">
                         Priority
                     </label>
                     <select id="priority" name="priority"
@@ -166,7 +166,7 @@ export default function TaskForm({ task, columns, onSuccess, onCancel}: TaskForm
                 </div>
 
                 <div>
-                    <label htmlFor="dueDate" className="block text-sm font-semibold text-gray-700">
+                    <label htmlFor="dueDate" className="block text-sm font-semibold text-gray-700 dark:text-secondary-dark-text">
                         Due Date
                     </label>
 

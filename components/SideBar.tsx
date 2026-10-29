@@ -17,7 +17,7 @@ export default function SideBar() {
   const [isExpanded, setIsExpanded] = useState(true);
 
   return (
-    <div className={`sticky top-0 flex h-screen flex-col border-r border-slate-200 bg-white duration-200 dark:border-slate-800 dark:bg-slate-950 ${isExpanded ? "w-60" : "w-16"}`}
+    <div className={`sticky top-0 flex h-screen flex-col border-r border-slate-200 bg-white duration-200 dark:border-slate-800 dark:bg-background ${isExpanded ? "w-60" : "w-16"}`}
     >
       <div className={`mb-3 mt-3 flex h-14 items-center p-2 ${ isExpanded ? "justify-between" : "justify-center"}`}>
         {isExpanded && (
@@ -27,7 +27,7 @@ export default function SideBar() {
         )}
 
         <button type="button" onClick={() => setIsExpanded((prev) => !prev)}
-          className="rounded-md p-2 text-secondary-text/50 hover:text-primary-text dark:hover:bg-slate-800 cursor-pointer"
+          className="rounded-md p-2 text-secondary-text/50 hover:text-primary-text dark:hover:bg-slate-800 cursor-pointer dark:text-secondary-dark-text"
         >
           {isExpanded ? (<PanelLeftClose size={20} />) : (<PanelLeftOpen size={20} />)}
         </button>
@@ -44,7 +44,7 @@ export default function SideBar() {
               className={`flex w-full items-center rounded-lg py-3 text-md font-medium ${
                 isExpanded ? "gap-3 px-3" : "justify-center px-0"} ${
                 isActive ? "bg-blue-200 text-primary dark:bg-slate-800 dark:text-blue-400"
-                  : "text-primary-text hover:bg-blue-100 dark:text-slate-300 dark:hover:bg-slate-900"
+                  : "text-primary-text hover:bg-blue-100 dark:text-third-dark-text dark:hover:bg-slate-900"
               }`}
             >
               <Icon className="h-5 w-5 " />

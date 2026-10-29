@@ -18,7 +18,7 @@ export default function LanguageSwitcher() {
 
     return (
         <select value={locale} onChange={(event) => handleLanguageChange(event.target.value)}
-            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-white cursor-pointer"
+            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-primary-dark-text cursor-pointer"
         >
             {languages.map((language) => (
                 <option key={language.code} value={language.code} className="cursor-pointer">

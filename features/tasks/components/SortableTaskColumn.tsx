@@ -66,11 +66,11 @@ export default function SortableTaskColumn({ column, tasks, onEdit, onDelete, on
             {/* Column Header */}
             <div className="mx-3 mb-3 mt-1 flex items-center justify-between">
                 <div className="flex min-w-0 items-center gap-2">
-                    <h3 className="truncate font-semibold text-gray-700 dark:text-white">
+                    <h3 className="truncate font-semibold text-gray-700 dark:text-primary-dark-text">
                         {column.title}
                     </h3>
 
-                    <span className="rounded-full bg-gray-200 px-2 py-1 text-xs font-medium text-gray-700 dark:bg-slate-700 dark:text-slate-200">
+                    <span className="rounded-full bg-gray-200 px-2 py-1 text-xs font-medium text-gray-700 dark:bg-slate-700 dark:text-third-dark-text">
                         {columnTasks.length}
                     </span>
                 </div>
@@ -79,7 +79,7 @@ export default function SortableTaskColumn({ column, tasks, onEdit, onDelete, on
                     {columnTasks.length === 0 && (
                         <button type="button" onPointerDown={(event) => event.stopPropagation()}
                             onClick={() => onToggleVisibility(String(column.id))}
-                            className="rounded p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-slate-700 dark:hover:text-white">
+                            className="rounded p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-slate-700 dark:hover:text-primary-dark-text">
                             <EyeOff className="h-4 w-4" />
                         </button>
                     )}

@@ -14,8 +14,8 @@ export default function AlertBox({ message, onClose }: AlertProps) {
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-            <div className="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 ">
+            <div className="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl dark:bg-background">
                 <button type="button" onClick={onClose}
                     aria-label={t("close")} className="absolute right-4 top-4 rounded-full p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700">
                     <X className="h-5 w-5" />
@@ -26,11 +26,11 @@ export default function AlertBox({ message, onClose }: AlertProps) {
                         <AlertCircle className="h-6 w-6 text-error" />
                     </div>
 
-                    <h2 className="mb-2 text-lg font-semibold text-primary-text">
+                    <h2 className="mb-2 text-lg font-semibold text-primary-text dark:text-primary-dark-text">
                         {t("loginFailed")}
                     </h2>
 
-                    <p className="mb-6 text-sm leading-6 text-secondary-text">
+                    <p className="mb-6 text-sm leading-6 text-secondary-text dark:text-secondary-dark-text">
                         {message}
                     </p>
 

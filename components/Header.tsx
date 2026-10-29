@@ -45,7 +45,7 @@ export default function Header() {
     };
 
     return (
-        <header className="flex min-h-16 w-full items-center justify-end gap-3 border-b border-slate-200 bg-white px-3 py-3 sm:px-6 dark:border-slate-700 dark:bg-slate-950">
+        <header className="flex min-h-16 w-full items-center justify-end gap-3 border-b border-slate-200 bg-white px-3 py-3 sm:px-6 dark:border-slate-700 dark:bg-background">
 
             <LanguageSwitcher />
 
@@ -66,7 +66,7 @@ export default function Header() {
                     {themeDropDown && (
                         <div className="absolute right-0 top-10 z-50 w-40 rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-900">
                             <div className="border-b border-slate-100 px-3 py-2 dark:border-slate-800">
-                                <span className="text-xs font-semibold text-slate-400 dark:text-slate-500">
+                                <span className="text-xs font-semibold text-slate-400 dark:text-secondary-dark-text">
                                     {t("theme")}
                                 </span>
                             </div>
@@ -123,7 +123,7 @@ export default function Header() {
                     {isDropdownOpen && (
                         <div className="absolute right-0 top-10 z-50 w-48 overflow-hidden rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-900">
                             <div className="border-b border-slate-200 px-4 py-3 dark:border-slate-700">
-                                <p className="text-sm font-semibold text-primary-text dark:text-white">
+                                <p className="text-sm font-semibold text-primary-text dark:text-primary-dark-text">
                                     {userName || t("user")}
                                 </p>
                             </div>

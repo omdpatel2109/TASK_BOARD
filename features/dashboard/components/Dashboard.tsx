@@ -45,24 +45,22 @@ export default function Dashboard() {
             {/* Page heading */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold tracking-tight text-primary-text dark:text-white sm:text-3xl">
+                    <h1 className="text-2xl font-bold tracking-tight text-primary-text dark:text-primary-dark-text sm:text-3xl">
                         {t("title")}
                     </h1>
-                    <p className="mt-1 text-sm text-secondary-text dark:text-slate-400">
+                    <p className="mt-1 text-sm text-secondary-text dark:text-secondary-dark-text">
                         {t("subtitle")}
                     </p>
                 </div>
 
-                <Link href="/tasks"
-                    className="flex w-fit items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-hover-primary focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
+                <Link href="/tasks" className="flex w-fit items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-hover-primary focus:outline-none focus:ring-2 focus:ring-blue-500">
                     {t("viewAllTasks")}
                 </Link>
             </div>
 
             {/* Loading state */}
             {isLoading && (
-                <div className="rounded-xl border border-slate-200 bg-white p-8 text-center text-sm text-secondary-text dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400"
+                <div className="rounded-xl border border-slate-200 bg-white p-8 text-center text-sm text-secondary-text dark:border-slate-800 dark:bg-slate-900 dark:text-secondary-dark-text"
                 >
                     {t("loading")}
                 </div>
@@ -93,11 +91,11 @@ export default function Dashboard() {
                                 <div key={stat.key} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
                                     <div className="flex items-start justify-between gap-3">
                                         <div>
-                                            <p className="text-sm font-medium text-secondary-text dark:text-slate-400">
+                                            <p className="text-sm font-medium text-secondary-text dark:text-secondary-dark-text">
                                                 {t(`stats.${stat.key}.label`)}
                                             </p>
 
-                                            <p className="mt-3 text-3xl font-bold tracking-tight text-primary-text dark:text-white">
+                                            <p className="mt-3 text-3xl font-bold tracking-tight text-primary-text dark:text-primary-dark-text">
                                                 {stat.value}
                                             </p>
                                         </div>
@@ -107,7 +105,7 @@ export default function Dashboard() {
                                         </div>
                                     </div>
 
-                                    <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+                                    <p className="mt-3 text-xs text-slate-500 dark:text-secondary-dark-text">
                                         {t(`stats.${stat.key}.description`)}
                                     </p>
                                 </div>
@@ -120,11 +118,11 @@ export default function Dashboard() {
                         <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 lg:col-span-2">
                             <div className="flex items-start justify-between gap-3">
                                 <div>
-                                    <h2 className="text-lg font-semibold text-primary-text dark:text-white">
+                                    <h2 className="text-lg font-semibold text-primary-text dark:text-primary-dark-text">
                                         {t("progress.title")}
                                     </h2>
 
-                                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                    <p className="mt-1 text-sm text-slate-500 dark:text-secondary-dark-text">
                                         {t("progress.description")}
                                     </p>
                                 </div>
@@ -140,7 +138,7 @@ export default function Dashboard() {
                                 />
                             </div>
 
-                            <div className="mt-3 flex justify-between gap-3 text-sm text-slate-500 dark:text-slate-400">
+                            <div className="mt-3 flex justify-between gap-3 text-sm text-slate-500 dark:text-secondary-dark-text">
                                 <span>
                                     {t("progress.completed", {
                                         count: completedTasks,
@@ -157,11 +155,11 @@ export default function Dashboard() {
 
                         {/* Task columns */}
                         <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                            <h2 className="text-lg font-semibold text-primary-text dark:text-white">
+                            <h2 className="text-lg font-semibold text-primary-text dark:text-primary-dark-text">
                                 {t("columns.title")}
                             </h2>
 
-                            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                            <p className="mt-1 text-sm text-slate-500 dark:text-secondary-dark-text">
                                 {t("columns.description")}
                             </p>
 
@@ -173,13 +171,13 @@ export default function Dashboard() {
 
                                         return (
                                             <div key={column.id} className="flex items-center justify-between gap-3">
-                                                <span className="text-sm text-secondary-text dark:text-slate-300">
+                                                <span className="text-sm text-secondary-text dark:text-third-dark-text">
                                                     {t.has(`status.${column.id}`)
                                                         ? t(`status.${column.id}`)
                                                         : column.title}
                                                 </span>
 
-                                                <span className="rounded-md bg-slate-100 px-2.5 py-1 text-sm font-semibold text-secondary-text dark:bg-slate-800 dark:text-slate-200">
+                                                <span className="rounded-md bg-slate-100 px-2.5 py-1 text-sm font-semibold text-secondary-text dark:bg-slate-800 dark:text-third-dark-text">
                                                     {count}
                                                 </span>
                                             </div>

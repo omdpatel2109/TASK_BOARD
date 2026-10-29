@@ -82,11 +82,11 @@ export default function TaskColumns({ tasks, columns, onDragEnd, onColumnDragEnd
             {hiddenColumns.length > 0 && (
                 <div className="relative mb-3 inline-block text-left">
                     <button type="button" onClick={() => setIsDropdownOpen((current) => !current)}
-                        className="flex items-center gap-1.5 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                        className="flex items-center gap-1.5 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-900 dark:text-third-dark-text dark:hover:bg-slate-800"
                     >
                         <Eye className="h-4 w-4" />
                         <span>Hidden Columns</span>
-                        <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-600 dark:bg-slate-800 dark:text-slate-400">
+                        <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-600 dark:bg-slate-800 dark:text-secondary-dark-text">
                             {hiddenColumns.length}
                         </span>
 
@@ -98,7 +98,7 @@ export default function TaskColumns({ tasks, columns, onDragEnd, onColumnDragEnd
                             <div className="fixed inset-0 z-10" onClick={() => setIsDropdownOpen(false)}/>
                             <div className="absolute left-0 z-20 mt-2 w-56 rounded-md border border-gray-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900">
                                 <div className="py-1">
-                                    <div className="px-3 py-1.5 text-xs font-semibold text-gray-400 dark:text-slate-500">
+                                    <div className="px-3 py-1.5 text-xs font-semibold text-gray-400 dark:text-secondary-dark-text">
                                         Select column to restore
                                     </div>
 
@@ -110,7 +110,7 @@ export default function TaskColumns({ tasks, columns, onDragEnd, onColumnDragEnd
                                                         setIsDropdownOpen(false);
                                                     }
                                                 }}
-                                                className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"
+                                                className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:text-third-dark-text dark:hover:bg-slate-800"
                                             >
                                                 {column.title}
                                             </button>
@@ -143,7 +143,7 @@ export default function TaskColumns({ tasks, columns, onDragEnd, onColumnDragEnd
                             {activeTask.title}
                         </p>
 
-                        <p className="mt-1 line-clamp-2 text-sm text-gray-600 dark:text-slate-300">
+                        <p className="mt-1 line-clamp-2 text-sm text-gray-600 dark:text-third-dark-text">
                             Description:{" "}
                             {activeTask.description || "No description"}
                         </p>

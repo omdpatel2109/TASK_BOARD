@@ -37,7 +37,7 @@ export function ColumnForm({ onAddColumn }: AddColumnFormProps) {
             <form onSubmit={handleSubmit} className="space-y-3">
                 <div>
                     <label htmlFor="column-title" 
-                        className="block text-sm font-medium text-primary-text dark:text-gray-300 mb-1"
+                        className="block text-sm font-medium text-primary-text dark:text-third-dark-text mb-1"
                     >
                         Create New Column
                     </label>

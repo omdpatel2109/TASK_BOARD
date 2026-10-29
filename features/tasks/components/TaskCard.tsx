@@ -80,9 +80,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
 
                     <div className="flex items-center justify-between gap-2">
                         <div className="mb-2">
-                            <span
-                                className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold capitalize ${getPriorityStyle(task.priority)}`}
-                            >
+                            <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold capitalize ${getPriorityStyle(task.priority)}`}>
                                 {task.priority ?? ""}
                             </span>
                         </div>
@@ -142,7 +140,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                 </div>
 
                 {/* Card Main Body Description Link */}
-                <p className="text-sm text-secondary-text dark:text-slate-300 line-clamp-3">
+                <p className="text-sm text-secondary-text dark:text-slate-400">
                     Description: {task.description || "No description"}
                 </p>
 
@@ -150,7 +148,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                     const dueDateInfo = getDueDateStyle(task.dueDate);
                         return (
                             <div className="mt-3 flex flex-wrap items-center gap-2">
-                                <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
+                                <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-secondary-dark-text">
                                     <CalendarDays className="h-4 w-4" />
                                     <span>
                                         {new Date(`${task.dueDate}T00:00:00`).toLocaleDateString(

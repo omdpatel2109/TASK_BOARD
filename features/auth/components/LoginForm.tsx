@@ -45,22 +45,22 @@ export default function LoginForm() {
                     <CheckSquare className="h-6 w-6"/>
                 </div>
 
-                <h1 className="text-2xl font-bold tracking-tight text-primary-text dark:text-white">
+                <h1 className="text-2xl font-bold tracking-tight text-primary-text dark:text-primary-dark-text">
                     Task<span className="text-primary">Board</span>
                 </h1>
 
-                <p className="mt-1 text-sm text-secondary-text dark:text-slate-400">
+                <p className="mt-1 text-sm text-secondary-text dark:text-secondary-dark-text">
                     Organize your work & Manage your tasks.
                 </p>
             </div>
 
             {/* Login Heading */}
             <div className="mb-6">
-                <h2 className="text-xl font-semibold tracking-tight text-primary-text dark:text-white">
+                <h2 className="text-xl font-semibold tracking-tight text-primary-text dark:text-primary-dark-text">
                     Welcome back
                 </h2>
 
-                <p className="mt-1.5 text-sm text-secondary-text dark:text-slate-400">
+                <p className="mt-1.5 text-sm text-secondary-text dark:text-secondary-dark-text">
                     Sign in to continue to your workspace.
                 </p>
             </div>
@@ -69,7 +69,7 @@ export default function LoginForm() {
             <form onSubmit={formik.handleSubmit} className="space-y-4">
                 {/* Username */}
                 <div>
-                    <label htmlFor="username" className="mb-1.5 block text-sm font-medium text-primary-text dark:text-slate-200">
+                    <label htmlFor="username" className="mb-1.5 block text-sm font-medium text-primary-text dark:text-third-dark-text">
                         Username
                     </label>
 
@@ -81,7 +81,7 @@ export default function LoginForm() {
                             value={formik.values.username}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            className="block w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-sm text-primary-text outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-800"
+                            className="block w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-sm text-primary-text outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10 dark:border-slate-700 dark:bg-slate-800 dark:text-primary-dark-text dark:focus:bg-slate-800"
                         />
                     </div>
 
@@ -110,10 +110,8 @@ export default function LoginForm() {
                         />
 
                         <button type="button" onClick={() =>
-                                setShowPassword((previous) => !previous)
-                            }
-                            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-slate-400 transition hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30 dark:hover:text-blue-400"
-                        >
+                                setShowPassword((previous) => !previous)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-slate-400 transition hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30 dark:hover:text-blue-400">
                             {showPassword ? (<EyeOff size={18} />) : (<Eye size={18} />)}
                         </button>
                     </div>

@@ -112,8 +112,7 @@ export default function TaskBoard() {
             <div className="w-full p-6">
                 <p className="mb-4 text-error">{error}</p>
                 <button type="button" onClick={loadTasks}
-                    className="rounded bg-error px-4 py-2 text-white hover:bg-hover-error"
-                >
+                    className="rounded bg-error px-4 py-2 text-white hover:bg-hover-error">
                     Try Again
                 </button>
             </div>
@@ -130,7 +129,7 @@ export default function TaskBoard() {
 
             {taskForm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm" onClick={(e) => e.stopPropagation()}>
-                    <div className="relative w-full max-w-md rounded-xl border border-gray-100 bg-white p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+                    <div className="relative w-full max-w-md rounded-xl border border-gray-100 bg-white p-6 shadow-2xl dark:bg-background dark:border-slate-700" onClick={(e) => e.stopPropagation()}>
                         <button type="button" onClick={formClose} className="absolute right-7 top-7 rounded-full p-1 text-primary-text hover:bg-gray-100"
                         >
                             <X className="h-5 w-5" />
@@ -145,8 +144,7 @@ export default function TaskBoard() {
             )}
 
             {confirmDeleteTask && (
-                <ConfirmBox
-                    message={`Are you sure you want to delete "${confirmDeleteTask.title}"?`}
+                <ConfirmBox message={`Are you sure you want to delete "${confirmDeleteTask.title}"?`}
                     onConfirm={handleConfirmDelete}
                     onCancel={() => setConfirmDeleteTask(null)}
                 />
@@ -170,8 +168,8 @@ export default function TaskBoard() {
             <div className="w-full p-6 overflow-x-auto">                    
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-2">
                     <div>    
-                        <h1 className="text-3xl font-bold tracking-tight text-primary-text dark:text-white">Task Board</h1>
-                        <h2 className="mb-1 mt-1 text-sm text-secondary-text dark:text-slate-400">Manage your all task here.</h2>
+                        <h1 className="text-3xl font-bold tracking-tight text-primary-text dark:text-primary-dark-text">Task Board</h1>
+                        <h2 className="mb-1 mt-1 text-sm text-secondary-text dark:text-secondary-dark-text">Manage your all task here.</h2>
                     </div>
                     <div className="relative inline-flex items-center rounded-md shadow-sm">
                         <button className="inline-flex items-center gap-2 rounded-l-md bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-hover-primary focus:outline-none cursor-pointer"
@@ -180,8 +178,7 @@ export default function TaskBoard() {
                         </button>
 
                         <button onClick={() => setOpenAddDropDown(!openAddDropDown)} 
-                            className=" items-center justify-center rounded-r-md border-l border-white/20 bg-primary p-2 text-sm font-medium text-white hover:bg-hover-primary transition-colors focus:outline-none cursor-pointer"
-                        >
+                            className=" items-center justify-center rounded-r-md border-l border-white/20 bg-primary p-2 text-sm font-medium text-white hover:bg-hover-primary transition-colors focus:outline-none cursor-pointer">
                             <ChevronDown className="h-4 w-4" />
                         </button>
 
@@ -190,11 +187,10 @@ export default function TaskBoard() {
                             >
                                 <div className="flex flex-col ">
                                     <button onClick={() => { addTask(); setOpenAddDropDown(false); }} 
-                                    className="w-full text-left px-3 py-2 border-b border-slate-200 text-sm font-medium text-primary-text hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-                                    >
+                                    className="w-full text-left px-3 py-2 border-b border-slate-200 text-sm font-medium text-primary-text hover:bg-slate-100 dark:text-third-dark-text dark:hover:bg-slate-800 transition-colors cursor-pointer">
                                         New Task
                                     </button>
-                                    <button onClick={() => { openColumnForm(); setOpenAddDropDown(false); }} className="w-full text-left rounded-md px-3 py-2 text-sm font-medium text-primary-text hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 cursor-pointer"
+                                    <button onClick={() => { openColumnForm(); setOpenAddDropDown(false); }} className="w-full text-left rounded-md px-3 py-2 text-sm font-medium text-primary-text hover:bg-slate-100 dark:text-third-dark-text dark:hover:bg-slate-800 cursor-pointer"
                                     >
                                         New Column
                                     </button>
@@ -210,17 +206,17 @@ export default function TaskBoard() {
                     </div>
                     <div className="flex items-center rounded border border-slate-400 dark:border-slate-700">
                         <button type="button" onClick={() => setView("columns")}
-                            className={`flex items-center py-1 px-2 text-sm font-medium cursor-pointer ${ view === "columns" ? "bg-slate-300 text-primary-text" : "text-secondary-text hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
+                            className={`flex items-center py-1 px-2 text-sm font-medium cursor-pointer ${ view === "columns" ? "bg-slate-300 text-primary-text" : "text-secondary-text hover:bg-gray-100 dark:text-third-dark-text dark:hover:bg-slate-800"}`}>
                             <LayoutGrid className="h-4 w-4" />
                         </button>
 
                         <button type="button" onClick={() => setView("list")}
-                            className={`flex items-center py-1 px-2 text-sm font-medium cursor-pointer ${view === "list" ? "bg-slate-300 text-primary-text" : "text-secondary-text hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>
+                            className={`flex items-center py-1 px-2 text-sm font-medium cursor-pointer ${view === "list" ? "bg-slate-300 text-primary-text" : "text-secondary-text hover:bg-gray-100 dark:text-third-dark-text dark:hover:bg-slate-800"}`}>
                             <List className="h-4 w-4" />
                         </button>
                     </div>
                 </div>
-                { (view === "columns") && <p className="mb-2 text-sm flex items-start justify-end text-gray-600 dark:text-slate-400">
+                { (view === "columns") && <p className="mb-2 text-sm flex items-start justify-end text-gray-600 dark:text-secondary-dark-text">
                     Showing {displayedTasks.length} of {tasks.length} tasks
                 </p>}
                 {view === "columns" ? (

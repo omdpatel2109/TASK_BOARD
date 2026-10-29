@@ -32,11 +32,11 @@ export default function TaskFilter({tasks, onFilterChange}: TaskFilterProps){
         <div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:items-center">
             <input type="search" value={search} onChange={(event) => setSearch(event.target.value)}
                 placeholder="Search tasks..."
-                className="min-w-0 w-[400px] flex-1 rounded-lg border border-gray-300 bg-white px-4 py-3 text-primary-text outline-none placeholder-gray-500 focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                className="min-w-0 w-[400px] flex-1 rounded-lg border border-gray-300 bg-white px-4 py-3 text-primary-text outline-none placeholder-gray-500 focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-primary-dark-text"
             />
 
             <select value={status} onChange={(event) => setStatus(event.target.value as StatusFilter)}
-                className="h-[50px] w-full rounded-lg border border-gray-300 bg-white px-4 text-gray-500 outline-none focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 sm:w-40"
+                className="h-[50px] w-full rounded-lg border border-gray-300 bg-white px-4 text-gray-500 outline-none focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-secondary-dark-text sm:w-40"
             >
                 <option value="all">All Statuses</option>
                 {columns.map((column) => (
@@ -47,7 +47,7 @@ export default function TaskFilter({tasks, onFilterChange}: TaskFilterProps){
             </select>
 
             <select value={priority} onChange={(event) => setPriority(event.target.value as PriorityFilter)}
-                className="h-[50px] w-full rounded-lg border border-gray-300 bg-white px-4 text-gray-500 outline-none focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 sm:w-40"
+                className="h-[50px] w-full rounded-lg border border-gray-300 bg-white px-4 text-gray-500 outline-none focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-secondary-dark-text sm:w-40"
             >
                 <option value="all">Priority</option>
                 {Priority.map((priority) => (

@@ -47,7 +47,7 @@ currentUserId}: CommentListProps) {
     }
 
     if(isLoading){
-        return <p className="py-4 text-sm text-slate-500">Loading comments...</p>;
+        return <p className="py-4 text-sm text-secondary-dark-text">Loading comments...</p>;
     }
 
     if(error){
@@ -67,8 +67,7 @@ currentUserId}: CommentListProps) {
                 <div className="my-3 rounded-md border border-red-200 p-4">
                     <p className="text-sm text-error">{loadError}</p>
                     <button type="button" onClick={onRetry}
-                    className="mt-3 rounded-md bg-primary px-4 py-2 text-sm text-white hover:bg-hover-primary"
-                    >
+                    className="mt-3 rounded-md bg-primary px-4 py-2 text-sm text-white hover:bg-hover-primary">
                         Try Again
                     </button>
                 </div>
@@ -89,12 +88,12 @@ currentUserId}: CommentListProps) {
                         <div key={comment.id} className="py-4">
                             <div className="flex items-center justify-between gap-3">
                                 <div>
-                                    <p className="font-semibold text-primary-text dark:text-slate-200">
+                                    <p className="font-semibold text-primary-text dark:text-third-dark-text">
                                         {comment.authorName || "Unknown user"}
                                     </p>
 
                                     <time dateTime={comment.createdAt}
-                                        className="text-sm text-secondary-text dark:text-slate-400">
+                                        className="text-sm text-secondary-text dark:text-secondary-dark-text">
                                         {new Date(comment.createdAt).toLocaleString()}
                                     </time>
                                 </div>
@@ -112,8 +111,7 @@ currentUserId}: CommentListProps) {
 
                                     {/* Delete */}
                                     <button type="button" onClick={() => setDeleteCommentId(comment.id)}
-                                        className="rounded-md px-2 py-2 text-sm font-medium text-red-600 cursor-pointer transition-colors hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500/30 dark:text-red-400 dark:hover:bg-red-950/50"
-                                    >
+                                        className="rounded-md px-2 py-2 text-sm font-medium text-red-600 cursor-pointer transition-colors hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500/30 dark:text-red-400 dark:hover:bg-red-950/50">
                                         <Trash2 className="h-4 w-4" />
                                     </button>
                                 </div>
@@ -124,7 +122,7 @@ currentUserId}: CommentListProps) {
                                 <div className="mt-3 space-y-2">
                                     <textarea value={editText}
                                         onChange={(event) => setEditText(event.target.value)} rows={3}
-                                        className="w-full resize-none rounded-md border border-slate-300 p-3 text-sm dark:bg-slate-800 dark:text-slate-200"
+                                        className="w-full resize-none rounded-md border border-slate-300 p-3 text-sm dark:bg-slate-800 dark:text-third-dark-text"
                                     />
                                     <div className="flex gap-2">
                                         <button type="button" onClick={() => void handleEdit(comment.id)}
@@ -144,7 +142,7 @@ currentUserId}: CommentListProps) {
                                     </div>
                                 </div>
                             ) : (
-                                <p className="mt-2 text-secondary-text dark:text-slate-300">
+                                <p className="mt-2 text-secondary-text dark:text-third-dark-text">
                                     {comment.text}
                                 </p>
                             )}

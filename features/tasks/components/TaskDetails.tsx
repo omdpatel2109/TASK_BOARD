@@ -83,8 +83,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                     </button>
 
                     <button type="button" onClick={() => setIsEditing(true)}
-                        className="rounded-md bg-primary px-4 py-2 text-md font-medium text-white transition-colors hover:bg-hover-primary cursor-pointer"
-                    >
+                        className="rounded-md bg-primary px-4 py-2 text-md font-medium text-white transition-colors hover:bg-hover-primary cursor-pointer">
                         Edit Task
                     </button>
                 </div>
@@ -94,7 +93,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                 <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 dark:bg-slate-900 dark:border-slate-700">
                     <div className="flex flex-col gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-start sm:justify-between dark:border-slate-700">
                         <div className="min-w-0">
-                            <h1 className="text-2xl font-semibold text-primary-text dark:text-slate-100 mb-3">
+                            <h1 className="text-2xl font-semibold text-primary-text dark:text-primary-dark-text mb-3">
                                 {task.title}
                             </h1>
                             <span className={` h-fit w-fit rounded-full px-3 py-1 text-xs font-semibold capitalize ${getPriorityStyle(task.priority)}`}>
@@ -104,7 +103,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
 
                         <div className="flex flex-col items-end w-full">
                             <span
-                                className="w-fit rounded-full px-3 py-1 text-xs font-medium mb-5 bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-200 " 
+                                className="w-fit rounded-full px-3 py-1 text-xs font-medium mb-5 bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-third-dark-text " 
                             >
                                 {getStatusLabel(task.status)}
                             </span>
@@ -112,7 +111,7 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                                 const dueDateInfo = getDueDateStyle(task.dueDate);
                                     return (
                                         <div className="mt-3 flex flex-wrap items-center gap-2">
-                                            <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
+                                            <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-secondary-dark-text">
                                                 <CalendarDays className="h-4 w-4" />
                                                 <span>
                                                     {new Date(`${task.dueDate}T00:00:00`).toLocaleDateString(
@@ -137,11 +136,11 @@ export default function TaskDetails({task, onUpdate, onClose}: TaskDetailsProps)
                     </div>
 
                     <div className="py-5">
-                        <h2 className="mb-2 text-lg font-semibold text-secondary-text dark:text-slate-400">
+                        <h2 className="mb-2 text-lg font-semibold text-secondary-text dark:text-secondary-dark-text">
                             Description
                         </h2>
 
-                        <p className="text-md text-slate-600 dark:text-slate-400">
+                        <p className="text-md text-slate-600 dark:text-secondary-dark-text">
                             {task.description || "No description provided."}
                         </p>
                     </div>

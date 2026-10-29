@@ -4,13 +4,17 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
+    remotePatterns: [ //help which external image URLs Next.js is allowed to load
       {
         protocol: "https",
         hostname: "dummyjson.com",
         pathname: "/icon/**",
       },
     ],
+  },
+
+  compiler:{
+    removeConsole: true,
   },
 
   async redirects() {

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useTasks } from "@/features/tasks/hooks/useTasks";
 import { useTranslations } from "next-intl";
-import {Layers3, ListTodo, Clock3, CircleCheck} from "lucide-react";
+import {Layers3, ListTodo, Clock3, CircleCheck, TriangleAlert, CalendarDays} from "lucide-react";
 
 export default function Dashboard() {
     const {tasks, isLoading, error, loadTasks, columns} = useTasks();
@@ -11,6 +11,17 @@ export default function Dashboard() {
     const inProgressTasks = tasks.filter((task) => task.status === "in_progress").length;
     const todoTasks = tasks.filter((task) => task.status === "todo").length;
     const completionRate = tasks.length ? Math.round((completedTasks / tasks.length) * 100) : 0;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const activeTasksWithDueDates = tasks.filter((task) => task.dueDate && task.status !== "done");
+    const overdueTasks = activeTasksWithDueDates.filter((task) => {
+        const dueDate = new Date(`${task.dueDate}T00:00:00`);
+        return dueDate < today;
+    }).length;
+    const dueTodayTasks = activeTasksWithDueDates.filter((task) => {
+        const dueDate = new Date(`${task.dueDate}T00:00:00`);
+        return dueDate.getTime() === today.getTime();
+    }).length;
 
     const stats = [
         {
@@ -36,6 +47,18 @@ export default function Dashboard() {
             value: completedTasks,
             icon: CircleCheck,
             color: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40",
+        },
+        {
+            key: "overdue",
+            value: overdueTasks,
+            icon: TriangleAlert,
+            color: "text-red-600 bg-red-50 dark:bg-red-950/40",
+        },
+        {
+            key: "duetoday",
+            value: dueTodayTasks,
+            icon: CalendarDays,
+            color: "text-orange-600 bg-orange-50 dark:bg-orange-950/40",
         },
     ];
 
@@ -84,14 +107,14 @@ export default function Dashboard() {
             {!isLoading && !error && (
                 <>
                     {/* Statistics */}
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
                         {stats.map((stat) => {
                             const Icon = stat.icon;
                             return (
                                 <div key={stat.key} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
                                     <div className="flex items-start justify-between gap-3">
                                         <div>
-                                            <p className="text-sm font-medium text-secondary-text dark:text-secondary-dark-text">
+                                            <p className="text-md font-semibold text-secondary-text dark:text-secondary-dark-text">
                                                 {t(`stats.${stat.key}.label`)}
                                             </p>
 
@@ -105,7 +128,7 @@ export default function Dashboard() {
                                         </div>
                                     </div>
 
-                                    <p className="mt-3 text-xs text-slate-500 dark:text-secondary-dark-text">
+                                    <p className="mt-3 text-sm text-slate-500 dark:text-secondary-dark-text">
                                         {t(`stats.${stat.key}.description`)}
                                     </p>
                                 </div>

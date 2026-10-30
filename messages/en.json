@@ -80,6 +80,14 @@
       "completed": {
         "label": "Completed",
         "description": "Successfully finished"
+      },
+      "overdue": {
+        "label": "Over Due",
+        "description": "Tasks past their due date"
+      },
+      "duetoday": {
+        "label": "Due Today",
+        "description": "Tasks that need attention today"
       }
     },
     "progress": {

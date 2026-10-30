@@ -40,7 +40,7 @@
       "title": "Create Login Page",
       "description": "Login Page with the email and password field with validation",
       "status": "S7kZSBep1wo",
-      "order": 2,
+      "order": 1,
       "id": "aKy_g7JMrHE",
       "priority": "low"
     },
@@ -84,7 +84,7 @@
       "title": "Task details page",
       "description": "Page with the all information of the task, after click on the each task,open the task detail page",
       "status": "S7kZSBep1wo",
-      "order": 0,
+      "order": 2,
       "id": "MZqA1sH3r1k",
       "priority": "medium",
       "dueDate": "2026-10-31"
@@ -93,7 +93,7 @@
       "title": "Add comments feature",
       "description": "It contain comment list, comment box with add, edit, delete",
       "status": "S7kZSBep1wo",
-      "order": 1,
+      "order": 0,
       "id": "hwySdpJnJrU",
       "priority": "medium",
       "dueDate": "2026-11-04"

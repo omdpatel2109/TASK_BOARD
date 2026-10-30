@@ -74,15 +74,17 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
         >
             <div className="min-w-0 p-3 sm:p-4">
                 <div className="mb-2 flex min-w-0 items-start justify-between gap-2">
-                    <h2 className="min-w-0 font-bold text-primary-text dark:text-white sm:text-lg">
+                    <h2 className={`min-w-0 font-bold text-primary-text dark:text-white sm:text-lg ${task.status==="done" ? "line-through" : ""}`}>
                         {task.title}
                     </h2>
 
                     <div className="flex items-center justify-between gap-2">
                         <div className="mb-2">
-                            <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold capitalize ${getPriorityStyle(task.priority)}`}>
-                                {task.priority ?? ""}
-                            </span>
+                        <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold capitalize ${task.status === "done" 
+                        ? "bg-slate-100 text-slate-400 line-through dark:bg-slate-800 dark:text-slate-500" : getPriorityStyle(task.priority)
+                        }`}>
+                            {task.priority ?? ""}
+                        </span>
                         </div>
 
                         <div className="" >
@@ -140,7 +142,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                 </div>
 
                 {/* Card Main Body Description Link */}
-                <p className="text-sm text-secondary-text dark:text-slate-400">
+                <p className={`text-sm text-secondary-text dark:text-slate-400 ${task.status==="done" ? "line-through" : ""}`}>
                     Description: {task.description || "No description"}
                 </p>
 
@@ -148,9 +150,11 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                     const dueDateInfo = getDueDateStyle(task.dueDate);
                         return (
                             <div className="mt-3 flex flex-wrap items-center gap-2">
-                                <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-secondary-dark-text">
-                                    <CalendarDays className="h-4 w-4" />
-                                    <span>
+                                <div className={`flex items-center gap-1.5 text-sm  ${task.status === "done" ? "text-slate-400 dark:text-slate-500" :
+                                    "text-secondary-text dark:text-secondary-dark-text"
+                                }`}>
+                                    <CalendarDays className="h-4 w-4 " />
+                                    <span className={task.status === "done" ? "line-through" : ""}>
                                         {new Date(`${task.dueDate}T00:00:00`).toLocaleDateString(
                                             undefined,
                                             {
@@ -162,9 +166,11 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                                     </span>
                                 </div>
 
-                                <span className={`rounded-full px-2 py-1 text-xs font-medium ${dueDateInfo.style}`}>
-                                    {dueDateInfo.label}
-                                </span>
+                                {task.status!=="done" && 
+                                    <span className={`rounded-full px-2 py-1 text-xs font-medium     ${dueDateInfo.style}`}>
+                                        {dueDateInfo.label}
+                                    </span>
+                            }
                             </div>
                         );
                     })()

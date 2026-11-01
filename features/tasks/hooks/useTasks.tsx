@@ -94,8 +94,7 @@ export function useTasks() {
             }
             const createdColumn = await newColumn({
                 title: trimmedTitle,
-                order: columns.reduce(
-                    (maxOrder, column) => Math.max(maxOrder, column.order),-1)+1,
+                order: columns.reduce((maxOrder, column) => Math.max(maxOrder, column.order),-1)+1,
             });
 
             setColumns((currentColumns) =>

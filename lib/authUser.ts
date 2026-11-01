@@ -14,7 +14,7 @@ export const authApi = axios.create({
 // Request interceptor
 authApi.interceptors.request.use(
   async (config) => {
-    if (config.url === "/auth/login") {
+    if(config.url === "/auth/login"){
       return config;
     }
 

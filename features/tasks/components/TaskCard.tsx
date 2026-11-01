@@ -79,13 +79,13 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                     </h2>
 
                     <div className="flex items-center justify-between gap-2">
-                        <div className="mb-2">
+                        {/* <div className="mb-2">
                         <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold capitalize ${task.status === "done" 
-                        ? "bg-slate-100 text-slate-400 line-through dark:bg-slate-800 dark:text-slate-500" : getPriorityStyle(task.priority)
+                        ? "bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500" : getPriorityStyle(task.priority)
                         }`}>
                             {task.priority ?? ""}
                         </span>
-                        </div>
+                        </div> */}
 
                         <div className="" >
                             <div className="relative">

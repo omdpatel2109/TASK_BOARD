@@ -3,12 +3,12 @@
     {
       "id": "todo",
       "title": "Todo",
-      "order": 1
+      "order": 0
     },
     {
       "id": "in_progress",
       "title": "In Progress",
-      "order": 0
+      "order": 1
     },
     {
       "id": "done",
@@ -48,19 +48,19 @@
       "title": "Side bar and Header",
       "description": "Create a global component for Side bar and header to import in every page",
       "status": "in_progress",
-      "order": 1,
+      "order": 0,
       "id": "3rHh1uZEhHs",
       "priority": "medium",
-      "dueDate": "2026-10-31"
+      "dueDate": "2026-11-02"
     },
     {
       "title": "Fetch api and endpoints",
       "description": "Fetch the api for display task, add task, edit task, delete task",
       "status": "in_progress",
-      "order": 0,
+      "order": 1,
       "id": "qAoJwnvcWT0",
       "priority": "high",
-      "dueDate": "2026-10-30"
+      "dueDate": "2026-11-03"
     },
     {
       "title": "Add task form for edit and add task",
@@ -87,7 +87,7 @@
       "order": 2,
       "id": "MZqA1sH3r1k",
       "priority": "medium",
-      "dueDate": "2026-10-31"
+      "dueDate": "2026-11-04"
     },
     {
       "title": "Add comments feature",
@@ -114,7 +114,7 @@
       "order": 0,
       "id": "BvJrpxancyc",
       "priority": "medium",
-      "dueDate": "2026-11-01"
+      "dueDate": "2026-11-07"
     }
   ],
   "comments": [

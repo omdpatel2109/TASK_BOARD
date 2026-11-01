@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import {LayoutDashboard, CheckSquare, Settings, PanelLeftClose, PanelLeftOpen} from "lucide-react";
+import {LayoutDashboard, CheckSquare, PanelLeftClose, PanelLeftOpen} from "lucide-react";
 import { useState } from "react";
 
 const SIDEBAR_ITEMS = [

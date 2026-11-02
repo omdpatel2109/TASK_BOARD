@@ -1,6 +1,9 @@
+
 "use client";
+
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
+
 const languages = [
     { code: "en", label: "English" },
     { code: "hi", label: "हिन्दी" },
@@ -17,12 +20,15 @@ export default function LanguageSwitcher() {
     }
 
     return (
-        <select value={locale} onChange={(event) => handleLanguageChange(event.target.value)}
-            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-primary-dark-text cursor-pointer"
+        <select
+            value={locale}
+            onChange={(event) => handleLanguageChange(event.target.value)}
+            aria-label="Select language"
+            className="w-full cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-3 text-sm text-primary-text outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:border-slate-700 dark:bg-slate-800 dark:text-primary-dark-text dark:focus:ring-blue-900"
         >
             {languages.map((language) => (
-                <option key={language.code} value={language.code} className="cursor-pointer">
-                {language.label}
+                <option key={language.code} value={language.code}>
+                    {language.label}
                 </option>
             ))}
         </select>

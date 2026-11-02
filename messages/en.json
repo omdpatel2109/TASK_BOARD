@@ -46,7 +46,11 @@
     "logout": "Logout",
     "welcomeBack": "Welcome back",
     "user": "User",
-    "profilePhoto": "User profile photo"
+    "profilePhoto": "User profile photo",
+    "preferences": "Preferences",
+    "preferencesDescription": "Customize your experience",
+    "language": "Language",
+    "themeDescription": "Switch between light and dark mode"
   },
   "alert": {
     "loginFailed": "Login Failed",

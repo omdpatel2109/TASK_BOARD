@@ -47,7 +47,11 @@
     "logout": "લૉગ આઉટ",
     "welcomeBack": "ફરી સ્વાગત છે",
     "user": "વપરાશકર્તા",
-    "profilePhoto": "વપરાશકર્તાનો પ્રોફાઇલ ફોટો"
+    "profilePhoto": "વપરાશકર્તાનો પ્રોફાઇલ ફોટો",
+    "preferences": "પસંદગીઓ",
+    "preferencesDescription": "તમારા અનુભવને કસ્ટમાઇઝ કરો",
+    "language": "ભાષા",
+    "themeDescription": "લાઇટ અને ડાર્ક મોડ વચ્ચે બદલો"
   },
   "alert": {
     "loginFailed": "લૉગિન નિષ્ફળ",
@@ -115,6 +119,4 @@
       "description": "આજે પૂર્ણ કરવાના કાર્યો"
     }
   }
-
-
 }

@@ -46,7 +46,11 @@
     "logout": "लॉग आउट",
     "welcomeBack": "वापसी पर स्वागत है",
     "user": "उपयोगकर्ता",
-    "profilePhoto": "उपयोगकर्ता की प्रोफ़ाइल फ़ोटो"
+    "profilePhoto": "उपयोगकर्ता की प्रोफ़ाइल फ़ोटो",
+    "preferences": "प्राथमिकताएँ",
+    "preferencesDescription": "अपने अनुभव को अनुकूलित करें",
+    "language": "भाषा",
+    "themeDescription": "लाइट और डार्क मोड के बीच बदलें"
   },
   "alert": {
     "loginFailed": "लॉगिन विफल",
@@ -114,7 +118,5 @@
       "description": "वे कार्य जिन्हें आज पूरा करना है"
     }
   }
-
-
 
 }

@@ -12,7 +12,7 @@ export default function LanguageSwitcher() {
     const router = useRouter();
 
     function handleLanguageChange(newLocale: string) {
-        document.cookie = `locale=${newLocale}; path=/; max-age=31536000; samesite=lax`;
+        document.cookie = `locale=${newLocale}; path=/; samesite=lax`;
         router.refresh();
     }
 

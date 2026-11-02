@@ -70,7 +70,7 @@ export default function TaskList({ tasks }: TaskListProps) {
                                 <div className="min-w-0 sm:col-span-2 md:col-span-6">
                                     <h3 className="text-md font-semibold text-primary-text dark:text-primary-dark-text">
                                         {task.title}
-                                    </h3>
+                                        </h3>
                                     <p className="mt-1 text-sm text-secondary-text dark:text-secondary-dark-text">
                                         {task.description || "No description provided."}
                                     </p>

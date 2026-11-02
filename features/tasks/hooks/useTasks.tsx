@@ -71,18 +71,6 @@ export function useTasks() {
         }
     }
 
-    // const todoTasks = tasks
-    //     .filter((task) => task.status === "todo")
-    //     .sort((a, b) => a.order - b.order);
-
-    // const inProgressTasks = tasks
-    //     .filter((task) => task.status === "in_progress")
-    //     .sort((a, b) => a.order - b.order);
-
-    // const doneTasks = tasks
-    //     .filter((task) => task.status === "done")
-    //     .sort((a, b) => a.order - b.order);
-
     async function addColumn(title: string): Promise<boolean> {
         try{
             setError("");
@@ -119,7 +107,7 @@ export function useTasks() {
 
         if (oldIndex === -1 || newIndex === -1) return false;
 
-        // Move the column locally first for a smooth UI.
+        // move the column locally first for a smooth UI
         // arrayMove -> It creates a reordered array by moving an element from one index to another(dnd kit)
         const reorderedColumns = arrayMove(previousColumns, oldIndex, newIndex).map
         ((column, index) => ({
@@ -158,7 +146,7 @@ export function useTasks() {
         if (!task) return;
         // Check whether the drop target is a task or a column
         const targetTask = tasks.find((item) => String(item.id) === overId);
-        const dropData = over.data.current; //mets data of dopped target
+        const dropData = over.data.current; //gets data of dropped target
 
         const newStatus = dropData?.type === "priority-group" ? String(dropData.columnId)
             : targetTask ? targetTask.status : overId;

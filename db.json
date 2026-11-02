@@ -24,6 +24,11 @@
       "title": "To be discussed",
       "order": 2,
       "id": "S7kZSBep1wo"
+    },
+    {
+      "title": "in discuss",
+      "order": 5,
+      "id": "VS9lJAaNY6s"
     }
   ],
   "tasks": [
@@ -113,8 +118,17 @@
       "status": "todo",
       "order": 0,
       "id": "BvJrpxancyc",
-      "priority": "medium",
+      "priority": "high",
       "dueDate": "2026-11-07"
+    },
+    {
+      "title": "review ",
+      "description": "today",
+      "status": "todo",
+      "priority": "medium",
+      "dueDate": "2026-11-02",
+      "order": 1,
+      "id": "yNxlOgNiwF8"
     }
   ],
   "comments": [
@@ -234,6 +248,15 @@
       "authorId": 1,
       "authorName": "Emily Johnson",
       "id": "MUM1g6REFRM"
+    },
+    {
+      "taskId": "yNxlOgNiwF8",
+      "text": "review meeting today",
+      "createdAt": "2026-11-02T04:26:51.571Z",
+      "updatedAt": "2026-11-02T04:26:59.306Z",
+      "authorId": 1,
+      "authorName": "Emily Johnson",
+      "id": "RzwIA8xfSDw"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

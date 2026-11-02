@@ -172,14 +172,9 @@ export default function TaskBoard() {
                         <h2 className="mb-1 mt-1 text-sm text-secondary-text dark:text-secondary-dark-text">Manage your all task here.</h2>
                     </div>
                     <div className="relative inline-flex items-center rounded-md shadow-sm">
-                        <button className="inline-flex items-center gap-2 rounded-l-md bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-hover-primary focus:outline-none cursor-pointer"
+                        <button onClick={() => setOpenAddDropDown(!openAddDropDown)} className="inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-hover-primary focus:outline-none cursor-pointer"
                         >
                             <Plus className="h-4 w-4" /> 
-                        </button>
-
-                        <button onClick={() => setOpenAddDropDown(!openAddDropDown)} 
-                            className=" items-center justify-center rounded-r-md border-l border-white/20 bg-primary p-2 text-sm font-medium text-white hover:bg-hover-primary transition-colors focus:outline-none cursor-pointer">
-                            <ChevronDown className="h-4 w-4" />
                         </button>
 
                         {openAddDropDown && (

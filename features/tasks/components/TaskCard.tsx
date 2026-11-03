@@ -74,7 +74,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
         >
             <div className="min-w-0 p-3 sm:p-4">
                 <div className="mb-2 flex min-w-0 items-start justify-between gap-2">
-                    <h2 className={`min-w-0 font-bold text-primary-text dark:text-white sm:text-lg ${task.status==="done" ? "line-through" : ""}`}>
+                    <h2 className={`min-w-0 font-bold text-primary-text dark:text-white sm:text-lg ${task.status === "done" ? "line-through" : ""}`}>
                         {task.title}
                     </h2>
 
@@ -94,8 +94,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
                                         e.stopPropagation(); 
                                         setIsMenuOpen(!isMenuOpen);
                                     }}
-                                    className="flex h-7 w-6 items-center justify-center rounded-md text-slate-500 hover:bg-slate-200 dark:text-slate-200 dark:hover:bg-slate-600 cursor-pointer"
-                                >
+                                    className="flex h-7 w-6 items-center justify-center rounded-md text-slate-500 hover:bg-slate-200 dark:text-slate-200 dark:hover:bg-slate-600 cursor-pointer">
                                     <MoreVertical className="h-5 w-5" />
                                 </button>
 

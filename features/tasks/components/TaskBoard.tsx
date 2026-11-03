@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { X } from "lucide-react";
 import TaskForm from "./TaskForm";
 import TaskFilter from "./TaskFilter";
@@ -24,6 +24,7 @@ export default function TaskBoard() {
     const [displayedTasks, setDisplayedTasks] = useState<Task[]>(tasks);
     const [view, setView] = useState<"columns" | "list">("columns");
     const [openAddDropDown, setOpenAddDropDown] = useState(false);
+    const [isFilterApplied, setIsFilterApplied] = useState(false);
 
     // copy the task in display task to use display task for filter
     useEffect(() => {
@@ -39,6 +40,14 @@ export default function TaskBoard() {
             document.body.style.overflow = previousOverflow;
         };
     }, [taskForm]);
+
+    const handleFilterChange = useCallback(
+        (filteredTasks: Task[], filterApplied: boolean) => {
+            setDisplayedTasks(filteredTasks);
+            setIsFilterApplied(filterApplied);
+        },
+        []
+    );
 
     function addTask(){
         setSelectedTask(null);
@@ -75,7 +84,7 @@ export default function TaskBoard() {
         if (!confirmDeleteTask) return;
         setSuccessMessage("");
         const success = await removeTask(confirmDeleteTask.id);
-        if (success) {
+        if(success){
             setConfirmDeleteTask(null);
             setSuccessMessage("Task deleted successfully!");
         }
@@ -107,7 +116,7 @@ export default function TaskBoard() {
             </div>
         );
     }
-    if (error && tasks.length === 0) {
+    if(error && tasks.length === 0){
         return (
             <div className="w-full p-6">
                 <p className="mb-4 text-error">{error}</p>
@@ -197,7 +206,7 @@ export default function TaskBoard() {
                 </div>
                 <div className="flex items-center justify-between mb-2">
                     <div className="">
-                        <TaskFilter tasks={tasks} onFilterChange={(filtered) => setDisplayedTasks(filtered)}/>
+                        <TaskFilter tasks={tasks} onFilterChange={handleFilterChange}/>
                     </div>
                     <div className="flex items-center rounded border border-slate-400 dark:border-slate-700">
                         <button type="button" onClick={() => setView("columns")}
@@ -219,6 +228,7 @@ export default function TaskBoard() {
                         tasks={displayedTasks}
                         columns={columns}
                         onDragEnd={handleDragEnd}
+                        isFilterApplied={isFilterApplied}
                         onColumnDragEnd={handleColumnDragEnd}
                         onEdit={editTask}
                         onDelete={askDeleteTask}

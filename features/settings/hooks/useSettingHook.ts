@@ -1,7 +1,5 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 export type Theme = "light" | "dark";
 
 export function useSettingHook() {
@@ -10,8 +8,7 @@ export function useSettingHook() {
     // Load saved theme
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
-
-        if (savedTheme === "light" || savedTheme === "dark") {
+        if(savedTheme === "light" || savedTheme === "dark"){
             setTheme(savedTheme);
         }
     }, []);
@@ -19,7 +16,6 @@ export function useSettingHook() {
     // Apply and save selected theme
     useEffect(() => {
         const root = document.documentElement;
-
         root.classList.toggle("dark", theme === "dark");
         localStorage.setItem("theme", theme);
     }, [theme]);

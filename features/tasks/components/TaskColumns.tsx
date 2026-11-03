@@ -9,6 +9,7 @@ import type { Task, TaskColumn} from "@/features/tasks/type/taskType";
 interface TaskColumnsProps {
     tasks: Task[];
     columns: TaskColumn[];
+    isFilterApplied: boolean;
     onDragEnd: (event: DragEndEvent) => void;
     onColumnDragEnd: ( activeId: string, overId: string) => void | Promise<boolean>;
     onEdit: (task: Task) => void;
@@ -18,7 +19,7 @@ interface TaskColumnsProps {
 const getColumnDragId = (id: string | number) => `column-${id}`; // If a task and column have the same ID, this prefix keeps their IDs unique.
 
 // Drag and drop of cards and columns.
-export default function TaskColumns({ tasks, columns, onDragEnd, onColumnDragEnd, onEdit, onDelete}: TaskColumnsProps) {
+export default function TaskColumns({ tasks, columns, onDragEnd, onColumnDragEnd, onEdit, onDelete, isFilterApplied}: TaskColumnsProps) {
     const [activeTask, setActiveTask] = useState<Task | null>(null);
     const [hiddenColumns, setHiddenColumns] = useState<string[]>([]);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -129,7 +130,7 @@ export default function TaskColumns({ tasks, columns, onDragEnd, onColumnDragEnd
                 <div className="flex items-start gap-3 overflow-x-auto pb-4">
                     {visibleColumns.map((column) => (
                         <SortableTaskColumn key={column.id} column={column}
-                            tasks={tasks} onEdit={onEdit}
+                            tasks={tasks} onEdit={onEdit} isFilterApplied={isFilterApplied}
                             onDelete={onDelete} onToggleVisibility={toggleColumnVisibility}/>
                     ))}
                 </div>

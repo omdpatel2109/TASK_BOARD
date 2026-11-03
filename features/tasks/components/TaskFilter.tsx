@@ -5,7 +5,7 @@ import { useTasks } from "../hooks/useTasks";
 
 interface TaskFilterProps{
     tasks: Task[];
-    onFilterChange: (filteredTask: Task[]) => void;
+    onFilterChange: (filteredTasks: Task[], isFilterApplied: boolean) => void;
 }
 type StatusFilter = "all" | Task["status"];
 type PriorityFilter = "all" | Task["priority"];
@@ -25,8 +25,13 @@ export default function TaskFilter({tasks, onFilterChange}: TaskFilterProps){
     });
 
     useEffect(() => {
-        onFilterChange(filteredTasks);
-    }, [search, status, priority,tasks])
+        const isFilterApplied =
+            search.trim() !== "" ||
+            status !== "all" ||
+            priority !== "all";
+
+        onFilterChange(filteredTasks, isFilterApplied);
+    }, [search, status, priority, tasks, onFilterChange]);
 
     return(
         <div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:items-center">
@@ -36,8 +41,7 @@ export default function TaskFilter({tasks, onFilterChange}: TaskFilterProps){
             />
 
             <select value={status} onChange={(event) => setStatus(event.target.value as StatusFilter)}
-                className="h-[50px] w-full rounded-lg border border-gray-300 bg-white px-4 text-gray-500 outline-none focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-secondary-dark-text sm:w-40"
-            >
+                className="h-[50px] w-full rounded-lg border border-gray-300 bg-white px-4 text-gray-500 outline-none focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-secondary-dark-text sm:w-40">
                 <option value="all">All Statuses</option>
                 {columns.map((column) => (
                     <option key={column.id} value={column.id}>
@@ -49,7 +53,7 @@ export default function TaskFilter({tasks, onFilterChange}: TaskFilterProps){
             <select value={priority} onChange={(event) => setPriority(event.target.value as PriorityFilter)}
                 className="h-[50px] w-full rounded-lg border border-gray-300 bg-white px-4 text-gray-500 outline-none focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-secondary-dark-text sm:w-40"
             >
-                <option value="all">Priority</option>
+                <option value="all">All Priorities</option>
                 {Priority.map((priority) => (
                     <option key={priority} value={priority}>
                         {priority.charAt(0).toUpperCase() + priority.slice(1)}

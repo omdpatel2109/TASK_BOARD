@@ -46,7 +46,6 @@ export function useTasks() {
     function saveTask(savedTask: Task){
         setTasks((currentTasks) => {
             const exists = currentTasks.some((task) => task.id === savedTask.id);
-
             if(exists){
                 return currentTasks.map((task) =>
                     task.id === savedTask.id ? savedTask : task

@@ -113,13 +113,13 @@
       "dueDate": "2026-11-05"
     },
     {
-      "title": "apply authentication",
-      "description": "apply authentication",
+      "title": "apply authentication.",
+      "description": "apply authentication.",
       "status": "todo",
       "order": 0,
       "id": "BvJrpxancyc",
       "priority": "high",
-      "dueDate": "2026-11-07"
+      "dueDate": "2026-11-06"
     },
     {
       "title": "review ",
@@ -129,6 +129,15 @@
       "dueDate": "2026-11-02",
       "order": 1,
       "id": "yNxlOgNiwF8"
+    },
+    {
+      "title": "add intercceptor",
+      "description": "first understand the concept then implement it.\n",
+      "status": "todo",
+      "priority": "high",
+      "dueDate": "2026-11-07",
+      "order": 2,
+      "id": "FRU4GShGQoY"
     }
   ],
   "comments": [

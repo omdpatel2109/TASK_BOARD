@@ -93,7 +93,7 @@ export default function TaskList({ tasks }: TaskListProps) {
                                 {/* View details */}
                                 <div className="flex items-center md:col-span-2 md:justify-end">
                                     <button type="button" onClick={() => router.push(`/tasks/tasks/${task.id}`)}
-                                    className="flex items-center gap-1 rounded-md px-2 py-1.5 text-sm font-medium text-primary hover:text-primary-text dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-primary-dark-text">
+                                    className="flex items-center gap-1 rounded-md px-2 py-1.5 text-sm font-medium text-primary hover:text-primary-text dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-primary-dark-text cursor-pointer">
                                         View details
                                         <ArrowUpRight size={15} />
                                     </button>
@@ -114,7 +114,7 @@ export default function TaskList({ tasks }: TaskListProps) {
                         <div className="flex items-center gap-3">
                             <button type="button" disabled={currentPage <= 1}
                                 onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
-                                className="rounded-md border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:text-secondary-dark-text dark:hover:bg-slate-800">
+                                className="rounded-md border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:text-secondary-dark-text dark:hover:bg-slate-800 cursor-pointer">
                                 Previous
                             </button>
 
@@ -124,7 +124,7 @@ export default function TaskList({ tasks }: TaskListProps) {
 
                             <button type="button" disabled={currentPage >= totalPages}
                                 onClick={()=>setCurrentPage((page) => Math.min(totalPages, page+1))}
-                                className="rounded-md border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600  hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:text-secondary-dark-text dark:hover:bg-slate-800">
+                                className="rounded-md border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600  hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:text-secondary-dark-text dark:hover:bg-slate-800 cursor-pointer">
                                 Next
                             </button>
                         </div>

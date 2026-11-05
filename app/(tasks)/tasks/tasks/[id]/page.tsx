@@ -1,5 +1,7 @@
-import { redirect, notFound } from "next/navigation";
-import { getTaskById } from "@/api/task";
+import { redirect } from "next/navigation";
+// import { getTaskById } from "@/api/task";
+import { serverApi } from "@/lib/serverApi";
+import type { Task } from "@/features/tasks/type/taskType";
 import { getCurrentUser } from "@/features/auth/action";
 import TaskAllDetails from "@/features/tasks/components/TaskAllDetails";
 import SideBar from "@/components/SideBar";
@@ -17,11 +19,11 @@ export default async function TaskDetailsPage({ params }: PageProps) {
         redirect("/login");
     }
     // Fetch the initial task on the server.
-    let task;
-
-    try{
-        task = await getTaskById(id);
-    }catch(error){
+    let task: Task;
+    try {
+        const response = await serverApi.get<Task>(`/tasks/${id}`);
+        task = response.data;
+    } catch (error) {
         console.error("Failed to load task:", error);
 
         return (

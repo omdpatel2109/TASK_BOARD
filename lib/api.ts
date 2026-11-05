@@ -1,18 +1,28 @@
+
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "/api/proxy",
     headers: {
         "Content-Type": "application/json",
     },
-    timeout: 1000,
+    timeout: 10000,
 });
+
+// Response interceptor
+api.interceptors.response.use(
+    (response) => response,
+    (error) => Promise.reject(error)
+);
 
 // Reusable error-message helper
 export function getApiErrorMessage(error: unknown): string {
     if (axios.isAxiosError(error)) {
-        return error.message ||
-            "Something went wrong. Please try again.";
+        return (
+            error.response?.data?.message ||
+            error.message ||
+            "Something went wrong. Please try again."
+        );
     }
 
     if (error instanceof Error) {

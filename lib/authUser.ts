@@ -33,16 +33,6 @@ authApi.interceptors.request.use(
 
 // Response interceptor
 authApi.interceptors.response.use(
-  (response) => {
-    console.log("API Response:", response.status);
-    return response;
-  },
-  (error) => {
-    if(axios.isAxiosError(error)){  
-      return error.message; 
-    }else{
-      console.error("Unexpected API error:", error);
-    }
-    return Promise.reject(error);
-  }
+  (response) => response,
+  (error) => Promise.reject(error)
 );

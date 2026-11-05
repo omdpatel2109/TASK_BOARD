@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import {LogOut, Sun, Moon, SlidersHorizontal, X, Check} from "lucide-react";
+import {LogOut, Sun, Moon, SlidersHorizontal, X, Check, SunMoon} from "lucide-react";
 import { getCurrentUser } from "@/features/auth/action";
 import type { SafeUser } from "@/features/auth/type/userType";
 import useAuth from "@/features/auth/hooks/useAuth";
@@ -162,6 +162,7 @@ export default function Header() {
                             {/* Theme Section */}
                             <div className="space-y-3">
                                 <div className="flex items-center gap-2">
+                                    <SunMoon className="h-4 w-4 text-primary dark:text-blue-400" />
                                     <h3 className="text-sm font-semibold text-primary-text dark:text-primary-dark-text">
                                         {t("theme")}
                                     </h3>

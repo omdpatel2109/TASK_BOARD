@@ -116,7 +116,7 @@
       "title": "apply authentication.",
       "description": "apply authentication.",
       "status": "todo",
-      "order": 0,
+      "order": 1,
       "id": "BvJrpxancyc",
       "priority": "high",
       "dueDate": "2026-11-06"
@@ -127,7 +127,7 @@
       "status": "todo",
       "priority": "medium",
       "dueDate": "2026-11-02",
-      "order": 1,
+      "order": 0,
       "id": "yNxlOgNiwF8"
     },
     {

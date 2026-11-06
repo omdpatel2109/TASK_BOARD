@@ -1,8 +1,6 @@
-
 import "server-only";
 import axios from "axios";
 import { cookies } from "next/headers";
-
 const COOKIE_NAME = "access_token";
 
 export const serverApi = axios.create({
@@ -19,7 +17,7 @@ serverApi.interceptors.request.use(
         const cookieStore = await cookies();
         const token = cookieStore.get(COOKIE_NAME)?.value;
 
-        if (token) {
+        if(token){
             config.headers.Authorization = `Bearer ${token}`;
         }
 

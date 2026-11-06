@@ -53,7 +53,7 @@
       "title": "Side bar and Header",
       "description": "Create a global component for Side bar and header to import in every page",
       "status": "in_progress",
-      "order": 0,
+      "order": 1,
       "id": "3rHh1uZEhHs",
       "priority": "medium",
       "dueDate": "2026-11-02"
@@ -62,10 +62,10 @@
       "title": "Fetch api and endpoints",
       "description": "Fetch the api for display task, add task, edit task, delete task",
       "status": "in_progress",
-      "order": 1,
+      "order": 0,
       "id": "qAoJwnvcWT0",
       "priority": "high",
-      "dueDate": "2026-11-03"
+      "dueDate": "2026-11-06"
     },
     {
       "title": "Add task form for edit and add task",
@@ -116,7 +116,7 @@
       "title": "apply authentication.",
       "description": "apply authentication.",
       "status": "todo",
-      "order": 1,
+      "order": 2,
       "id": "BvJrpxancyc",
       "priority": "high",
       "dueDate": "2026-11-06"
@@ -136,7 +136,7 @@
       "status": "todo",
       "priority": "high",
       "dueDate": "2026-11-09",
-      "order": 2,
+      "order": 1,
       "id": "FRU4GShGQoY"
     }
   ],
@@ -221,15 +221,6 @@
       "authorId": 2,
       "authorName": "Michael Williams",
       "id": "O1ZdBO2zIxk"
-    },
-    {
-      "taskId": "qAoJwnvcWT0",
-      "text": "hii",
-      "createdAt": "2026-10-23T06:12:01.066Z",
-      "updatedAt": "2026-10-23T06:12:01.066Z",
-      "authorId": 1,
-      "authorName": "Emily Johnson",
-      "id": "a7V3SLdl4iY"
     },
     {
       "taskId": "MZqA1sH3r1k",

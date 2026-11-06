@@ -19,7 +19,7 @@ export default function SuccessBox({ message, onClose }: SuccessBoxProps) {
 
     if (!message) return null;
 
-    return (
+    return(
         <div className="fixed left-1/2 top-4 z-50 flex -translate-x-1/2 items-center justify-between gap-3 rounded-lg border border-status-done  bg-status-done/25 px-4 py-3 text-md text-status-done">
             <div className="flex items-center gap-2">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-status-done/15 font-bold text-status-done">

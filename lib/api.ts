@@ -1,6 +1,4 @@
-
 import axios from "axios";
-
 export const api = axios.create({
     baseURL: "/api/proxy",
     headers: {
@@ -16,8 +14,8 @@ api.interceptors.response.use(
 );
 
 // Reusable error-message helper
-export function getApiErrorMessage(error: unknown): string {
-    if (axios.isAxiosError(error)) {
+export function getApiErrorMessage(error: any): string {
+    if(axios.isAxiosError(error)){
         return (
             error.response?.data?.message ||
             error.message ||
@@ -25,9 +23,8 @@ export function getApiErrorMessage(error: unknown): string {
         );
     }
 
-    if (error instanceof Error) {
+    if(error instanceof Error){
         return error.message;
     }
-
     return "Something went wrong. Please try again.";
 }

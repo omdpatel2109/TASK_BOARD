@@ -543,7 +543,7 @@ export default function TaskBoard({
 
             <div className="w-full overflow-x-auto p-6">
 
-                {/* Heading and Add Task */}
+                {/* Heading and Add Task. */}
                 <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <h1 className="text-3xl font-bold tracking-tight text-primary-text dark:text-primary-dark-text">

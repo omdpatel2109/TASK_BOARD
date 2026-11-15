@@ -11,7 +11,7 @@ async function handleRequest(request: NextRequest, context: RouteContext){
         const { path } = await context.params;
 
         // Allow only the resources used by this application.
-        const allowedResources = ["tasks", "columns", "comments"];
+        const allowedResources = ["tasks", "columns", "comments", "workflows"];
 
         if(!allowedResources.includes(path[0])){
             return NextResponse.json(

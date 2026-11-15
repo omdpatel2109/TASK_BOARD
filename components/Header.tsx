@@ -33,22 +33,6 @@ export default function Header() {
         loadUser();
     }, []);
 
-    // Close drawer using Escape and prevent background scrolling
-    // useEffect(() => {
-    //     if (!isPreferencesOpen) return;
-    //     function handleEscape(event: KeyboardEvent) {
-    //         if (event.key === "Escape") {
-    //             setIsPreferencesOpen(false);
-    //         }
-    //     }
-    //     document.addEventListener("keydown", handleEscape);
-    //     document.body.style.overflow = "hidden";
-    //     return () => {
-    //         document.removeEventListener("keydown", handleEscape);
-    //         document.body.style.overflow = "";
-    //     };
-    // }, [isPreferencesOpen]);
-
     return (
         <>
             <header className="flex min-h-16 w-full items-center justify-end gap-3 border-b border-slate-200 bg-white px-3 py-3 sm:px-6 dark:border-slate-700 dark:bg-background">

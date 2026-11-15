@@ -1,23 +1,52 @@
+// "use client";
+// import { useRouter } from "next/navigation";
+// import { loginAction, logoutAction } from "../action";
+
+// export default function useAuth() {
+//   const router = useRouter();
+//   const login = async (username: string, password: string) => {
+//     const result = await loginAction(username, password);
+
+//     if (result.success) {
+//       router.push("/board");
+//     }
+
+//     return result;
+//   };
+
+//   const logout = async () => {
+//     await logoutAction();
+//     router.push("/login");
+//   };
+
+//   return { login, logout };
+// }
+
 "use client";
+
 import { useRouter } from "next/navigation";
 import { loginAction, logoutAction } from "../action";
 
 export default function useAuth() {
-  const router = useRouter();
-  const login = async (username: string, password: string) => {
-    const result = await loginAction(username, password);
+    const router = useRouter();
 
-    if (result.success) {
-      router.push("/board");
-    }
+    const login = async (username: string, password: string) => {
+        const result = await loginAction(username, password);
 
-    return result;
-  };
+        if (result.success) {
+            router.push("/workflows");
+        }
 
-  const logout = async () => {
-    await logoutAction();
-    router.push("/login");
-  };
+        return result;
+    };
 
-  return { login, logout };
+    const logout = async () => {
+        await logoutAction();
+        router.push("/login");
+    };
+
+    return {
+        login,
+        logout,
+    };
 }

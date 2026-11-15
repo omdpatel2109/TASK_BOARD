@@ -1,245 +1,472 @@
-"use client";
-import { useCallback, useEffect, useState } from "react";
-import { getTasks, deleteTask, updateTask} from "@/api/task";
-import type { Task, TaskColumn } from "@/features/tasks/type/taskType";
-import { getApiErrorMessage } from "@/lib/api";
-import { getColumns, newColumn, updateColumnOrder } from "@/api/column";
-import { type DragEndEvent} from "@dnd-kit/core";
-import { arrayMove } from "@dnd-kit/sortable";
+// "use client";
+// import { useCallback, useEffect, useState } from "react";
+// import { getTasks, deleteTask, updateTask} from "@/api/task";
+// import type { Task, TaskColumn } from "@/features/tasks/type/taskType";
+// import { getApiErrorMessage } from "@/lib/api";
+// import { getColumns, newColumn, updateColumnOrder } from "@/api/column";
+// import { type DragEndEvent} from "@dnd-kit/core";
+// import { arrayMove } from "@dnd-kit/sortable";
 
-export function useTasks() {
+// export function useTasks() {
+//     const [tasks, setTasks] = useState<Task[]>([]);
+//     const [isLoading, setIsLoading] = useState(true);
+//     const [error, setError] = useState("");
+//     const [columns, setColumns] = useState<TaskColumn[]>([]);
+//     const [dragError, setDragError] = useState("");
+//     const [successMessages, setSuccessMessages] = useState("");
+
+//     const loadTasks = useCallback(async () => {
+//         try{
+//             setIsLoading(true);
+//             setError("");
+//             const data = await getTasks();
+//             setTasks(data);
+//         }catch(error){
+//             setError(getApiErrorMessage(error));
+//         }finally{
+//             setIsLoading(false);
+//         }
+//     }, []);
+
+//     const loadColumns = useCallback(async () => {
+//         try{
+//             const data = await getColumns();
+//             setColumns(data);
+//         }catch(error){
+//             setError(getApiErrorMessage(error));
+//         }
+//     }, []);
+
+//     useEffect(() => {
+//         loadTasks();
+//         loadColumns();
+//     }, [loadTasks, loadColumns]);
+
+//     // Add a created task or replace an updated task.
+//     function saveTask(savedTask: Task){
+//         setTasks((currentTasks) => {
+//             const exists = currentTasks.some((task) => task.id === savedTask.id);
+//             if(exists){
+//                 return currentTasks.map((task) =>
+//                     task.id === savedTask.id ? savedTask : task
+//                 );
+//             }
+//             return [...currentTasks, savedTask]; //add new task
+//         });
+//         setError("");
+//     }
+
+//     async function removeTask(id: string): Promise<boolean>{
+//         try{
+//             setError("");
+//             await deleteTask(id);
+//             setTasks((currentTasks) =>
+//                 currentTasks.filter((task) => task.id !== id)
+//             );
+//             return true;
+//         }catch(error){
+//             setError(getApiErrorMessage(error));
+//             return false;
+//         }
+//     }
+
+//     async function addColumn(title: string): Promise<boolean> {
+//         try{
+//             setError("");
+//             const trimmedTitle = title.trim();
+//             if(columns.some((column) =>
+//             column.title.trim().toLowerCase() === trimmedTitle.toLowerCase())){
+//                 setError("A column with this title already exists.");
+//                 return false;
+//             }
+//             const createdColumn = await newColumn({
+//                 title: trimmedTitle,
+//                 order: columns.reduce((maxOrder, column) => Math.max(maxOrder, column.order),-1)+1,
+//             });
+
+//             setColumns((currentColumns) =>
+//                 [...currentColumns, createdColumn].sort((a, b) => a.order - b.order)
+//             );
+//             return true;
+//         }catch(error){
+//             setError(getApiErrorMessage(error));
+//             return false;
+//         }
+//     }
+
+//     async function handleColumnDragEnd(
+//         activeId: string, // the id of the column which is dragged
+//         overId: string // the id of the column where it is dropped
+//     ): Promise<boolean> {
+//         if (activeId === overId) return true;
+
+//         const previousColumns = [...columns].sort((a, b) => a.order - b.order);
+//         const oldIndex = previousColumns.findIndex((column) => String(column.id) === activeId);
+//         const newIndex = previousColumns.findIndex((column) => String(column.id) === overId);
+
+//         if (oldIndex === -1 || newIndex === -1) return false;
+
+//         // move the column locally first for a smooth UI
+//         // arrayMove -> It creates a reordered array by moving an element from one index to another(dnd kit)
+//         const reorderedColumns = arrayMove(previousColumns, oldIndex, newIndex).map
+//         ((column, index) => ({
+//             ...column,
+//             order: index, //update the order after arrayMove reorder the columns
+//         }));
+//         setColumns(reorderedColumns);
+//         setError("");
+
+//         try{
+//             // Persist every column's new position.
+//             await Promise.all(
+//                 reorderedColumns.map((column) =>
+//                     updateColumnOrder(String(column.id), column.order)
+//                 )
+//             );
+
+//             setSuccessMessages("Column order updated successfully!");
+//             return true;
+//         }catch(error){
+//             // Restore the original order if saving fails.
+//             setColumns(previousColumns);
+//             setError(getApiErrorMessage(error));
+//             console.error("Failed to update column order:", error);
+//             return false;
+//         }
+//     }
+
+//     //Reordering tasks within the same column & Moving tasks between columns
+//     async function handleDragEnd(event: DragEndEvent) {
+//         const { active, over } = event;
+//         if (!over || active.id === over.id) return;
+//         const taskId = String(active.id); //task card id
+//         const overId = String(over.id); //column id or if you dop over any other task card then its id
+//         const task = tasks.find((item) => String(item.id) === taskId); //find the dragged task
+//         if (!task) return;
+//         // Check whether the drop target is a task or a column
+//         const targetTask = tasks.find((item) => String(item.id) === overId);
+//         const dropData = over.data.current; //gets data of dropped target
+
+//         const newStatus = dropData?.type === "priority-group" ? String(dropData.columnId)
+//             : targetTask ? targetTask.status : overId;
+        
+//         // sort the columns task in which the task is moved from old to new
+//         const destinationTasks = tasks.filter((item) => item.status === newStatus).sort((a, b) => a.order - b.order);
+
+//         let reorderedTasks: Task[];
+//         if (task.status === newStatus){// drag and drop in the same column
+//             //changes within the same column
+//             const oldIndex = destinationTasks.findIndex((item) => String(item.id) === taskId);
+//             const newIndex = targetTask ? destinationTasks.findIndex(
+//                 (item) => String(item.id) === overId) : destinationTasks.length - 1;
+//             if (oldIndex === -1) return;
+//             //It returns a new array with reorder the original index to the destination index by dnd
+//             reorderedTasks = arrayMove(destinationTasks, oldIndex, newIndex);
+//         }else{
+//             // Move to another column so sort the source column
+//             const sourceTasks = tasks.filter((item) =>
+//                     item.status === task.status &&
+//                     String(item.id) !== taskId
+//                 ).sort((a, b) => a.order - b.order);
+
+//             const movedTask = { ...task, status: newStatus };
+//             const targetIndex = targetTask ? destinationTasks.findIndex( //new index of the task
+//                     (item) => String(item.id) === overId
+//                 ) : destinationTasks.length;
+
+//             const updatedDestination = [...destinationTasks];
+//             updatedDestination.splice(targetIndex < 0 ? updatedDestination.length : targetIndex,0,movedTask);
+
+//             reorderedTasks = updatedDestination;
+//             // update both source and destination columns
+//             const updatedTasks = [...sourceTasks.map((item, index) => ({
+//                     ...item,
+//                     order: index
+//                 })),
+//                 ...reorderedTasks.map((item, index) => ({
+//                     ...item, 
+//                     order: index}))];
+            
+//             setTasks((current) => current.map( (item) =>
+//                 updatedTasks.find( (updated) => updated.id === item.id
+//                 ) ?? item));
+
+//             try{
+//                 await Promise.all(updatedTasks.map((item) =>
+//                         updateTask(item.id, {
+//                             title: item.title,
+//                             description: item.description,
+//                             status: item.status,
+//                             priority: item.priority,
+//                             order: item.order,
+//                         })
+//                     )
+//                 );
+//                 setSuccessMessages("Task order updated successfully!");
+//             }catch(error){
+//                 console.error(error);
+//                 setDragError("Unable to update task order. Please try again.");
+//                 await loadTasks();
+//             }
+//             return;
+//         }
+
+//         // Save the new order for same-column reordering
+//         const updatedTasks = reorderedTasks.map((item, index) => ({...item,order: index}));
+//         setTasks((current) =>current.map((item) =>
+//                 updatedTasks.find((updated) => updated.id === item.id) ?? item
+//             )
+//         );
+
+//         try{
+//             await Promise.all(
+//                 updatedTasks.map((item) =>
+//                     updateTask(item.id, {
+//                         title: item.title,
+//                         description: item.description,
+//                         status: item.status,
+//                         order: item.order,
+//                     })
+//                 )
+//             );
+
+//             setSuccessMessages("Task order updated successfully!");
+//         }catch(error){
+//             console.error(error);
+//             setDragError("Unable to update task order. Please try again.");
+//             await loadTasks();
+//         }
+//     }
+
+//     return {tasks, isLoading,
+//     // todoTasks, inProgressTasks, doneTasks, 
+//     error, loadTasks, saveTask, removeTask, columns, setColumns, addColumn,
+//     handleDragEnd, handleColumnDragEnd, successMessages,};
+// }
+
+
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import { type DragEndEvent } from "@dnd-kit/core";
+import { arrayMove } from "@dnd-kit/sortable";
+import { getTasks, deleteTask, updateTask } from "@/api/task";
+import type { Task } from "@/features/tasks/type/taskType";
+import { getApiErrorMessage } from "@/lib/api";
+
+export function useTasks(workflowId: string) {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
-    const [columns, setColumns] = useState<TaskColumn[]>([]);
     const [dragError, setDragError] = useState("");
     const [successMessages, setSuccessMessages] = useState("");
 
     const loadTasks = useCallback(async () => {
-        try{
+        if (!workflowId) {
+            setTasks([]);
+            setIsLoading(false);
+            return;
+        }
+
+        try {
             setIsLoading(true);
             setError("");
-            const data = await getTasks();
+
+            const data = await getTasks(workflowId);
             setTasks(data);
-        }catch(error){
+        } catch (error) {
             setError(getApiErrorMessage(error));
-        }finally{
+        } finally {
             setIsLoading(false);
         }
-    }, []);
-
-    const loadColumns = useCallback(async () => {
-        try{
-            const data = await getColumns();
-            setColumns(data);
-        }catch(error){
-            setError(getApiErrorMessage(error));
-        }
-    }, []);
+    }, [workflowId]);
 
     useEffect(() => {
-        loadTasks();
-        loadColumns();
-    }, [loadTasks, loadColumns]);
+        void loadTasks();
+    }, [loadTasks]);
 
-    // Add a created task or replace an updated task.
-    function saveTask(savedTask: Task){
+    function saveTask(savedTask: Task) {
+        // Never add a task from another workflow to this board.
+        if (savedTask.workflowId !== workflowId) return;
+
         setTasks((currentTasks) => {
-            const exists = currentTasks.some((task) => task.id === savedTask.id);
-            if(exists){
+            const exists = currentTasks.some(
+                (task) => task.id === savedTask.id
+            );
+
+            if (exists) {
                 return currentTasks.map((task) =>
                     task.id === savedTask.id ? savedTask : task
                 );
             }
-            return [...currentTasks, savedTask]; //add new task
+
+            return [...currentTasks, savedTask];
         });
+
         setError("");
     }
 
-    async function removeTask(id: string): Promise<boolean>{
-        try{
+    async function removeTask(id: string): Promise<boolean> {
+        try {
             setError("");
             await deleteTask(id);
+
             setTasks((currentTasks) =>
                 currentTasks.filter((task) => task.id !== id)
             );
+
             return true;
-        }catch(error){
+        } catch (error) {
             setError(getApiErrorMessage(error));
             return false;
         }
     }
 
-    async function addColumn(title: string): Promise<boolean> {
-        try{
-            setError("");
-            const trimmedTitle = title.trim();
-            if(columns.some((column) =>
-            column.title.trim().toLowerCase() === trimmedTitle.toLowerCase())){
-                setError("A column with this title already exists.");
-                return false;
-            }
-            const createdColumn = await newColumn({
-                title: trimmedTitle,
-                order: columns.reduce((maxOrder, column) => Math.max(maxOrder, column.order),-1)+1,
-            });
-
-            setColumns((currentColumns) =>
-                [...currentColumns, createdColumn].sort((a, b) => a.order - b.order)
-            );
-            return true;
-        }catch(error){
-            setError(getApiErrorMessage(error));
-            return false;
-        }
-    }
-
-    async function handleColumnDragEnd(
-        activeId: string, // the id of the column which is dragged
-        overId: string // the id of the column where it is dropped
-    ): Promise<boolean> {
-        if (activeId === overId) return true;
-
-        const previousColumns = [...columns].sort((a, b) => a.order - b.order);
-        const oldIndex = previousColumns.findIndex((column) => String(column.id) === activeId);
-        const newIndex = previousColumns.findIndex((column) => String(column.id) === overId);
-
-        if (oldIndex === -1 || newIndex === -1) return false;
-
-        // move the column locally first for a smooth UI
-        // arrayMove -> It creates a reordered array by moving an element from one index to another(dnd kit)
-        const reorderedColumns = arrayMove(previousColumns, oldIndex, newIndex).map
-        ((column, index) => ({
-            ...column,
-            order: index, //update the order after arrayMove reorder the columns
-        }));
-        setColumns(reorderedColumns);
-        setError("");
-
-        try{
-            // Persist every column's new position.
-            await Promise.all(
-                reorderedColumns.map((column) =>
-                    updateColumnOrder(String(column.id), column.order)
-                )
-            );
-
-            setSuccessMessages("Column order updated successfully!");
-            return true;
-        }catch(error){
-            // Restore the original order if saving fails.
-            setColumns(previousColumns);
-            setError(getApiErrorMessage(error));
-            console.error("Failed to update column order:", error);
-            return false;
-        }
-    }
-
-    //Reordering tasks within the same column & Moving tasks between columns
     async function handleDragEnd(event: DragEndEvent) {
         const { active, over } = event;
+
         if (!over || active.id === over.id) return;
-        const taskId = String(active.id); //task card id
-        const overId = String(over.id); //column id or if you dop over any other task card then its id
-        const task = tasks.find((item) => String(item.id) === taskId); //find the dragged task
+
+        const taskId = String(active.id);
+        const overId = String(over.id);
+
+        const task = tasks.find((item) => String(item.id) === taskId);
         if (!task) return;
-        // Check whether the drop target is a task or a column
-        const targetTask = tasks.find((item) => String(item.id) === overId);
-        const dropData = over.data.current; //gets data of dropped target
 
-        const newStatus = dropData?.type === "priority-group" ? String(dropData.columnId)
-            : targetTask ? targetTask.status : overId;
-        
-        // sort the columns task in which the task is moved from old to new
-        const destinationTasks = tasks.filter((item) => item.status === newStatus).sort((a, b) => a.order - b.order);
+        const targetTask = tasks.find(
+            (item) => String(item.id) === overId
+        );
 
-        let reorderedTasks: Task[];
-        if (task.status === newStatus){// drag and drop in the same column
-            //changes within the same column
-            const oldIndex = destinationTasks.findIndex((item) => String(item.id) === taskId);
-            const newIndex = targetTask ? destinationTasks.findIndex(
-                (item) => String(item.id) === overId) : destinationTasks.length - 1;
-            if (oldIndex === -1) return;
-            //It returns a new array with reorder the original index to the destination index by dnd
-            reorderedTasks = arrayMove(destinationTasks, oldIndex, newIndex);
-        }else{
-            // Move to another column so sort the source column
-            const sourceTasks = tasks.filter((item) =>
-                    item.status === task.status &&
-                    String(item.id) !== taskId
-                ).sort((a, b) => a.order - b.order);
+        const dropData = over.data.current;
 
-            const movedTask = { ...task, status: newStatus };
-            const targetIndex = targetTask ? destinationTasks.findIndex( //new index of the task
-                    (item) => String(item.id) === overId
-                ) : destinationTasks.length;
+        const newStatus =
+            dropData?.type === "priority-group"
+                ? String(dropData.columnId)
+                : targetTask
+                    ? targetTask.status
+                    : overId;
 
-            const updatedDestination = [...destinationTasks];
-            updatedDestination.splice(targetIndex < 0 ? updatedDestination.length : targetIndex,0,movedTask);
+        // Only allow a status that belongs to this workflow.
+        // The caller supplies the current workflow's status IDs.
+        if (!newStatus) return;
 
-            reorderedTasks = updatedDestination;
-            // update both source and destination columns
-            const updatedTasks = [...sourceTasks.map((item, index) => ({
+        const destinationTasks = tasks
+            .filter((item) => item.status === newStatus)
+            .sort((a, b) => a.order - b.order);
+
+        let updatedTasks: Task[];
+
+        if (task.status === newStatus) {
+            // Reorder tasks inside the same status.
+            const oldIndex = destinationTasks.findIndex(
+                (item) => item.id === taskId
+            );
+
+            const newIndex = targetTask
+                ? destinationTasks.findIndex(
+                    (item) => item.id === overId
+                )
+                : destinationTasks.length - 1;
+
+            if (oldIndex === -1 || newIndex < 0) return;
+
+            const reordered = arrayMove(
+                destinationTasks,
+                oldIndex,
+                newIndex
+            );
+
+            updatedTasks = reordered.map((item, index) => ({
+                ...item,
+                order: index,
+            }));
+        } else {
+            // Move a task to another status.
+            const sourceTasks = tasks
+                .filter(
+                    (item) =>
+                        item.status === task.status &&
+                        item.id !== taskId
+                )
+                .sort((a, b) => a.order - b.order);
+
+            const movedTask = {
+                ...task,
+                status: newStatus,
+            };
+
+            const targetIndex = targetTask
+                ? destinationTasks.findIndex(
+                    (item) => item.id === overId
+                )
+                : destinationTasks.length;
+
+            const reorderedDestination = [...destinationTasks];
+            reorderedDestination.splice(
+                targetIndex < 0
+                    ? reorderedDestination.length
+                    : targetIndex,
+                0,
+                movedTask
+            );
+
+            updatedTasks = [
+                ...sourceTasks.map((item, index) => ({
                     ...item,
-                    order: index
+                    order: index,
                 })),
-                ...reorderedTasks.map((item, index) => ({
-                    ...item, 
-                    order: index}))];
-            
-            setTasks((current) => current.map( (item) =>
-                updatedTasks.find( (updated) => updated.id === item.id
-                ) ?? item));
-
-            try{
-                await Promise.all(updatedTasks.map((item) =>
-                        updateTask(item.id, {
-                            title: item.title,
-                            description: item.description,
-                            status: item.status,
-                            priority: item.priority,
-                            order: item.order,
-                        })
-                    )
-                );
-                setSuccessMessages("Task order updated successfully!");
-            }catch(error){
-                console.error(error);
-                setDragError("Unable to update task order. Please try again.");
-                await loadTasks();
-            }
-            return;
+                ...reorderedDestination.map((item, index) => ({
+                    ...item,
+                    order: index,
+                })),
+            ];
         }
 
-        // Save the new order for same-column reordering
-        const updatedTasks = reorderedTasks.map((item, index) => ({...item,order: index}));
-        setTasks((current) =>current.map((item) =>
-                updatedTasks.find((updated) => updated.id === item.id) ?? item
+        // Optimistic UI update.
+        setTasks((currentTasks) =>
+            currentTasks.map(
+                (item) =>
+                    updatedTasks.find(
+                        (updated) => updated.id === item.id
+                    ) ?? item
             )
         );
 
-        try{
+        try {
             await Promise.all(
                 updatedTasks.map((item) =>
                     updateTask(item.id, {
                         title: item.title,
                         description: item.description,
                         status: item.status,
+                        priority: item.priority,
+                        dueDate: item.dueDate,
+                        workflowId: item.workflowId,
                         order: item.order,
                     })
                 )
             );
 
             setSuccessMessages("Task order updated successfully!");
-        }catch(error){
-            console.error(error);
-            setDragError("Unable to update task order. Please try again.");
+            setDragError("");
+        } catch (error) {
+            console.error("Failed to update task order:", error);
+            setDragError(
+                "Unable to update task order. Please try again."
+            );
             await loadTasks();
         }
     }
 
-    return {tasks, isLoading,
-    // todoTasks, inProgressTasks, doneTasks, 
-    error, loadTasks, saveTask, removeTask, columns, setColumns, addColumn,
-    handleDragEnd, handleColumnDragEnd, successMessages,};
+    return {
+        tasks,
+        isLoading,
+        error,
+        dragError,
+        successMessages,
+        loadTasks,
+        saveTask,
+        removeTask,
+        handleDragEnd,
+    };
 }

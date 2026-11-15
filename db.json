@@ -3,32 +3,44 @@
     {
       "id": "todo",
       "title": "Todo",
-      "order": 0
+      "order": 0,
+      "isStart": false,
+      "isCompleted": false
     },
     {
       "id": "in_progress",
       "title": "In Progress",
-      "order": 1
+      "order": 1,
+      "isStart": true,
+      "isCompleted": false
     },
     {
       "id": "done",
       "title": "Done",
-      "order": 4
+      "order": 4,
+      "isStart": false,
+      "isCompleted": true
     },
     {
       "id": "in_review",
       "title": "In Review",
-      "order": 3
+      "order": 3,
+      "isStart": false,
+      "isCompleted": false
     },
     {
       "title": "To be discussed",
       "order": 2,
-      "id": "S7kZSBep1wo"
+      "id": "S7kZSBep1wo",
+      "isStart": false,
+      "isCompleted": false
     },
     {
       "title": "in discuss",
       "order": 5,
-      "id": "VS9lJAaNY6s"
+      "id": "VS9lJAaNY6s",
+      "isStart": false,
+      "isCompleted": false
     }
   ],
   "tasks": [
@@ -47,7 +59,8 @@
       "status": "S7kZSBep1wo",
       "order": 1,
       "id": "aKy_g7JMrHE",
-      "priority": "low"
+      "priority": "low",
+      "dueDate": "2026-11-17"
     },
     {
       "title": "Side bar and Header",
@@ -56,7 +69,7 @@
       "order": 1,
       "id": "3rHh1uZEhHs",
       "priority": "medium",
-      "dueDate": "2026-11-02"
+      "dueDate": "2026-11-16"
     },
     {
       "title": "Fetch api and endpoints",
@@ -65,7 +78,7 @@
       "order": 0,
       "id": "qAoJwnvcWT0",
       "priority": "high",
-      "dueDate": "2026-11-06"
+      "dueDate": "2026-11-18"
     },
     {
       "title": "Add task form for edit and add task",
@@ -74,7 +87,7 @@
       "order": 0,
       "id": "wxHoljkkGZs",
       "priority": "low",
-      "dueDate": "2026-11-07"
+      "dueDate": "2026-11-18"
     },
     {
       "title": "Apply dnd functionality",
@@ -92,7 +105,7 @@
       "order": 2,
       "id": "MZqA1sH3r1k",
       "priority": "medium",
-      "dueDate": "2026-11-04"
+      "dueDate": "2026-11-18"
     },
     {
       "title": "Add comments feature",
@@ -101,7 +114,7 @@
       "order": 0,
       "id": "hwySdpJnJrU",
       "priority": "medium",
-      "dueDate": "2026-11-04"
+      "dueDate": "2026-11-17"
     },
     {
       "title": "Fetch comments api",
@@ -116,17 +129,17 @@
       "title": "apply authentication.",
       "description": "apply authentication.",
       "status": "todo",
-      "order": 2,
+      "order": 1,
       "id": "BvJrpxancyc",
       "priority": "high",
-      "dueDate": "2026-11-06"
+      "dueDate": "2026-11-18"
     },
     {
       "title": "review ",
       "description": "today",
       "status": "todo",
       "priority": "medium",
-      "dueDate": "2026-11-02",
+      "dueDate": "2026-11-17",
       "order": 0,
       "id": "yNxlOgNiwF8"
     },
@@ -135,9 +148,139 @@
       "description": "first understand the concept then implement it.\n",
       "status": "todo",
       "priority": "high",
-      "dueDate": "2026-11-09",
-      "order": 1,
+      "dueDate": "2026-11-25",
+      "order": 2,
       "id": "FRU4GShGQoY"
+    },
+    {
+      "title": "complete the workflow",
+      "description": "complete this with complete flow",
+      "status": "in_review",
+      "priority": "medium",
+      "dueDate": "2026-11-17",
+      "workflowId": "default-workflow",
+      "order": 1,
+      "id": "S4gMqWF3DTw"
+    },
+    {
+      "title": "make an frontend design of login page",
+      "description": "design must be look professional",
+      "status": "55bff4fc-249b-44aa-8cb7-6ed0a4c2c4a6",
+      "priority": "medium",
+      "dueDate": "2026-11-17",
+      "workflowId": "3MPaAe0uRkA",
+      "order": 0,
+      "id": "EDcSkce_9_8"
+    },
+    {
+      "title": "login page",
+      "description": "login page with credentials",
+      "status": "83066a9a-396a-4d12-854d-b7dfce667b8c",
+      "priority": "high",
+      "dueDate": "2026-11-19",
+      "workflowId": "3MPaAe0uRkA",
+      "order": 1,
+      "id": "zVHrdr2FHVU"
+    },
+    {
+      "title": "Interceptor",
+      "description": "understand the concept and then implement",
+      "status": "83066a9a-396a-4d12-854d-b7dfce667b8c",
+      "priority": "medium",
+      "dueDate": "2026-11-18",
+      "workflowId": "3MPaAe0uRkA",
+      "order": 0,
+      "id": "qIy7ij0zQ4k"
+    },
+    {
+      "title": "comment",
+      "description": "crud operation for comments",
+      "status": "5430e466-7596-4552-be15-549ed8f60da2",
+      "priority": "low",
+      "dueDate": "2026-11-20",
+      "workflowId": "3MPaAe0uRkA",
+      "order": 0,
+      "id": "m0m9se5YRko"
+    },
+    {
+      "title": "theme changer",
+      "description": "which is the best place to implement",
+      "status": "ec5dcdf0-6b2e-41dc-8086-455248868a0b",
+      "priority": "low",
+      "dueDate": "2026-11-17",
+      "workflowId": "3MPaAe0uRkA",
+      "order": 0,
+      "id": "NH3CMgYSJjc"
+    },
+    {
+      "title": "complete the tasks",
+      "description": "before deadline",
+      "status": "5430e466-7596-4552-be15-549ed8f60da2",
+      "priority": "high",
+      "dueDate": "2026-11-20",
+      "workflowId": "3MPaAe0uRkA",
+      "order": 1,
+      "id": "8AKlIetuLNY"
+    },
+    {
+      "title": "form details",
+      "description": "add and edit form",
+      "status": "55bff4fc-249b-44aa-8cb7-6ed0a4c2c4a6",
+      "priority": "medium",
+      "dueDate": "2026-11-19",
+      "workflowId": "3MPaAe0uRkA",
+      "order": 1,
+      "id": "LNb1Wo7HQ14"
+    },
+    {
+      "title": "design ",
+      "description": "start designing",
+      "status": "in_progress",
+      "priority": "medium",
+      "dueDate": "2026-11-20",
+      "workflowId": "default-workflow",
+      "order": 0,
+      "id": "LBefz_ZeHNQ"
+    },
+    {
+      "title": "Dashboard page",
+      "description": "all the main details of the task",
+      "status": "in_progress",
+      "priority": "high",
+      "dueDate": "2026-11-18",
+      "workflowId": "default-workflow",
+      "order": 1,
+      "id": "F65hTIB3r_M"
+    },
+    {
+      "title": "complete the task details",
+      "description": "all the details",
+      "status": "in_review",
+      "priority": "medium",
+      "dueDate": "2026-11-18",
+      "workflowId": "default-workflow",
+      "order": 0,
+      "id": "awXE9h7kbaI"
+    },
+    {
+      "title": "login page",
+      "description": "login page with username and password",
+      "status": "done",
+      "priority": "high",
+      "dueDate": "2026-11-16",
+      "workflowId": "default-workflow",
+      "order": 0,
+      "id": "q-NnwfmBpCM"
+    },
+    {
+      "title": "workflow manage",
+      "description": "manage the workflow.\n",
+      "status": "todo",
+      "priority": "medium",
+      "dueDate": "2026-11-19",
+      "workflowId": "default-workflow",
+      "order": 0,
+      "id": "-5stf73oQWA"
     }
   ],
   "comments": [
@@ -257,7 +400,219 @@
       "authorId": 1,
       "authorName": "Emily Johnson",
       "id": "RzwIA8xfSDw"
+    },
+    {
+      "taskId": "S4gMqWF3DTw",
+      "text": "jnrv",
+      "createdAt": "2026-11-15T11:38:05.418Z",
+      "updatedAt": "2026-11-15T11:38:05.418Z",
+      "authorId": 1,
+      "authorName": "Emily Johnson",
+      "id": "Wk2JwZ_XK44"
     }
   ],
+  "workflows": [
+    {
+      "id": "default-workflow",
+      "name": "My Workflow",
+      "description": "My default task workflow",
+      "userId": 1,
+      "statuses": [
+        {
+          "id": "todo",
+          "title": "Todo",
+          "order": 0,
+          "isStart": true,
+          "isCompleted": false
+        },
+        {
+          "id": "in_progress",
+          "title": "In Progress",
+          "order": 1,
+          "isStart": false,
+          "isCompleted": false
+        },
+        {
+          "id": "in_review",
+          "title": "In Review",
+          "order": 2,
+          "isStart": false,
+          "isCompleted": false
+        },
+        {
+          "id": "done",
+          "title": "Done",
+          "order": 3,
+          "isStart": false,
+          "isCompleted": true
+        }
+      ],
+      "createdAt": "2026-11-15T00:00:00.000Z",
+      "updatedAt": "2026-11-15T00:00:00.000Z"
+    },
+    {
+      "name": "Frontend developement",
+      "description": "this one can use by frontend developer",
+      "userId": 1,
+      "statuses": [
+        {
+          "id": "83066a9a-396a-4d12-854d-b7dfce667b8c",
+          "title": "Todo",
+          "order": 0,
+          "isStart": true,
+          "isCompleted": false
+        },
+        {
+          "id": "55bff4fc-249b-44aa-8cb7-6ed0a4c2c4a6",
+          "title": "Design",
+          "order": 1,
+          "isStart": false,
+          "isCompleted": false
+        },
+        {
+          "id": "5430e466-7596-4552-be15-549ed8f60da2",
+          "title": "In Progress",
+          "order": 2,
+          "isStart": false,
+          "isCompleted": false
+        },
+        {
+          "id": "ec5dcdf0-6b2e-41dc-8086-455248868a0b",
+          "title": "Done",
+          "order": 3,
+          "isStart": false,
+          "isCompleted": true
+        }
+      ],
+      "createdAt": "2026-11-15T10:34:06.732Z",
+      "updatedAt": "2026-11-15T10:34:20.803Z",
+      "id": "3MPaAe0uRkA"
+    },
+    {
+      "name": "scd",
+      "description": "",
+      "userId": 1,
+      "statuses": [
+        {
+          "id": "459b603d-d5f5-461a-a634-97733e3bb1da",
+          "title": "Backlog",
+          "order": 0,
+          "isStart": true,
+          "isCompleted": false
+        },
+        {
+          "id": "771e8236-01a9-471a-93aa-b246908294da",
+          "title": "In Progress",
+          "order": 1,
+          "isStart": false,
+          "isCompleted": false
+        },
+        {
+          "id": "489cab15-9307-4206-94f8-d5fb0db7611c",
+          "title": "Completed",
+          "order": 2,
+          "isStart": false,
+          "isCompleted": true
+        }
+      ],
+      "createdAt": "2026-11-15T10:54:45.620Z",
+      "updatedAt": "2026-11-15T10:54:45.620Z",
+      "id": "9EJ-PLy4_is"
+    },
+    {
+      "name": "cd",
+      "description": "",
+      "userId": 1,
+      "statuses": [
+        {
+          "id": "7931d78d-2dc3-4170-ab3c-14fe92df404d",
+          "title": "In Progress",
+          "order": 0,
+          "isStart": false,
+          "isCompleted": false
+        },
+        {
+          "id": "f08e3bbc-5686-4194-8b8c-883b098d8799",
+          "title": "Completed",
+          "order": 1,
+          "isStart": false,
+          "isCompleted": true
+        },
+        {
+          "id": "d07df3ab-8db2-46ea-9fcd-ceb427502315",
+          "title": "Todo",
+          "order": 2,
+          "isStart": true,
+          "isCompleted": false
+        }
+      ],
+      "createdAt": "2026-11-15T10:54:59.193Z",
+      "updatedAt": "2026-11-15T10:54:59.193Z",
+      "id": "ayHuS8aMj6k"
+    },
+    {
+      "name": "cd",
+      "description": "",
+      "userId": 1,
+      "statuses": [
+        {
+          "id": "9784b9a3-2bf7-4d97-8a0d-195f96e81736",
+          "title": "Backlog",
+          "order": 0,
+          "isStart": true,
+          "isCompleted": false
+        },
+        {
+          "id": "1532ca9c-9f53-4b54-ad84-64942632c5b3",
+          "title": "In Progress",
+          "order": 1,
+          "isStart": false,
+          "isCompleted": false
+        },
+        {
+          "id": "51ab180e-dc4b-4c3d-adf4-c47851549938",
+          "title": "Completed",
+          "order": 2,
+          "isStart": false,
+          "isCompleted": true
+        }
+      ],
+      "createdAt": "2026-11-15T10:55:11.514Z",
+      "updatedAt": "2026-11-15T10:55:11.514Z",
+      "id": "QBW31VZRPE8"
+    },
+    {
+      "name": "d",
+      "description": "",
+      "userId": 1,
+      "statuses": [
+        {
+          "id": "4b160d75-6c26-4525-b0b2-7fd7f13b6bd7",
+          "title": "In Progress",
+          "order": 0,
+          "isStart": false,
+          "isCompleted": false
+        },
+        {
+          "id": "ac78ccff-a5ac-449c-852d-a74d979f30d7",
+          "title": "Backlog",
+          "order": 1,
+          "isStart": true,
+          "isCompleted": false
+        },
+        {
+          "id": "ef185b9b-34b8-4983-9a6b-ba77fd62bcbc",
+          "title": "Done",
+          "order": 2,
+          "isStart": false,
+          "isCompleted": true
+        }
+      ],
+      "createdAt": "2026-11-15T10:55:19.955Z",
+      "updatedAt": "2026-11-15T10:55:19.955Z",
+      "id": "UGb4hfYLzH4"
+    }
+  ],
+  "userSettings": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

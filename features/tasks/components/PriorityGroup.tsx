@@ -74,20 +74,12 @@
 // }
 
 "use client";
-
 import { useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
-import {
-    SortableContext,
-    verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+import {SortableContext, verticalListSortingStrategy} from "@dnd-kit/sortable";
 import { ChevronDown, ChevronUp } from "lucide-react";
-
 import TaskCard from "./TaskCard";
-import type {
-    Task,
-    TaskPriority,
-} from "@/features/tasks/type/taskType";
+import type {Task, TaskPriority} from "@/features/tasks/type/taskType";
 
 interface PriorityGroupProps {
     columnId: string;
@@ -100,18 +92,9 @@ interface PriorityGroupProps {
     onDelete: (id: string) => void;
 }
 
-export default function PriorityGroup({
-    columnId,
-    priority,
-    label,
-    dot,
-    tasks,
-    isCompleted,
-    onEdit,
-    onDelete,
-}: PriorityGroupProps) {
+export default function PriorityGroup({columnId, priority, label, dot, tasks, isCompleted,
+    onEdit, onDelete}: PriorityGroupProps) {
     const [isOpen, setIsOpen] = useState(priority === "high");
-
     const { setNodeRef, isOver } = useDroppable({
         id: `priority-${columnId}-${priority}`,
         data: {
@@ -121,24 +104,13 @@ export default function PriorityGroup({
         },
     });
 
-    const sortedTasks = [...tasks].sort(
-        (a, b) => a.order - b.order
-    );
+    const sortedTasks = [...tasks].sort((a, b) => a.order - b.order);
 
     return (
-        <section
-            ref={setNodeRef}
-            className={`rounded-lg border border-gray-200 bg-white dark:border-slate-700 dark:bg-slate-900 ${
-                isOver
-                    ? "ring-2 ring-blue-400 dark:ring-blue-500"
-                    : ""
-            }`}
-        >
-            <button
-                type="button"
-                onClick={() => setIsOpen((current) => !current)}
-                className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-3 text-left hover:bg-gray-50 dark:hover:bg-slate-800"
-            >
+        <section ref={setNodeRef}
+            className={`rounded-lg border border-gray-200 bg-white dark:border-slate-700 dark:bg-slate-900 ${ isOver ? "ring-2 ring-blue-400 dark:ring-blue-500" : ""}`}>
+            <button type="button" onClick={() => setIsOpen((current) => !current)}
+                className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-3 text-left hover:bg-gray-50 dark:hover:bg-slate-800">
                 <div className="flex min-w-0 items-center gap-2">
                     <span className={`h-2.5 w-2.5 rounded-full ${dot}`} />
 
@@ -152,27 +124,21 @@ export default function PriorityGroup({
                 </div>
 
                 {isOpen ? (
-                    <ChevronUp className="h-4 w-4 shrink-0 text-gray-500" />
+                    <ChevronUp className="h-4 w-4 shrink-0 text-gray-500 cursor-pointer " />
                 ) : (
-                    <ChevronDown className="h-4 w-4 shrink-0 text-gray-500" />
+                    <ChevronDown className="h-4 w-4 shrink-0 text-gray-500 cursor-pointer" />
                 )}
             </button>
 
             {isOpen && (
                 <div className="px-1 pb-2">
-                    <SortableContext
-                        items={sortedTasks.map((task) => String(task.id))}
-                        strategy={verticalListSortingStrategy}
-                    >
+                    <SortableContext items={sortedTasks.map((task) => String(task.id))}
+                        strategy={verticalListSortingStrategy}>
                         <div className="flex min-h-3 flex-col gap-3">
                             {sortedTasks.map((task) => (
-                                <TaskCard
-                                    key={task.id}
-                                    task={task}
-                                    onEdit={onEdit}
-                                    onDelete={onDelete}
-                                    isCompleted={isCompleted}
-                                />
+                                <TaskCard key={task.id} task={task}
+                                    onEdit={onEdit} onDelete={onDelete}
+                                    isCompleted={isCompleted}/>
                             ))}
                         </div>
                     </SortableContext>

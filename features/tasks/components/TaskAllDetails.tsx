@@ -51,17 +51,13 @@
 //     );
 // }
 "use client";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import TaskDetails from "@/features/tasks/components/TaskDetails";
 import CommentList from "@/features/comments/components/CommentList";
 import CommentBox from "@/features/comments/components/CommentBox";
-
 import { useComments } from "@/features/comments/hooks/useComments";
 import { getWorkflowById } from "@/api/workflowApi";
-
 import type { Task } from "@/features/tasks/type/taskType";
 import type { TaskColumn } from "@/features/tasks/type/taskType";
 import type { Workflow } from "@/features/workflows/types/workflowType";
@@ -72,73 +68,51 @@ interface TaskAllDetailsProps {
     currentUser: SafeUser;
 }
 
-export default function TaskAllDetails({
-    initialTask,
-    currentUser,
-}: TaskAllDetailsProps) {
+export default function TaskAllDetails({initialTask, currentUser}: TaskAllDetailsProps) {
     const router = useRouter();
-
     const [task, setTask] = useState<Task>(initialTask);
     const [columns, setColumns] = useState<TaskColumn[]>([]);
     const [isLoadingWorkflow, setIsLoadingWorkflow] = useState(true);
-
     const commentsState = useComments(String(task.id));
 
     useEffect(() => {
         async function loadWorkflow() {
-            try {
+            try{
                 setIsLoadingWorkflow(true);
-
-                const workflow: Workflow = await getWorkflowById(
-                    initialTask.workflowId
-                );
-
-                setColumns(
-                    [...workflow.statuses]
-                        .sort((a, b) => a.order - b.order)
-                );
-            } catch (error) {
+                const workflow: Workflow = await getWorkflowById(initialTask.workflowId);
+                setColumns([...workflow.statuses].sort((a, b) => a.order - b.order));
+            }catch(error){
                 console.error("Failed to load task workflow:", error);
-            } finally {
+            }finally{
                 setIsLoadingWorkflow(false);
             }
         }
-
         void loadWorkflow();
     }, [initialTask.workflowId]);
 
-    if (isLoadingWorkflow) {
+    if(isLoadingWorkflow){
         return <div className="p-6">Loading task details...</div>;
     }
 
     return (
         <div className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8 dark:bg-background">
             <div className="mx-auto max-w-4xl space-y-6">
-                <TaskDetails
-                    task={task}
-                    columns={columns}
-                    onUpdate={setTask}
-                    onClose={() => router.push("/board")}
-                />
+                <TaskDetails task={task} columns={columns} onUpdate={setTask}
+                    onClose={() => router.push("/board")}/>
 
-                <CommentBox
-                    taskId={String(task.id)}
-                    currentUser={currentUser}
-                    addComment={commentsState.addComment}
-                    error={commentsState.error}
-                />
+                <CommentBox taskId={String(task.id)}
+                    currentUser={currentUser} addComment={commentsState.addComment}
+                    error={commentsState.error}/>
 
                 <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:p-6 dark:border-slate-700 dark:bg-slate-900">
-                    <CommentList
-                        comments={commentsState.comments}
+                    <CommentList comments={commentsState.comments}
                         currentUserId={currentUser.id}
                         isLoading={commentsState.isLoading}
                         error={commentsState.error}
                         editComment={commentsState.editComment}
                         removeComment={commentsState.removeComment}
                         loadError={commentsState.loadError}
-                        onRetry={() => commentsState.loadComments()}
-                    />
+                        onRetry={() => commentsState.loadComments()}/>
                 </div>
             </div>
         </div>

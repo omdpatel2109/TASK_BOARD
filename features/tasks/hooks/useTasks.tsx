@@ -244,9 +244,7 @@
 //     handleDragEnd, handleColumnDragEnd, successMessages,};
 // }
 
-
 "use client";
-
 import { useCallback, useEffect, useState } from "react";
 import { type DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
@@ -262,21 +260,20 @@ export function useTasks(workflowId: string) {
     const [successMessages, setSuccessMessages] = useState("");
 
     const loadTasks = useCallback(async () => {
-        if (!workflowId) {
+        if(!workflowId){
             setTasks([]);
             setIsLoading(false);
             return;
         }
 
-        try {
+        try{
             setIsLoading(true);
             setError("");
-
             const data = await getTasks(workflowId);
             setTasks(data);
-        } catch (error) {
+        }catch(error){
             setError(getApiErrorMessage(error));
-        } finally {
+        }finally{
             setIsLoading(false);
         }
     }, [workflowId]);
@@ -288,35 +285,25 @@ export function useTasks(workflowId: string) {
     function saveTask(savedTask: Task) {
         // Never add a task from another workflow to this board.
         if (savedTask.workflowId !== workflowId) return;
-
         setTasks((currentTasks) => {
-            const exists = currentTasks.some(
-                (task) => task.id === savedTask.id
-            );
-
-            if (exists) {
+            const exists = currentTasks.some((task) => task.id === savedTask.id);
+            if(exists){
                 return currentTasks.map((task) =>
                     task.id === savedTask.id ? savedTask : task
                 );
             }
-
             return [...currentTasks, savedTask];
         });
-
         setError("");
     }
 
     async function removeTask(id: string): Promise<boolean> {
-        try {
+        try{
             setError("");
             await deleteTask(id);
-
-            setTasks((currentTasks) =>
-                currentTasks.filter((task) => task.id !== id)
-            );
-
+            setTasks((currentTasks) => currentTasks.filter((task) => task.id !== id));
             return true;
-        } catch (error) {
+        }catch(error){
             setError(getApiErrorMessage(error));
             return false;
         }
@@ -324,115 +311,65 @@ export function useTasks(workflowId: string) {
 
     async function handleDragEnd(event: DragEndEvent) {
         const { active, over } = event;
-
         if (!over || active.id === over.id) return;
-
         const taskId = String(active.id);
         const overId = String(over.id);
-
         const task = tasks.find((item) => String(item.id) === taskId);
         if (!task) return;
-
-        const targetTask = tasks.find(
-            (item) => String(item.id) === overId
-        );
-
+        const targetTask = tasks.find((item) => String(item.id) === overId);
         const dropData = over.data.current;
-
-        const newStatus =
-            dropData?.type === "priority-group"
-                ? String(dropData.columnId)
-                : targetTask
-                    ? targetTask.status
-                    : overId;
+        const newStatus = dropData?.type === "priority-group"
+                ? String(dropData.columnId) : targetTask
+                    ? targetTask.status : overId;
 
         // Only allow a status that belongs to this workflow.
         // The caller supplies the current workflow's status IDs.
         if (!newStatus) return;
 
-        const destinationTasks = tasks
-            .filter((item) => item.status === newStatus)
+        const destinationTasks = tasks.filter((item) => item.status === newStatus)
             .sort((a, b) => a.order - b.order);
 
         let updatedTasks: Task[];
-
-        if (task.status === newStatus) {
+        if(task.status === newStatus){
             // Reorder tasks inside the same status.
-            const oldIndex = destinationTasks.findIndex(
-                (item) => item.id === taskId
-            );
+            const oldIndex = destinationTasks.findIndex((item) => item.id === taskId);
 
             const newIndex = targetTask
-                ? destinationTasks.findIndex(
-                    (item) => item.id === overId
-                )
+                ? destinationTasks.findIndex((item) => item.id === overId)
                 : destinationTasks.length - 1;
 
             if (oldIndex === -1 || newIndex < 0) return;
+            const reordered = arrayMove(destinationTasks, oldIndex, newIndex);
 
-            const reordered = arrayMove(
-                destinationTasks,
-                oldIndex,
-                newIndex
-            );
-
-            updatedTasks = reordered.map((item, index) => ({
-                ...item,
-                order: index,
-            }));
-        } else {
+            updatedTasks = reordered.map((item, index) => ({...item, order: index}));
+        }else{
             // Move a task to another status.
-            const sourceTasks = tasks
-                .filter(
-                    (item) =>
-                        item.status === task.status &&
-                        item.id !== taskId
-                )
-                .sort((a, b) => a.order - b.order);
+            const sourceTasks = tasks.filter(
+                (item) => item.status === task.status && item.id !== taskId).sort((a, b) => a.order - b.order);
 
-            const movedTask = {
-                ...task,
-                status: newStatus,
-            };
+            const movedTask = {...task, status: newStatus};
 
-            const targetIndex = targetTask
-                ? destinationTasks.findIndex(
-                    (item) => item.id === overId
-                )
-                : destinationTasks.length;
+            const targetIndex = targetTask ? destinationTasks.findIndex( (item) => item.id === overId) : destinationTasks.length;
 
             const reorderedDestination = [...destinationTasks];
             reorderedDestination.splice(
-                targetIndex < 0
-                    ? reorderedDestination.length
-                    : targetIndex,
-                0,
-                movedTask
+                targetIndex < 0 ? reorderedDestination.length : targetIndex, 0, movedTask
             );
 
             updatedTasks = [
-                ...sourceTasks.map((item, index) => ({
-                    ...item,
-                    order: index,
-                })),
-                ...reorderedDestination.map((item, index) => ({
-                    ...item,
-                    order: index,
-                })),
+                ...sourceTasks.map((item, index) => ({...item, order: index})),
+                ...reorderedDestination.map((item, index) => ({...item, order: index})),
             ];
         }
 
         // Optimistic UI update.
         setTasks((currentTasks) =>
-            currentTasks.map(
-                (item) =>
-                    updatedTasks.find(
-                        (updated) => updated.id === item.id
-                    ) ?? item
+            currentTasks.map((item) =>
+                updatedTasks.find((updated) => updated.id === item.id) ?? item
             )
         );
 
-        try {
+        try{
             await Promise.all(
                 updatedTasks.map((item) =>
                     updateTask(item.id, {
@@ -451,22 +388,12 @@ export function useTasks(workflowId: string) {
             setDragError("");
         } catch (error) {
             console.error("Failed to update task order:", error);
-            setDragError(
-                "Unable to update task order. Please try again."
-            );
+            setDragError("Unable to update task order. Please try again.");
             await loadTasks();
         }
     }
 
-    return {
-        tasks,
-        isLoading,
-        error,
-        dragError,
-        successMessages,
-        loadTasks,
-        saveTask,
-        removeTask,
-        handleDragEnd,
+    return {tasks, isLoading, error, dragError, successMessages, loadTasks,
+        saveTask, removeTask, handleDragEnd,
     };
 }

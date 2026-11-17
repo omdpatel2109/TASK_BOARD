@@ -247,7 +247,7 @@ export default function SortableTaskColumn({ column, tasks, isFilterApplied, onE
                 <div className="flex min-w-0 items-center gap-2">
                     <h3 className="truncate font-semibold text-gray-700 dark:text-primary-dark-text">
                         {/* {column.title} */}
-                        <TranslatedText text={column.title} entityType="column" entityId={column.id} field="column" />
+                        <TranslatedText text={column.title} entityType="workflowStatus" entityId={column.id} field="column" />
                     </h3>
 
                     <span className="rounded-full bg-gray-200 px-2 py-1 text-xs font-medium text-gray-700 dark:bg-slate-700 dark:text-third-dark-text">

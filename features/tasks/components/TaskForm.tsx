@@ -355,7 +355,7 @@ export default function TaskForm({task,workflowId,columns,onSuccess,onCancel}: T
                         {sortedColumns.map((column) => (
                             <option key={column.id} value={column.id}>
                                 {/* {column.title} */}
-                                <TranslatedText text={column.title} entityType="column" entityId={column.id} field="name" />
+                                <TranslatedText text={column.title} entityType="workflowStatus" entityId={column.id} field="name" />
                             </option>
                         ))}
                     </select>

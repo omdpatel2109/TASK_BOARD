@@ -279,7 +279,7 @@
 //     );
 // }
 "use client";
-import TranslatedText from "@/features/translation/components/TranslatedText";
+import TranslatedText from "@/features/i18n/components/TranslatedText";
 import { useState } from "react";
 import Link from "next/link";
 import { Bell, CalendarDays, X } from "lucide-react";
@@ -405,7 +405,7 @@ export default function DueDateNotifications() {
 
                                             <div className="min-w-0 flex-1">
                                                 <p className="text-sm font-medium text-slate-800 dark:text-primary-dark-text">
-                                                    <TranslatedText text={task.title} sourceLanguage={task.contentLanguage || "en"} />
+                                                    <TranslatedText text={task.title} entityType="task" entityId={task.id} field="title" />
                                                 </p>
 
                                                 <p className="mt-1 text-xs text-slate-500 dark:text-secondary-dark-text">

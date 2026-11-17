@@ -334,13 +334,14 @@
 //     );
 // }
 "use client";
-import TranslatedText from "@/features/translation/components/TranslatedText";
+import TranslatedText from "@/features/i18n/components/TranslatedText";
 import { useState } from "react";
 import {MoreVertical, Edit2, Trash2, Eye, CalendarDays} from "lucide-react";
 import Link from "next/link";
 import type { Task } from "@/features/tasks/type/taskType";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { useTranslations } from "next-intl";
 interface TaskCardProps {
     task: Task;
     isCompleted?: boolean;
@@ -366,24 +367,25 @@ export function getDueDateStyle(dueDate: string) {
     today.setHours(0, 0, 0, 0);
     const due = new Date(`${dueDate}T00:00:00`);
     const differenceInDays = Math.round((due.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+    const t = useTranslations("tasks");
 
     if(differenceInDays < 0){
         return {
-            label: "Overdue",
+            label: t("overdue"),
             style: "date-overdue",
         };
     }
 
     if(differenceInDays === 0){
         return {
-            label: "Due today",
+            label: t("duetoday"),
             style: "date-duetoday",
         };
     }
 
     if(differenceInDays <= 3){
         return {
-            label: "Due soon",
+            label: t("duesoon"),
             style: "date-duesoon",
         };
     }
@@ -397,6 +399,8 @@ export function getDueDateStyle(dueDate: string) {
 export default function TaskCard({task, isCompleted = false, onEdit, onDelete}: TaskCardProps){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const {attributes, listeners, setNodeRef, transform, transition, isDragging} = useSortable({id: String(task.id)});
+    const t = useTranslations("tasks");
+
 
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -413,7 +417,7 @@ export default function TaskCard({task, isCompleted = false, onEdit, onDelete}: 
             <div className="min-w-0 p-3 sm:p-4">
                 <div className="mb-2 flex min-w-0 items-start justify-between gap-2">
                     <h2 className={`min-w-0 font-bold text-primary-text dark:text-white sm:text-lg ${isCompleted ? "line-through" : "" }`}>
-                        <TranslatedText text={task.title} sourceLanguage={task.contentLanguage || "en"} />
+                        <TranslatedText text={task.title} entityType="task" entityId={task.id} field="title" />
                     </h2>
 
                     <div className="relative">
@@ -461,7 +465,7 @@ export default function TaskCard({task, isCompleted = false, onEdit, onDelete}: 
                 </div>
 
                 <p className={`text-sm text-secondary-text dark:text-slate-400 ${ isCompleted ? "line-through" : ""}`}>
-                    Description: <TranslatedText text={task.description || "No description"} sourceLanguage={task.contentLanguage || "en"} />
+                    {t("description")}: <TranslatedText text={task.description || "No description"} entityType="task" entityId={task.id} field="description" />
                 </p>
 
                 {task.dueDate && (

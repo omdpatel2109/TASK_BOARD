@@ -231,12 +231,13 @@
 //     );
 // }
 "use client";
-import TranslatedText from "@/features/translation/components/TranslatedText";
+import TranslatedText from "@/features/i18n/components/TranslatedText";
 import { useEffect, useState } from "react";
 import { Plus, Pencil, Trash2, Check } from "lucide-react";
 import { useWorkflows } from "../hooks/useWorkflows";
 import type { Workflow } from "../types/workflowType";
 import WorkflowForm from "./WorkflowForm";
+import { useTranslations } from "next-intl";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -250,6 +251,7 @@ export default function WorkflowPage() {
     const displayTotalPages = Math.max(totalPages, 1);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const currentWorkflows = workflows.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    const t = useTranslations("workflows");
 
     // Keep current page valid after deleting workflows
     useEffect(() => {
@@ -320,7 +322,7 @@ export default function WorkflowPage() {
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                 <div>
                     <h1 className="text-2xl font-bold tracking-tight text-primary-text dark:text-white">
-                        My Workflows
+                        {t("title")}
                     </h1>
                     <p className="mt-1 text-sm text-secondary-text">
                         Manage your workflows and their task statuses.
@@ -330,7 +332,7 @@ export default function WorkflowPage() {
                 <button type="button" onClick={openCreateForm}
                     className="flex items-center gap-2 rounded-lg bg-primary px-3 py-2 text-small font-medium text-white transition hover:opacity-90 cursor-pointer">
                     <Plus className="h-4 w-4" />
-                    Create Workflow
+                    {t("createWorkflow")}
                 </button>
             </div>
 
@@ -366,11 +368,11 @@ export default function WorkflowPage() {
                             <div className="flex items-start justify-between gap-2">
                                 <div className="min-w-0">
                                     <h2 className="truncate text-xl font-semibold text-primary-text dark:text-white">
-                                        <TranslatedText text={workflow.name} sourceLanguage={workflow.contentLanguage || "en"} />
+                                        <TranslatedText text={workflow.name} entityType="workflow" entityId={workflow.id} field="name" />
                                     </h2>
 
                                     <p className="mt-1 line-clamp-2 min-h-10 text-sm text-secondary-text">
-                                        <TranslatedText text={workflow.description || "No description"} sourceLanguage={workflow.contentLanguage || "en"} />
+                                        <TranslatedText text={workflow.description || "No description"} entityType="workflow" entityId={workflow.id} field="description" />
                                     </p>
                                 </div>
 
@@ -395,8 +397,8 @@ export default function WorkflowPage() {
                                 {[...workflow.statuses].sort((a, b) => a.order - b.order)
                                     .map((status) => (
                                         <span key={status.id}
-                                            className="rounded-md bg-slate-100 px-3 py-1.5 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                                            <TranslatedText text={status.title} sourceLanguage={status.contentLanguage || "en"} />
+                                            className="rounded-md bg-slate-100 px-3 py-1.5 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-300 mb-2">
+                                            <TranslatedText text={status.title} entityType="workflowStatus" entityId={`${workflow.id}_${status.id}`} field="title" />
                                         </span>
                                     ))}
                             </div>
@@ -414,8 +416,9 @@ export default function WorkflowPage() {
                                 )}
 
                                 {activeWorkflow?.id === workflow.id
-                                    ? "Active Workflow"
-                                    : "Open Workflow"}
+                                    ? t("activeWorkflow")
+                                    : t("openWorkflow")
+                                }
                             </button>
                         </div>
                     ))}

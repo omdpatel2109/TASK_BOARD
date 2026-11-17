@@ -469,7 +469,7 @@
 //     );
 // }
 "use client";
-import TranslatedText from "@/features/translation/components/TranslatedText";
+import TranslatedText from "@/features/i18n/components/TranslatedText";
 import Link from "next/link";
 import { useTasks } from "@/features/tasks/hooks/useTasks";
 import { useTranslations } from "next-intl";
@@ -575,7 +575,7 @@ export default function Dashboard({ workflow }: DashboardProps) {
                     </h1>
 
                     <p className="mt-1 text-sm text-secondary-text dark:text-secondary-dark-text">
-                        <TranslatedText text={workflow.name} sourceLanguage={workflow.contentLanguage || "en"} /> - {t("subtitle")}
+                        <TranslatedText text={workflow.name} entityType="workflow" entityId={workflow.id} field="name" /> - {t("subtitle")}
                     </p>
                 </div>
 
@@ -699,7 +699,7 @@ export default function Dashboard({ workflow }: DashboardProps) {
                                     return (
                                         <div key={column.id} className="flex items-center justify-between gap-3">
                                             <span className="text-sm text-secondary-text dark:text-third-dark-text">
-                                                <TranslatedText text={column.title} sourceLanguage={column.contentLanguage || "en"} />
+                                                {column.title}
                                             </span>
 
                                             <span className="rounded-md bg-slate-100 px-2.5 py-1 text-sm font-semibold text-secondary-text dark:bg-slate-800 dark:text-third-dark-text">

@@ -266,12 +266,13 @@
 //     );
 // }
 "use client";
-import TranslatedText from "@/features/translation/components/TranslatedText";
+import TranslatedText from "@/features/i18n/components/TranslatedText";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type {Task, TaskColumn} from "@/features/tasks/type/taskType";
 import { getPriorityStyle } from "./TaskCard";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface TaskListProps {
     tasks: Task[];
@@ -289,6 +290,7 @@ export default function TaskList({ tasks, columns }: TaskListProps) {
 
     const startIndex = (currentPage - 1) * TASKS_PER_PAGE;
     const paginatedTasks = tasks.slice(startIndex, startIndex + TASKS_PER_PAGE);
+    const t = useTranslations("tasks");
 
     const getStatusLabel = (status: string) => {
         const column = columns.find(
@@ -302,10 +304,10 @@ export default function TaskList({ tasks, columns }: TaskListProps) {
             <div className="flex items-center border-b border-slate-200 px-5 py-4 dark:border-slate-700">
                 <div>
                     <h2 className="font-semibold text-primary-text dark:text-slate-100">
-                        All Tasks
+                        {t("allTasks")}
                     </h2>
                     <p className="mt-1 text-sm text-secondary-text dark:text-slate-400">
-                        View and manage your tasks.
+                        {t("allTasksDescription")}
                     </p>
                 </div>
             </div>
@@ -313,19 +315,19 @@ export default function TaskList({ tasks, columns }: TaskListProps) {
             {tasks.length === 0 ? (
                 <div className="px-5 py-12 text-center">
                     <p className="text-lg font-medium text-primary-text dark:text-third-dark-text">
-                        No tasks found
+                        {t("noTasks")}
                     </p>
                     <p className="mt-1 text-md text-secondary-text dark:text-secondary-dark-text">
-                        Try changing your search or status filter.
+                        {t("noTasksDescription")}
                     </p>
                 </div>
             ) : (
                 <>
                     <div className="grid-cols-12 gap-4 border-b border-slate-200 bg-slate-50/70 px-5 py-3 text-md font-semibold text-primary-text md:grid dark:border-slate-700 dark:bg-slate-800/40 dark:text-secondary-dark-text">
-                        <div className="col-span-6">Task</div>
-                        <div className="col-span-2">Priority</div>
-                        <div className="col-span-2">Status</div>
-                        <div className="col-span-2 text-center">Action</div>
+                        <div className="col-span-6">{t("task")}</div>
+                        <div className="col-span-2">{t("priority")}</div>
+                        <div className="col-span-2">{t("status")}</div>
+                        <div className="col-span-2 text-center">{t("actions")}</div>
                     </div>
 
                     <div className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -334,22 +336,23 @@ export default function TaskList({ tasks, columns }: TaskListProps) {
                                 className="grid grid-cols-1 gap-3 px-5 py-4 hover:bg-slate-50 sm:grid-cols-2 md:grid-cols-12 md:items-center md:gap-4 dark:hover:bg-slate-800/30">
                                 <div className="min-w-0 sm:col-span-2 md:col-span-6">
                                     <h3 className="text-md font-semibold text-primary-text dark:text-primary-dark-text">
-                                        <TranslatedText text={task.title} sourceLanguage={task.contentLanguage || "en"} />
+                                        <TranslatedText text={task.title} entityType="task" entityId={task.id} field="title" />
                                     </h3>
                                     <p className="mt-1 text-sm text-secondary-text dark:text-secondary-dark-text">
-                                        <TranslatedText text={task.description || "No description provided."} sourceLanguage={task.contentLanguage || "en"} />
+                                        <TranslatedText text={task.description || "No description provided."} entityType="task" entityId={task.id} field="description" />
                                     </p>
                                 </div>
 
                                 <div className="md:col-span-2">
                                     <span className={`rounded-md px-2 py-1 text-xs font-medium capitalize ${getPriorityStyle(task.priority)}`}>
-                                        {task.priority || "Not set"}
+                                        {/* {task.priority || "Not set"} */}
+                                        <TranslatedText text={task.priority || "Not set"} entityType="task" entityId={task.id} field="priority" />
                                     </span>
                                 </div>
 
                                 <div className="md:col-span-2">
                                     <span className="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700 dark:bg-slate-700 dark:text-third-dark-text">
-                                        <TranslatedText text={getStatusLabel(task.status)} sourceLanguage={columns.find((column) => String(column.id) === String(task.status))?.contentLanguage || "en"} />
+                                        <TranslatedText text={getStatusLabel(task.status)} entityType="task" entityId={task.id} field="status" />
                                     </span>
                                 </div>
 
@@ -357,7 +360,7 @@ export default function TaskList({ tasks, columns }: TaskListProps) {
                                     <button type="button"
                                         onClick={() => router.push(`/tasks/tasks/${task.id}`)}
                                         className="flex cursor-pointer items-center gap-1 rounded-md px-2 py-1.5 text-sm font-medium text-primary hover:text-primary-text dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-primary-dark-text">
-                                        View details
+                                        {t("viewdetails")}
                                         <ArrowUpRight size={15} />
                                     </button>
                                 </div>

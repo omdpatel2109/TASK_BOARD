@@ -15,15 +15,39 @@
     "logout": "Logout"
   },
   "tasks": {
-    "title": "Tasks",
-    "create": "Create Task",
+    "title": "Title",
+    "titledes": "Enter the title of the task",
+    "subtitle": "Manage your tasks in this workflow.",
+    "create": "Add Task",
     "edit": "Edit Task",
     "description": "Description",
+    "descriptiondes": "Enter the description of the task",
+    "task": "Task",
     "priority": "Priority",
     "status": "Status",
+    "actions": "Actions",
     "todo": "To Do",
     "inProgress": "In Progress",
-    "done": "Done"
+    "done": "Done",
+    "highpriority": "High Priority",
+    "mediumpriority": "Medium Priority",
+    "lowpriority": "Low Priority",
+    "allTasks": "All Tasks",
+    "allTasksDescription": "View and manage your tasks.",
+    "noTasks": "No tasks available.",
+    "noTasksDescription": "Try changing your search or status filter.",
+    "viewdetails": "View Details",
+    "back": "Back",
+    "addcomment": "Add Comment",
+    "comments": "Comments",
+    "add": "Add",
+    "dueDate": "Due Date",
+    "cancel": "Cancel",
+    "updatetask": "Update Task",
+    "addtask": "Add Task",
+    "overdue": "Overdue",
+    "duesoon": "Due Soon",
+    "duetoday": "Due Today"
   },
   "taskStatus": {
     "todo": "To Do",
@@ -110,5 +134,23 @@
       "in_progress": "In Progress",
       "done": "Done"
     }
+  },
+  "workflows": {
+    "title": "My Workflows",
+    "description": "Manage your workflows and their task statuses.",
+    "createWorkflow": "Create Workflow",
+    "editWorkflow": "Edit Workflow",
+    "deleteWorkflow": "Delete Workflow",
+    "workflowName": "Workflow Name",
+    "workflowDescription": "Description",
+    "workflowStatus": "Status",
+    "addStatus": "Add Status",
+    "selectedStatuses": "Selected Statuses",
+    "add": "Add",
+    "remove": "Remove",
+    "cancel": "Cancel",
+    "saveworkflow": "Save Workflow",
+    "openWorkflow": "Open Workflow",
+    "activeWorkflow": "Active Workflow"
   }
 }

@@ -15,15 +15,39 @@
     "logout": "લૉગ આઉટ"
   },
   "tasks": {
-    "title": "કાર્યો",
+    "title": "કાર્ય",
+    "titledes": "કાર્યનું શીર્ષક દાખલ કરો",
+    "subtitle": "આ કાર્યપ્રવાહમાં તમારા કાર્યોનું સંચાલન કરો.",
     "create": "કાર્ય બનાવો",
     "edit": "કાર્યમાં ફેરફાર કરો",
     "description": "વર્ણન",
+    "descriptiondes": "કાર્યનું વર્ણન દાખલ કરો",
+    "task": "કાર્ય",
     "priority": "પ્રાથમિકતા",
     "status": "સ્થિતિ",
+    "actions": "ક્રિયાઓ",
     "todo": "કરવાનું બાકી",
     "inProgress": "પ્રગતિમાં",
-    "done": "પૂર્ણ"
+    "done": "પૂર્ણ",
+    "highpriority": "ઉચ્ચ પ્રાથમિકતા",
+    "mediumpriority": "મધ્યમ પ્રાથમિકતા",
+    "lowpriority": "નીચ્ચ પ્રાથમિકતા",
+    "allTasks": "બધા કાર્યો",
+    "allTasksDescription": "તમારા કાર્યો જુઓ અને સંચાલન કરો.",
+    "noTasks": "કોઈ કાર્ય ઉપલબ્ધ નહી.",
+    "noTasksDescription": "તમારા શોધ અથવા સ્થિતિ ફિલ્ટર બદલો અને ફરી પ્રયાસ કરો.",
+    "viewdetails": "વિગતો જુઓ",
+    "back": "પાછળ",
+    "addcomment": "ટિપ્પણી ઉમેરો",
+    "comments": "ટિપ્પણીઓ",
+    "add": "ઉમેરો",
+    "dueDate": "નિયત તારીખ",
+    "cancel": "રદ કરો",
+    "updatetask": "કાર્ય ફેરફાર કરો",
+    "addtask": "કાર્ય ઉમેરો",
+    "overdue": "મુદત વીતી ગયેલું",
+    "duesoon": "ટૂંક સમયમાં બાકી",
+    "duetoday": "આજે જમા કરાવવાનું છે"
   },
   "taskStatus": {
     "todo": "કરવાનું બાકી",
@@ -119,5 +143,23 @@
       "label": "આજના કાર્યો",
       "description": "આજે પૂર્ણ કરવાના કાર્યો"
     }
+  },
+  "workflows": {
+    "title": "મારા કાર્યપ્રવાહ",
+    "description": "તમારા કાર્યપ્રવાહને કસ્ટમાઇઝ કરો",
+    "createWorkflow": "કાર્યપ્રવાહ બનાવો",
+    "editWorkflow": "કાર્યપ્રવાહમાં ફેરફાર કરો",
+    "deleteWorkflow": "કાર્યપ્રવાહ કાઢી નાખો",
+    "workflowName": "કાર્યપ્રવાહનું નામ",
+    "workflowDescription": "કાર્યપ્રવાહનું વર્ણન",
+    "workflowStatus": "કાર્યપ્રવાહની સ્થિતિ",
+    "addStatus": "સ્થિતિ ઉમેરો",
+    "selectedStatuses": "પસંદગીની સ્થિતિ",
+    "add": "ઉમેરો",
+    "remove": "હટાવો",
+    "cancel": "રદ કરો",
+    "saveworkflow": "કાર્યપ્રવાહ સંગ્રહો",
+    "openWorkflow": "કાર્યપ્રવાહ ખોલો",
+    "activeWorkflow": "સક્રિય કાર્યપ્રવાહ"
   }
 }

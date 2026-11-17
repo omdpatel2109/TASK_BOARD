@@ -519,7 +519,7 @@
 //     );
 // }
 "use client";
-import TranslatedText from "@/features/translation/components/TranslatedText";
+import TranslatedText from "@/features/i18n/components/TranslatedText";
 import { useCallback, useEffect, useState } from "react";
 import { X, LayoutGrid, List, Plus } from "lucide-react";
 import { arrayMove } from "@dnd-kit/sortable";
@@ -532,6 +532,7 @@ import type { Task, TaskColumn} from "@/features/tasks/type/taskType";
 import type { Workflow } from "@/features/workflows/types/workflowType";
 import SuccessBox from "@/components/SuccessBox";
 import ConfirmBox from "@/components/ConfirmBox";
+import { useTranslations } from "next-intl";
 
 interface TaskBoardProps {
     workflow: Workflow;
@@ -553,6 +554,8 @@ export default function TaskBoard({workflow, onWorkflowChange}: TaskBoardProps) 
     const [displayedTasks, setDisplayedTasks] = useState<Task[]>(tasks);
     const [view, setView] = useState<"columns" | "list">("columns");
     const [isFilterApplied, setIsFilterApplied] = useState(false);
+    const t = useTranslations("tasks");
+
 
     // Update displayed tasks when tasks change.
     useEffect(() => {
@@ -725,11 +728,11 @@ export default function TaskBoard({workflow, onWorkflowChange}: TaskBoardProps) 
                 <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <h1 className="text-3xl font-bold tracking-tight text-primary-text dark:text-primary-dark-text">
-                            <TranslatedText text={workflow.name} sourceLanguage={workflow.contentLanguage || "en"} />
+                            <TranslatedText text={workflow.name} entityType="workflow" entityId={workflow.id} field="name" />
                         </h1>
 
                         <h2 className="mb-1 mt-1 text-sm text-secondary-text dark:text-secondary-dark-text">
-                            Manage your tasks in this workflow.
+                            {t("subtitle")}
                         </h2>
                     </div>
 
@@ -737,7 +740,7 @@ export default function TaskBoard({workflow, onWorkflowChange}: TaskBoardProps) 
                         <button type="button" onClick={() => {addTask();}}
                             className="inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-hover-primary cursor-pointer">
                             <Plus className="h-4 w-4" />
-                            Add Task
+                            {t("create")}
                         </button>
                     </div>
                 </div>

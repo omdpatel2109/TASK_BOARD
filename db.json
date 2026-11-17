@@ -141,7 +141,7 @@
       "priority": "high",
       "dueDate": "2026-11-18",
       "workflowId": "default-workflow",
-      "order": 1,
+      "order": 2,
       "id": "F65hTIB3r_M"
     },
     {
@@ -181,8 +181,18 @@
       "priority": "medium",
       "dueDate": "2026-11-18",
       "workflowId": "default-workflow",
-      "order": 2,
+      "order": 1,
       "id": "hUx-wIp4q24"
+    },
+    {
+      "title": "Documentation",
+      "description": "Make a documentation",
+      "status": "todo",
+      "priority": "low",
+      "dueDate": "2026-11-20",
+      "workflowId": "default-workflow",
+      "order": 1,
+      "id": "OUOOqlr4Ff4"
     }
   ],
   "comments": [
@@ -320,6 +330,15 @@
       "authorId": 1,
       "authorName": "Emily Johnson",
       "id": "vuiSCSd0i1M"
+    },
+    {
+      "taskId": "-5stf73oQWA",
+      "text": "complete the task",
+      "createdAt": "2026-11-17T05:58:39.836Z",
+      "updatedAt": "2026-11-17T05:58:39.836Z",
+      "authorId": 1,
+      "authorName": "Emily Johnson",
+      "id": "vNfsLc59h0w"
     }
   ],
   "workflows": [
@@ -359,7 +378,7 @@
         }
       ],
       "createdAt": "2026-11-15T00:00:00.000Z",
-      "updatedAt": "2026-11-16T05:45:10.285Z"
+      "updatedAt": "2026-11-17T12:02:08.849Z"
     },
     {
       "name": "Frontend developement",
@@ -427,7 +446,7 @@
         }
       ],
       "createdAt": "2026-11-15T10:54:45.620Z",
-      "updatedAt": "2026-11-15T10:54:45.620Z",
+      "updatedAt": "2026-11-17T11:05:53.399Z",
       "id": "9EJ-PLy4_is"
     },
     {
@@ -527,625 +546,1154 @@
   "userSettings": [],
   "translations": [
     {
-      "id": "A-G0-bMhnfw",
-      "key": "809564b6150ed28312dfc97e187b31aa6ade9a29f05928df0f309468e6f4cbeb",
-      "sourceText": "In Review",
-      "translatedText": "रिव्यू में",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:29.469Z"
+      "id": "rVmPs-S91pk",
+      "entityType": "workflow",
+      "entityId": "9EJ-PLy4_is",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "No description",
+      "translatedText": "न्यूमरेशन नहीं",
+      "updatedAt": "2026-11-17T05:54:55.771Z"
     },
     {
-      "id": "f9PUv2udi24",
-      "key": "28f264007be73ab72c479fc176b4a6b3252df1639d6c72b185687daf4948ea33",
+      "id": "if1ZsBMHDTA",
+      "entityType": "workflowStatus",
+      "entityId": "default-workflow_todo",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Todo",
+      "translatedText": "कार्य- सूची",
+      "updatedAt": "2026-11-17T05:54:55.771Z"
+    },
+    {
+      "id": "t5OckYBks2A",
+      "entityType": "workflowStatus",
+      "entityId": "default-workflow_in_progress",
+      "field": "title",
+      "locale": "hi",
       "sourceText": "In Progress",
-      "translatedText": "प्रगति में",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:29.471Z"
+      "translatedText": "प्रगति पर",
+      "updatedAt": "2026-11-17T05:54:56.227Z"
     },
     {
-      "id": "YMm07ImwmtE",
-      "key": "3dbc08f568cbebe2d9cf09a4c92c0d3066b75eba28a4bb1b1453ba87cda6f130",
+      "id": "5MJSEr_SfXU",
+      "entityType": "workflowStatus",
+      "entityId": "9EJ-PLy4_is_489cab15-9307-4206-94f8-d5fb0db7611c",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Completed",
+      "translatedText": "समाप्त/पूरा हुआ",
+      "updatedAt": "2026-11-17T05:54:56.234Z"
+    },
+    {
+      "id": "nYYSMvLbpDA",
+      "entityType": "workflowStatus",
+      "entityId": "default-workflow_done",
+      "field": "title",
+      "locale": "hi",
       "sourceText": "Done",
-      "translatedText": "हो गया",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:29.473Z"
+      "translatedText": "आज हम एक नया अध्याय शुरू करते हैं जिसका हिंदी में अर्थ होता है",
+      "updatedAt": "2026-11-17T05:54:56.235Z"
     },
     {
-      "id": "H79Ccgh8NXY",
-      "key": "e3a533a849d35446f9ff9b827a7756778d1348c862f3730471b03d6ecdebf40c",
-      "sourceText": "Todo",
-      "translatedText": "कार्य- सूची",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:29.550Z"
-    },
-    {
-      "id": "UwRIA0wWWUc",
-      "key": "5c383a1e0af1eeda7c9f0e155056edfca32fb6bd8bf0a5edb798e868ce99a05b",
-      "sourceText": "My default task workflow",
-      "translatedText": "मेरा डिफ़ॉल्ट टास्क वर्कफ़्लो",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:29.621Z"
-    },
-    {
-      "id": "jW7ycw9rBgM",
-      "key": "9a8d5958bf284c703fa731e5c18b45aaa1de23e1227ef9fafa9ea44b5c078741",
-      "sourceText": "Design",
-      "translatedText": "डिज़ाइन",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:29.957Z"
-    },
-    {
-      "id": "M-gXcEK0XfI",
-      "key": "e3a533a849d35446f9ff9b827a7756778d1348c862f3730471b03d6ecdebf40c",
-      "sourceText": "Todo",
-      "translatedText": "कार्य- सूची",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:29.999Z"
-    },
-    {
-      "id": "fMSfEH84Lj8",
-      "key": "47b0bf6882ea507248e4b68a9d1522a726d01d7f7bacb99c89fd1b6f73fcd5af",
-      "sourceText": "Frontend developement",
-      "translatedText": "फ़्रंटएंड डेवलपमेंट",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:30.218Z"
-    },
-    {
-      "id": "I9kzdB-2nlw",
-      "key": "a110315344ae02892a8c4aa5ca69c0eb51599c073f39a97139655aee815db847",
+      "id": "iw7JJ5mOZmI",
+      "entityType": "workflow",
+      "entityId": "9EJ-PLy4_is",
+      "field": "name",
+      "locale": "hi",
       "sourceText": "scd",
       "translatedText": "एससीडी",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:30.260Z"
+      "updatedAt": "2026-11-17T05:54:56.238Z"
     },
     {
-      "id": "vT-Vwayzyjs",
-      "key": "191a75003a6aa7f6bdf949bbc095bc3f0757bb4fc7949574c369cadacfb2215f",
-      "sourceText": "this one can use by frontend developer",
-      "translatedText": "इसका इस्तेमाल फ़्रंटएंड डेवलपर कर सकते हैं",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:30.264Z"
-    },
-    {
-      "id": "LjlGS3WBfHw",
-      "key": "50b9524fefa71e6c71ffcf1f26680c86e4b7dabf7c26337c4d9b31b8bd5da53c",
-      "sourceText": "No description",
-      "translatedText": "न्यूमरेशन नहीं",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:30.877Z"
-    },
-    {
-      "id": "DYSOosrucaI",
-      "key": "50b9524fefa71e6c71ffcf1f26680c86e4b7dabf7c26337c4d9b31b8bd5da53c",
-      "sourceText": "No description",
-      "translatedText": "न्यूमरेशन नहीं",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:31.482Z"
-    },
-    {
-      "id": "YUf1IFOjKYI",
-      "key": "32467244985f1dbd11f61cde4a6ccf5f21ba2f9f0f123ecbd5c7373c212df7f6",
-      "sourceText": "Backlog",
-      "translatedText": "बकाया",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:31.484Z"
-    },
-    {
-      "id": "kbMWsEt66l0",
-      "key": "751427316b3db671b37cc9fe0ad5c99ad239fe4167330a2611f92211f7262520",
-      "sourceText": "cd",
-      "translatedText": "kya matlab hai iska",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:31.485Z"
-    },
-    {
-      "id": "dITKJhXpPO0",
-      "key": "022fdf3749d888c9ba168fe84fbf0d7aa30258e42ebe609d2edcdb9e3d55c0d3",
-      "sourceText": "Completed",
-      "translatedText": "पुरा होना",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:31.486Z"
-    },
-    {
-      "id": "Bt8GHcQzaIU",
-      "key": "040248b230b3d6055c7a34bba74120b326e9eedb00ef67144726d687c371565d",
-      "sourceText": "My Workflow",
-      "translatedText": "मेरा वर्कफ़्लो",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:31.563Z"
-    },
-    {
-      "id": "kjlPeDGjsEA",
-      "key": "022fdf3749d888c9ba168fe84fbf0d7aa30258e42ebe609d2edcdb9e3d55c0d3",
-      "sourceText": "Completed",
-      "translatedText": "पुरा होना",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:31.703Z"
-    },
-    {
-      "id": "7kDCNjQKlkQ",
-      "key": "d76d9bc6ada230f0101770ae8c58c580dff5aa4bd1b3a581767ec203fc1ab94f",
+      "id": "sC3qVU9eNpA",
+      "entityType": "workflow",
+      "entityId": "UGb4hfYLzH4",
+      "field": "name",
+      "locale": "hi",
       "sourceText": "d",
       "translatedText": "d",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:32.071Z"
+      "updatedAt": "2026-11-17T05:54:56.237Z"
     },
     {
-      "id": "cHkrFshNKcY",
-      "key": "610145e10bafc14d4bc820683b4a3dd633f71ad9e2cefc1919991c3e0397001b",
-      "sourceText": "all the main details of the task",
-      "translatedText": "टास्क की सभी मुख्य जानकारी",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:43.001Z"
+      "id": "i66xnx7T3B8",
+      "entityType": "workflow",
+      "entityId": "ayHuS8aMj6k",
+      "field": "name",
+      "locale": "hi",
+      "sourceText": "cd",
+      "translatedText": "CD",
+      "updatedAt": "2026-11-17T05:54:56.238Z"
     },
     {
-      "id": "VMKRRSa91go",
-      "key": "782f06a578e79f215560b799aa3a4a9a40551a8ce0b6d0aa750cdaa76cf8e33a",
-      "sourceText": "Dashboard page",
-      "translatedText": "डैशबोर्ड पेज",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:43.003Z"
+      "id": "RFvrcolLXU8",
+      "entityType": "workflowStatus",
+      "entityId": "3MPaAe0uRkA_55bff4fc-249b-44aa-8cb7-6ed0a4c2c4a6",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Design",
+      "translatedText": "डिज़ाइन",
+      "updatedAt": "2026-11-17T05:54:56.237Z"
     },
     {
-      "id": "uD2MgP0Lepo",
-      "key": "610145e10bafc14d4bc820683b4a3dd633f71ad9e2cefc1919991c3e0397001b",
-      "sourceText": "all the main details of the task",
-      "translatedText": "टास्क की सभी मुख्य जानकारी",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:43.005Z"
+      "id": "Ng5zfiGNVWw",
+      "entityType": "workflow",
+      "entityId": "3MPaAe0uRkA",
+      "field": "name",
+      "locale": "hi",
+      "sourceText": "Frontend developement",
+      "translatedText": "फ़्रंटएंड डेवलपमेंट",
+      "updatedAt": "2026-11-17T05:54:56.239Z"
     },
     {
-      "id": "9k9NDNJVMw0",
-      "key": "782f06a578e79f215560b799aa3a4a9a40551a8ce0b6d0aa750cdaa76cf8e33a",
-      "sourceText": "Dashboard page",
-      "translatedText": "डैशबोर्ड पेज",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:43.010Z"
+      "id": "CZrN4v8pCm4",
+      "entityType": "workflow",
+      "entityId": "default-workflow",
+      "field": "name",
+      "locale": "hi",
+      "sourceText": "My Workflow",
+      "translatedText": "मेरा वर्कफ़्लो",
+      "updatedAt": "2026-11-17T05:54:56.239Z"
     },
     {
-      "id": "6RTwZX0lJ9U",
-      "key": "1e55ea8b38c635e513417fe8c724ce8db824e92faf21caf7c9c83a9a807bb401",
-      "sourceText": "login page with username and password",
-      "translatedText": "यूज़रनेम और पासवर्ड के साथ लॉग इन पेज",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:43.006Z"
+      "id": "3qZ9cb3jdrI",
+      "entityType": "workflow",
+      "entityId": "default-workflow",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "My default task workflow",
+      "translatedText": "मेरा डिफ़ॉल्ट टास्क वर्कफ़्लो",
+      "updatedAt": "2026-11-17T05:54:56.248Z"
     },
     {
-      "id": "lTYrgV0Vsh8",
-      "key": "e03f3fa548b268f813f60a96c79beca1e769597cf670d5e0dc30cf6614563185",
-      "sourceText": "login page",
-      "translatedText": "लॉगिन पेज़",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:43.205Z"
+      "id": "HzKWht815ow",
+      "entityType": "workflowStatus",
+      "entityId": "9EJ-PLy4_is_459b603d-d5f5-461a-a634-97733e3bb1da",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Backlog",
+      "translatedText": "बकाया",
+      "updatedAt": "2026-11-17T05:54:56.248Z"
     },
     {
-      "id": "0NYn5nIFs7M",
-      "key": "e03f3fa548b268f813f60a96c79beca1e769597cf670d5e0dc30cf6614563185",
-      "sourceText": "login page",
-      "translatedText": "लॉगिन पेज़",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:43.607Z"
+      "id": "2IdD9NaOZ0M",
+      "entityType": "workflow",
+      "entityId": "3MPaAe0uRkA",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "this one can use by frontend developer",
+      "translatedText": "इसका इस्तेमाल फ़्रंटएंड डेवलपर कर सकते हैं",
+      "updatedAt": "2026-11-17T05:54:56.477Z"
     },
     {
-      "id": "nxiM-DOpVck",
-      "key": "d79b90715654debf868021a895b032e34f980190f23c0aaf979f427abd10c3ef",
-      "sourceText": "manage the workflow.",
-      "translatedText": "वर्कफ़्लो मैनेज करें।",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:48.301Z"
+      "id": "Zx4B80hsw0I",
+      "entityType": "workflow",
+      "entityId": "ayHuS8aMj6k",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "No description",
+      "translatedText": "न्यूमरेशन नहीं",
+      "updatedAt": "2026-11-17T05:54:56.479Z"
     },
     {
-      "id": "7Q63478hwF4",
-      "key": "e369fbee53198da2ebf9dff069ef18a9c21db74badd0332090d7cd1e9313e731",
-      "sourceText": "workflow manage",
-      "translatedText": "वर्कफ़्लो मैनेज करें",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:48.310Z"
+      "id": "d6OveYA2G6w",
+      "entityType": "workflowStatus",
+      "entityId": "3MPaAe0uRkA_5430e466-7596-4552-be15-549ed8f60da2",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "In Progress",
+      "translatedText": "प्रगति पर",
+      "updatedAt": "2026-11-17T05:54:56.493Z"
     },
     {
-      "id": "fNxRCu4_xUI",
-      "key": "e369fbee53198da2ebf9dff069ef18a9c21db74badd0332090d7cd1e9313e731",
-      "sourceText": "workflow manage",
-      "translatedText": "वर्कफ़्लो मैनेज करें",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:48.313Z"
+      "id": "c6ZlprryCpY",
+      "entityType": "workflowStatus",
+      "entityId": "3MPaAe0uRkA_83066a9a-396a-4d12-854d-b7dfce667b8c",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Todo",
+      "translatedText": "कार्य- सूची",
+      "updatedAt": "2026-11-17T05:54:56.494Z"
     },
     {
-      "id": "oCGKouhGLFo",
-      "key": "d79b90715654debf868021a895b032e34f980190f23c0aaf979f427abd10c3ef",
-      "sourceText": "manage the workflow.",
-      "translatedText": "वर्कफ़्लो मैनेज करें।",
-      "sourceLanguage": "en",
-      "targetLanguage": "hi",
-      "createdAt": "2026-11-16T10:19:48.433Z"
+      "id": "4QiGqOJur6w",
+      "entityType": "workflowStatus",
+      "entityId": "default-workflow_in_review",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "In Review",
+      "translatedText": "रिव्यू में",
+      "updatedAt": "2026-11-17T05:54:56.495Z"
     },
     {
-      "id": "jmRB-aCoaq0",
-      "key": "905d26edb38f95c993b7cf1239bc758cb028d531fa287e736bc7add1708c4d51",
+      "id": "t76J1DECJk0",
+      "entityType": "workflowStatus",
+      "entityId": "3MPaAe0uRkA_ec5dcdf0-6b2e-41dc-8086-455248868a0b",
+      "field": "title",
+      "locale": "hi",
       "sourceText": "Done",
-      "translatedText": "પૂર્ણ",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:19.519Z"
+      "translatedText": "आज हम एक नया अध्याय शुरू करते हैं जिसका हिंदी में अर्थ होता है",
+      "updatedAt": "2026-11-17T05:54:56.626Z"
     },
     {
-      "id": "p6RwA1MgBb4",
-      "key": "ee3665eeca0c17b4b269d200478ca56d728a24b97fc7bb5f1b86f5d0590fbd3c",
+      "id": "PBPETC7hi3Y",
+      "entityType": "workflow",
+      "entityId": "QBW31VZRPE8",
+      "field": "name",
+      "locale": "hi",
+      "sourceText": "cd",
+      "translatedText": "CD",
+      "updatedAt": "2026-11-17T05:54:56.639Z"
+    },
+    {
+      "id": "CoUay0ysH3k",
+      "entityType": "workflowStatus",
+      "entityId": "ayHuS8aMj6k_f08e3bbc-5686-4194-8b8c-883b098d8799",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Completed",
+      "translatedText": "समाप्त/पूरा हुआ",
+      "updatedAt": "2026-11-17T05:54:56.671Z"
+    },
+    {
+      "id": "lFu51r-3AUM",
+      "entityType": "workflow",
+      "entityId": "QBW31VZRPE8",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "No description",
+      "translatedText": "न्यूमरेशन नहीं",
+      "updatedAt": "2026-11-17T05:54:56.727Z"
+    },
+    {
+      "id": "-jCNbsU7ORk",
+      "entityType": "workflowStatus",
+      "entityId": "9EJ-PLy4_is_771e8236-01a9-471a-93aa-b246908294da",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "In Progress",
+      "translatedText": "प्रगति पर",
+      "updatedAt": "2026-11-17T05:54:56.742Z"
+    },
+    {
+      "id": "cH7bxPwRSHQ",
+      "entityType": "workflowStatus",
+      "entityId": "ayHuS8aMj6k_d07df3ab-8db2-46ea-9fcd-ceb427502315",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Todo",
+      "translatedText": "कार्य- सूची",
+      "updatedAt": "2026-11-17T05:54:56.761Z"
+    },
+    {
+      "id": "VOe84nXl5uA",
+      "entityType": "workflowStatus",
+      "entityId": "UGb4hfYLzH4_ef185b9b-34b8-4983-9a6b-ba77fd62bcbc",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Done",
+      "translatedText": "आज हम एक नया अध्याय शुरू करते हैं जिसका हिंदी में अर्थ होता है",
+      "updatedAt": "2026-11-17T05:54:56.872Z"
+    },
+    {
+      "id": "HRG6TZOeUzY",
+      "entityType": "workflowStatus",
+      "entityId": "QBW31VZRPE8_9784b9a3-2bf7-4d97-8a0d-195f96e81736",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Backlog",
+      "translatedText": "बकाया",
+      "updatedAt": "2026-11-17T05:54:56.920Z"
+    },
+    {
+      "id": "CvlRlmU020I",
+      "entityType": "workflowStatus",
+      "entityId": "QBW31VZRPE8_51ab180e-dc4b-4c3d-adf4-c47851549938",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Completed",
+      "translatedText": "समाप्त/पूरा हुआ",
+      "updatedAt": "2026-11-17T05:54:56.945Z"
+    },
+    {
+      "id": "PbFLBMZaspw",
+      "entityType": "workflow",
+      "entityId": "UGb4hfYLzH4",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "No description",
+      "translatedText": "न्यूमरेशन नहीं",
+      "updatedAt": "2026-11-17T05:54:56.975Z"
+    },
+    {
+      "id": "jczSOXJuffc",
+      "entityType": "workflowStatus",
+      "entityId": "ayHuS8aMj6k_7931d78d-2dc3-4170-ab3c-14fe92df404d",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "In Progress",
+      "translatedText": "प्रगति पर",
+      "updatedAt": "2026-11-17T05:54:57.000Z"
+    },
+    {
+      "id": "kYED3W-v_74",
+      "entityType": "workflowStatus",
+      "entityId": "QBW31VZRPE8_1532ca9c-9f53-4b54-ad84-64942632c5b3",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "In Progress",
+      "translatedText": "प्रगति पर",
+      "updatedAt": "2026-11-17T05:54:57.513Z"
+    },
+    {
+      "id": "SH1F1yICWYA",
+      "entityType": "workflowStatus",
+      "entityId": "UGb4hfYLzH4_ac78ccff-a5ac-449c-852d-a74d979f30d7",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Backlog",
+      "translatedText": "बकाया",
+      "updatedAt": "2026-11-17T05:54:57.514Z"
+    },
+    {
+      "id": "LJVYDDyAXxY",
+      "entityType": "workflowStatus",
+      "entityId": "UGb4hfYLzH4_4b160d75-6c26-4525-b0b2-7fd7f13b6bd7",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "In Progress",
+      "translatedText": "प्रगति पर",
+      "updatedAt": "2026-11-17T05:54:57.856Z"
+    },
+    {
+      "id": "IudcKP-MMv8",
+      "entityType": "workflowStatus",
+      "entityId": "default-workflow_in_progress",
+      "field": "title",
+      "locale": "gu",
       "sourceText": "In Progress",
       "translatedText": "પ્રગતિમાં છે",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:19.598Z"
+      "updatedAt": "2026-11-17T05:55:00.641Z"
     },
     {
-      "id": "q2Xqr374vzs",
-      "key": "e522fcdebdd01b696f58de02674273e1eb365d4a0fcc420e85d58d63d6824acb",
-      "sourceText": "Todo",
-      "translatedText": "કરવાનાં કાર્યો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:19.749Z"
-    },
-    {
-      "id": "r3u0cfInpIo",
-      "key": "e522fcdebdd01b696f58de02674273e1eb365d4a0fcc420e85d58d63d6824acb",
-      "sourceText": "Todo",
-      "translatedText": "કરવાનાં કાર્યો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:19.779Z"
-    },
-    {
-      "id": "K6iya0aRfDM",
-      "key": "ff5a29bea8f5e5b926d43dc557fd97a625325915d9554e0ca6b81d870a19093a",
-      "sourceText": "In Review",
-      "translatedText": "સમીક્ષા હેઠળ",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:19.792Z"
-    },
-    {
-      "id": "JPUtpIC06iE",
-      "key": "4b72051bcadf7fe7d526d638363e24992f1024d06a32a5825bfba781458c6b3b",
-      "sourceText": "My Workflow",
-      "translatedText": "મારું વર્કફ્લો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:19.911Z"
-    },
-    {
-      "id": "ZLP90RrYAek",
-      "key": "ff5a29bea8f5e5b926d43dc557fd97a625325915d9554e0ca6b81d870a19093a",
-      "sourceText": "In Review",
-      "translatedText": "સમીક્ષા હેઠળ",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:20.149Z"
-    },
-    {
-      "id": "UKNVn9Njwkg",
-      "key": "41715fe052d72b3dc92dea89251902bcf20be28003d613f46fd80685090cc41a",
-      "sourceText": "Dashboard page",
-      "translatedText": "ડેશબોર્ડ પૃષ્ઠ",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:20.517Z"
-    },
-    {
-      "id": "ocJ0jKOGvc4",
-      "key": "d3d5361c9db9075c30ea90f51d53069bc8b0af6005c722ff03e181180988a13a",
-      "sourceText": "login page",
-      "translatedText": "લૉગિન પૃષ્ઠ",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:20.559Z"
-    },
-    {
-      "id": "GmSV2cI-UmQ",
-      "key": "51c3fd9d5cb3b5404cfb97472bc53f8d948396c173f330318014863e0780f93d",
-      "sourceText": "all the main details of the task",
-      "translatedText": "ટાસ્કની તમામ મુખ્ય વિગતો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:20.578Z"
-    },
-    {
-      "id": "khs4wtsrmVg",
-      "key": "0dfb645712df8d34ee5222938d4401c9edc46e3eff06c7824720a7e22ca88743",
-      "sourceText": "login page with username and password",
-      "translatedText": "વપરાશકર્તાનામ અને પાસવર્ડ સાથે લૉગિન પૃષ્ઠ",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:20.780Z"
-    },
-    {
-      "id": "gJ0ZKNKCUMg",
-      "key": "decdf089b27d1cd538875b688550bd0c6bdc69ee6cc6402da737026d77272d2a",
+      "id": "etMUFhrv19w",
+      "entityType": "workflowStatus",
+      "entityId": "3MPaAe0uRkA_55bff4fc-249b-44aa-8cb7-6ed0a4c2c4a6",
+      "field": "title",
+      "locale": "gu",
       "sourceText": "Design",
-      "translatedText": "ડિઝાઇન",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:36.680Z"
+      "translatedText": "રચના",
+      "updatedAt": "2026-11-17T05:55:00.666Z"
     },
     {
-      "id": "4rAviI8QCws",
-      "key": "e97ded4943dbb2c615cb67546df2cec39964fb00cf693c915fe738dbea655885",
+      "id": "a7G8XAbhK0Y",
+      "entityType": "workflow",
+      "entityId": "9EJ-PLy4_is",
+      "field": "description",
+      "locale": "gu",
       "sourceText": "No description",
       "translatedText": "કોઈ વર્ણન નથી",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:36.833Z"
+      "updatedAt": "2026-11-17T05:55:00.680Z"
     },
     {
-      "id": "sHfi4_fsrRY",
-      "key": "6a689c0fa8bdfb8597adb3f3fb4e697242d128237c853175ee26b2836ca00304",
-      "sourceText": "Frontend developement",
-      "translatedText": "ફ્રન્ટએન્ડ ડેવલપમેન્ટ",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:37.188Z"
+      "id": "0uxzdmqAXP4",
+      "entityType": "workflowStatus",
+      "entityId": "default-workflow_done",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Done",
+      "translatedText": "તમે કયા સમયે આવશો??",
+      "updatedAt": "2026-11-17T05:55:00.692Z"
     },
     {
-      "id": "-av6vXW2xIQ",
-      "key": "1f2cc6cce6fedf0ace91986ea1ec95ec0f132df42b14be0c687d2951932ac38c",
-      "sourceText": "My default task workflow",
-      "translatedText": "મારું ડિફોલ્ટ ટાસ્ક વર્કફ્લો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:37.189Z"
-    },
-    {
-      "id": "zwPuRgeUjHQ",
-      "key": "fbd921de9285d9fd3d8cb2b716ed8254e415e6ce67df403e9b60d7ea2f6510d3",
-      "sourceText": "scd",
-      "translatedText": "SCD",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:37.191Z"
-    },
-    {
-      "id": "qCqmDqEiVYc",
-      "key": "562fbb05164f43cc12f1293c0c75afc21239f3e392ce8503c2cddb92fab27804",
+      "id": "lSMjRFm5Keo",
+      "entityType": "workflowStatus",
+      "entityId": "9EJ-PLy4_is_489cab15-9307-4206-94f8-d5fb0db7611c",
+      "field": "title",
+      "locale": "gu",
       "sourceText": "Completed",
-      "translatedText": "પૂર્ણ થયું",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:37.212Z"
+      "translatedText": "પૂર્ણ થયું START (Due DUE)",
+      "updatedAt": "2026-11-17T05:55:00.688Z"
     },
     {
-      "id": "w_1O3aPsvRE",
-      "key": "ba0850c86db4c6c95158457dcc7b57780563faad3953b00a72c94596200c8992",
-      "sourceText": "this one can use by frontend developer",
-      "translatedText": "આનો ઉપયોગ ફ્રન્ટએન્ડ ડેવલપર કરી શકે છે",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:37.217Z"
-    },
-    {
-      "id": "WmgNROOIEdQ",
-      "key": "3abc26b1ae6329a0cfc5d05985df9f26be327904c51d795bc49ef40374415f5e",
-      "sourceText": "Backlog",
-      "translatedText": "બેકલોગ",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:37.500Z"
-    },
-    {
-      "id": "cXB87QY1Mw4",
-      "key": "1c9ba2fc6e1466b23ef6bdaa29b9f35ce85a4b7b45e333c05ace663e04e0a9e5",
+      "id": "stHGNwnYA6c",
+      "entityType": "workflow",
+      "entityId": "ayHuS8aMj6k",
+      "field": "name",
+      "locale": "gu",
       "sourceText": "cd",
       "translatedText": "cd",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:37.554Z"
+      "updatedAt": "2026-11-17T05:55:00.776Z"
     },
     {
-      "id": "toCOoJhX1cQ",
-      "key": "1c9ba2fc6e1466b23ef6bdaa29b9f35ce85a4b7b45e333c05ace663e04e0a9e5",
-      "sourceText": "cd",
-      "translatedText": "cd",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:37.633Z"
-    },
-    {
-      "id": "ySATfzieW60",
-      "key": "6df33e55b7be317169cf734814eb97a900a9f406923406042211a58b43aa7320",
+      "id": "7k4AfCh7vAo",
+      "entityType": "workflow",
+      "entityId": "UGb4hfYLzH4",
+      "field": "name",
+      "locale": "gu",
       "sourceText": "d",
       "translatedText": "ડી",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:37.681Z"
+      "updatedAt": "2026-11-17T05:55:00.795Z"
     },
     {
-      "id": "8X9AChHX4Ik",
-      "key": "3abc26b1ae6329a0cfc5d05985df9f26be327904c51d795bc49ef40374415f5e",
+      "id": "gm1jsFmYFt8",
+      "entityType": "workflowStatus",
+      "entityId": "default-workflow_in_review",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "In Review",
+      "translatedText": "સમીક્ષા હેઠળ",
+      "updatedAt": "2026-11-17T05:55:00.911Z"
+    },
+    {
+      "id": "ewg94v4hi5I",
+      "entityType": "workflowStatus",
+      "entityId": "3MPaAe0uRkA_5430e466-7596-4552-be15-549ed8f60da2",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "In Progress",
+      "translatedText": "પ્રગતિમાં છે",
+      "updatedAt": "2026-11-17T05:55:00.940Z"
+    },
+    {
+      "id": "f-My7t86X1Q",
+      "entityType": "workflowStatus",
+      "entityId": "default-workflow_todo",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Todo",
+      "translatedText": "કરવાનાં કાર્યો",
+      "updatedAt": "2026-11-17T05:55:00.964Z"
+    },
+    {
+      "id": "F-KWO8AD6L0",
+      "entityType": "workflowStatus",
+      "entityId": "3MPaAe0uRkA_ec5dcdf0-6b2e-41dc-8086-455248868a0b",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Done",
+      "translatedText": "તમે કયા સમયે આવશો??",
+      "updatedAt": "2026-11-17T05:55:00.975Z"
+    },
+    {
+      "id": "gWvnavlVIwE",
+      "entityType": "workflowStatus",
+      "entityId": "9EJ-PLy4_is_459b603d-d5f5-461a-a634-97733e3bb1da",
+      "field": "title",
+      "locale": "gu",
       "sourceText": "Backlog",
       "translatedText": "બેકલોગ",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:37.947Z"
+      "updatedAt": "2026-11-17T05:55:00.991Z"
     },
     {
-      "id": "Id0I_aC8lWI",
-      "key": "3abc26b1ae6329a0cfc5d05985df9f26be327904c51d795bc49ef40374415f5e",
+      "id": "MR9nwXvDMjg",
+      "entityType": "workflow",
+      "entityId": "9EJ-PLy4_is",
+      "field": "name",
+      "locale": "gu",
+      "sourceText": "scd",
+      "translatedText": "SCD",
+      "updatedAt": "2026-11-17T05:55:01.000Z"
+    },
+    {
+      "id": "N98IS8EJ2C8",
+      "entityType": "workflowStatus",
+      "entityId": "ayHuS8aMj6k_f08e3bbc-5686-4194-8b8c-883b098d8799",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Completed",
+      "translatedText": "પૂર્ણ થયું START (Due DUE)",
+      "updatedAt": "2026-11-17T05:55:01.009Z"
+    },
+    {
+      "id": "tJwWuGGKEcY",
+      "entityType": "workflow",
+      "entityId": "QBW31VZRPE8",
+      "field": "name",
+      "locale": "gu",
+      "sourceText": "cd",
+      "translatedText": "cd",
+      "updatedAt": "2026-11-17T05:55:01.062Z"
+    },
+    {
+      "id": "5U1SQmfHx3c",
+      "entityType": "workflow",
+      "entityId": "3MPaAe0uRkA",
+      "field": "name",
+      "locale": "gu",
+      "sourceText": "Frontend developement",
+      "translatedText": "ફ્રન્ટએન્ડ ડેવલપમેન્ટ",
+      "updatedAt": "2026-11-17T05:55:01.085Z"
+    },
+    {
+      "id": "q-Qevy731XA",
+      "entityType": "workflow",
+      "entityId": "default-workflow",
+      "field": "description",
+      "locale": "gu",
+      "sourceText": "My default task workflow",
+      "translatedText": "મારું ડિફોલ્ટ ટાસ્ક વર્કફ્લો",
+      "updatedAt": "2026-11-17T05:55:01.113Z"
+    },
+    {
+      "id": "fB0Sd2-QuJY",
+      "entityType": "workflow",
+      "entityId": "3MPaAe0uRkA",
+      "field": "description",
+      "locale": "gu",
+      "sourceText": "this one can use by frontend developer",
+      "translatedText": "આનો ઉપયોગ ફ્રન્ટએન્ડ ડેવલપર દ્વારા કરી શકાય છે",
+      "updatedAt": "2026-11-17T05:55:01.115Z"
+    },
+    {
+      "id": "yA3YxGU1qoc",
+      "entityType": "workflowStatus",
+      "entityId": "9EJ-PLy4_is_771e8236-01a9-471a-93aa-b246908294da",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "In Progress",
+      "translatedText": "પ્રગતિમાં છે",
+      "updatedAt": "2026-11-17T05:55:01.233Z"
+    },
+    {
+      "id": "NfZglEjr2RY",
+      "entityType": "workflowStatus",
+      "entityId": "UGb4hfYLzH4_ef185b9b-34b8-4983-9a6b-ba77fd62bcbc",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Done",
+      "translatedText": "તમે કયા સમયે આવશો??",
+      "updatedAt": "2026-11-17T05:55:01.234Z"
+    },
+    {
+      "id": "BUcT-xcJQrg",
+      "entityType": "workflowStatus",
+      "entityId": "QBW31VZRPE8_51ab180e-dc4b-4c3d-adf4-c47851549938",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Completed",
+      "translatedText": "પૂર્ણ થયું START (Due DUE)",
+      "updatedAt": "2026-11-17T05:55:01.302Z"
+    },
+    {
+      "id": "RdgVPaQk_p0",
+      "entityType": "workflow",
+      "entityId": "default-workflow",
+      "field": "name",
+      "locale": "gu",
+      "sourceText": "My Workflow",
+      "translatedText": "મારું વર્કફ્લો",
+      "updatedAt": "2026-11-17T05:55:01.386Z"
+    },
+    {
+      "id": "DW_Vz7U3r8U",
+      "entityType": "workflow",
+      "entityId": "ayHuS8aMj6k",
+      "field": "description",
+      "locale": "gu",
+      "sourceText": "No description",
+      "translatedText": "કોઈ વર્ણન નથી",
+      "updatedAt": "2026-11-17T05:55:01.405Z"
+    },
+    {
+      "id": "qrMqWyES2-w",
+      "entityType": "workflowStatus",
+      "entityId": "ayHuS8aMj6k_7931d78d-2dc3-4170-ab3c-14fe92df404d",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "In Progress",
+      "translatedText": "પ્રગતિમાં છે",
+      "updatedAt": "2026-11-17T05:55:01.480Z"
+    },
+    {
+      "id": "HWfI3Nh6APg",
+      "entityType": "workflowStatus",
+      "entityId": "3MPaAe0uRkA_83066a9a-396a-4d12-854d-b7dfce667b8c",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Todo",
+      "translatedText": "કરવાનાં કાર્યો",
+      "updatedAt": "2026-11-17T05:55:01.530Z"
+    },
+    {
+      "id": "eSq3GUWN8Ps",
+      "entityType": "workflowStatus",
+      "entityId": "QBW31VZRPE8_9784b9a3-2bf7-4d97-8a0d-195f96e81736",
+      "field": "title",
+      "locale": "gu",
       "sourceText": "Backlog",
       "translatedText": "બેકલોગ",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:20:38.006Z"
+      "updatedAt": "2026-11-17T05:55:01.659Z"
     },
     {
-      "id": "QEBzAi_E58U",
-      "key": "60e1195bc9b0cfb6489222a826459ba80f6e5090d3c319d618b6d8b554b7042f",
+      "id": "nShgD3ZEjz4",
+      "entityType": "workflow",
+      "entityId": "QBW31VZRPE8",
+      "field": "description",
+      "locale": "gu",
+      "sourceText": "No description",
+      "translatedText": "કોઈ વર્ણન નથી",
+      "updatedAt": "2026-11-17T05:55:01.680Z"
+    },
+    {
+      "id": "E1IUmTwq3Uc",
+      "entityType": "workflowStatus",
+      "entityId": "QBW31VZRPE8_1532ca9c-9f53-4b54-ad84-64942632c5b3",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "In Progress",
+      "translatedText": "પ્રગતિમાં છે",
+      "updatedAt": "2026-11-17T05:55:01.732Z"
+    },
+    {
+      "id": "OjBK2gF2meE",
+      "entityType": "workflowStatus",
+      "entityId": "UGb4hfYLzH4_4b160d75-6c26-4525-b0b2-7fd7f13b6bd7",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "In Progress",
+      "translatedText": "પ્રગતિમાં છે",
+      "updatedAt": "2026-11-17T05:55:02.025Z"
+    },
+    {
+      "id": "aHj_TdfcjJI",
+      "entityType": "workflow",
+      "entityId": "UGb4hfYLzH4",
+      "field": "description",
+      "locale": "gu",
+      "sourceText": "No description",
+      "translatedText": "કોઈ વર્ણન નથી",
+      "updatedAt": "2026-11-17T05:55:02.087Z"
+    },
+    {
+      "id": "Uigea9URcAo",
+      "entityType": "workflowStatus",
+      "entityId": "ayHuS8aMj6k_d07df3ab-8db2-46ea-9fcd-ceb427502315",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Todo",
+      "translatedText": "કરવાનાં કાર્યો",
+      "updatedAt": "2026-11-17T05:55:02.533Z"
+    },
+    {
+      "id": "uDGqtqP0dPQ",
+      "entityType": "workflowStatus",
+      "entityId": "UGb4hfYLzH4_ac78ccff-a5ac-449c-852d-a74d979f30d7",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Backlog",
+      "translatedText": "બેકલોગ",
+      "updatedAt": "2026-11-17T05:55:03.347Z"
+    },
+    {
+      "id": "1zKUvBtLYrM",
+      "entityType": "task",
+      "entityId": "q-NnwfmBpCM",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "login page",
+      "translatedText": "લૉગિન પૃષ્ઠ",
+      "updatedAt": "2026-11-17T05:57:32.151Z"
+    },
+    {
+      "id": "2hLH9qxUj3A",
+      "entityType": "task",
+      "entityId": "F65hTIB3r_M",
+      "field": "description",
+      "locale": "gu",
+      "sourceText": "all the main details of the task",
+      "translatedText": "ટાસ્કની તમામ મુખ્ય વિગતો",
+      "updatedAt": "2026-11-17T05:57:32.178Z"
+    },
+    {
+      "id": "4bu-r8NDxO0",
+      "entityType": "task",
+      "entityId": "F65hTIB3r_M",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Dashboard page",
+      "translatedText": "ડેશબોર્ડ પેજ",
+      "updatedAt": "2026-11-17T05:57:32.193Z"
+    },
+    {
+      "id": "PkvZpSzw-g8",
+      "entityType": "task",
+      "entityId": "q-NnwfmBpCM",
+      "field": "description",
+      "locale": "gu",
+      "sourceText": "login page with username and password",
+      "translatedText": "વપરાશકર્તાનામ અને પાસવર્ડ સાથે લૉગિન પૃષ્ઠ",
+      "updatedAt": "2026-11-17T05:57:32.304Z"
+    },
+    {
+      "id": "-dgMoXE6GN0",
+      "entityType": "task",
+      "entityId": "-5stf73oQWA",
+      "field": "description",
+      "locale": "gu",
+      "sourceText": "manage the workflow.\n",
+      "translatedText": "વર્કફ્લોનું સંચાલન કરો.",
+      "updatedAt": "2026-11-17T05:57:36.747Z"
+    },
+    {
+      "id": "zqZJEqWvpFQ",
+      "entityType": "task",
+      "entityId": "-5stf73oQWA",
+      "field": "title",
+      "locale": "gu",
       "sourceText": "workflow manage",
       "translatedText": "વર્કફ્લો મેનેજ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:01.473Z"
+      "updatedAt": "2026-11-17T05:57:36.756Z"
     },
     {
-      "id": "uRRcWn6Oqxc",
-      "key": "f2d33062ec9de7571af68a2b8577280a486db40c49f1f396961293d8d7eb02de",
-      "sourceText": "manage the workflow.",
-      "translatedText": "વર્કફ્લોનું સંચાલન કરો.",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:01.500Z"
-    },
-    {
-      "id": "0bGw8qVgwqI",
-      "key": "f2d33062ec9de7571af68a2b8577280a486db40c49f1f396961293d8d7eb02de",
-      "sourceText": "manage the workflow.",
-      "translatedText": "વર્કફ્લોનું સંચાલન કરો.",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:01.509Z"
-    },
-    {
-      "id": "FicxIih3-F4",
-      "key": "60e1195bc9b0cfb6489222a826459ba80f6e5090d3c319d618b6d8b554b7042f",
-      "sourceText": "workflow manage",
-      "translatedText": "વર્કફ્લો મેનેજ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:01.540Z"
-    },
-    {
-      "id": "06GXwbWqYOg",
-      "key": "857fe36dda14f0f95364d707c1dcf231f32b1c6cd2041203fa92566f88aaf44b",
-      "sourceText": "design",
-      "translatedText": "ડિઝાઇન",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:03.866Z"
-    },
-    {
-      "id": "Pd1Je4gVEMM",
-      "key": "31e3090ec1eadab5faca01195fa9cae70ef174f626217469c31fda6dbfe6dc03",
-      "sourceText": "complete this with complete flow",
-      "translatedText": "આને સંપૂર્ણ પ્રવાહ સાથે પૂર્ણ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:04.468Z"
-    },
-    {
-      "id": "qaz4DlxLKII",
-      "key": "f67a1308c0729b725bf2a15907b7a270cf1935f4f4a9a29a3bf86ddd62669620",
+      "id": "es0NCJhOT3k",
+      "entityType": "task",
+      "entityId": "awXE9h7kbaI",
+      "field": "description",
+      "locale": "gu",
       "sourceText": "all the details",
       "translatedText": "બધી વિગતો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:04.470Z"
+      "updatedAt": "2026-11-17T05:57:39.307Z"
     },
     {
-      "id": "c2ecySfF4G8",
-      "key": "d98320e070506b4c230c89faec2ddea2d3fffc59c6b689567273391f709ebfac",
+      "id": "VaBGJEgKF3g",
+      "entityType": "task",
+      "entityId": "awXE9h7kbaI",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "complete the task details",
+      "translatedText": "ટાસ્ક વિગતો પૂર્ણ કરો",
+      "updatedAt": "2026-11-17T05:57:39.307Z"
+    },
+    {
+      "id": "W_CS9qjMsRs",
+      "entityType": "task",
+      "entityId": "S4gMqWF3DTw",
+      "field": "description",
+      "locale": "gu",
+      "sourceText": "complete this with complete flow",
+      "translatedText": "આને સંપૂર્ણ પ્રવાહ સાથે પૂર્ણ કરો",
+      "updatedAt": "2026-11-17T05:57:39.307Z"
+    },
+    {
+      "id": "ACxanmfnwrs",
+      "entityType": "task",
+      "entityId": "S4gMqWF3DTw",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "complete the workflow",
+      "translatedText": "વર્કફ્લો પૂર્ણ કરો",
+      "updatedAt": "2026-11-17T05:57:39.308Z"
+    },
+    {
+      "id": "wBX63FK8vJc",
+      "entityType": "comment",
+      "entityId": "vNfsLc59h0w",
+      "field": "text",
+      "locale": "gu",
+      "sourceText": "complete the task",
+      "translatedText": "ટાસ્ક પૂર્ણ કરો",
+      "updatedAt": "2026-11-17T05:58:41.595Z"
+    },
+    {
+      "id": "LSF20isXtiE",
+      "entityType": "task",
+      "entityId": "-5stf73oQWA",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "manage the workflow.\n",
+      "translatedText": "वर्कफ़्लो मैनेज करें।",
+      "updatedAt": "2026-11-17T05:59:01.291Z"
+    },
+    {
+      "id": "Rs9VSywdBf8",
+      "entityType": "comment",
+      "entityId": "vNfsLc59h0w",
+      "field": "text",
+      "locale": "hi",
+      "sourceText": "complete the task",
+      "translatedText": "कार्य पूरा करो",
+      "updatedAt": "2026-11-17T05:59:01.292Z"
+    },
+    {
+      "id": "xk8bv2_XiTw",
+      "entityType": "task",
+      "entityId": "-5stf73oQWA",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "workflow manage",
+      "translatedText": "वर्कफ़्लो मैनेज करें",
+      "updatedAt": "2026-11-17T05:59:01.293Z"
+    },
+    {
+      "id": "pbUQ5kGZ4S0",
+      "entityType": "workflowStatus",
+      "entityId": "9EJ-PLy4_is_1abad4ff-8be2-40dc-8de5-ce8a57e808b6",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "To be executed",
+      "translatedText": "निष्पादित किया जाना है",
+      "updatedAt": "2026-11-17T06:17:22.720Z"
+    },
+    {
+      "id": "LkuGBEBHzwc",
+      "entityType": "task",
+      "entityId": "q-NnwfmBpCM",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "login page",
+      "translatedText": "लॉगिन पेज़",
+      "updatedAt": "2026-11-17T06:23:05.892Z"
+    },
+    {
+      "id": "vcjwE02DIvY",
+      "entityType": "task",
+      "entityId": "q-NnwfmBpCM",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "login page with username and password",
+      "translatedText": "यूज़रनेम और पासवर्ड के साथ लॉग इन पेज",
+      "updatedAt": "2026-11-17T06:23:06.174Z"
+    },
+    {
+      "id": "7W0yLgRZPcA",
+      "entityType": "task",
+      "entityId": "F65hTIB3r_M",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "all the main details of the task",
+      "translatedText": "टास्क की सभी मुख्य जानकारी",
+      "updatedAt": "2026-11-17T06:23:06.241Z"
+    },
+    {
+      "id": "meiWb8suiQ4",
+      "entityType": "task",
+      "entityId": "F65hTIB3r_M",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "Dashboard page",
+      "translatedText": "डैशबोर्ड पेज",
+      "updatedAt": "2026-11-17T06:23:06.302Z"
+    },
+    {
+      "id": "w_j4BJxJKaw",
+      "entityType": "task",
+      "entityId": "LBefz_ZeHNQ",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "design ",
+      "translatedText": "रूपरेखा",
+      "updatedAt": "2026-11-17T06:34:21.077Z"
+    },
+    {
+      "id": "zGt9MdzJ404",
+      "entityType": "task",
+      "entityId": "LBefz_ZeHNQ",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "start designing",
+      "translatedText": "डिज़ाइन करना शुरू करें",
+      "updatedAt": "2026-11-17T06:34:21.535Z"
+    },
+    {
+      "id": "DCchfeuZ4yI",
+      "entityType": "task",
+      "entityId": "awXE9h7kbaI",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "complete the task details",
+      "translatedText": "टास्क की जानकारी पूरी करें",
+      "updatedAt": "2026-11-17T06:34:21.539Z"
+    },
+    {
+      "id": "w0Qv820VlMM",
+      "entityType": "task",
+      "entityId": "awXE9h7kbaI",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "all the details",
+      "translatedText": "सभी विवरण",
+      "updatedAt": "2026-11-17T06:34:21.539Z"
+    },
+    {
+      "id": "YfBWoX9QTzM",
+      "entityType": "task",
+      "entityId": "S4gMqWF3DTw",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "complete the workflow",
+      "translatedText": "वर्कफ़्लो पूरा करें",
+      "updatedAt": "2026-11-17T06:34:21.681Z"
+    },
+    {
+      "id": "LKEho0V1Wgg",
+      "entityType": "task",
+      "entityId": "S4gMqWF3DTw",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "complete this with complete flow",
+      "translatedText": "इसे पूरी फ़्लो के साथ पूरा करें",
+      "updatedAt": "2026-11-17T06:34:21.682Z"
+    },
+    {
+      "id": "DE4yA9yYc4g",
+      "entityType": "task",
+      "entityId": "hUx-wIp4q24",
+      "field": "title",
+      "locale": "hi",
+      "sourceText": "complete the design of workflow",
+      "translatedText": "वर्कफ़्लो का डिज़ाइन पूरा करें",
+      "updatedAt": "2026-11-17T06:34:29.044Z"
+    },
+    {
+      "id": "Jecr2d3KQyw",
+      "entityType": "task",
+      "entityId": "hUx-wIp4q24",
+      "field": "description",
+      "locale": "hi",
+      "sourceText": "first make a draft then implement",
+      "translatedText": "पहले एक ड्राफ़्ट बनाएँ, फिर उसे लागू करें",
+      "updatedAt": "2026-11-17T06:34:29.045Z"
+    },
+    {
+      "id": "9acZTCAEqpg",
+      "entityType": "task",
+      "entityId": "S4gMqWF3DTw",
+      "field": "priority",
+      "locale": "hi",
+      "sourceText": "medium",
+      "translatedText": "आईडी",
+      "updatedAt": "2026-11-17T06:46:17.302Z"
+    },
+    {
+      "id": "EagO70YIwuw",
+      "entityType": "task",
+      "entityId": "F65hTIB3r_M",
+      "field": "priority",
+      "locale": "hi",
+      "sourceText": "high",
+      "translatedText": "उच्च",
+      "updatedAt": "2026-11-17T06:46:17.393Z"
+    },
+    {
+      "id": "RCJdFqcynNQ",
+      "entityType": "task",
+      "entityId": "LBefz_ZeHNQ",
+      "field": "priority",
+      "locale": "hi",
+      "sourceText": "medium",
+      "translatedText": "आईडी",
+      "updatedAt": "2026-11-17T06:46:17.557Z"
+    },
+    {
+      "id": "zRSFYSOLuyU",
+      "entityType": "task",
+      "entityId": "q-NnwfmBpCM",
+      "field": "priority",
+      "locale": "hi",
+      "sourceText": "high",
+      "translatedText": "उच्च",
+      "updatedAt": "2026-11-17T06:46:17.701Z"
+    },
+    {
+      "id": "L2JgBnC7m3c",
+      "entityType": "task",
+      "entityId": "awXE9h7kbaI",
+      "field": "priority",
+      "locale": "hi",
+      "sourceText": "medium",
+      "translatedText": "आईडी",
+      "updatedAt": "2026-11-17T06:46:17.822Z"
+    },
+    {
+      "id": "k1R5hSZUAVc",
+      "entityType": "task",
+      "entityId": "q-NnwfmBpCM",
+      "field": "status",
+      "locale": "hi",
+      "sourceText": "Done",
+      "translatedText": "आज हम एक नया अध्याय शुरू करते हैं जिसका हिंदी में अर्थ होता है",
+      "updatedAt": "2026-11-17T06:48:27.779Z"
+    },
+    {
+      "id": "TYdRUNiCAvU",
+      "entityType": "task",
+      "entityId": "LBefz_ZeHNQ",
+      "field": "status",
+      "locale": "hi",
+      "sourceText": "In Progress",
+      "translatedText": "प्रगति पर",
+      "updatedAt": "2026-11-17T06:48:27.618Z"
+    },
+    {
+      "id": "zslBf-bJYAg",
+      "entityType": "task",
+      "entityId": "S4gMqWF3DTw",
+      "field": "status",
+      "locale": "hi",
+      "sourceText": "In Review",
+      "translatedText": "रिव्यू में",
+      "updatedAt": "2026-11-17T06:48:27.901Z"
+    },
+    {
+      "id": "bO7-QzqyOxg",
+      "entityType": "task",
+      "entityId": "F65hTIB3r_M",
+      "field": "status",
+      "locale": "hi",
+      "sourceText": "In Progress",
+      "translatedText": "प्रगति पर",
+      "updatedAt": "2026-11-17T06:48:27.999Z"
+    },
+    {
+      "id": "Wm0bZ-vWOVo",
+      "entityType": "task",
+      "entityId": "awXE9h7kbaI",
+      "field": "status",
+      "locale": "hi",
+      "sourceText": "In Review",
+      "translatedText": "रिव्यू में",
+      "updatedAt": "2026-11-17T06:48:28.647Z"
+    },
+    {
+      "id": "AuU5WvWTtfU",
+      "entityType": "comment",
+      "entityId": "Wk2JwZ_XK44",
+      "field": "text",
+      "locale": "hi",
+      "sourceText": "jnrv",
+      "translatedText": "jnrv",
+      "updatedAt": "2026-11-17T06:49:14.225Z"
+    },
+    {
+      "id": "izYy-9_llBs",
+      "entityType": "workflowStatus",
+      "entityId": "9EJ-PLy4_is_1abad4ff-8be2-40dc-8de5-ce8a57e808b6",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "To be executed",
+      "translatedText": "અમલ થવાનો છે",
+      "updatedAt": "2026-11-17T07:00:42.741Z"
+    },
+    {
+      "id": "ln_nJ6YoYE8",
+      "entityType": "column",
+      "entityId": "done",
+      "field": "name",
+      "locale": "gu",
+      "sourceText": "Done",
+      "translatedText": "તમે કયા સમયે આવશો??",
+      "updatedAt": "2026-11-17T07:14:37.179Z"
+    },
+    {
+      "id": "hBtCnjRDwnk",
+      "entityType": "column",
+      "entityId": "in_progress",
+      "field": "name",
+      "locale": "gu",
+      "sourceText": "In Progress",
+      "translatedText": "પ્રગતિમાં છે",
+      "updatedAt": "2026-11-17T07:14:37.226Z"
+    },
+    {
+      "id": "xTnk-lI09TU",
+      "entityType": "column",
+      "entityId": "todo",
+      "field": "name",
+      "locale": "gu",
+      "sourceText": "Todo",
+      "translatedText": "કરવાનાં કાર્યો",
+      "updatedAt": "2026-11-17T07:14:37.680Z"
+    },
+    {
+      "id": "y7byJvTfbNA",
+      "entityType": "column",
+      "entityId": "in_review",
+      "field": "name",
+      "locale": "gu",
+      "sourceText": "In Review",
+      "translatedText": "સમીક્ષા હેઠળ",
+      "updatedAt": "2026-11-17T07:14:37.947Z"
+    },
+    {
+      "id": "UQ7a6F1tykk",
+      "entityType": "task",
+      "entityId": "LBefz_ZeHNQ",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "design ",
+      "translatedText": "રચના",
+      "updatedAt": "2026-11-17T07:20:21.475Z"
+    },
+    {
+      "id": "jx2FFRRQESU",
+      "entityType": "task",
+      "entityId": "hUx-wIp4q24",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "complete the design of workflow",
+      "translatedText": "વર્કફ્લોની ડિઝાઇન પૂર્ણ કરો",
+      "updatedAt": "2026-11-17T07:20:21.934Z"
+    },
+    {
+      "id": "No2mIj4Kza0",
+      "entityType": "task",
+      "entityId": "LBefz_ZeHNQ",
+      "field": "description",
+      "locale": "gu",
       "sourceText": "start designing",
       "translatedText": "ડિઝાઇન કરવાનું શરૂ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:04.472Z"
+      "updatedAt": "2026-11-17T07:23:08.901Z"
     },
     {
-      "id": "LNsW4rdSdYo",
-      "key": "eb563f93ba44c1f4cb8d89c2547a8a6bb1f18d0d781c7781968f8dddb07267da",
-      "sourceText": "complete the workflow",
-      "translatedText": "વર્કફ્લો પૂર્ણ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:05.389Z"
-    },
-    {
-      "id": "L3XkJDH1sYM",
-      "key": "74f30c6b9f84ecb461d309a9fda5e7f027fa0f298fb5e2b4524d8158966ba919",
-      "sourceText": "complete the task details",
-      "translatedText": "ટાસ્ક વિગતો પૂર્ણ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:05.510Z"
-    },
-    {
-      "id": "mb1fJLhxcOI",
-      "key": "eb563f93ba44c1f4cb8d89c2547a8a6bb1f18d0d781c7781968f8dddb07267da",
-      "sourceText": "complete the workflow",
-      "translatedText": "વર્કફ્લો પૂર્ણ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:05.512Z"
-    },
-    {
-      "id": "AmyX0lIVVxM",
-      "key": "74f30c6b9f84ecb461d309a9fda5e7f027fa0f298fb5e2b4524d8158966ba919",
-      "sourceText": "complete the task details",
-      "translatedText": "ટાસ્ક વિગતો પૂર્ણ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:05.515Z"
-    },
-    {
-      "id": "EoUkKbMBsm4",
-      "key": "9233a0541d7604aa2743c391148cb1e0fc58724dce5d2220e78270e24b0be9ce",
-      "sourceText": "complete the design of workflow",
-      "translatedText": "વર્કફ્લોની ડિઝાઇન પૂર્ણ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:11.021Z"
-    },
-    {
-      "id": "fcUX6-itIHk",
-      "key": "9233a0541d7604aa2743c391148cb1e0fc58724dce5d2220e78270e24b0be9ce",
-      "sourceText": "complete the design of workflow",
-      "translatedText": "વર્કફ્લોની ડિઝાઇન પૂર્ણ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:11.022Z"
-    },
-    {
-      "id": "K_532x_Hc9A",
-      "key": "d8c039d0d649b575524f3dfe71e5f959eb971534b74d302df65fed49ccf0e6aa",
-      "sourceText": "first make a draft then implement",
-      "translatedText": "પ્રથમ ડ્રાફ્ટ બનાવો, પછી અમલ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:11.109Z"
-    },
-    {
-      "id": "dS_EPt1gxl8",
-      "key": "d8c039d0d649b575524f3dfe71e5f959eb971534b74d302df65fed49ccf0e6aa",
+      "id": "oxerUjr9SWI",
+      "entityType": "task",
+      "entityId": "hUx-wIp4q24",
+      "field": "description",
+      "locale": "gu",
       "sourceText": "first make a draft then implement",
       "translatedText": "પ્રથમ ડ્રાફ્ટ બનાવો પછી અમલ કરો",
-      "sourceLanguage": "en",
-      "targetLanguage": "gu",
-      "createdAt": "2026-11-16T10:21:11.141Z"
+      "updatedAt": "2026-11-17T07:23:08.919Z"
+    },
+    {
+      "id": "BjBPCK_rEVc",
+      "entityType": "column",
+      "entityId": "in_progress",
+      "field": "column",
+      "locale": "gu",
+      "sourceText": "In Progress",
+      "translatedText": "પ્રગતિમાં છે",
+      "updatedAt": "2026-11-17T07:33:05.559Z"
+    },
+    {
+      "id": "l8xKcmje48E",
+      "entityType": "column",
+      "entityId": "done",
+      "field": "column",
+      "locale": "gu",
+      "sourceText": "Done",
+      "translatedText": "તમે કયા સમયે આવશો??",
+      "updatedAt": "2026-11-17T07:33:05.597Z"
+    },
+    {
+      "id": "hMpUDMAt_K0",
+      "entityType": "column",
+      "entityId": "todo",
+      "field": "column",
+      "locale": "gu",
+      "sourceText": "Todo",
+      "translatedText": "કરવાનાં કાર્યો",
+      "updatedAt": "2026-11-17T07:33:05.829Z"
+    },
+    {
+      "id": "RLM68hbV5lk",
+      "entityType": "column",
+      "entityId": "in_review",
+      "field": "column",
+      "locale": "gu",
+      "sourceText": "In Review",
+      "translatedText": "સમીક્ષા હેઠળ",
+      "updatedAt": "2026-11-17T07:33:05.881Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

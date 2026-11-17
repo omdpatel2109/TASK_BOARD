@@ -160,13 +160,13 @@
 //     );
 // }
 "use client";
-import TranslatedText from "@/features/translation/components/TranslatedText";
+import TranslatedText from "@/features/i18n/components/TranslatedText";
 import { useState } from "react";
-import { useLocale } from "next-intl";
 import type { Comment } from "@/features/comments/type/commentType";
 import SuccessBox from "@/components/SuccessBox";
 import ConfirmBox from "@/components/ConfirmBox";
 import {  Edit2, Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface CommentListProps {
     comments: Comment[];
@@ -175,23 +175,23 @@ interface CommentListProps {
     loadError: string | null;
     error: string | null;
     onRetry: () => void;
-    editComment: (id: string, text: string, contentLanguage?: string) => Promise<void>;
+    editComment: (id: string, text: string) => Promise<void>;
     removeComment: (id: string) => Promise<void>;
 }
 
 export default function CommentList({comments, isLoading, error, editComment, removeComment, loadError, onRetry,
 currentUserId}: CommentListProps) {
-    const locale = useLocale();
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editText, setEditText] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [deleteCommentId, setDeleteCommentId] = useState<string | null>(null);
+    const t = useTranslations("tasks");
 
     async function handleEdit(id: string) {
         if(!editText.trim()) return;
 
         try{
-            await editComment(id, editText.trim(), locale);
+            await editComment(id, editText.trim());
             setEditingId(null);
             setEditText("");
             setSuccessMessage("Comment Edited Successfully..");
@@ -222,7 +222,7 @@ currentUserId}: CommentListProps) {
         <>
             <div className="divide-y divide-slate-200 dark:divide-slate-700">
                 <h2 className="py-3 text-lg font-semibold text-primary-text dark:text-slate-100">
-                    Comments ({comments.length})
+                    {t("comments")} ({comments.length})
                 </h2>
 
                 <SuccessBox message={successMessage} onClose={() => setSuccessMessage("")}/>
@@ -307,7 +307,7 @@ currentUserId}: CommentListProps) {
                                 </div>
                             ) : (
                                 <p className="mt-2 text-secondary-text dark:text-third-dark-text">
-                                    <TranslatedText text={comment.text} sourceLanguage={comment.contentLanguage || "en"} />
+                                    <TranslatedText text={comment.text} entityType="comment" entityId={comment.id} field="text" />
                                 </p>
                             )}
 

@@ -16,14 +16,38 @@
   },
   "tasks": {
     "title": "कार्य",
+    "titledes": "कार्य का शीर्षक दर्ज करें",
+    "subtitle": "इस कार्यप्रवाह में अपने कार्यों का प्रबंधन करें।.",
     "create": "कार्य बनाएं",
     "edit": "कार्य संपादित करें",
     "description": "विवरण",
+    "descriptiondes": "कार्य का विवरण दर्ज करें",
+    "task": "कार्य",
     "priority": "प्राथमिकता",
     "status": "स्थिति",
+    "actions": "क्रियाएँ",
     "todo": "करना है",
     "inProgress": "प्रगति में",
-    "done": "पूर्ण"
+    "done": "पूर्ण",
+    "highpriority": "उच्च प्राथमिकता",
+    "mediumpriority": "मध्यम प्राथमिकता",
+    "lowpriority": "निम्न प्राथमिकता",
+    "allTasks": "सभी कार्य",
+    "allTasksDescription": "अपने कार्यों का निरीक्षण और प्रबंधन करें।",
+    "noTasks": "कोई कार्य उपलब्ध नहीं है।",
+    "noTasksDescription": "अपनी खोज या स्थिति फ़िल्टर बदलने का प्रयास करें।",
+    "viewdetails": "विवरण देखें",
+    "back": "वापस",
+    "addcomment": "टिप्पणी जोड़ें",
+    "comments": "टिप्पणियाँ",
+    "add": "जोड़ें",
+    "dueDate": "अंतिम तारीख",
+    "cancel": "रद्द करें",
+    "updatetask": "कार्य संपादित करें",
+    "addtask": "कार्य जोड़ें",
+    "overdue": "अतिदेय",
+    "duesoon": "जल्द ही देय",
+    "duetoday": "आज देय"
   },
   "taskStatus": {
     "todo": "करना है",
@@ -118,6 +142,26 @@
       "label": "आज के कार्य",
       "description": "वे कार्य जिन्हें आज पूरा करना है"
     }
+  },
+  "workflows": {
+    "title": "मेरा कार्यप्रवाह",
+    "description": "अपने कार्यों के लिए कस्टम कार्यप्रवाह बनाएं और प्रबंधित करें।",
+    "createWorkflow": "नया कार्यप्रवाह बनाएं",
+    "editWorkflow": "कार्यप्रवाह संपादित करें",
+    "deleteWorkflow": "कार्यप्रवाह हटाएँ",
+    "workflowName": "कार्यप्रवाह का नाम",
+    "workflowDescription": "कार्यप्रवाह का विवरण",
+    "workflowStatus": "कार्यप्रवाह की स्थिति",
+    "workflowSteps": "कार्यप्रवाह के चरण",
+    "addStatus": "स्थिति जोड़ें",
+    "statusName": "स्थिति का नाम",
+    "selectedStatuses": "चयनित स्थितियाँ",
+    "add": "जोड़ें",
+    "remove": "हटाएँ",
+    "cancel": "रद्द करें",
+    "saveworkflow": "सहेजें कार्यप्रवाह",
+    "openWorkflow": "कार्यप्रवाह खोलें",
+    "activeWorkflow": "सक्रिय कार्यप्रवाह"
   }
 
 }

@@ -5,6 +5,7 @@ import { getWorkflows, createWorkflow, updateWorkflow, deleteWorkflow} from "@/a
 import type { Workflow, CreateWorkflow, UpdateWorkflow } from "../types/workflowType";
 import { getCurrentUser } from "@/features/auth/action";
 
+//this is for which user is logged in so the related workflows are shown 
 const getStorageKey = (userId: number) => `active-workflow-${userId}`;
 
 export function useWorkflows() {
@@ -13,6 +14,8 @@ export function useWorkflows() {
     const [activeWorkflow, setActiveWorkflow] = useState<Workflow | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
+
+    //identify the logged in user and then Fetch that user's workflows
     const loadWorkflows = useCallback(async () => {
         try{
             setIsLoading(true);
@@ -24,12 +27,13 @@ export function useWorkflows() {
             }
             const data = await getWorkflows(user.id);
             setWorkflows(data);
-            const savedId = localStorage.getItem(getStorageKey(user.id));
 
+            //when user close the browser & then reopen then it open the last selected workflow
+            const savedId = localStorage.getItem(getStorageKey(user.id));
             const selected = data.find((item) => item.id === savedId) ?? data[0] ?? null;
             setActiveWorkflow(selected);
             if(selected){
-                localStorage.setItem( getStorageKey(user.id), selected.id);
+                localStorage.setItem(getStorageKey(user.id), selected.id);
             }
         }catch(err){
             console.error("Workflow loading failed:", err);
@@ -43,6 +47,7 @@ export function useWorkflows() {
         void loadWorkflows();
     }, [loadWorkflows]);
 
+    //function for selecting the workflow
     const selectWorkflow = (workflow: Workflow) => {
         setActiveWorkflow(workflow);
         localStorage.setItem(getStorageKey(workflow.userId), workflow.id);
@@ -57,9 +62,7 @@ export function useWorkflows() {
 
     const editWorkflow = async ( id: string, data: UpdateWorkflow) => {
         const updated = await updateWorkflow(id, data);
-        setWorkflows((prev) => prev.map((item) => item.id === id ? updated : item)
-        );
-
+        setWorkflows((prev) => prev.map((item) => item.id === id ? updated : item));
         setActiveWorkflow((prev) => prev?.id === id ? updated : prev);
         return updated;
     };

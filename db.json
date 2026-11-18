@@ -344,7 +344,7 @@
   "workflows": [
     {
       "id": "default-workflow",
-      "name": "My Workflow",
+      "name": "Software developement",
       "description": "My default task workflow",
       "userId": 1,
       "statuses": [
@@ -378,7 +378,7 @@
         }
       ],
       "createdAt": "2026-11-15T00:00:00.000Z",
-      "updatedAt": "2026-11-17T12:02:08.849Z"
+      "updatedAt": "2026-11-18T04:18:46.432Z"
     },
     {
       "name": "Frontend developement",
@@ -419,7 +419,7 @@
       "id": "3MPaAe0uRkA"
     },
     {
-      "name": "scd",
+      "name": "Backend Developement",
       "description": "",
       "userId": 1,
       "statuses": [
@@ -431,26 +431,33 @@
           "isCompleted": false
         },
         {
-          "id": "771e8236-01a9-471a-93aa-b246908294da",
-          "title": "In Progress",
+          "id": "489cab15-9307-4206-94f8-d5fb0db7611c",
+          "title": "Completed",
           "order": 1,
+          "isStart": false,
+          "isCompleted": true
+        },
+        {
+          "id": "718faaef-518f-459b-9a92-0743ef685167",
+          "title": "Testing",
+          "order": 2,
           "isStart": false,
           "isCompleted": false
         },
         {
-          "id": "489cab15-9307-4206-94f8-d5fb0db7611c",
-          "title": "Completed",
-          "order": 2,
+          "id": "c4692ce6-3b60-4f8d-83e6-04990c81dade",
+          "title": "In Review",
+          "order": 3,
           "isStart": false,
-          "isCompleted": true
+          "isCompleted": false
         }
       ],
       "createdAt": "2026-11-15T10:54:45.620Z",
-      "updatedAt": "2026-11-17T11:05:53.399Z",
+      "updatedAt": "2026-11-18T04:22:15.343Z",
       "id": "9EJ-PLy4_is"
     },
     {
-      "name": "cd",
+      "name": "Software Testing",
       "description": "",
       "userId": 1,
       "statuses": [
@@ -477,11 +484,11 @@
         }
       ],
       "createdAt": "2026-11-15T10:54:59.193Z",
-      "updatedAt": "2026-11-15T10:54:59.193Z",
+      "updatedAt": "2026-11-18T04:25:02.447Z",
       "id": "ayHuS8aMj6k"
     },
     {
-      "name": "cd",
+      "name": "Product Design",
       "description": "",
       "userId": 1,
       "statuses": [
@@ -508,11 +515,11 @@
         }
       ],
       "createdAt": "2026-11-15T10:55:11.514Z",
-      "updatedAt": "2026-11-15T10:55:11.514Z",
+      "updatedAt": "2026-11-18T04:25:27.279Z",
       "id": "QBW31VZRPE8"
     },
     {
-      "name": "d",
+      "name": "Product Management",
       "description": "",
       "userId": 1,
       "statuses": [
@@ -539,7 +546,7 @@
         }
       ],
       "createdAt": "2026-11-15T10:55:19.955Z",
-      "updatedAt": "2026-11-15T10:55:19.955Z",
+      "updatedAt": "2026-11-18T04:25:45.119Z",
       "id": "UGb4hfYLzH4"
     }
   ],
@@ -921,9 +928,9 @@
       "entityId": "ayHuS8aMj6k",
       "field": "name",
       "locale": "gu",
-      "sourceText": "cd",
-      "translatedText": "cd",
-      "updatedAt": "2026-11-17T05:55:00.776Z"
+      "sourceText": "Software Testing",
+      "translatedText": "સોફ્ટવેર ટેસ્ટિંગ",
+      "updatedAt": "2026-11-18T04:25:50.378Z"
     },
     {
       "id": "7k4AfCh7vAo",
@@ -931,9 +938,9 @@
       "entityId": "UGb4hfYLzH4",
       "field": "name",
       "locale": "gu",
-      "sourceText": "d",
-      "translatedText": "ડી",
-      "updatedAt": "2026-11-17T05:55:00.795Z"
+      "sourceText": "Product Management",
+      "translatedText": "પ્રોડક્ટ મેનેજમેન્ટ",
+      "updatedAt": "2026-11-18T04:25:50.376Z"
     },
     {
       "id": "gm1jsFmYFt8",
@@ -991,9 +998,9 @@
       "entityId": "9EJ-PLy4_is",
       "field": "name",
       "locale": "gu",
-      "sourceText": "scd",
-      "translatedText": "SCD",
-      "updatedAt": "2026-11-17T05:55:01.000Z"
+      "sourceText": "Backend Developement",
+      "translatedText": "બેકએન્ડ ડેવલપમેન્ટ",
+      "updatedAt": "2026-11-18T04:25:50.379Z"
     },
     {
       "id": "N98IS8EJ2C8",
@@ -1011,9 +1018,9 @@
       "entityId": "QBW31VZRPE8",
       "field": "name",
       "locale": "gu",
-      "sourceText": "cd",
-      "translatedText": "cd",
-      "updatedAt": "2026-11-17T05:55:01.062Z"
+      "sourceText": "Product Design",
+      "translatedText": "પ્રોડક્ટ ડિઝાઇન",
+      "updatedAt": "2026-11-18T04:25:50.371Z"
     },
     {
       "id": "5U1SQmfHx3c",
@@ -1081,9 +1088,9 @@
       "entityId": "default-workflow",
       "field": "name",
       "locale": "gu",
-      "sourceText": "My Workflow",
-      "translatedText": "મારું વર્કફ્લો",
-      "updatedAt": "2026-11-17T05:55:01.386Z"
+      "sourceText": "Software developement",
+      "translatedText": "સોફ્ટવેર ડેવલપમેન્ટ",
+      "updatedAt": "2026-11-18T04:25:50.835Z"
     },
     {
       "id": "DW_Vz7U3r8U",
@@ -1694,6 +1701,26 @@
       "sourceText": "In Review",
       "translatedText": "સમીક્ષા હેઠળ",
       "updatedAt": "2026-11-17T07:33:05.881Z"
+    },
+    {
+      "id": "plirEubu0wU",
+      "entityType": "workflowStatus",
+      "entityId": "9EJ-PLy4_is_718faaef-518f-459b-9a92-0743ef685167",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "Testing",
+      "translatedText": "ચકાસણી કરી રહ્યા છે",
+      "updatedAt": "2026-11-18T04:25:50.234Z"
+    },
+    {
+      "id": "FJctqWm5DWo",
+      "entityType": "workflowStatus",
+      "entityId": "9EJ-PLy4_is_c4692ce6-3b60-4f8d-83e6-04990c81dade",
+      "field": "title",
+      "locale": "gu",
+      "sourceText": "In Review",
+      "translatedText": "સમીક્ષા હેઠળ",
+      "updatedAt": "2026-11-18T04:25:50.249Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

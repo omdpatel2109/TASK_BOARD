@@ -1,6 +1,6 @@
 // "use client";
 // import { useEffect, useState } from "react";
-// import { Plus, Pencil, Trash2, Check } from "lucide-react";
+// import { Plus, Edit2, Trash2, Check } from "lucide-react";
 // import { useWorkflows } from "../hooks/useWorkflows";
 // import type { Workflow } from "../types/workflowType";
 // import WorkflowForm from "./WorkflowForm";
@@ -146,7 +146,7 @@
 //                                     <button type="button"
 //                                         onClick={() => openEditForm(workflow)}
 //                                         className="rounded-md p-2 text-slate-500 hover:bg-slate-100 hover:text-blue-600 dark:hover:bg-slate-800 cursor-pointer">
-//                                         <Pencil size={17} />
+//                                         <Edit2 size={17} />
 //                                     </button>
 
 //                                     <button type="button"
@@ -233,19 +233,20 @@
 "use client";
 import TranslatedText from "@/features/i18n/components/TranslatedText";
 import { useEffect, useState } from "react";
-import { Plus, Pencil, Trash2, Check } from "lucide-react";
+import { Plus, Edit2, Trash2, Check, MoreVertical } from "lucide-react";
 import { useWorkflows } from "../hooks/useWorkflows";
 import type { Workflow } from "../types/workflowType";
 import WorkflowForm from "./WorkflowForm";
 import { useTranslations } from "next-intl";
 
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE = 6;
 
 export default function WorkflowPage() {
     const {workflows, activeWorkflow, isLoading, error, selectWorkflow, addWorkflow, editWorkflow, removeWorkflow} = useWorkflows();
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [editingWorkflow, setEditingWorkflow] = useState<Workflow | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     // Pagination
     const totalPages = Math.ceil(workflows.length / ITEMS_PER_PAGE);
     const displayTotalPages = Math.max(totalPages, 1);
@@ -377,18 +378,38 @@ export default function WorkflowPage() {
                                 </div>
 
                                 {/* Edit and Delete */}
-                                <div className="flex shrink-0 gap-1">
-                                    <button type="button"
-                                        onClick={() => openEditForm(workflow)}
-                                        className="rounded-md p-2 text-slate-500 hover:bg-slate-100 hover:text-blue-600 dark:hover:bg-slate-800 cursor-pointer">
-                                        <Pencil size={17} />
+                                <div className="relative">
+                                    <button type="button" onPointerDown={(event)=>event.stopPropagation()}
+                                        onClick={(event) => {
+                                            event.stopPropagation();
+                                            setIsMenuOpen((current) => !current);
+                                        }}
+                                        className="flex h-7 w-6 items-center justify-center rounded-md text-slate-500 hover:bg-slate-200 dark:text-slate-200 dark:hover:bg-slate-600 cursor-pointer">
+                                        <MoreVertical className="h-5 w-5" />
                                     </button>
 
-                                    <button type="button"
-                                        onClick={() => handleDelete(workflow)}
-                                        className="rounded-md p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-950 cursor-pointer">
-                                        <Trash2 size={17} />
-                                    </button>
+                                    {isMenuOpen && (
+                                    <div onPointerDown={(event) => event.stopPropagation()}
+                                        className="absolute right-0 top-full z-50 mt-1 flex w-fit items-center gap-1 rounded-md border border-slate-200 bg-white p-1 shadow-lg dark:border-slate-600 dark:bg-slate-800">
+                                        <button type="button" onClick={(event)=> {
+                                            openEditForm(workflow);
+                                            event.stopPropagation();
+                                            setIsMenuOpen(false);
+                                        }}
+                                            className="rounded-md p-2 text-slate-500 hover:bg-slate-100 hover:text-blue-600 dark:hover:bg-slate-800 cursor-pointer">
+                                            <Edit2 size={17} />
+                                        </button>
+                                        <button type="button" onClick={(event) => {
+                                            event.stopPropagation();
+                                            setIsMenuOpen(false);
+                                            handleDelete(workflow);
+
+                                        }}
+                                            className="rounded-md p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-950 cursor-pointer">
+                                            <Trash2 size={17} />
+                                        </button>
+                                    </div>
+                                    )}
                                 </div>
                             </div>
 
@@ -397,7 +418,7 @@ export default function WorkflowPage() {
                                 {[...workflow.statuses].sort((a, b) => a.order - b.order)
                                     .map((status) => (
                                         <span key={status.id}
-                                            className="rounded-md bg-slate-100 px-3 py-1.5 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-300 mb-2">
+                                            className="rounded-md bg-slate-100 px-2 py-1.5 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-300 mb-2">
                                             <TranslatedText text={status.title} entityType="workflowStatus" entityId={`${workflow.id}_${status.id}`} field="title" />
                                         </span>
                                     ))}
@@ -408,13 +429,12 @@ export default function WorkflowPage() {
                                 onClick={() => selectWorkflow(workflow)}
                                 className={`flex w-full items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold transition cursor-pointer ${
                                     activeWorkflow?.id === workflow.id
-                                        ? "bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-400"
-                                        : "bg-primary text-white hover:opacity-90"
+                                        ? "bg-slate-200 text-slate-800 dark:bg-blue-950 dark:text-blue-400"
+                                        : "bg-slate-800 text-white hover:opacity-90"
                                 }`}>
                                 {activeWorkflow?.id === workflow.id && (
                                     <Check size={16} />
                                 )}
-
                                 {activeWorkflow?.id === workflow.id
                                     ? t("activeWorkflow")
                                     : t("openWorkflow")

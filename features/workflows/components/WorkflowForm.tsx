@@ -28,7 +28,8 @@ export default function WorkflowForm({editingWorkflow, onClose, onCreate, onUpda
     function toggleStatus(title: string) {
         const existing = statuses.find((status) => status.title === title);
 
-        if(existing){setStatuses((prev) => prev.filter((status) => status.title !== title)
+        if(existing){
+            setStatuses((prev) => prev.filter((status) => status.title !== title)
                 .map((status, index) => ({...status, order: index,}))
             );
             return;

@@ -14,7 +14,6 @@ export async function getWorkflowById(id: string): Promise<Workflow> {
 export async function createWorkflow(workflow: CreateWorkflow): Promise<Workflow> {
     const now = new Date().toISOString();
     const response = await api.post<Workflow>("/workflows", {...workflow,createdAt: now, updatedAt: now,});
-
     return response.data;
 }
 

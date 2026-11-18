@@ -141,14 +141,15 @@ export default function TaskFilter({tasks, columns, onFilterChange}: TaskFilterP
                 ))}
             </select>
 
-            <button type="button" onClick={() => {
+            {(text.trim() !== "" || priority !== "all" || status !== "all") && 
+            (<button type="button" onClick={() => {
                 setSearch("");
                 setText("");
                 setStatus("all");
                 setPriority("all");
-            }} className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400">
+            }} className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-bold text-gray-600 hover:bg-blue-50 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400 hover:underline">
                 Clear Filter
-            </button>
+            </button>)}
         </div>
     );
 }

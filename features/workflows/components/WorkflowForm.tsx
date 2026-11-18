@@ -7,7 +7,7 @@ import { getCurrentUser } from "@/features/auth/action";
 import { useTranslations } from "next-intl";
 
 interface WorkflowFormProps {
-    editingWorkflow: Workflow | null;
+    editingWorkflow: Workflow | null; //whether the form is being used to create or edit a workflow
     onClose: () => void;
     onCreate: (workflow: CreateWorkflow) => Promise<Workflow>;
     onUpdate: (id: string, data: UpdateWorkflow) => Promise<Workflow>;
@@ -28,15 +28,19 @@ export default function WorkflowForm({editingWorkflow, onClose, onCreate, onUpda
     function toggleStatus(title: string) {
         const existing = statuses.find((status) => status.title === title);
 
+        //handles the case where the status is already selected
         if(existing){
+            //keep only statuses whose titles do not match the clicked title, remove the title which are selected and reorder the remaining status
             setStatuses((prev) => prev.filter((status) => status.title !== title)
-                .map((status, index) => ({...status, order: index,}))
+                .map((status, index) => ({...status, order: index}))
             );
             return;
         }
 
+        //when status not selected
         const option = STATUS_OPTIONS.find((item) => item.title === title);
         if (!option) return;
+        //add neew status
         setStatuses((prev) => [...prev, createStatus(option.title, option.isStart, 
             option.isCompleted, prev.length)]);
     }
@@ -160,9 +164,7 @@ export default function WorkflowForm({editingWorkflow, onClose, onCreate, onUpda
 
                         <div className="grid grid-cols-2 gap-2">
                             {STATUS_OPTIONS.map((option) => {
-                                const selected = statuses.some(
-                                    (item) => item.title === option.title
-                                );
+                                const selected = statuses.some((item)=>item.title === option.title);
 
                                 return (
                                     <button key={option.title} type="button"

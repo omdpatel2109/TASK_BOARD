@@ -87,22 +87,23 @@ interface TranslateParams {
     text: string;
     entityType: TranslationEntity;
     entityId: string;
-    field: string;
+    field: string; //name, title, description, etc..
     locale: DynamicLocale;
 }
 
 interface MyMemoryResponse {
-    responseStatus: number;
+    responseStatus: number; // 200(OK)
     responseData?: {translatedText?: string};
     quotaFinished?: boolean;
 }
 
+//This function generates a unique ID for a translation record
 function makeTranslationId(entityType: TranslationEntity, entityId: string, field: string,locale: DynamicLocale): string {
     return [entityType, entityId, field, locale]
-        .map(encodeURIComponent)
+        .map(encodeURIComponent)//encodeURIComponent encodes special characters so they can safely be included in the generated ID
         .join("::");
 }
-
+//This function communicates with the external MyMemory API and returns the translated text
 async function translateWithMyMemory(text: string, locale: DynamicLocale): Promise<string> {
     if(new TextEncoder().encode(text).length > 500){
         throw new Error("Text exceeds the 500-byte translation limit.");
@@ -110,7 +111,7 @@ async function translateWithMyMemory(text: string, locale: DynamicLocale): Promi
 
     const url = new URL("https://api.mymemory.translated.net/get");
     url.searchParams.set("q", text); //store main english sentence
-    url.searchParams.set("langpair", `en|${locale}`); //store the language
+    url.searchParams.set("langpair", `en|${locale}`); //the source and target languages
 
     const response = await fetch(url.toString());
     if(!response.ok){
@@ -128,18 +129,18 @@ async function translateWithMyMemory(text: string, locale: DynamicLocale): Promi
 export async function translateDynamicText({text, entityType, entityId, field, locale}: TranslateParams): Promise<string> {
 
     if (!text.trim()) return text;
-    // 1. Check existing translation
+    // Check existing translation
     const existing = await getTranslation({entityType, entityId, field, locale});
 
-    // 2. Reuse translation if original text hasn't changed
+    // Reuse translation if original text hasn't changed
     if(existing?.sourceText === text){
         return existing.translatedText;
     }
 
-    // 3. Translate original English text
+    // Translate original English text
     const translatedText = await translateWithMyMemory(text, locale);
 
-    // 4. Save or update translation
+    // Save or update translation
     if(existing){
         await updateTranslation(existing.id, translatedText, text);
     }else{
@@ -147,6 +148,6 @@ export async function translateDynamicText({text, entityType, entityId, field, l
             entityType, entityId, field, locale, sourceText: text, translatedText});
     }
 
-    // 5. Return translated text
+    // Return translated text
     return translatedText;
 }

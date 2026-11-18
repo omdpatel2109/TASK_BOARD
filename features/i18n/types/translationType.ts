@@ -1,4 +1,5 @@
 export type SupportedLocale = "en" | "hi" | "gu";
+//only translate into guj, hindi into dynamic
 export type DynamicLocale = Exclude<SupportedLocale, "en">;
 
 export type TranslationEntity =

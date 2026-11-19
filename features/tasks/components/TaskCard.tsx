@@ -362,28 +362,34 @@ export function getPriorityStyle(priority?: string) {
     }
 }
 
-export function getDueDateStyle(dueDate: string) {
+export function getDueDateStyle(
+    dueDate: string,
+    t: (key: string) => string
+) {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const due = new Date(`${dueDate}T00:00:00`);
-    const differenceInDays = Math.round((due.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-    const t = useTranslations("tasks");
 
-    if(differenceInDays < 0){
+    const due = new Date(`${dueDate}T00:00:00`);
+
+    const differenceInDays = Math.round(
+        (due.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
+    );
+
+    if (differenceInDays < 0) {
         return {
             label: t("overdue"),
             style: "date-overdue",
         };
     }
 
-    if(differenceInDays === 0){
+    if (differenceInDays === 0) {
         return {
             label: t("duetoday"),
             style: "date-duetoday",
         };
     }
 
-    if(differenceInDays <= 3){
+    if (differenceInDays <= 3) {
         return {
             label: t("duesoon"),
             style: "date-duesoon",
@@ -407,7 +413,7 @@ export default function TaskCard({task, isCompleted = false, onEdit, onDelete}: 
         transition,
     };
 
-    const dueDateInfo = task.dueDate ? getDueDateStyle(task.dueDate) : null;
+    const dueDateInfo = task.dueDate ? getDueDateStyle(task.dueDate, t) : null;
 
     return (
         <div ref={setNodeRef} style={style} {...listeners} {...attributes}
@@ -446,8 +452,8 @@ export default function TaskCard({task, isCompleted = false, onEdit, onDelete}: 
                                         setIsMenuOpen(false);
                                         onEdit(task);
                                     }}
-                                    className="flex h-10 w-10 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700">
-                                    <Edit2 className="h-5 w-5" />
+                                    className="flex h-10 w-10 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 cursor-pointer">
+                                    <Edit2 className="h-5 w-5 cursor-pointer"/>
                                 </button>
 
                                 <button type="button"
@@ -456,7 +462,7 @@ export default function TaskCard({task, isCompleted = false, onEdit, onDelete}: 
                                         setIsMenuOpen(false);
                                         onDelete(String(task.id));
                                     }}
-                                    className="flex h-10 w-10 items-center justify-center rounded-md text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-slate-700">
+                                    className="flex h-10 w-10 items-center justify-center rounded-md text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-slate-700 cursor-pointer">
                                     <Trash2 className="h-5 w-5" />
                                 </button>
                             </div>

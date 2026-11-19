@@ -275,14 +275,13 @@ export default function TaskDetails({task, onUpdate, onClose, columns}: TaskDeta
                                 {getStatusLabel(task.status)}
                             </span>
                             {task.dueDate && ((() => {
-                                const dueDateInfo = getDueDateStyle(task.dueDate);
+                                const dueDateInfo = getDueDateStyle(task.dueDate, t);
                                     return (
                                         <div className="mt-3 flex flex-wrap items-center gap-2">
                                             <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-secondary-dark-text">
                                                 <CalendarDays className="h-4 w-4" />
                                                 <span>
-                                                    {new Date(`${task.dueDate}T00:00:00`).toLocaleDateString(
-                                                        undefined,
+                                                    {new Date(`${task.dueDate}T00:00:00`).toLocaleDateString(undefined,
                                                         {
                                                             day: "numeric",
                                                             month: "short",

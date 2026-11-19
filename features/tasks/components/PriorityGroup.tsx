@@ -110,7 +110,7 @@ export default function PriorityGroup({columnId, priority, label, dot, tasks, is
         <section ref={setNodeRef}
             className={`rounded-lg border border-gray-200 bg-white dark:border-slate-700 dark:bg-slate-900 ${ isOver ? "ring-2 ring-blue-400 dark:ring-blue-500" : ""}`}>
             <button type="button" onClick={() => setIsOpen((current) => !current)}
-                className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-3 text-left hover:bg-gray-50 dark:hover:bg-slate-800">
+                className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-3 text-left hover:bg-gray-50 dark:hover:bg-slate-800 cursor-pointer">
                 <div className="flex min-w-0 items-center gap-2">
                     <span className={`h-2.5 w-2.5 rounded-full ${dot}`} />
 

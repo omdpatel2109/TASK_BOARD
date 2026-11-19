@@ -167,7 +167,7 @@
     {
       "title": "workflow manage",
       "description": "manage the workflow.\n",
-      "status": "todo",
+      "status": "92050da5-b91e-4f87-a4fa-f110355edf9f",
       "priority": "medium",
       "dueDate": "2026-11-19",
       "workflowId": "default-workflow",
@@ -187,12 +187,22 @@
     {
       "title": "Documentation",
       "description": "Make a documentation",
-      "status": "todo",
+      "status": "92050da5-b91e-4f87-a4fa-f110355edf9f",
       "priority": "low",
       "dueDate": "2026-11-20",
       "workflowId": "default-workflow",
       "order": 1,
       "id": "OUOOqlr4Ff4"
+    },
+    {
+      "title": "test ",
+      "description": "test the functions",
+      "status": "92050da5-b91e-4f87-a4fa-f110355edf9f",
+      "priority": "low",
+      "dueDate": "2026-11-20",
+      "workflowId": "default-workflow",
+      "order": 0,
+      "id": "gpjnhDfRksc"
     }
   ],
   "comments": [
@@ -349,7 +359,7 @@
       "userId": 1,
       "statuses": [
         {
-          "id": "todo",
+          "id": "92050da5-b91e-4f87-a4fa-f110355edf9f",
           "title": "Todo",
           "order": 0,
           "isStart": true,
@@ -378,7 +388,7 @@
         }
       ],
       "createdAt": "2026-11-15T00:00:00.000Z",
-      "updatedAt": "2026-11-18T18:09:36.811Z"
+      "updatedAt": "2026-11-19T06:34:04.220Z"
     },
     {
       "name": "Frontend developement",
@@ -415,7 +425,7 @@
         }
       ],
       "createdAt": "2026-11-15T10:34:06.732Z",
-      "updatedAt": "2026-11-18T17:35:54.355Z",
+      "updatedAt": "2026-11-19T05:15:33.019Z",
       "id": "3MPaAe0uRkA"
     },
     {

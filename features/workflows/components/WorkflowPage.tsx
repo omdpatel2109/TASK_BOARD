@@ -455,7 +455,7 @@ export default function WorkflowPage() {
                                     className={`flex w-full items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold transition cursor-pointer ${
                                         activeWorkflow?.id === workflow.id
                                             ? "bg-slate-200 text-slate-800 dark:bg-blue-950 dark:text-blue-400"
-                                            : "bg-slate-800 text-white hover:opacity-90"
+                                            : "bg-slate-700 text-white hover:opacity-90"
                                     }`}>
                                     {activeWorkflow?.id === workflow.id && (
                                         <Check size={16} />

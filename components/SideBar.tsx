@@ -19,7 +19,7 @@ export default function SideBar() {
         <div className={`sticky top-0 flex h-screen flex-col border-r border-slate-200 bg-white duration-200 dark:border-slate-800 dark:bg-background ${isExpanded ? "w-60" : "w-16"}`}>
             <div className={`mb-3 mt-3 flex h-14 items-center p-2 ${ isExpanded ? "justify-between" : "justify-center"}`}>
                 {isExpanded && (
-                    <h1 className="p-4 text-lg font-bold text-primary sm:text-2xl dark:text-blue-400">
+                    <h1 className="p-4 text-2xl font-bold text-primary sm:text-2xl dark:text-blue-400">
                         {t("title")}
                     </h1>
                 )}

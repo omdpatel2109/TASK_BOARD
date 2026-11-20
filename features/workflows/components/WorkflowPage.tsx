@@ -345,7 +345,7 @@ export default function WorkflowPage() {
                 {/* Page Header */}
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-primary-text dark:text-white">
+                        <h1 className="text-3xl font-bold tracking-tight text-primary-text dark:text-white">
                             {t("title")}
                         </h1>
                         <p className="mt-1 text-sm text-secondary-text">

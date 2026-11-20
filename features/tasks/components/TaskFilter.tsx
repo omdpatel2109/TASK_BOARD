@@ -67,6 +67,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import type {Task, TaskColumn, TaskPriority} from "@/features/tasks/type/taskType";
+import { Search } from "lucide-react";
 
 interface TaskFilterProps {
     tasks: Task[];
@@ -103,20 +104,26 @@ export default function TaskFilter({tasks, columns, onFilterChange}: TaskFilterP
 
     return (
         <div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:items-center">
-            <input type="search" value={text}
+            <div className="relative flex w-full min-w-0 flex-1 items-center sm:max-w-[280px]">
+            <input type="search"value={text}
                 onChange={(event) => {
-                    setText(event.target.value)
+                    setText(event.target.value);
                     if(event.target.value === ""){
                         setSearch("");
                     }
-                }}
-                onKeyDown={(event) => {
+                }} onKeyDown={(event) => {
                     if(event.key === "Enter"){
                         setSearch(text);
                     }
-                }}
-                placeholder="Search tasks..."
-                className="min-w-0 w-full flex-1 rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-primary-text outline-none placeholder-gray-500 focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-primary-dark-text sm:max-w-[280px]"/>
+                }} placeholder="Search tasks..."
+                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-4 pr-11 text-base text-primary-text outline-none placeholder-gray-500 focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-primary-dark-text"/>
+                {text.length > 0 && 
+                    <button type="button" onClick={() => setSearch(text)} 
+                    className="absolute right-4 flex items-center justify-center text-gray-500 transition-colors hover:text-primary dark:text-gray-400 dark:hover:text-primary cursor-pointer">
+                        <Search className="h-4 w-4" />
+                    </button>
+                }
+            </div>
 
             <select value={status} onChange={(event) => setStatus(event.target.value)}
                 className="h-[50px] w-full rounded-lg border border-gray-300 bg-white px-4 text-gray-500 outline-none focus:border-primary dark:border-slate-700 dark:bg-slate-800 dark:text-secondary-dark-text sm:w-40">
@@ -141,7 +148,7 @@ export default function TaskFilter({tasks, columns, onFilterChange}: TaskFilterP
                 ))}
             </select>
 
-            {(text.trim() !== "" || priority !== "all" || status !== "all") && 
+            {(text.trim() !== "" || priority !== "all" || status !== "all") &&  
             (<button type="button" onClick={() => {
                 setSearch("");
                 setText("");

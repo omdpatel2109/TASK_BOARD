@@ -76,7 +76,7 @@ type RouteContext = {
 };
 
 async function handleRequest(request: NextRequest, context: RouteContext){
-    try {
+    try{
         const { path } = await context.params;
 
         // Allow only the resources used by this application.

@@ -45,20 +45,13 @@
 
 import { NextRequest, NextResponse } from "next/server";
 
-const protectedRoutes = [
-    "/board",
-    "/tasks",
-    "/workflows",
-];
-
+const protectedRoutes = ["/board", "/tasks", "/workflows"];
 const publicRoutes = ["/login"];
 
 export function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
-
-    const isProtected = protectedRoutes.some(
-        (route) =>
-            path === route || path.startsWith(`${route}/`)
+    const isProtected = protectedRoutes.some((route) =>
+        path === route || path.startsWith(`${route}/`)
     );
 
     const isPublic = publicRoutes.includes(path);
@@ -66,14 +59,14 @@ export function middleware(request: NextRequest) {
     const token = request.cookies.get("access_token")?.value;
 
     // Redirect unauthenticated users to login.
-    if (isProtected && !token) {
+    if(isProtected && !token){
         return NextResponse.redirect(
             new URL("/login", request.url)
         );
     }
 
     // Redirect authenticated users to workflow selection.
-    if (isPublic && token) {
+    if(isPublic && token){
         return NextResponse.redirect(
             new URL("/workflows", request.url)
         );
@@ -83,10 +76,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: [
-        "/board/:path*",
-        "/tasks/:path*",
-        "/workflows/:path*",
-        "/login",
-    ],
+    matcher: ["/board/:path*", "/tasks/:path*", "/workflows/:path*", "/login"],
 };

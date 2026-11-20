@@ -21,14 +21,12 @@ export default function ConfirmBox({message, onConfirm, onCancel}: ConfirmBoxPro
 
                 <div className="mt-6 flex justify-end gap-3">
                     <button type="button" onClick={onCancel}
-                        className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-secondary-text hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800 dark:text-secondary-dark-text cursor-pointer"
-                    >
+                        className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-secondary-text hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800 dark:text-secondary-dark-text cursor-pointer">
                         {t("cancel")}
                     </button>
 
                     <button type="button" onClick={onConfirm}
-                        className="rounded-lg bg-error px-4 py-2 text-sm font-medium text-white hover:opacity-90 cursor-pointer"
-                    >
+                        className="rounded-lg bg-error px-4 py-2 text-sm font-medium text-white hover:opacity-90 cursor-pointer">
                         {t("delete")}
                     </button>
                 </div>

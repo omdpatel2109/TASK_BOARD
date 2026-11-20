@@ -56,7 +56,7 @@ export default function TaskColumns({ tasks, columns, onDragEnd, onColumnDragEnd
             const activeColumnId = String(active.data.current.columnId);
             const overColumnId = over.data.current?.columnId;
             if(overColumnId !== undefined){
-                onColumnDragEnd( activeColumnId, String(overColumnId));
+                onColumnDragEnd(activeColumnId, String(overColumnId));
             }
             return;
         }
